@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AcrComponent } from './acr.component';
 import { AcrFormComponent } from './acr-form/acr-form.component';
+import { AcrTableComponent } from './acr-table/acr-table.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: "acr-form",
         component: AcrFormComponent
+      },
+      {
+        path: "acr-table",
+        component: AcrTableComponent
       },
     ]
   },
