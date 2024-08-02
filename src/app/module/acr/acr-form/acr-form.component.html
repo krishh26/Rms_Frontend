@@ -23,21 +23,20 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label>Supplier/Agency Name:</label>
+                    <label>Supplier/Agency Name :</label>
                     <input type="text" class="form-control" placeholder="Candidate Name">
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
-                    <label>Location:
+                    <label>Location :
                     </label>
                     <input type="text" class="form-control" placeholder="Current Location">
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
-                    <label>Number Of Branches in
-                      UK:</label>
+                    <label>Number Of Branches in UK :</label>
                     <input type="email" class="form-control">
                   </div>
                 </div>
@@ -45,80 +44,87 @@
               <div class="row">
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
-                    <label>Key Contact Person
-                      Name:</label>
-                    <input type="text" class="form-control" placeholder="SC/DV">
+                    <label>Key Contact Person Name :</label>
+                    <input type="text" class="form-control" placeholder="Key Contact Person Name">
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
-                    <label>Key Contact Person
-                      Designation:</label>
-                    <input type="text" class="form-control" placeholder="clearance certificate">
+                    <label>Key Contact Person Designation :</label>
+                    <input type="text" class="form-control" placeholder="Key Contact Person Designation">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Key Contact Person
-                      Email:</label>
-                    <input type="text" class="form-control" placeholder="Email Id">
+                    <label>Key Contact Person Email :</label>
+                    <input type="text" class="form-control" placeholder="Key Contact Person Email">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-4 pr-1">
+                <div class="col-md-6 pr-1">
                   <div class="form-group">
-                    <label>Key Contact Person
-                      phone number:</label>
-                    <input type="text" class="form-control" placeholder="Phone number">
+                    <label>Key Contact Person phone number :</label>
+                    <input type="text" class="form-control" placeholder="Key Contact Person phone number">
                   </div>
                 </div>
-                <div class="col-md-4 px-1">
+                <div class="col-md-6 px-1">
                   <div class="form-group">
-                    <label>Secondary contact details
-                      (if, any):
+                    <label>Secondary contact details (if, any) :
                     </label>
                     <input type="text" class="form-control" placeholder="Preferred time">
                   </div>
                 </div>
-                <div class="col-md-4 pl-1">
+                <!-- <div class="col-md-4 pl-1">
                   <div class="form-group">
-                    <label>Emergency Secondary contact details (if, any):</label>
+                    <label>Emergency Secondary contact details (if, any) :</label>
                     <input type="text" class="form-control" placeholder="contact details">
+                  </div>
+                </div> -->
+              </div>
+              <div class="row">
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Emergency Secondary contact details (if, any) :</label>
+                    <input type="text" class="form-control" placeholder="contact details">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Referred by : </label>
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select Referred</option>
+                      <option value="delphi">Delphi</option>
+                      <option value="bigdata">Bigdata </option>
+                    </select>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4 pl-1">
                   <div class="form-group">
-                    <label>Referred by: </label>
-                    <textarea class="form-control textarea"></textarea>
+                    <label> Username :</label>
+                    <input type="text" class="form-control" placeholder="Username">
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4 pl-1">
-                <div class="form-group">
-                  <label>Add Username:</label>
-                  <input type="text" class="form-control" placeholder="contact details">
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label> Password :</label>
+                    <input type="password" class="form-control" placeholder="Password">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 pl-1">
-                <div class="form-group">
-                  <label>Add Password:</label>
-                  <input type="text" class="form-control">
-                </div>
-              </div>
-              <div class="col-md-4 pl-1">
-                <div class="form-group">
-                  <label>Confirm Password:</label>
-                  <input type="text" class="form-control">
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label>Confirm Password :</label>
+                    <input type="password" class="form-control" placeholder="Confirm Password">
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="update ml-auto mr-auto">
-                  <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+                  <button type="submit" class="btn btn-primary btn-round">Submit</button>
                 </div>
               </div>
             </form>
