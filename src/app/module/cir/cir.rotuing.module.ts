@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CirComponent } from './cir.component';
 import { CirFormComponent } from './cir-form/cir-form.component';
 import { CirCardComponent } from './cir-card/cir-card.component';
-import { CirTableComponent } from './cir-table/cir-table.component';
 import { CirLoginComponent } from './cir-login/cir-login.component';
+import { Dps21DetailsComponent } from './dps21-details/dps21-details.component';
+import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northen-Ireland-details.component';
+import { ManchesterDetailsComponent } from './manchester-details/manchester-details.component';
 
 const routes: Routes = [
   {
@@ -24,13 +26,20 @@ const routes: Routes = [
         component: CirCardComponent
       },
       {
-        path: "cir-table",
-        component: CirTableComponent
-      },
-      {
         path: "cir-login",
         component: CirLoginComponent
-        
+      },
+      {
+        path: "manchester-details",
+        component: ManchesterDetailsComponent
+      },
+      {
+        path: "northen-ireland-details",
+        component: NorthenIrelandDetailsComponent
+      },
+      {
+        path: "dps21-details",
+        component: Dps21DetailsComponent
       },
     ]
   },
