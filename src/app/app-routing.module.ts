@@ -10,6 +10,11 @@ const routes: Routes = [
     path: 'cir',
     loadChildren: () => import('./module/cir/cir.module').then(m => m.CirModule)
   },
+  {
+    path: "**",
+    pathMatch: "full",
+    redirectTo: "cir"
+  },
 ];
 
 @NgModule({
