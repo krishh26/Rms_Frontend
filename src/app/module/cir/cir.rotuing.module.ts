@@ -14,11 +14,11 @@ const routes: Routes = [
     component: CirComponent,
     children: [
       {
-        path: "cir",
-        component: CirComponent
+        path: "cir-login",
+        component: CirLoginComponent
       },
       {
-        path: "cir-form",
+        path: "cir-register",
         component: CirFormComponent
       },
       {
@@ -26,21 +26,22 @@ const routes: Routes = [
         component: CirCardComponent
       },
       {
-        path: "cir-login",
-        component: CirLoginComponent
-      },
-      {
         path: "manchester-details",
         component: ManchesterDetailsComponent
       },
       {
-        path: "northen-ireland-details",
+        path: "northern-ireland-details",
         component: NorthenIrelandDetailsComponent
       },
       {
         path: "dps21-details",
         component: Dps21DetailsComponent
       },
+      {
+        path: "**",
+        pathMatch: "full",
+        redirectTo: "cir-login"
+      }
     ]
   },
   {
