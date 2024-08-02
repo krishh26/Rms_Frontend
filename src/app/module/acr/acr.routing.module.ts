@@ -15,7 +15,7 @@ const routes: Routes = [
         component: AcrComponent
       },
       {
-        path: "acr-form",
+        path: "acr-register",
         component: AcrFormComponent
       },
       {
