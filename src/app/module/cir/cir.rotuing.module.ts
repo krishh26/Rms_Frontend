@@ -4,6 +4,7 @@ import { CirComponent } from './cir.component';
 import { CirFormComponent } from './cir-form/cir-form.component';
 import { CirCardComponent } from './cir-card/cir-card.component';
 import { CirTableComponent } from './cir-table/cir-table.component';
+import { CirLoginComponent } from './cir-login/cir-login.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,11 @@ const routes: Routes = [
       {
         path: "cir-table",
         component: CirTableComponent
-
+      },
+      {
+        path: "cir-login",
+        component: CirLoginComponent
+        
       },
     ]
   },

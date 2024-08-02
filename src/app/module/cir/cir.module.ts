@@ -5,16 +5,19 @@ import { CirRoutingModule } from './cir.rotuing.module';
 import { CirFormComponent } from './cir-form/cir-form.component';
 import { CirCardComponent } from './cir-card/cir-card.component';
 import { CirTableComponent } from './cir-table/cir-table.component';
+import { CirLoginComponent } from './cir-login/cir-login.component';
 
 @NgModule({
   imports: [
     CommonModule,
     CirRoutingModule
   ],
-  declarations: [CirComponent,
+  declarations: [
+    CirComponent,
     CirFormComponent,
     CirCardComponent,
-    CirTableComponent
+    CirTableComponent,
+    CirLoginComponent
   ]
 })
 export class CirModule { }

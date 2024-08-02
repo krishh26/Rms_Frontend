@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AcrComponent } from './acr.component';
 import { AcrFormComponent } from './acr-form/acr-form.component';
 import { AcrTableComponent } from './acr-table/acr-table.component';
+import { AcrLoginComponent } from './acr-login/acr-login.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: "acr-table",
         component: AcrTableComponent
+      },
+      {
+        path: "acr-login",
+        component: AcrLoginComponent
       },
     ]
   },
