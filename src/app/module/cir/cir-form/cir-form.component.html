@@ -98,7 +98,11 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Do you Have a UK Driving license? :</label>
-                    <input type="text" class="form-control" placeholder="Driving license">
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select Type</option>
+                      <option value="DrivinglicenseYes">Yes</option>
+                      <option value="DrivinglicenseNo">No</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
@@ -148,19 +152,54 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label>Do you hold any SC/DV? :</label>
-                    <input type="text" class="form-control" placeholder="Do you hold any SC/DV?">
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select option</option>
+                      <option value="scdvnseYes">Yes</option>
+                      <option value="scdvnseNo">No</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group">
-                    <label>If your answer to above is NO, then are you willing to undertake one, if we/client wish to sponsor for clearance certificate :</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <label>If your answer to above is NO, then are you willing to undertake one, if we/client wish to
+                      sponsor for clearance certificate :</label>
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select option</option>
+                      <option value="clearancecertificateYes">Yes</option>
+                      <option value="clearancecertificateNo">No</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group">
                     <label>Preferred time for a call, if/when we wish to speak with you :</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select preferred time</option>
+                      <option value="1">1-2 AM</option>
+                      <option value="2">2-3 AM</option>
+                      <option value="3">3-4 AM</option>
+                      <option value="4">4-5 AM</option>
+                      <option value="5">5-6 AM</option>
+                      <option value="6">6-7 AM</option>
+                      <option value="7">7-8 AM</option>
+                      <option value="8">8-9 AM</option>
+                      <option value="9">9-10 AM</option>
+                      <option value="10">10-11 AM</option>
+                      <option value="11">11-12 AM</option>
+
+                      <option value="12">12-1 PM</option>
+                      <option value="13">1-2 PM</option>
+                      <option value="14">2-3 PM</option>
+                      <option value="15">3-4 PM</option>
+                      <option value="16">4-5 PM</option>
+                      <option value="17">5-6 PM</option>
+                      <option value="18">6-7 PM</option>
+                      <option value="19">7-8 PM</option>
+                      <option value="20">8-9 PM</option>
+                      <option value="21">9-10 PM</option>
+                      <option value="22">10-11 PM</option>
+                      <option value="23">11-12 PM</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
@@ -195,13 +234,23 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Your current job is :</label>
-                    <input type="text" class="form-control" placeholder="Your current job">
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select current job type</option>
+                      <option value="permanent_job">Permanent Job </option>
+                      <option value="temporary_job">Temporary Job</option>
+                      <option value="day_rate">Day Rate</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>You are looking for a :</label>
-                    <input type="text" class="form-control" placeholder="You are looking for a">
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select looking for type</option>
+                      <option value="permanent_job">Permanent Job </option>
+                      <option value="temporary_job">Temporary Job</option>
+                      <option value="day_rate">Day Rate</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -210,13 +259,32 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Working preference :</label>
-                    <input type="text" class="form-control" placeholder="working preference">
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select working preference type</option>
+                      <option value="remote">Available for remote</option>
+                      <option value="weekly_office">Available weekly N number of days to work from office</option>
+                      <option value="any_place">Open to work at any place</option>
+                      <option value="travel_within_country">Open to travel to client place if within the country
+                      </option>
+                      <option value="travel_worldwide">Open to travel anywhere in the world</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Availability :</label>
-                    <input type="text" class="form-control" placeholder="Availability">
+                    <select class="form-control" formControlName="user_type">
+                      <option value="" disabled selected hidden>Select availability type</option>
+                      <option value="full_time_can_work_full_time">Working full time but can work full time for you
+                      </option>
+                      <option value="full_time_can_work_part_time">Working full time and can work part time for you
+                      </option>
+                      <option value="engage_in_future">Currently working somewhere, can engage in future</option>
+                      <option value="ready_to_start">Ready to start</option>
+                      <option value="temporary_or_short_term">Available for temporary or short-term assignments</option>
+                      <option value="seasonal_availability">Available for work during specific seasons or times of the
+                        year</option>
+                    </select>
                   </div>
                 </div>
               </div>
