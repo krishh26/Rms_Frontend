@@ -24,7 +24,8 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label>Candidate Name :</label>
-                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="candidateName">
+                    <input type="text" class="form-control" placeholder="Candidate Name"
+                      formControlName="candidateName">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['candidateName']?.touched &&
                       personalDetailForm.controls?.['candidateName']?.errors?.['required']">
@@ -33,7 +34,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['candidateName']?.touched &&
                       personalDetailForm.controls?.['candidateName']?.errors?.['pattern']">
-                          Please enter valid formate of candidate name
+                      Please enter valid formate of candidate name
                     </span>
                   </div>
                 </div>
@@ -50,7 +51,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['contactEmail']?.touched &&
                       personalDetailForm.controls?.['contactEmail']?.errors?.['pattern']">
-                          Please enter valid formate of candidate email
+                      Please enter valid formate of candidate email
                     </span>
                   </div>
                 </div>
@@ -58,7 +59,8 @@
                   <div class="form-group">
                     <label>Secondary Email :
                     </label>
-                    <input type="email" class="form-control" placeholder="Secondary Email" formControlName="secondaryEmail">
+                    <input type="email" class="form-control" placeholder="Secondary Email"
+                      formControlName="secondaryEmail">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryEmail']?.touched &&
                       personalDetailForm.controls?.['secondaryEmail']?.errors?.['required']">
@@ -67,14 +69,15 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryEmail']?.touched &&
                       personalDetailForm.controls?.['secondaryEmail']?.errors?.['pattern']">
-                          Please enter valid formate of secondary email
+                      Please enter valid formate of secondary email
                     </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Contact Phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Contact Phone number" formControlName="contactPhoneNumber">
+                    <input type="tel" class="form-control" placeholder="Contact Phone number"
+                      formControlName="contactPhoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['contactPhoneNumber']?.touched &&
                       personalDetailForm.controls?.['contactPhoneNumber']?.errors?.['required']">
@@ -83,7 +86,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['contactPhoneNumber']?.touched &&
                       personalDetailForm.controls?.['contactPhoneNumber']?.errors?.['pattern']">
-                          Please enter valid formate of contact phone number
+                      Please enter valid formate of contact phone number
                     </span>
                   </div>
                 </div>
@@ -91,7 +94,7 @@
                   <div class="form-group">
                     <label>Secondary Phone number :</label>
                     <input type="tel" class="form-control" placeholder="Secondary Phone number"
-                    ormControlName="secondaryPhoneNumber">
+                      ormControlName="secondaryPhoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.errors?.['required']">
@@ -100,7 +103,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.errors?.['pattern']">
-                          Please enter valid formate of secondary phone number
+                      Please enter valid formate of secondary phone number
                     </span>
                   </div>
                 </div>
@@ -119,7 +122,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['dob']?.touched &&
                       personalDetailForm.controls?.['dob']?.errors?.['pattern']">
-                          Please enter valid formate of date of birth
+                      Please enter valid formate of date of birth
                     </span>
                   </div>
                 </div>
@@ -135,7 +138,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['education']?.touched &&
                       personalDetailForm.controls?.['education']?.errors?.['pattern']">
-                          Please enter valid formate of education
+                      Please enter valid formate of education
                     </span>
                   </div>
                 </div>
@@ -154,7 +157,8 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Candidate Current Location</label>
-                    <input type="text" class="form-control" placeholder="Current Location" formControlName="candidateCurrentLocation">
+                    <input type="text" class="form-control" placeholder="Current Location"
+                      formControlName="candidateCurrentLocation">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['candidateCurrentLocation']?.touched &&
                       personalDetailForm.controls?.['candidateCurrentLocation']?.errors?.['required']">
@@ -163,7 +167,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['candidateCurrentLocation']?.touched &&
                       personalDetailForm.controls?.['candidateCurrentLocation']?.errors?.['pattern']">
-                          Please enter valid formate of candidate current location
+                      Please enter valid formate of candidate current location
                     </span>
                   </div>
                 </div>
@@ -179,7 +183,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['nationality']?.touched &&
                       personalDetailForm.controls?.['nationality']?.errors?.['pattern']">
-                          Please enter valid formate of nationality
+                      Please enter valid formate of nationality
                     </span>
                   </div>
                 </div>
@@ -189,7 +193,7 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Do you Have a UK Driving license? :</label>
-                    <select class="form-control"  formControlName="ukDrivingLicense">
+                    <select class="form-control" formControlName="ukDrivingLicense">
                       <option value="" disabled selected hidden>Select Type</option>
                       <option value="DrivingLicenseYes">Yes</option>
                       <option value="DrivingLicenseNo">No</option>
@@ -209,7 +213,8 @@
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Emergency contact details (if, any) :</label>
-                    <input type="text" class="form-control" placeholder="Emergency contact details" formControlName="emgContactDetail">
+                    <input type="text" class="form-control" placeholder="Emergency contact details"
+                      formControlName="emgContactDetail">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['emgContactDetail']?.touched &&
                       personalDetailForm.controls?.['emgContactDetail']?.errors?.['required']">
@@ -218,7 +223,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['emgContactDetail']?.touched &&
                       personalDetailForm.controls?.['emgContactDetail']?.errors?.['pattern']">
-                          Please enter valid formate of emg contact detail
+                      Please enter valid formate of emg contact detail
                     </span>
                   </div>
                 </div>
@@ -304,6 +309,16 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label>Preferred time for a call, if/when we wish to speak with you :</label>
+                    <select class="form-control" formControlName="day">
+                      <option value="" disabled selected hidden>Select preferred day</option>
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
                     <select class="form-control" formControlName="time">
                       <option value="" disabled selected hidden>Select preferred time</option>
                       <option value="1">1-2 AM</option>
@@ -379,7 +394,15 @@
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Current Notice Period :</label>
-                    <input type="date" class="form-control" placeholder="Current Notice Period" formControlName="noticePeriod">
+                    <!-- <input type="text" class="form-control" placeholder="Current Notice Period"
+                      formControlName="noticePeriod"> -->
+                    <select class="form-control" formControlName="noticePeriod">
+                      <option value="" disabled selected hidden>Select current Notice Period</option>
+                      <option value="015days">0-15 days </option>
+                      <option value="30days">30 days </option>
+                      <option value="4560days">45-60 days</option>
+                      <option value="morethan60days">more than 60 days</option>
+                    </select>
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['noticePeriod']?.touched &&
                       otherDetailForm.controls?.['noticePeriod']?.errors?.['required']">
@@ -395,7 +418,8 @@
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Future Availability :</label>
-                    <input type="date" class="form-control" placeholder="Future Availability" formControlName="futureAvailability">
+                    <input type="date" class="form-control" placeholder="Future Availability"
+                      formControlName="futureAvailability">
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['futureAvailability']?.touched &&
                       otherDetailForm.controls?.['futureAvailability']?.errors?.['required']">
@@ -417,7 +441,8 @@
                     <select class="form-control" formControlName="currentJobType">
                       <option value="" disabled selected hidden>Select current job type</option>
                       <option value="permanent_job">Permanent Job </option>
-                      <option value="temporary_job">Temporary Job</option>
+                      <option value="parttime_job">Part-time Job </option>
+                      <option value="temporary_job">Temporary Contract</option>
                       <option value="day_rate">Day Rate</option>
                     </select>
                     <span class="text-danger" *ngIf="
@@ -438,7 +463,8 @@
                     <select class="form-control" formControlName="lookingFor">
                       <option value="" disabled selected hidden>Select looking for type</option>
                       <option value="permanent_job">Permanent Job </option>
-                      <option value="temporary_job">Temporary Job</option>
+                      <option value="parttime_job">Part-time Job </option>
+                      <option value="temporary_job">Temporary Contract</option>
                       <option value="day_rate">Day Rate</option>
                     </select>
                     <span class="text-danger" *ngIf="
@@ -464,7 +490,7 @@
                       <option value="remote">Available for remote</option>
                       <option value="weekly_office">Available weekly N number of days to work from office</option>
                       <option value="any_place">Open to work at any place</option>
-                      <option value="travel_within_country">Open to travel to client place if within the country
+                      <option value="travel_within_country">Open to travel to client place if within the country(UK)
                       </option>
                       <option value="travel_worldwide">Open to travel anywhere in the world</option>
                     </select>
@@ -492,7 +518,8 @@
                       <option value="engage_in_future">Currently working somewhere, can engage in future</option>
                       <option value="ready_to_start">Ready to start</option>
                       <option value="temporary_or_short_term">Available for temporary or short-term assignments</option>
-                      <option value="seasonal_availability">Available for work during specific seasons or times of the year</option>
+                      <option value="seasonal_availability">Available for work during specific seasons or times of the
+                        year</option>
                     </select>
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['availability']?.touched &&
@@ -509,8 +536,9 @@
               </div>
 
               <div style="display: flex; justify-content: space-between;">
-                  <button type="button" (click)="previousStep('personalDetails')" class="btn btn-primary btn-round">Previous Step</button>
-                  <button type="submit" class="btn btn-primary btn-round">Next Step</button>
+                <button type="button" (click)="previousStep('personalDetails')"
+                  class="btn btn-primary btn-round">Previous Step</button>
+                <button type="submit" class="btn btn-primary btn-round">Next Step</button>
               </div>
             </form>
           </div>
@@ -563,7 +591,8 @@
                   <div class="form-group">
                     <label>Password :</label>
                     <div class="input-group mb-0">
-                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password" required>
+                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
+                        required>
                       <div class="input-group-append">
                         <div class="input-group-text">
                           <span class="fas fa-eye" (click)="showHidePass('password')"></span>
@@ -587,7 +616,8 @@
                     <label>Confirm Password :
                     </label>
                     <div class="input-group mb-0">
-                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password"
+                        formControlName="confirmPassword">
                       <div class="input-group-append">
                         <div class="input-group-text">
                           <span class="fas fa-eye" (click)="showHidePass('confirmPassword')"></span>
@@ -608,7 +638,8 @@
                 </div>
               </div>
               <div style="display: flex; justify-content: space-between;">
-                <button type="button" (click)="previousStep('otherDetails')" class="btn btn-primary btn-round">Previous Step</button>
+                <button type="button" (click)="previousStep('otherDetails')" class="btn btn-primary btn-round">Previous
+                  Step</button>
                 <button type="submit" class="btn btn-primary btn-round">Next Step</button>
               </div>
             </form>
