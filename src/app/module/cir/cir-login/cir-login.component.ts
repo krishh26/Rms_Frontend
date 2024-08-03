@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class CirLoginComponent implements OnInit {
   loginForm: FormGroup;
+  password = 'password';
+  showPassword = false;
 
   constructor(
     private router: Router
@@ -30,5 +32,15 @@ export class CirLoginComponent implements OnInit {
     // }
     console.log('login details', this.loginForm.value)
     this.router.navigate(['/cir/cir-card']);
+  }
+
+  public showHidePass(): void {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.showPassword = true;
+    } else {
+      this.password = 'password';
+      this.showPassword = false;
+    }
   }
 }

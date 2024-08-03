@@ -112,9 +112,9 @@
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
                     <label> Password :</label>
-                    <span class="showicon" *ngIf="!showPassword" (click)="showHidePass()"><i
+                    <span class="showicon" *ngIf="!showPassword" (click)="showHidePass('password')"><i
                         class="bi bi-eye-fill"></i></span>
-                    <span class="showicon" *ngIf="showPassword" (click)="showHidePass()"><i
+                    <span class="showicon" *ngIf="showPassword" (click)="showHidePass('password')"><i
                         class="bi bi-eye-slash-fill"></i></span>
                     <input type="password" class="form-control" placeholder="Password">
                   </div>

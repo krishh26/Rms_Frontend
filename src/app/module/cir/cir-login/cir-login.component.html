@@ -31,10 +31,10 @@
           </div>
           <div class="mb-3">
             <div class="input-group mb-0">
-              <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+              <input [type]="password" class="form-control" placeholder="Password" formControlName="password" required>
               <div class="input-group-append">
                 <div class="input-group-text">
-                  <span class="fas fa-eye"></span>
+                  <span class="fas fa-eye" (click)="showHidePass()"></span>
                 </div>
               </div>
             </div>

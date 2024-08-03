@@ -9,10 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./cir-form.component.css']
 })
 export class CirFormComponent implements OnInit {
-  formType: string = 'personalDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
+  formType: string = 'loginDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
   personalDetailForm!: FormGroup;
   otherDetailForm!: FormGroup;
   loginDetailForm!: FormGroup;
+  password = 'password';
+  showPassword = false;
+  confirmPassword = 'password';
+  confirmShowPassword = false;
 
   constructor(
     private router: Router
@@ -48,14 +52,32 @@ export class CirFormComponent implements OnInit {
       futureAvailability: new FormControl('', [Validators.required]),
       currentJobType: new FormControl('', [Validators.required]),
       lookingFor: new FormControl('', [Validators.required]),
-      workingPreference : new FormControl('', [Validators.required]),
-      availability : new FormControl('', [Validators.required]),
+      workingPreference: new FormControl('', [Validators.required]),
+      availability: new FormControl('', [Validators.required]),
     });
     this.loginDetailForm = new FormGroup({
       userName: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       confirmPassword: new FormControl('', [Validators.pattern(Patterns.password)]),
     })
+  }
+
+  public showHidePass(type: string): void {
+    if (type == 'password' && this.password === 'password') {
+      this.password = 'text';
+      this.showPassword = true;
+    } else {
+      this.password = 'password';
+      this.showPassword = false;
+    }
+
+    if (type !== 'password' && this.confirmPassword === 'password') {
+      this.confirmPassword = 'text';
+      this.confirmShowPassword = true;
+    } else {
+      this.confirmPassword = 'password';
+      this.confirmShowPassword = false;
+    }
   }
 
   // Function to be used for submit personal Details
@@ -78,7 +100,7 @@ export class CirFormComponent implements OnInit {
   }
 
   // previous step
-  previousStep(type : string) {
+  previousStep(type: string) {
     this.formType = type;
   }
 }

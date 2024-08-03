@@ -15,10 +15,6 @@ const routes: Routes = [
     component: AcrComponent,
     children: [
       {
-        path: "acr",
-        component: AcrComponent
-      },
-      {
         path: "acr-register",
         component: AcrFormComponent
       },
@@ -42,6 +38,11 @@ const routes: Routes = [
         path: "acr-dps21-details",
         component: Dps21DetailsComponent
       },
+      {
+        path: "**",
+        pathMatch: "full",
+        redirectTo: "acr-login"
+      }
     ]
   },
   {

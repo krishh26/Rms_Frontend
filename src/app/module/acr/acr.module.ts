@@ -6,11 +6,14 @@ import { AcrFormComponent } from './acr-form/acr-form.component';
 import { AcrTableComponent } from './acr-table/acr-table.component';
 import { AcrCardComponent } from './acr-card/acr-card.component';
 import { AcrLoginComponent } from './acr-login/acr-login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    AcrRoutingModule
+    AcrRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AcrComponent,

@@ -74,7 +74,7 @@
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Contact Phone number :</label>
-                    <input type="text" class="form-control" placeholder="Contact Phone number" formControlName="contactPhoneNumber">
+                    <input type="tel" class="form-control" placeholder="Contact Phone number" formControlName="contactPhoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['contactPhoneNumber']?.touched &&
                       personalDetailForm.controls?.['contactPhoneNumber']?.errors?.['required']">
@@ -90,7 +90,7 @@
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Secondary Phone number :</label>
-                    <input type="email" class="form-control" placeholder="Secondary Phone number"
+                    <input type="tel" class="form-control" placeholder="Secondary Phone number"
                     ormControlName="secondaryPhoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
@@ -346,7 +346,7 @@
                   <div class="form-group">
                     <label>Your expected day rate (excluding VAT) :
                     </label>
-                    <input type="text" class="form-control" placeholder="expected day rate" formControlName="dayRate">
+                    <input type="number" class="form-control" placeholder="expected day rate" formControlName="dayRate">
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['dayRate']?.touched &&
                       otherDetailForm.controls?.['dayRate']?.errors?.['required']">
@@ -546,7 +546,7 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label>Username :</label>
-                    <input type="text" class="form-control" placeholder="Username" formControlName="userName">
+                    <input type="email" class="form-control" placeholder="Username" formControlName="userName">
                     <span class="text-danger" *ngIf="
                       loginDetailForm.controls?.['userName']?.touched &&
                       loginDetailForm.controls?.['userName']?.errors?.['required']">
@@ -561,9 +561,15 @@
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
-                    <label>Password :
-                    </label>
-                    <input type="text" class="form-control" placeholder="Password" formControlName="password">
+                    <label>Password :</label>
+                    <div class="input-group mb-0">
+                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password" required>
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-eye" (click)="showHidePass('password')"></span>
+                        </div>
+                      </div>
+                    </div>
                     <span class="text-danger" *ngIf="
                       loginDetailForm.controls?.['password']?.touched &&
                       loginDetailForm.controls?.['password']?.errors?.['required']">
@@ -580,16 +586,23 @@
                   <div class="form-group">
                     <label>Confirm Password :
                     </label>
-                    <input type="text" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+                    <div class="input-group mb-0">
+                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-eye" (click)="showHidePass('confirmPassword')"></span>
+                        </div>
+                      </div>
+                    </div>
                     <span class="text-danger" *ngIf="
                       loginDetailForm.controls?.['confirmPassword']?.touched &&
                       loginDetailForm.controls?.['confirmPassword']?.errors?.['required']">
-                      Please select confirm password
+                      Please enter confirm password
                     </span>
                     <span class="text-danger" *ngIf="
                       loginDetailForm.controls?.['confirmPassword']?.touched &&
                       loginDetailForm.controls?.['confirmPassword']?.errors?.['pattern']">
-                      Please select confirm password
+                      Please enter valid confirm password
                     </span>
                   </div>
                 </div>
