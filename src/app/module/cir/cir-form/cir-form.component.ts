@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cir-form.component.css']
 })
 export class CirFormComponent implements OnInit {
-  formType: string = 'loginDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
+  formType: string = 'personalDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
   personalDetailForm!: FormGroup;
   otherDetailForm!: FormGroup;
   loginDetailForm!: FormGroup;
