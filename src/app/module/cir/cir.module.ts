@@ -8,11 +8,14 @@ import { CirLoginComponent } from './cir-login/cir-login.component';
 import { ManchesterDetailsComponent } from './manchester-details/manchester-details.component';
 import { Dps21DetailsComponent } from './dps21-details/dps21-details.component';
 import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northen-Ireland-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    CirRoutingModule
+    CirRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CirComponent,

@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="formType == 'personalDetails'">
   <div class="container">
     <div class="FlatCard shadow border-radius24">
       <div class="row">
@@ -19,38 +19,89 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Personal Details</strong></h4>
-            <form>
+            <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
                     <label>Candidate Name :</label>
-                    <input type="text" class="form-control" placeholder="Candidate Name">
+                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="candidateName">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['candidateName']?.touched &&
+                      personalDetailForm.controls?.['candidateName']?.errors?.['required']">
+                      Please enter candidate name
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['candidateName']?.touched &&
+                      personalDetailForm.controls?.['candidateName']?.errors?.['pattern']">
+                          Please enter valid formate of candidate name
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Contact Email :
                     </label>
-                    <input type="text" class="form-control" placeholder="Contact Email">
+                    <input type="email" class="form-control" placeholder="Contact Email" formControlName="contactEmail">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['contactEmail']?.touched &&
+                      personalDetailForm.controls?.['contactEmail']?.errors?.['required']">
+                      Please enter candidate email
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['contactEmail']?.touched &&
+                      personalDetailForm.controls?.['contactEmail']?.errors?.['pattern']">
+                          Please enter valid formate of candidate email
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Secondary Email :
                     </label>
-                    <input type="text" class="form-control" placeholder="Secondary Email">
+                    <input type="email" class="form-control" placeholder="Secondary Email" formControlName="secondaryEmail">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['secondaryEmail']?.touched &&
+                      personalDetailForm.controls?.['secondaryEmail']?.errors?.['required']">
+                      Please enter secondary email
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['secondaryEmail']?.touched &&
+                      personalDetailForm.controls?.['secondaryEmail']?.errors?.['pattern']">
+                          Please enter valid formate of secondary email
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Contact Phone number :</label>
-                    <input type="email" class="form-control" placeholder="Contact Phone number">
+                    <input type="text" class="form-control" placeholder="Contact Phone number" formControlName="contactPhoneNumber">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['contactPhoneNumber']?.touched &&
+                      personalDetailForm.controls?.['contactPhoneNumber']?.errors?.['required']">
+                      Please enter contact phone number
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['contactPhoneNumber']?.touched &&
+                      personalDetailForm.controls?.['contactPhoneNumber']?.errors?.['pattern']">
+                          Please enter valid formate of contact phone number
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Secondary Phone number :</label>
-                    <input type="email" class="form-control" placeholder="Secondary Phone number">
+                    <input type="email" class="form-control" placeholder="Secondary Phone number"
+                    ormControlName="secondaryPhoneNumber">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
+                      personalDetailForm.controls?.['secondaryPhoneNumber']?.errors?.['required']">
+                      Please enter secondary phone number
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
+                      personalDetailForm.controls?.['secondaryPhoneNumber']?.errors?.['pattern']">
+                          Please enter valid formate of secondary phone number
+                    </span>
                   </div>
                 </div>
               </div>
@@ -59,13 +110,33 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Date of Birth</label>
-                    <input type="date" class="form-control" placeholder="Date of Birth">
+                    <input type="date" class="form-control" placeholder="Date of Birth" formControlName="dob">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['dob']?.touched &&
+                      personalDetailForm.controls?.['dob']?.errors?.['required']">
+                      Please enter date of birth
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['dob']?.touched &&
+                      personalDetailForm.controls?.['dob']?.errors?.['pattern']">
+                          Please enter valid formate of date of birth
+                    </span>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Education :</label>
-                    <input type="text" class="form-control" placeholder="Education">
+                    <input type="text" class="form-control" placeholder="Education" formControlName="education">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['education']?.touched &&
+                      personalDetailForm.controls?.['education']?.errors?.['required']">
+                      Please enter education
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['education']?.touched &&
+                      personalDetailForm.controls?.['education']?.errors?.['pattern']">
+                          Please enter valid formate of education
+                    </span>
                   </div>
                 </div>
               </div>
@@ -83,13 +154,33 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Candidate Current Location</label>
-                    <input type="text" class="form-control" placeholder="Current Location">
+                    <input type="text" class="form-control" placeholder="Current Location" formControlName="candidateCurrentLocation">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['candidateCurrentLocation']?.touched &&
+                      personalDetailForm.controls?.['candidateCurrentLocation']?.errors?.['required']">
+                      Please enter candidate current location
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['candidateCurrentLocation']?.touched &&
+                      personalDetailForm.controls?.['candidateCurrentLocation']?.errors?.['pattern']">
+                          Please enter valid formate of candidate current location
+                    </span>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Nationality :</label>
-                    <input type="text" class="form-control" placeholder="Nationality">
+                    <input type="text" class="form-control" placeholder="Nationality" formControlName="nationality">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['nationality']?.touched &&
+                      personalDetailForm.controls?.['nationality']?.errors?.['required']">
+                      Please enter nationality
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['nationality']?.touched &&
+                      personalDetailForm.controls?.['nationality']?.errors?.['pattern']">
+                          Please enter valid formate of nationality
+                    </span>
                   </div>
                 </div>
               </div>
@@ -98,17 +189,37 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Do you Have a UK Driving license? :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control"  formControlName="ukDrivingLicense">
                       <option value="" disabled selected hidden>Select Type</option>
-                      <option value="DrivinglicenseYes">Yes</option>
-                      <option value="DrivinglicenseNo">No</option>
+                      <option value="DrivingLicenseYes">Yes</option>
+                      <option value="DrivingLicenseNo">No</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['ukDrivingLicense']?.touched &&
+                      personalDetailForm.controls?.['ukDrivingLicense']?.errors?.['required']">
+                      Please select
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['ukDrivingLicense']?.touched &&
+                      personalDetailForm.controls?.['ukDrivingLicense']?.errors?.['pattern']">
+                      Please select
+                    </span>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Emergency contact details (if, any) :</label>
-                    <input type="text" class="form-control" placeholder="Emergency contact details">
+                    <input type="text" class="form-control" placeholder="Emergency contact details" formControlName="emgContactDetail">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['emgContactDetail']?.touched &&
+                      personalDetailForm.controls?.['emgContactDetail']?.errors?.['required']">
+                      Please enter emg contact detail
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['emgContactDetail']?.touched &&
+                      personalDetailForm.controls?.['emgContactDetail']?.errors?.['pattern']">
+                          Please enter valid formate of emg contact detail
+                    </span>
                   </div>
                 </div>
               </div>
@@ -126,7 +237,7 @@
   </div>
 </section>
 
-<section>
+<section *ngIf="formType == 'otherDetails'">
   <div class="container">
     <div class="FlatCard shadow border-radius24">
       <div class="row">
@@ -147,23 +258,33 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Other Details</strong></h4>
-            <form>
+            <form [formGroup]="personalDetailForm" (ngSubmit)="submitOtherDetails()">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
                     <label>Do you hold any SC/DV? :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control">
                       <option value="" disabled selected hidden>Select option</option>
                       <option value="scdvnseYes">Yes</option>
                       <option value="scdvnseNo">No</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['nationality']?.touched &&
+                      personalDetailForm.controls?.['nationality']?.errors?.['required']">
+                      Please enter nationality
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['nationality']?.touched &&
+                      personalDetailForm.controls?.['nationality']?.errors?.['pattern']">
+                          Please enter valid formate of nationality
+                    </span>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group">
                     <label>If your answer to above is NO, then are you willing to undertake one, if we/client wish to
                       sponsor for clearance certificate :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control">
                       <option value="" disabled selected hidden>Select option</option>
                       <option value="clearancecertificateYes">Yes</option>
                       <option value="clearancecertificateNo">No</option>
@@ -173,7 +294,7 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label>Preferred time for a call, if/when we wish to speak with you :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control">
                       <option value="" disabled selected hidden>Select preferred time</option>
                       <option value="1">1-2 AM</option>
                       <option value="2">2-3 AM</option>
@@ -234,7 +355,7 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Your current job is :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control">
                       <option value="" disabled selected hidden>Select current job type</option>
                       <option value="permanent_job">Permanent Job </option>
                       <option value="temporary_job">Temporary Job</option>
@@ -245,7 +366,7 @@
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>You are looking for a :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control">
                       <option value="" disabled selected hidden>Select looking for type</option>
                       <option value="permanent_job">Permanent Job </option>
                       <option value="temporary_job">Temporary Job</option>
@@ -259,7 +380,7 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Working preference :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control">
                       <option value="" disabled selected hidden>Select working preference type</option>
                       <option value="remote">Available for remote</option>
                       <option value="weekly_office">Available weekly N number of days to work from office</option>
@@ -273,7 +394,7 @@
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Availability :</label>
-                    <select class="form-control" formControlName="user_type">
+                    <select class="form-control">
                       <option value="" disabled selected hidden>Select availability type</option>
                       <option value="full_time_can_work_full_time">Working full time but can work full time for you
                       </option>
@@ -289,10 +410,9 @@
                 </div>
               </div>
 
-              <div class="row">
-                <div class="update ml-auto mr-auto">
+              <div style="display: flex; justify-content: space-between;">
+                  <button type="button" (click)="previousStep('personalDetails')" class="btn btn-primary btn-round">Previous Step</button>
                   <button type="submit" class="btn btn-primary btn-round">Next Step</button>
-                </div>
               </div>
             </form>
           </div>
@@ -302,7 +422,7 @@
   </div>
 </section>
 
-<section>
+<section *ngIf="formType == 'loginDetails'">
   <div class="container">
     <div class="FlatCard shadow border-radius24">
       <div class="row">
@@ -323,7 +443,7 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Login details</strong></h4>
-            <form>
+            <form [formGroup]="loginDetailForm" (ngSubmit)="submitLoginDetails()">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
@@ -346,10 +466,9 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="update ml-auto mr-auto">
-                  <button type="submit" class="btn btn-primary btn-round">Submit</button>
-                </div>
+              <div style="display: flex; justify-content: space-between;">
+                <button type="button" (click)="previousStep('otherDetails')" class="btn btn-primary btn-round">Previous Step</button>
+                <button type="submit" class="btn btn-primary btn-round">Next Step</button>
               </div>
             </form>
           </div>
