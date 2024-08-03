@@ -45,6 +45,7 @@ export class CirFormComponent implements OnInit {
     this.otherDetailForm = new FormGroup({
       doYouHoldDV: new FormControl('', [Validators.required]),
       clearanceCertificate: new FormControl('', [Validators.required]),
+      day: new FormControl('', [Validators.required]),
       time: new FormControl('', [Validators.required]),
       dayRate: new FormControl('', [Validators.required]),
       referralBy: new FormControl('', [Validators.required]),
