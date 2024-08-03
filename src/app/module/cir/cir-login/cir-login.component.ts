@@ -25,10 +25,10 @@ export class CirLoginComponent implements OnInit {
 
   // Function to be used for login
   login() {
-    if (!this.loginForm.valid) {
-      return
-    }
+    // if (!this.loginForm.valid) {
+    //   return
+    // }
     console.log('login details', this.loginForm.value)
-    this.router.navigate(['/cir/cir-register']);
+    this.router.navigate(['/cir/cir-card']);
   }
 }

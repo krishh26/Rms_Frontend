@@ -258,25 +258,25 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Other Details</strong></h4>
-            <form [formGroup]="personalDetailForm" (ngSubmit)="submitOtherDetails()">
+            <form [formGroup]="otherDetailForm" (ngSubmit)="submitOtherDetails()">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
                     <label>Do you hold any SC/DV? :</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="doYouHoldDV">
                       <option value="" disabled selected hidden>Select option</option>
                       <option value="scdvnseYes">Yes</option>
                       <option value="scdvnseNo">No</option>
                     </select>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['nationality']?.touched &&
-                      personalDetailForm.controls?.['nationality']?.errors?.['required']">
-                      Please enter nationality
+                      otherDetailForm.controls?.['doYouHoldDV']?.touched &&
+                      otherDetailForm.controls?.['doYouHoldDV']?.errors?.['required']">
+                      Please select
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['nationality']?.touched &&
-                      personalDetailForm.controls?.['nationality']?.errors?.['pattern']">
-                          Please enter valid formate of nationality
+                      otherDetailForm.controls?.['doYouHoldDV']?.touched &&
+                      otherDetailForm.controls?.['doYouHoldDV']?.errors?.['pattern']">
+                      Please select
                     </span>
                   </div>
                 </div>
@@ -284,17 +284,27 @@
                   <div class="form-group">
                     <label>If your answer to above is NO, then are you willing to undertake one, if we/client wish to
                       sponsor for clearance certificate :</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="clearanceCertificate">
                       <option value="" disabled selected hidden>Select option</option>
                       <option value="clearancecertificateYes">Yes</option>
                       <option value="clearancecertificateNo">No</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['clearanceCertificate']?.touched &&
+                      otherDetailForm.controls?.['clearanceCertificate']?.errors?.['required']">
+                      Please select clearance certificate
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['clearanceCertificate']?.touched &&
+                      otherDetailForm.controls?.['clearanceCertificate']?.errors?.['pattern']">
+                      Please select clearance certificate
+                    </span>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group">
                     <label>Preferred time for a call, if/when we wish to speak with you :</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="time">
                       <option value="" disabled selected hidden>Select preferred time</option>
                       <option value="1">1-2 AM</option>
                       <option value="2">2-3 AM</option>
@@ -307,7 +317,6 @@
                       <option value="9">9-10 AM</option>
                       <option value="10">10-11 AM</option>
                       <option value="11">11-12 AM</option>
-
                       <option value="12">12-1 PM</option>
                       <option value="13">1-2 PM</option>
                       <option value="14">2-3 PM</option>
@@ -321,32 +330,82 @@
                       <option value="22">10-11 PM</option>
                       <option value="23">11-12 PM</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['time']?.touched &&
+                      otherDetailForm.controls?.['time']?.errors?.['required']">
+                      Please select time
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['time']?.touched &&
+                      otherDetailForm.controls?.['time']?.errors?.['pattern']">
+                      Please select time
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Your expected day rate (excluding VAT) :
                     </label>
-                    <input type="text" class="form-control" placeholder="expected day rate">
+                    <input type="text" class="form-control" placeholder="expected day rate" formControlName="dayRate">
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['dayRate']?.touched &&
+                      otherDetailForm.controls?.['dayRate']?.errors?.['required']">
+                      Please enter expected day rate
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['dayRate']?.touched &&
+                      otherDetailForm.controls?.['dayRate']?.errors?.['pattern']">
+                      Please select expected day rate
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Referred by :
                     </label>
-                    <input type="text" class="form-control" placeholder="Referred by">
+                    <input type="text" class="form-control" placeholder="Referred by" formControlName="referralBy">
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['referralBy']?.touched &&
+                      otherDetailForm.controls?.['referralBy']?.errors?.['required']">
+                      Please enter referral details
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['referralBy']?.touched &&
+                      otherDetailForm.controls?.['referralBy']?.errors?.['pattern']">
+                      Please enter referral details
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Current Notice Period :</label>
-                    <input type="date" class="form-control" placeholder="Current Notice Period">
+                    <input type="date" class="form-control" placeholder="Current Notice Period" formControlName="noticePeriod">
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['noticePeriod']?.touched &&
+                      otherDetailForm.controls?.['noticePeriod']?.errors?.['required']">
+                      Please enter notice period
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['noticePeriod']?.touched &&
+                      otherDetailForm.controls?.['noticePeriod']?.errors?.['pattern']">
+                      Please enter notice period
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Future Availability :</label>
-                    <input type="date" class="form-control" placeholder="Future Availability">
+                    <input type="date" class="form-control" placeholder="Future Availability" formControlName="futureAvailability">
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['futureAvailability']?.touched &&
+                      otherDetailForm.controls?.['futureAvailability']?.errors?.['required']">
+                      Please enter future availability
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['futureAvailability']?.touched &&
+                      otherDetailForm.controls?.['futureAvailability']?.errors?.['pattern']">
+                      Please enter future availability
+                    </span>
                   </div>
                 </div>
               </div>
@@ -355,23 +414,43 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Your current job is :</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="currentJobType">
                       <option value="" disabled selected hidden>Select current job type</option>
                       <option value="permanent_job">Permanent Job </option>
                       <option value="temporary_job">Temporary Job</option>
                       <option value="day_rate">Day Rate</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['currentJobType']?.touched &&
+                      otherDetailForm.controls?.['currentJobType']?.errors?.['required']">
+                      Please select current job type
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['currentJobType']?.touched &&
+                      otherDetailForm.controls?.['currentJobType']?.errors?.['pattern']">
+                      Please select current job type
+                    </span>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>You are looking for a :</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="lookingFor">
                       <option value="" disabled selected hidden>Select looking for type</option>
                       <option value="permanent_job">Permanent Job </option>
                       <option value="temporary_job">Temporary Job</option>
                       <option value="day_rate">Day Rate</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['lookingFor']?.touched &&
+                      otherDetailForm.controls?.['lookingFor']?.errors?.['required']">
+                      Please select looking job type
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['lookingFor']?.touched &&
+                      otherDetailForm.controls?.['lookingFor']?.errors?.['pattern']">
+                      Please select looking job type
+                    </span>
                   </div>
                 </div>
               </div>
@@ -380,7 +459,7 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Working preference :</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="workingPreference">
                       <option value="" disabled selected hidden>Select working preference type</option>
                       <option value="remote">Available for remote</option>
                       <option value="weekly_office">Available weekly N number of days to work from office</option>
@@ -389,12 +468,22 @@
                       </option>
                       <option value="travel_worldwide">Open to travel anywhere in the world</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['workingPreference']?.touched &&
+                      otherDetailForm.controls?.['workingPreference']?.errors?.['required']">
+                      Please select work preference
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['workingPreference']?.touched &&
+                      otherDetailForm.controls?.['workingPreference']?.errors?.['pattern']">
+                      Please select work preference
+                    </span>
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Availability :</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="availability">
                       <option value="" disabled selected hidden>Select availability type</option>
                       <option value="full_time_can_work_full_time">Working full time but can work full time for you
                       </option>
@@ -403,9 +492,18 @@
                       <option value="engage_in_future">Currently working somewhere, can engage in future</option>
                       <option value="ready_to_start">Ready to start</option>
                       <option value="temporary_or_short_term">Available for temporary or short-term assignments</option>
-                      <option value="seasonal_availability">Available for work during specific seasons or times of the
-                        year</option>
+                      <option value="seasonal_availability">Available for work during specific seasons or times of the year</option>
                     </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['availability']?.touched &&
+                      otherDetailForm.controls?.['availability']?.errors?.['required']">
+                      Please select availability
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['availability']?.touched &&
+                      otherDetailForm.controls?.['availability']?.errors?.['pattern']">
+                      Please select availability
+                    </span>
                   </div>
                 </div>
               </div>
@@ -448,21 +546,51 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label>Username :</label>
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" class="form-control" placeholder="Username" formControlName="userName">
+                    <span class="text-danger" *ngIf="
+                      loginDetailForm.controls?.['userName']?.touched &&
+                      loginDetailForm.controls?.['userName']?.errors?.['required']">
+                      Please enter username
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      loginDetailForm.controls?.['userName']?.touched &&
+                      loginDetailForm.controls?.['userName']?.errors?.['pattern']">
+                      Please enter valid username
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Password :
                     </label>
-                    <input type="text" class="form-control" placeholder="Password">
+                    <input type="text" class="form-control" placeholder="Password" formControlName="password">
+                    <span class="text-danger" *ngIf="
+                      loginDetailForm.controls?.['password']?.touched &&
+                      loginDetailForm.controls?.['password']?.errors?.['required']">
+                      Please enter password
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      loginDetailForm.controls?.['password']?.touched &&
+                      loginDetailForm.controls?.['password']?.errors?.['pattern']">
+                      Please enter valid password
+                    </span>
                   </div>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Confirm Password :
                     </label>
-                    <input type="text" class="form-control" placeholder="Confirm Password">
+                    <input type="text" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+                    <span class="text-danger" *ngIf="
+                      loginDetailForm.controls?.['confirmPassword']?.touched &&
+                      loginDetailForm.controls?.['confirmPassword']?.errors?.['required']">
+                      Please select confirm password
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      loginDetailForm.controls?.['confirmPassword']?.touched &&
+                      loginDetailForm.controls?.['confirmPassword']?.errors?.['pattern']">
+                      Please select confirm password
+                    </span>
                   </div>
                 </div>
               </div>
