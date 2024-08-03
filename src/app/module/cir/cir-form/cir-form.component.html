@@ -566,7 +566,8 @@
                       <input [type]="password" class="form-control" placeholder="Password" formControlName="password" required>
                       <div class="input-group-append">
                         <div class="input-group-text">
-                          <span class="fas fa-eye" (click)="showHidePass('password')"></span>
+                          <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
+                          <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
                         </div>
                       </div>
                     </div>
@@ -590,7 +591,8 @@
                       <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
                       <div class="input-group-append">
                         <div class="input-group-text">
-                          <span class="fas fa-eye" (click)="showHidePass('confirmPassword')"></span>
+                          <span *ngIf="!confirmShowPassword" class="fas fa-eye" (click)="showHidePass('confirmPassword')"></span>
+                          <span *ngIf="confirmShowPassword" class="fas fa-eye-slash" (click)="showHidePass('confirmPassword')"></span>
                         </div>
                       </div>
                     </div>

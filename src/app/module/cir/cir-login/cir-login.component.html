@@ -34,7 +34,8 @@
               <input [type]="password" class="form-control" placeholder="Password" formControlName="password" required>
               <div class="input-group-append">
                 <div class="input-group-text">
-                  <span class="fas fa-eye" (click)="showHidePass()"></span>
+                  <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass()"></span>
+                  <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass()"></span>
                 </div>
               </div>
             </div>
