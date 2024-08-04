@@ -170,5 +170,24 @@ export class ManchesterDetailsComponent implements OnInit {
   fileUpload(event: any, item: any): void {
     this.file = event.target.files[0];
     item.file = this.file;
+
+    const data = new FormData();
+    data.append('rolesInDemand', item?.roleInDemand || '');
+    data.append('roleDescription', item?.roleDescription || '');
+    data.append('certifications_qualifications', item?.qualification || '');
+    data.append('valueA', item?.relevantExperience || '');
+    data.append('valueB', item?.workLocation || '');
+    data.append('valueC', item?.expectedRate || '');
+    data.append('file', item?.file || '');
+
+    this.cirSericeService.sendResume(data).subscribe((response) => {
+      if (response?.status) {
+        this.notificationService.showSuccess(response?.message || 'Resume successfully uploaded.')
+      } else {
+        this.notificationService.showError(response?.message || 'Resume not uploaded.')
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message || 'Resume Not Send.')
+    })
   }
 }
