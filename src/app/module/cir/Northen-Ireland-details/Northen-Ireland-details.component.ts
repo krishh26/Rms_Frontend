@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
@@ -77,7 +78,8 @@ export class NorthenIrelandDetailsComponent implements OnInit {
   file: any;
   constructor(
     private cirSericeService: CirSericeService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -96,7 +98,8 @@ export class NorthenIrelandDetailsComponent implements OnInit {
 
     this.cirSericeService.sendResume(data).subscribe((response) => {
       if (response?.status) {
-        this.notificationService.showSuccess(response?.message || 'Resume successfully uploaded.')
+        this.router.navigate(['/cir/cir-card']);
+        this.notificationService.showSuccess('Thank you for filling the details, Our team will get back to you shortly')
       } else {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
