@@ -439,7 +439,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-7 colxl-7 col-md-7 col-sm-7 col-12">
                   <div class="form-group">
                     <label>Your expected day rate (excluding VAT) :
                     </label>
@@ -457,11 +457,24 @@
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-5 colxl-5 col-md-5 col-sm-5 col-12">
                   <div class="form-group">
                     <label>Referred by :
                     </label>
-                    <input type="text" class="form-control" placeholder="Referred by" formControlName="referredBy">
+                    <!-- <input type="text" class="form-control" placeholder="Referred by" formControlName="referredBy"> -->
+                    <select class="form-control" formControlName="referredBy">
+                      <option value="" disabled selected hidden>Select referred by</option>
+                      <option value="0">00</option>
+                      <option value="1">01</option>
+                      <option value="2">02</option>
+                      <option value="3">03</option>
+                      <option value="4">04</option>
+                      <option value="5">05</option>
+                      <option value="6">06</option>
+                      <option value="7">07</option>
+                      <option value="8">08</option>
+                      <option value="9">09</option>
+                    </select>
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['referredBy']?.touched &&
                       otherDetailForm.controls?.['referredBy']?.errors?.['required']">
@@ -500,18 +513,18 @@
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
-                    <label>Future Availability :</label>
-                    <input type="date" class="form-control" placeholder="Future Availability"
+                    <label>Available from date :</label>
+                    <input type="date" class="form-control" placeholder="Available from date"
                       formControlName="futureAvailability">
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['futureAvailability']?.touched &&
                       otherDetailForm.controls?.['futureAvailability']?.errors?.['required']">
-                      Please enter future availability.
+                      Please enter available from date.
                     </span>
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['futureAvailability']?.touched &&
                       otherDetailForm.controls?.['futureAvailability']?.errors?.['pattern']">
-                      Please enter future availability.
+                      Please enter available from date.
                     </span>
                   </div>
                 </div>
