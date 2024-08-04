@@ -5,10 +5,10 @@
 /tmp
 /out-tsc
 /bazel-out
+/node_modules
 
 # Node
-/node_modules
-/.angular
+./.angular
 npm-debug.log
 yarn-error.log
 

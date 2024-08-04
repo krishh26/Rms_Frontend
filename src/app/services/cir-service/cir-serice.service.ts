@@ -6,7 +6,8 @@ import { environment } from 'src/environments/environment';
 export enum CirEndPoint {
   LOGIN_USER = '/user/login',
   REGISTER = '/user/register',
-  UPDATE_REGISTER = '/user/update/'
+  UPDATE_REGISTER = '/user/update/',
+  SEND_DATA = '/card/create'
 }
 
 @Injectable({
@@ -39,9 +40,13 @@ export class CirSericeService {
       .post<any>(this.baseUrl + CirEndPoint.REGISTER, payload, { headers: this.getHeader() });
   }
 
-  updateregister(user_id: string,payload: any): Observable<any> {
+  updateregister(user_id: string, payload: any): Observable<any> {
     return this.httpClient
       .patch<any>(this.baseUrl + CirEndPoint.UPDATE_REGISTER + user_id, payload, { headers: this.getHeader() });
   }
 
+  sendResume(payload: any) {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.SEND_DATA, payload, { headers: this.getHeader() });
+  }
 }
