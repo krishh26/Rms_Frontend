@@ -4,6 +4,7 @@ import { Patterns } from '../../../shared/constant/validation-patterns.const';
 import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-cir-login',
@@ -19,6 +20,7 @@ export class CirLoginComponent implements OnInit {
     private router: Router,
     private cirservice : CirSericeService,
     private notificationService: NotificationService,
+    private localStorageService: LocalStorageService,
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
@@ -45,7 +47,7 @@ export class CirLoginComponent implements OnInit {
       this.cirservice.loginUser(this.loginForm.value).subscribe((response) => {
         console.log('response', response);
         if (response?.status == true) {
-         // this.localStorageService.setLoginToken(response?.data);
+          this.localStorageService.setLoginToken(response?.data);
          // this.tokenDecode = response?.data?.token;
           // const decoded = jwtDecode(response?.data?.token);
           // this.loginDetails = decoded;
