@@ -10,10 +10,12 @@ h5,
 h6 {
     margin-top: 0px;
 }
-p{
+
+p {
     margin-bottom: 0px;
 }
-strong{
+
+strong {
     font-weight: 600;
 }
 
@@ -38,10 +40,12 @@ strong{
     border-radius: 6px;
 
 }
-.FlatCard .card-body{
+
+.FlatCard .card-body {
     padding: 1rem;
 }
-.FlatCard .card-header{
+
+.FlatCard .card-header {
     background-color: #007f83;
     padding: 1rem;
     color: #FFF;
@@ -49,19 +53,27 @@ strong{
 }
 
 .FlatCard {
-  transition: transform 0.3s ease; /* Smooth zoom transition */
-  transform-origin: center center; /* Zoom origin */
-  border-radius: 6px;
-  cursor: pointer;
+    transition: transform 0.3s ease;
+    /* Smooth zoom transition */
+    transform-origin: center center;
+    /* Zoom origin */
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .FlatCard:hover {
-  transform: scale(1.03); /* Zoom the card by 5% */
-  border: 1px solid rgb(255, 165, 165);
+    transform: scale(1.03);
+    /* Zoom the card by 5% */
+    border: 1px solid rgb(255, 165, 165);
 }
 
 /* Ensure the text inside doesn't zoom */
 .FlatCard * {
-  transition: none; /* Disable transition on all children elements */
+    transition: none;
+    /* Disable transition on all children elements */
 }
 
+.text-bold {
+    font-size: 18px;
+    font-weight: bolder;
+}

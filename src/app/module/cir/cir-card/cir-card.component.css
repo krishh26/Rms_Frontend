@@ -64,4 +64,7 @@ strong{
 .FlatCard * {
   transition: none; /* Disable transition on all children elements */
 }
-
+.text-bold {
+    font-size: 18px;
+    font-weight: bolder;
+}
