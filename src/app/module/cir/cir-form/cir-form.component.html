@@ -23,17 +23,87 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label>Candidate Name :</label>
-                    <input type="text" class="form-control" placeholder="Candidate Name"
-                      formControlName="candidateName">
+                    <label>Username :</label>
+                    <input type="email" class="form-control" placeholder="Username" formControlName="userName">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['candidateName']?.touched &&
-                      personalDetailForm.controls?.['candidateName']?.errors?.['required']">
+                      personalDetailForm.controls?.['userName']?.touched &&
+                      personalDetailForm.controls?.['userName']?.errors?.['required']">
+                      Please enter username.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['userName']?.touched &&
+                      personalDetailForm.controls?.['userName']?.errors?.['pattern']">
+                      Please enter valid username.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Password :</label>
+                    <div class="input-group mb-0">
+                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
+                        required>
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
+                          <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['password']?.touched &&
+                      personalDetailForm.controls?.['password']?.errors?.['required']">
+                      Please enter password.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['password']?.touched &&
+                      personalDetailForm.controls?.['password']?.errors?.['pattern']">
+                      Please enter valid password.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Confirm Password :
+                    </label>
+                    <div class="input-group mb-0">
+                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password"
+                        formControlName="confirmPassword">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span *ngIf="!confirmShowPassword" class="fas fa-eye"
+                            (click)="showHidePass('confirmPassword')"></span>
+                          <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
+                            (click)="showHidePass('confirmPassword')"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['confirmPassword']?.touched &&
+                      personalDetailForm.controls?.['confirmPassword']?.errors?.['required']">
+                      Please enter confirm password.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['confirmPassword']?.touched &&
+                      personalDetailForm.controls?.['confirmPassword']?.errors?.['pattern']">
+                      Please enter valid confirm password.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Candidate Name :</label>
+                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="name">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['name']?.touched &&
+                      personalDetailForm.controls?.['name']?.errors?.['required']">
                       Please enter candidate name.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['candidateName']?.touched &&
-                      personalDetailForm.controls?.['candidateName']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['name']?.touched &&
+                      personalDetailForm.controls?.['name']?.errors?.['pattern']">
                       Please enter valid formate of candidate name.
                     </span>
                   </div>
@@ -42,15 +112,15 @@
                   <div class="form-group">
                     <label>Contact Email :
                     </label>
-                    <input type="email" class="form-control" placeholder="Contact Email" formControlName="contactEmail">
+                    <input type="email" class="form-control" placeholder="Contact Email" formControlName="email">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['contactEmail']?.touched &&
-                      personalDetailForm.controls?.['contactEmail']?.errors?.['required']">
+                      personalDetailForm.controls?.['email']?.touched &&
+                      personalDetailForm.controls?.['email']?.errors?.['required']">
                       Please enter candidate email.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['contactEmail']?.touched &&
-                      personalDetailForm.controls?.['contactEmail']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['email']?.touched &&
+                      personalDetailForm.controls?.['email']?.errors?.['pattern']">
                       Please enter valid formate of candidate email.
                     </span>
                   </div>
@@ -76,16 +146,17 @@
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Contact Phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Contact Phone number"
-                      formControlName="contactPhoneNumber">
+                    <input type="tel" class="form-control" placeholder="Contact Phone number"  [maxlength]="10" [minlength]="10"
+                    (keypress)="NumberOnly($event)" 
+                      formControlName="phoneNumber">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['contactPhoneNumber']?.touched &&
-                      personalDetailForm.controls?.['contactPhoneNumber']?.errors?.['required']">
+                      personalDetailForm.controls?.['phoneNumber']?.touched &&
+                      personalDetailForm.controls?.['phoneNumber']?.errors?.['required']">
                       Please enter contact phone number.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['contactPhoneNumber']?.touched &&
-                      personalDetailForm.controls?.['contactPhoneNumber']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['phoneNumber']?.touched &&
+                      personalDetailForm.controls?.['phoneNumber']?.errors?.['pattern']">
                       Please enter valid formate of contact phone number.
                     </span>
                   </div>
@@ -93,7 +164,7 @@
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Secondary Phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Secondary Phone number"
+                    <input type="tel" class="form-control" placeholder="Secondary Phone number" (keypress)="NumberOnly($event)"  maxlength="10" minlength="10"
                       ormControlName="secondaryPhoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
@@ -113,15 +184,15 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Date of Birth</label>
-                    <input type="date" class="form-control" placeholder="Date of Birth" formControlName="dob">
+                    <input type="date" class="form-control" placeholder="Date of Birth" formControlName="dataOfBirth">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['dob']?.touched &&
-                      personalDetailForm.controls?.['dob']?.errors?.['required']">
+                      personalDetailForm.controls?.['dataOfBirth']?.touched &&
+                      personalDetailForm.controls?.['dataOfBirth']?.errors?.['required']">
                       Please enter date of birth.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['dob']?.touched &&
-                      personalDetailForm.controls?.['dob']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['dataOfBirth']?.touched &&
+                      personalDetailForm.controls?.['dataOfBirth']?.errors?.['pattern']">
                       Please enter valid formate of date of birth.
                     </span>
                   </div>
@@ -158,15 +229,15 @@
                   <div class="form-group">
                     <label>Candidate Current Location</label>
                     <input type="text" class="form-control" placeholder="Current Location"
-                      formControlName="candidateCurrentLocation">
+                      formControlName="currentLocation">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['candidateCurrentLocation']?.touched &&
-                      personalDetailForm.controls?.['candidateCurrentLocation']?.errors?.['required']">
+                      personalDetailForm.controls?.['currentLocation']?.touched &&
+                      personalDetailForm.controls?.['currentLocation']?.errors?.['required']">
                       Please enter candidate current location.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['candidateCurrentLocation']?.touched &&
-                      personalDetailForm.controls?.['candidateCurrentLocation']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['currentLocation']?.touched &&
+                      personalDetailForm.controls?.['currentLocation']?.errors?.['pattern']">
                       Please enter valid formate of candidate current location.
                     </span>
                   </div>
@@ -193,19 +264,19 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Do you Have a UK Driving license? :</label>
-                    <select class="form-control" formControlName="ukDrivingLicense">
+                    <select class="form-control" formControlName="UKDrivinglicense">
                       <option value="" disabled selected hidden>Select Type</option>
-                      <option value="DrivingLicenseYes">Yes</option>
-                      <option value="DrivingLicenseNo">No</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
                     </select>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['ukDrivingLicense']?.touched &&
-                      personalDetailForm.controls?.['ukDrivingLicense']?.errors?.['required']">
+                      personalDetailForm.controls?.['UKDrivinglicense']?.touched &&
+                      personalDetailForm.controls?.['UKDrivinglicense']?.errors?.['required']">
                       Please select.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['ukDrivingLicense']?.touched &&
-                      personalDetailForm.controls?.['ukDrivingLicense']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['UKDrivinglicense']?.touched &&
+                      personalDetailForm.controls?.['UKDrivinglicense']?.errors?.['pattern']">
                       Please select.
                     </span>
                   </div>
@@ -214,15 +285,15 @@
                   <div class="form-group">
                     <label>Emergency contact details (if, any) :</label>
                     <input type="text" class="form-control" placeholder="Emergency contact details"
-                      formControlName="emgContactDetail">
+                      formControlName="emergencyContact">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['emgContactDetail']?.touched &&
-                      personalDetailForm.controls?.['emgContactDetail']?.errors?.['required']">
+                      personalDetailForm.controls?.['emergencyContact']?.touched &&
+                      personalDetailForm.controls?.['emergencyContact']?.errors?.['required']">
                       Please enter emg contact detail.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['emgContactDetail']?.touched &&
-                      personalDetailForm.controls?.['emgContactDetail']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['emergencyContact']?.touched &&
+                      personalDetailForm.controls?.['emergencyContact']?.errors?.['pattern']">
                       Please enter valid formate of emg contact detail.
                     </span>
                   </div>
@@ -539,110 +610,6 @@
                 <button type="button" (click)="previousStep('personalDetails')"
                   class="btn btn-primary btn-round">Previous Step</button>
                 <button type="submit" class="btn btn-primary btn-round">Next Step</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section *ngIf="formType == 'loginDetails'">
-  <div class="container">
-    <div class="FlatCard shadow border-radius24">
-      <div class="row">
-        <div class="col-lg-5 col-xl-5 col-12">
-          <div class="FormLeft-panel">
-            <div class="text-center">
-              <img src="../../../../assets/img/white-logo.svg" width="200" class="mb-5" />
-            </div>
-            <h1 class="HeadingLarge">We’re here to help, Send us a message</h1>
-            <h5 class="mb-5">We’d love to hear from you!</h5>
-            <p><strong>Company Name Technologies Ltd.</strong><br>
-              Magnet House 2nd Floor, <br>Magnet House Narottam Morarjee Marg, <br>Ballard Estate, Mumbai - 400 001
-            </p>
-            <p>Phone: 022-68208600</p>
-          </div>
-        </div>
-        <!--start Form here-->
-        <div class="col-lg-7 col-xl-7 col-12">
-          <div class="FormRight-panel">
-            <h4><strong>Login details</strong></h4>
-            <form [formGroup]="loginDetailForm" (ngSubmit)="submitLoginDetails()">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Username :</label>
-                    <input type="email" class="form-control" placeholder="Username" formControlName="userName">
-                    <span class="text-danger" *ngIf="
-                      loginDetailForm.controls?.['userName']?.touched &&
-                      loginDetailForm.controls?.['userName']?.errors?.['required']">
-                      Please enter username.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      loginDetailForm.controls?.['userName']?.touched &&
-                      loginDetailForm.controls?.['userName']?.errors?.['pattern']">
-                      Please enter valid username.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Password :</label>
-                    <div class="input-group mb-0">
-                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
-                        required>
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
-                          <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="text-danger" *ngIf="
-                      loginDetailForm.controls?.['password']?.touched &&
-                      loginDetailForm.controls?.['password']?.errors?.['required']">
-                      Please enter password.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      loginDetailForm.controls?.['password']?.touched &&
-                      loginDetailForm.controls?.['password']?.errors?.['pattern']">
-                      Please enter valid password.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Confirm Password :
-                    </label>
-                    <div class="input-group mb-0">
-                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password"
-                        formControlName="confirmPassword">
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!confirmShowPassword" class="fas fa-eye" (click)="showHidePass('confirmPassword')"></span>
-                          <span *ngIf="confirmShowPassword" class="fas fa-eye-slash" (click)="showHidePass('confirmPassword')"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="text-danger" *ngIf="
-                      loginDetailForm.controls?.['confirmPassword']?.touched &&
-                      loginDetailForm.controls?.['confirmPassword']?.errors?.['required']">
-                      Please enter confirm password.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      loginDetailForm.controls?.['confirmPassword']?.touched &&
-                      loginDetailForm.controls?.['confirmPassword']?.errors?.['pattern']">
-                      Please enter valid confirm password.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: space-between;">
-                <button type="button" (click)="previousStep('otherDetails')" class="btn btn-primary btn-round">Previous
-                  Step</button>
-                <button type="submit" class="btn btn-primary btn-round">Submit</button>
               </div>
             </form>
           </div>
