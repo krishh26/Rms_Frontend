@@ -46,10 +46,7 @@ export class CirSericeService {
   }
 
   sendResume(payload: any) {
-    let headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data',
-    });
     return this.httpClient
-      .post<any>(this.baseUrl + CirEndPoint.SEND_DATA, payload, { headers: headers });
+      .post<any>(this.baseUrl + CirEndPoint.SEND_DATA, payload);
   }
 }
