@@ -9,13 +9,19 @@ import { ManchesterDetailsComponent } from './manchester-details/manchester-deta
 import { Dps21DetailsComponent } from './dps21-details/dps21-details.component';
 import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northen-Ireland-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     CommonModule,
     CirRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
   ],
   declarations: [
     CirComponent,

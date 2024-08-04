@@ -1,10 +1,8 @@
 export const environment = {
-	production: true,
-
-	// Production Server with domain 
-	baseUrl: "https://www.totalhealthbazaar.com/bo/backend/web/index.php/v1",
-	fileUrl: 'https://www.totalhealthbazaar.com/bo/backend/web/uploads',
-
-	url: 'http://demo.totalhealthbazaar.com/thb/partner',
-	googleMapAPIKey: 'AIzaSyDOZjUeOBB6qO_15gPimPg4WPNC2I_EDL4'
-};
+	production: false,
+  
+	url: "http://localhost:4200",
+	//  baseUrl : 'http://192.168.1.7:4100',
+	baseUrl: 'https://whyqtech-backend.onrender.com/api/v1'
+  };
+  
