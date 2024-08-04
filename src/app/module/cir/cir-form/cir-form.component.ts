@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Patterns } from '../../../shared/constant/validation-patterns.const';
 import { Router } from '@angular/router';
+import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-cir-form',
@@ -17,9 +20,14 @@ export class CirFormComponent implements OnInit {
   showPassword = false;
   confirmPassword = 'password';
   confirmShowPassword = false;
+  user_id : string  ='';
+  register_data : any =[];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private cirservice: CirSericeService,
+    private notificationService: NotificationService,
+    private localStorageService: LocalStorageService,
   ) {
     this.initializeForms();
   }
@@ -27,40 +35,47 @@ export class CirFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Number only validation
+  NumberOnly(event: any): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
   initializeForms() {
     this.personalDetailForm = new FormGroup({
-      candidateName: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
-      contactEmail: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
+      name: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       secondaryEmail: new FormControl('', [Validators.pattern(Patterns.email)]),
-      contactPhoneNumber: new FormControl('', [Validators.required, Validators.pattern(Patterns.mobile)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(Patterns.mobile)]),
       secondaryPhoneNumber: new FormControl('', [Validators.pattern(Patterns.mobile)]),
-      dob: new FormControl('', [Validators.required]),
+      dataOfBirth: new FormControl('', [Validators.required]),
       education: new FormControl('', [Validators.required]),
       profilePhoto: new FormControl('', [Validators.required]),
-      candidateCurrentLocation: new FormControl('', [Validators.required]),
+      currentLocation: new FormControl('', [Validators.required]),
       nationality: new FormControl('', [Validators.required]),
-      ukDrivingLicense: new FormControl('', [Validators.required]),
-      emgContactDetail: new FormControl('', [Validators.required])
-    });
-    this.otherDetailForm = new FormGroup({
-      doYouHoldDV: new FormControl('', [Validators.required]),
-      clearanceCertificate: new FormControl('', [Validators.required]),
-      day: new FormControl('', [Validators.required]),
-      time: new FormControl('', [Validators.required]),
-      dayRate: new FormControl('', [Validators.required]),
-      referralBy: new FormControl('', [Validators.required]),
-      noticePeriod: new FormControl('', [Validators.required]),
-      futureAvailability: new FormControl('', [Validators.required]),
-      currentJobType: new FormControl('', [Validators.required]),
-      lookingFor: new FormControl('', [Validators.required]),
-      workingPreference: new FormControl('', [Validators.required]),
-      availability: new FormControl('', [Validators.required]),
-    });
-    this.loginDetailForm = new FormGroup({
-      userName: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
+      UKDrivinglicense: new FormControl('', [Validators.required]),
+      emergencyContact: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       confirmPassword: new FormControl('', [Validators.pattern(Patterns.password)]),
-    })
+    });
+    this.otherDetailForm = new FormGroup({
+      anySC_DV: new FormControl('', [Validators.required]),
+      sponsorForClearanceCertificate: new FormControl('', [Validators.required]),
+      callDay: new FormControl('', [Validators.required]),
+      callTime: new FormControl('', [Validators.required]),
+      expectedDayRate: new FormControl('', [Validators.required]),
+      referredBy: new FormControl('', [Validators.required]),
+      noticePeriod: new FormControl('', [Validators.required]),
+      futureAvailability: new FormControl('', [Validators.required]),
+      currentJobIs: new FormControl('', [Validators.required]),
+      lookingFor: new FormControl('', [Validators.required]),
+      workingPreference: new FormControl('', [Validators.required]),
+      Availability: new FormControl('', [Validators.required]),
+    });
   }
 
   public showHidePass(type: string): void {
@@ -81,16 +96,35 @@ export class CirFormComponent implements OnInit {
     }
   }
 
-  // Function to be used for submit personal Details
+
   submitPersonalDetail() {
-    this.formType = 'otherDetails';
-    console.log('persona details : ', this.personalDetailForm.value);
+    this.cirservice.register(this.personalDetailForm.value).subscribe((response) => {
+      console.log('response', response);
+      if (response?.status == true) {
+        this.formType = 'otherDetails';
+        // this.localStorageService.setLogger(response?.data);
+        this.user_id = response?.data?.user?._id;
+        this.notificationService.showSuccess(response?.message, 'Success !');
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+    })
   }
 
-  // Function to be used for submit other Details
   submitOtherDetails() {
-    this.formType = 'loginDetails';
-    console.log('other details : ', this.otherDetailForm.value);
+    this.cirservice.updateregister(this.user_id,this.personalDetailForm.value).subscribe((response) => {
+      console.log('response', response);
+      if (response?.status == true) {
+         this.router.navigate(['/cir/cir-card']);
+        this.notificationService.showSuccess(response?.message, 'Success !');
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+    })
   }
 
   // Function to be used for submit login Details

@@ -1,85 +1,45 @@
 <section>
-  <div class="container">
+  <div style="margin: 30px;">
     <div class="table-responsive">
+      <div class="caption">
+        To fill by supplier (Refer Key - Notes sheet for information)
+      </div>
       <table class="table table-bordered caption-top" style="width: 100%;">
-        <caption>
-          To fill by supplier (Refer Key - Notes sheet for information)
-        </caption>
         <thead>
           <tr>
-            <th>Roles in Demand</th>
-            <th>Role description</th>
-            <th>Certifications/Qualifications</th>
-            <th>Value A (DDL)</th>
-            <th>Value B (DDL)</th>
-            <th>Value C</th>
-            <th>Value D</th>
+              <th>Roles in Demand</th>
+              <th>Role description</th>
+              <th>Certifications/Qualifications</th>
+              <th>Relevant Experience</th>
+              <th>Work Location</th>
+              <th>Expected Rate</th>
+              <th>File</th>
+              <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>QA / Test Architect</td>
-            <td>Ref NI_Roles.PDF</td>
-            <td>NONE Specified by Client</td>
-            <td>Please select a value</td>
-            <td>Northen Ireland Only</td>
-            <td>Type your demand day rate here</td>
-            <td>Attach your CV by email & Type the CV name here</td>
-          </tr>
-          <tr>
-            <td>QA / Test Manager</td>
-            <td>Ref NI_Roles.PDF</td>
-            <td>NONE Specified by Client</td>
-            <td>Please select a value</td>
-            <td>Northen Ireland Only</td>
-            <td>Type your demand day rate here</td>
-            <td>Attach your CV by email & Type the CV name here</td>
-          </tr>
-          <tr>
-            <td>QA/Functional Test Lead</td>
-            <td>Ref NI_Roles.PDF</td>
-            <td>NONE Specified by Client</td>
-            <td>Please select a value</td>
-            <td>Northen Ireland Only</td>
-            <td>Type your demand day rate here</td>
-            <td>Attach your CV by email & Type the CV name here</td>
-          </tr>
-          <tr>
-            <td>QA / Test Analyst</td>
-            <td>Ref NI_Roles.PDF</td>
-            <td>NONE Specified by Client</td>
-            <td>Please select a value</td>
-            <td>Northen Ireland Only</td>
-            <td>Type your demand day rate here</td>
-            <td>Attach your CV by email & Type the CV name here</td>
-          </tr>
-          <tr>
-            <td>Non-Functional Test (NFT) Lead</td>
-            <td>Ref NI_Roles.PDF</td>
-            <td>NONE Specified by Client</td>
-            <td>Please select a value</td>
-            <td>Northen Ireland Only</td>
-            <td>Type your demand day rate here</td>
-            <td>Attach your CV by email & Type the CV name here</td>
-          </tr>
-          <tr>
-            <td>Non-Functional Test (NFT) Analyst</td>
-            <td>Ref NI_Roles.PDF</td>
-            <td>NONE Specified by Client</td>
-            <td>Please select a value</td>
-            <td>Northen Ireland Only</td>
-            <td>Type your demand day rate here</td>
-            <td>Attach your CV by email & Type the CV name here</td>
-          </tr>
-          <tr>
-            <td>Automation Analyst/Engineer</td>
-            <td>Ref NI_Roles.PDF</td>
-            <td>NONE Specified by Client</td>
-            <td>Please select a value</td>
-            <td>Northen Ireland Only</td>
-            <td>Type your demand day rate here</td>
-            <td>Attach your CV by email & Type the CV name here</td>
-          </tr>
+          <ng-container *ngFor="let item of tableData">
+            <tr>
+              <td>{{ item?.roleInDemand }}</td>
+              <td>{{ item?.roleDescription }}</td>
+              <td>{{ item?.qualification }}</td>
+              <td>
+                <input type="text" class="form-control" placeholder="Relevant Experience" [(ngModel)]="item.relevantExperience" required>
+              </td>
+              <td>
+                <input type="text" class="form-control" placeholder="Work Location" [(ngModel)]="item.workLocation" required>
+              </td>
+              <td>
+                <input type="text" class="form-control" placeholder="Expected Rate" [(ngModel)]="item.expectedRate" required>
+              </td>
+              <td>
+                <input type="file" class="form-control" height="50px" width="100px" (change)="fileUpload($event, item)">
+              </td>
+              <td>
+                <button type="button" class="btn btn-primary btn-block" (click)="submitDetails(item)">Send</button>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
