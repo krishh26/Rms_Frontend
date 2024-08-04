@@ -56,7 +56,12 @@
                 <input type="text" class="form-control" placeholder="Relevant Experience" [(ngModel)]="item.relevantExperience" required>
               </td>
               <td>
-                <input type="text" class="form-control" placeholder="Work Location" [(ngModel)]="item.workLocation" required>
+                <!-- <input type="text" class="form-control" placeholder="Work Location" [(ngModel)]="item.workLocation" required> -->
+                <select class="form-control" [(ngModel)]="item.workLocation" required>
+                  <option value="" disabled selected hidden>Select work location</option>
+                  <option value="manchester_only">Northen ireland Only</option>
+                  <option value="blank">Blank</option>
+                </select>
               </td>
               <td>
                 <input type="text" class="form-control" placeholder="Expected Rate" [(ngModel)]="item.expectedRate" required>

@@ -36,11 +36,11 @@
       <table class="table table-bordered caption-top" style="width: 100%;">
         <thead>
           <tr>
-            <th>Roles in Demand</th>
+            <th [width]="100">Roles in Demand</th>
             <th>Role description</th>
             <th>Certifications/Qualifications</th>
             <th>Relevant Experience</th>
-            <th>Work Location</th>
+            <th [width]="250">Work Location</th>
             <th>Expected Rate</th>
             <th>File</th>
             <th>Action</th>
@@ -57,8 +57,13 @@
                   [(ngModel)]="item.relevantExperience" required>
               </td>
               <td>
-                <input type="text" class="form-control" placeholder="Work Location" [(ngModel)]="item.workLocation"
-                  required>
+                <!-- <input type="text" class="form-control" placeholder="Work Location" [(ngModel)]="item.workLocation"
+                  required> -->
+                  <select class="form-control" [(ngModel)]="item.workLocation" required>
+                    <option value="" disabled selected hidden>Select work location</option>
+                    <option value="manchester_only">Manchester Only</option>
+                    <option value="blank">Blank</option>
+                  </select>
               </td>
               <td>
                 <input type="text" class="form-control" placeholder="Expected Rate" [(ngModel)]="item.expectedRate"
