@@ -15,3 +15,7 @@ section {
     overflow-x: scroll !important;
     overflow-y: hidden;
 }
+.cellcolor {
+    background-color: #007f83;
+    font-weight: 100;
+}
