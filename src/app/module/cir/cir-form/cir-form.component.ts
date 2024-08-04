@@ -54,7 +54,7 @@ export class CirFormComponent implements OnInit {
       nationality: new FormControl('', [Validators.required]),
       UKDrivinglicense: new FormControl('', [Validators.required]),
       emergencyContact: new FormControl('', [Validators.required]),
-      userName: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
+      userName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       confirmPassword: new FormControl('', [Validators.pattern(Patterns.password)]),
     });
