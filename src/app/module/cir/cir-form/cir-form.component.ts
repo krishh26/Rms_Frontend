@@ -120,10 +120,10 @@ export class CirFormComponent implements OnInit {
          this.router.navigate(['/cir/cir-card']);
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
-        this.notificationService.showError(response?.message);
+        this.notificationService.showError(response?.message , 'Select different Username!');
       }
     }, (error) => {
-      this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+      this.notificationService.showError(error?.error?.message , 'Select different Username!');
     })
   }
 

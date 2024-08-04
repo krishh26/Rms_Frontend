@@ -5,14 +5,14 @@
         <div class="col-lg-5 col-xl-5 col-12">
           <div class="FormLeft-panel">
             <div class="text-center">
-              <img src="../../../../assets/img/white-logo.svg" width="200" class="mb-5" />
+              <img src="../../../../assets/img/Picture1.png" width="200" class="mb-5" />
             </div>
             <h1 class="HeadingLarge">We’re here to help, Send us a message</h1>
             <h5 class="mb-5">We’d love to hear from you!</h5>
-            <p><strong>Company Name Technologies Ltd.</strong><br>
-              Magnet House 2nd Floor, <br>Magnet House Narottam Morarjee Marg, <br>Ballard Estate, Mumbai - 400 001
+            <p><strong>Saiven Technology Solution</strong><br>
+              1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
             </p>
-            <p>Phone: 022-68208600</p>
+            <p>Phone: 8856876</p>
           </div>
         </div>
         <!--start Form here-->
@@ -58,7 +58,8 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['password']?.touched &&
                       personalDetailForm.controls?.['password']?.errors?.['pattern']">
-                      Please enter valid password.
+                      Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
+                      character.
                     </span>
                   </div>
                 </div>
@@ -121,7 +122,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['email']?.touched &&
                       personalDetailForm.controls?.['email']?.errors?.['pattern']">
-                      Please enter valid formate of candidate email.
+                      Please enter a valid email address in the format 'username@example.com' .
                     </span>
                   </div>
                 </div>
@@ -139,7 +140,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryEmail']?.touched &&
                       personalDetailForm.controls?.['secondaryEmail']?.errors?.['pattern']">
-                      Please enter valid formate of secondary email.
+                      Please enter a valid email address in the format 'username@example.com' .
                     </span>
                   </div>
                 </div>
@@ -147,7 +148,7 @@
                   <div class="form-group">
                     <label>Contact Phone number :</label>
                     <input type="tel" class="form-control" placeholder="Contact Phone number" [maxlength]="10"
-                      [minlength]="10" (keypress)="NumberOnly($event)" formControlName="phoneNumber">
+                      (keypress)="NumberOnly($event)" formControlName="phoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['phoneNumber']?.touched &&
                       personalDetailForm.controls?.['phoneNumber']?.errors?.['required']">
@@ -164,8 +165,7 @@
                   <div class="form-group">
                     <label>Secondary Phone number :</label>
                     <input type="tel" class="form-control" placeholder="Secondary Phone number"
-                      (keypress)="NumberOnly($event)" maxlength="10" minlength="10"
-                      ormControlName="secondaryPhoneNumber">
+                      (keypress)="NumberOnly($event)" maxlength="10" ormControlName="secondaryPhoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
                       personalDetailForm.controls?.['secondaryPhoneNumber']?.errors?.['required']">
@@ -331,21 +331,21 @@
         <div class="col-lg-5 col-xl-5 col-12">
           <div class="FormLeft-panel">
             <div class="text-center">
-              <img src="../../../../assets/img/white-logo.svg" width="200" class="mb-5" />
+              <img src="../../../../assets/img/Picture1.png" width="200" class="mb-5" />
             </div>
             <h1 class="HeadingLarge">We’re here to help, Send us a message</h1>
             <h5 class="mb-5">We’d love to hear from you!</h5>
-            <p><strong>Company Name Technologies Ltd.</strong><br>
-              Magnet House 2nd Floor, <br>Magnet House Narottam Morarjee Marg, <br>Ballard Estate, Mumbai - 400 001
+            <p><strong>Saiven Technology Solution</strong><br>
+              1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
             </p>
-            <p>Phone: 022-68208600</p>
+            <p>Phone: 8856876</p>
           </div>
         </div>
         <!--start Form here-->
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Other Details</strong></h4>
-            <form [formGroup]="otherDetailForm" >
+            <form [formGroup]="otherDetailForm">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
@@ -443,7 +443,8 @@
                   <div class="form-group">
                     <label>Your expected day rate (excluding VAT) :
                     </label>
-                    <input type="number" class="form-control" placeholder="expected day rate" formControlName="expectedDayRate">
+                    <input type="number" class="form-control" placeholder="expected day rate"
+                      formControlName="expectedDayRate">
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['expectedDayRate']?.touched &&
                       otherDetailForm.controls?.['expectedDayRate']?.errors?.['required']">
