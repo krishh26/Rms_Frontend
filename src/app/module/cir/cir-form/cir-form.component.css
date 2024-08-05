@@ -43,8 +43,8 @@ h6 {
 }
 
 .HeadingLarge {
-    font-size: 42px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 600;
 }
 
 .FormRight-panel {
@@ -54,4 +54,6 @@ h6 {
 .form-group {
     margin-bottom: 15px;
 }
-
+.textfont {
+    font-size: 18px;
+}
