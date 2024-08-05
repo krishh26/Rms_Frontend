@@ -227,10 +227,46 @@
               </div>
 
               <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Course Name</label>
+                    <input type="text" class="form-control" placeholder="Course Name"
+                      formControlName="courseName">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['courseName']?.touched &&
+                      personalDetailForm.controls?.['courseName']?.errors?.['required']">
+                      Please enter Course Name.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['courseName']?.touched &&
+                      personalDetailForm.controls?.['courseName']?.errors?.['pattern']">
+                      Please enter valid formate of Course Name.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Qualification and Certification :</label>
+                    <input type="text" class="form-control" placeholder="Qualification and Certification" formControlName="qualificationAndCertification">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['qualificationAndCertification']?.touched &&
+                      personalDetailForm.controls?.['qualificationAndCertification']?.errors?.['required']">
+                      Please enter Qualification and Certification.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['qualificationAndCertification']?.touched &&
+                      personalDetailForm.controls?.['qualificationAndCertification']?.errors?.['pattern']">
+                      Please enter valid formate of Qualification and Certification.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Profile Picture</label>
-                    <input type="file" id="myfile" name="myfile" class="form-control" placeholder="Profile Picture">
+                    <input type="file" id="myfile" name="myfile" class="form-control" placeholder="Profile Picture" (change)="fileUpload($event)" formControlName="profilePicture">
                   </div>
                 </div>
               </div>
@@ -294,18 +330,54 @@
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
-                    <label>Emergency contact details (if, any) :</label>
+                    <label>Emergency Contact No. :</label>
                     <input type="text" class="form-control" placeholder="Emergency contact details"
-                      formControlName="emergencyContact">
+                      formControlName="emergencyContact" (keypress)="NumberOnly($event)"  [maxlength]="10">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['emergencyContact']?.touched &&
                       personalDetailForm.controls?.['emergencyContact']?.errors?.['required']">
-                      Please enter emg contact detail.
+                      Please enter Emergency Contact No.
                     </span>
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['emergencyContact']?.touched &&
                       personalDetailForm.controls?.['emergencyContact']?.errors?.['pattern']">
-                      Please enter valid formate of emg contact detail.
+                      Please enter valid formate of Emergency Contact No.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Emergency Contact Name :</label>
+                    <input type="text" class="form-control" placeholder="Emergency Contact Name"
+                      formControlName="emergencyName">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['emergencyName']?.touched &&
+                      personalDetailForm.controls?.['emergencyName']?.errors?.['required']">
+                      Please enter candidate Emergency Contact Name.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['emergencyName']?.touched &&
+                      personalDetailForm.controls?.['emergencyName']?.errors?.['pattern']">
+                      Please enter valid formate of candidate Emergency Contact Name.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Emergency Contact Email :</label>
+                    <input type="text" class="form-control" placeholder="Emergency Contact Email" formControlName="emergencyEmail">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['emergencyEmail']?.touched &&
+                      personalDetailForm.controls?.['emergencyEmail']?.errors?.['required']">
+                      Please enter Emergency Contact Email.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['emergencyEmail']?.touched &&
+                      personalDetailForm.controls?.['emergencyEmail']?.errors?.['pattern']">
+                      Please enter a valid email address in the format 'username@example.com' .
                     </span>
                   </div>
                 </div>
@@ -439,12 +511,16 @@
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-7 colxl-7 col-md-7 col-sm-7 col-12">
+                <div class="col-lg-3 colxl-3 col-md-3 col-sm-3 col-12">
                   <div class="form-group">
-                    <label>Your expected day rate (excluding VAT) :
+                    <label>Currency:
                     </label>
-                    <input type="number" class="form-control" placeholder="expected day rate"
-                      formControlName="expectedDayRate">
+                    <select class="form-control" formControlName="currency">
+                      <option value="" disabled selected hidden>Select Currency</option>
+                      <option value="pound">Pound</option>
+                      <option value="dollor">Dollar</option>
+                      <option value="inr">INR</option>
+                    </select>
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['expectedDayRate']?.touched &&
                       otherDetailForm.controls?.['expectedDayRate']?.errors?.['required']">
@@ -458,6 +534,24 @@
                   </div>
                 </div>
                 <div class="col-lg-5 colxl-5 col-md-5 col-sm-5 col-12">
+                  <div class="form-group">
+                    <label>Your expected day rate:
+                    </label>
+                    <input type="text" class="form-control" placeholder="expected day rate"
+                      formControlName="expectedDayRate"  (keypress)="NumberOnly($event)">
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['expectedDayRate']?.touched &&
+                      otherDetailForm.controls?.['expectedDayRate']?.errors?.['required']">
+                      Please enter expected day rate.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['expectedDayRate']?.touched &&
+                      otherDetailForm.controls?.['expectedDayRate']?.errors?.['pattern']">
+                      Please select expected day rate.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-4 colxl-4 col-md-4 col-sm-4 col-12">
                   <div class="form-group">
                     <label>Referred by :
                     </label>

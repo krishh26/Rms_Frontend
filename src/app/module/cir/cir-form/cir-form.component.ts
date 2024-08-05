@@ -12,7 +12,7 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
   styleUrls: ['./cir-form.component.css']
 })
 export class CirFormComponent implements OnInit {
-  formType: string = 'personalDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
+  formType: string = 'otherDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
   personalDetailForm!: FormGroup;
   otherDetailForm!: FormGroup;
   loginDetailForm!: FormGroup;
@@ -20,9 +20,9 @@ export class CirFormComponent implements OnInit {
   showPassword = false;
   confirmPassword = 'password';
   confirmShowPassword = false;
-  user_id : string  ='';
-  register_data : any =[];
-
+  user_id: string = '';
+  register_data: any = [];
+  file: any;
   constructor(
     private router: Router,
     private cirservice: CirSericeService,
@@ -57,10 +57,14 @@ export class CirFormComponent implements OnInit {
       currentLocation: new FormControl('', [Validators.required]),
       nationality: new FormControl('', [Validators.required]),
       UKDrivinglicense: new FormControl('', [Validators.required]),
-      emergencyContact: new FormControl('', [Validators.required]),
+      emergencyContact: new FormControl('', [Validators.required, Validators.pattern(Patterns.mobile)]),
       userName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       confirmPassword: new FormControl('', [Validators.pattern(Patterns.password)]),
+      emergencyName: new FormControl('', [Validators.required]),
+      emergencyEmail:new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
+      courseName: new FormControl('', [Validators.required]),
+      qualificationAndCertification: new FormControl('', [Validators.required]),
     });
     this.otherDetailForm = new FormGroup({
       anySC_DV: new FormControl('', [Validators.required]),
@@ -75,6 +79,7 @@ export class CirFormComponent implements OnInit {
       lookingFor: new FormControl('', [Validators.required]),
       workingPreference: new FormControl('', [Validators.required]),
       Availability: new FormControl('', [Validators.required]),
+      currency: new FormControl('', [Validators.required]),
     });
   }
 
@@ -98,7 +103,29 @@ export class CirFormComponent implements OnInit {
 
 
   submitPersonalDetail() {
-    this.cirservice.register(this.personalDetailForm.value).subscribe((response) => {
+
+    const data = new FormData();
+    data.append('name', this.personalDetailForm.controls['name'].value || '');
+    data.append('email', this.personalDetailForm.controls['email'].value || '');
+    data.append('secondaryEmail', this.personalDetailForm.controls['secondaryEmail'].value || '');
+    data.append('phoneNumber', this.personalDetailForm.controls['phoneNumber'].value || '');
+    data.append('secondaryPhoneNumber', this.personalDetailForm.controls['secondaryPhoneNumber'].value || '');
+    data.append('dataOfBirth', this.personalDetailForm.controls['dataOfBirth'].value || '');
+    data.append('education', this.personalDetailForm.controls['education'].value || '');
+    data.append('currentLocation', this.personalDetailForm.controls['currentLocation'].value || '');
+    data.append('nationality', this.personalDetailForm.controls['nationality'].value || '');
+    data.append('UKDrivinglicense', this.personalDetailForm.controls['UKDrivinglicense'].value || '');
+    data.append('emergencyContact', this.personalDetailForm.controls['emergencyContact'].value || '');
+    data.append('userName', this.personalDetailForm.controls['userName'].value || '');
+    data.append('password', this.personalDetailForm.controls['password'].value || '');
+    data.append('confirmPassword', this.personalDetailForm.controls['confirmPassword'].value || '');
+    data.append('emergencyName', this.personalDetailForm.controls['emergencyName'].value || '');
+    data.append('emergencyEmail', this.personalDetailForm.controls['emergencyEmail'].value || '');
+    data.append('courseName', this.personalDetailForm.controls['courseName'].value || '');
+    data.append('qualificationAndCertification', this.personalDetailForm.controls['qualificationAndCertification'].value || '');
+    data.append('profilePicture', this.file || '');
+
+    this.cirservice.register(data).subscribe((response) => {
       console.log('response', response);
       if (response?.status == true) {
         this.formType = 'otherDetails';
@@ -113,17 +140,24 @@ export class CirFormComponent implements OnInit {
     })
   }
 
+  fileUpload(event: any): void {
+    this.file = event.target.files[0];
+ //   item.file = this.file;
+    console.log(this.file);
+    
+  }
+
   submitOtherDetails() {
-    this.cirservice.updateregister(this.user_id,this.personalDetailForm.value).subscribe((response) => {
+    this.cirservice.updateregister(this.user_id, this.personalDetailForm.value).subscribe((response) => {
       console.log('response', response);
       if (response?.status == true) {
-         this.router.navigate(['/cir/cir-card']);
+        this.router.navigate(['/cir/cir-card']);
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
-        this.notificationService.showError(response?.message , 'Select different Username!');
+        this.notificationService.showError(response?.message, 'Select different Username!');
       }
     }, (error) => {
-      this.notificationService.showError(error?.error?.message , 'Select different Username!');
+      this.notificationService.showError(error?.error?.message, 'Select different Username!');
     })
   }
 

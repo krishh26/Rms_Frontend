@@ -37,7 +37,7 @@ export class CirSericeService {
 
   register(payload: any): Observable<any> {
     return this.httpClient
-      .post<any>(this.baseUrl + CirEndPoint.REGISTER, payload, { headers: this.getHeader() });
+      .post<any>(this.baseUrl + CirEndPoint.REGISTER, payload);
   }
 
   updateregister(user_id: string, payload: any): Observable<any> {
