@@ -24,43 +24,38 @@ const routes: Routes = [
     path: '',
     component: AcrComponent,
     children: [
-    
+
       {
         path: "acr-card",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: AcrCardComponent
       },
       {
         path: "acr-manchester-details",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: ManchesterDetailsComponent
       },
       {
         path: "acr-northern-ireland-details",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: NorthenIrelandDetailsComponent
       },
       {
         path: "acr-dps21-details",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: Dps21DetailsComponent
       },
       {
         path: "acr-profile",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: AcrProfileComponent
       },
-      {
-        path: "**",
-        pathMatch: "full",
-        redirectTo: "acr-login"
-      }
     ]
   },
   {
     path: "**",
     pathMatch: "full",
-    redirectTo: ""
+    redirectTo: "acr-card"
   }
 ];
 
