@@ -24,14 +24,13 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Profile Picture</label>
-                    <input type="file" id="myfile" name="myfile" class="form-control" placeholder="Profile Picture" (change)="fileUpload($event)" formControlName="profilePicture" accept="image/*">
-                    <!-- <div class="profile-image">
-                      <img src="images/faces/face16.jpg" class="img-fluid">
+                    <!-- <input type="file" id="myfile" name="myfile" class="form-control" placeholder="Profile Picture" (change)="fileUpload($event)"  accept="image/*"> -->
+                    <div class="profile-image">
                       <img *ngIf="selectedImage" [src]="this.selectedImage" />
                       <div class="input--file">+
-                        <input name="Select File" type="file" (change)="fileUpload($event)" formControlName="profilePicture"  id="myfile" name="myfile" accept="image/*">
+                        <input name="Select File" type="file" (change)="fileUpload($event)"  id="myfile" name="myfile" accept="image/*">
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               </div>

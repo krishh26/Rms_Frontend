@@ -162,6 +162,9 @@ export class ManchesterDetailsComponent implements OnInit {
   }
 
   submitDetails() {
+    if (!this.file) {
+      return this.notificationService.showError('Please upload file');
+    }
     let data: any = [];
     this.manchesterData?.map((element: any) => {
       if (element?.checked) {
@@ -170,6 +173,10 @@ export class ManchesterDetailsComponent implements OnInit {
         data.push(element)
       }
     });
+
+    if (data?.length == 0) {
+      return this.notificationService.showError('Please select role');
+    }
 
     data?.map((el: any) => {
       delete el['checked'];

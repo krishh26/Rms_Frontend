@@ -12,14 +12,6 @@ import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
 
 const routes: Routes = [
   {
-    path: "cir-login",
-    component: CirLoginComponent
-  },
-  {
-    path: "cir-register",
-    component: CirFormComponent
-  },
-  {
     path: '',
     component: CirComponent,
     children: [
@@ -48,17 +40,20 @@ const routes: Routes = [
         canActivate : [AuthGuard],
         component: CirProfileComponent
       },
-      {
-        path: "**",
-        pathMatch: "full",
-        redirectTo: "cir-login"
-      }
     ]
+  },
+  {
+    path: "cir-login",
+    component: CirLoginComponent
+  },
+  {
+    path: "cir-register",
+    component: CirFormComponent
   },
   {
     path: "**",
     pathMatch: "full",
-    redirectTo: ""
+    redirectTo: "cir-card"
   }
 ];
 

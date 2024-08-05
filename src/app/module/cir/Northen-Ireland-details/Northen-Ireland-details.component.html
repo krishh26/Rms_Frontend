@@ -36,19 +36,21 @@
       <table class="table table-bordered caption-top" style="width: 100%;">
         <thead>
           <tr>
+              <th style="width: 32px;"></th>
               <th>Roles in Demand</th>
               <th>Role description</th>
               <th>Certifications/Qualifications</th>
               <th>Relevant Experience</th>
               <th>Work Location</th>
               <th>Expected Rate</th>
-              <th>File</th>
-              <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <ng-container *ngFor="let item of tableData">
             <tr>
+              <td style="width: 32px;">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin: 0; padding: 0;" [(ngModel)]="item.checked">
+              </td>
               <td>{{ item?.roleInDemand }}</td>
               <td>{{ item?.roleDescription }}</td>
               <td>{{ item?.qualification }}</td>
@@ -66,16 +68,18 @@
               <td>
                 <input type="text" class="form-control" placeholder="Expected Rate" [(ngModel)]="item.expectedRate" required>
               </td>
-              <td>
-                <input type="file" class="form-control" height="50px" width="100px" (change)="fileUpload($event, item)">
-              </td>
-              <td>
-                <button type="button" class="btn btn-primary btn-block" (click)="submitDetails(item)">Send</button>
-              </td>
             </tr>
           </ng-container>
         </tbody>
       </table>
+      <div style="display: flex; justify-content: end; align-items: center;">
+        <div style="width: 106px; margin: 2px;">
+          <input type="file" class="form-control" height="50px" width="100px" style="height: 38px;" (change)="fileUpload($event)">
+        </div>
+        <div style="width: 150px; margin: 2px;">
+          <button type="button" class="btn btn-primary btn-block" (click)="submitDetails()">Send Request</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>

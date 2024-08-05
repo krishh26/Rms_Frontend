@@ -24,8 +24,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Profile Picture</label>
-                    <input type="file" id="myfile" name="myfile" class="form-control" placeholder="Profile Picture"  formControlName="profilePhoto" accept="image/*">
-
+                    <img style="margin-left: 20px;" [src]="profileForm.controls['profilePhoto'].value" alt="No Image" height="100px" width="100px">
                   </div>
                 </div>
               </div>
@@ -45,6 +44,16 @@
                         required>
                     </div>
                   </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['password']?.touched &&
+                    profileForm.controls?.['password']?.errors?.['required']">
+                    Please enter password
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['password']?.touched &&
+                    profileForm.controls?.['password']?.errors?.['pattern']">
+                        Password must be contain alphabet (1 capital), number and @
+                  </span>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
@@ -53,9 +62,18 @@
                     <div class="input-group mb-0">
                       <input class="form-control" placeholder="Confirm Password"
                         formControlName="confirmPassword">
-
                     </div>
                   </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['confirmPassword']?.touched &&
+                    profileForm.controls?.['confirmPassword']?.errors?.['required']">
+                    Please enter confirm password
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['confirmPassword']?.touched &&
+                    profileForm.controls?.['confirmPassword']?.errors?.['pattern']">
+                        Password must be contain alphabet (1 capital), number and @
+                  </span>
                 </div>
               </div>
               <div class="row">
@@ -64,6 +82,16 @@
                     <label>Candidate Name :</label>
                     <input type="text" class="form-control" placeholder="Candidate Name" formControlName="name">
                   </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['name']?.touched &&
+                    profileForm.controls?.['name']?.errors?.['required']">
+                    Please enter candidate name.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['name']?.touched &&
+                    profileForm.controls?.['name']?.errors?.['pattern']">
+                    Please enter valid formate of candidate name.
+                  </span>
                 </div>
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
@@ -147,6 +175,16 @@
                     <input type="text" class="form-control" placeholder="Current Location"
                       formControlName="currentLocation">
                   </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['currentLocation']?.touched &&
+                    profileForm.controls?.['currentLocation']?.errors?.['required']">
+                    Please enter current location.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['currentLocation']?.touched &&
+                    profileForm.controls?.['currentLocation']?.errors?.['pattern']">
+                    Please enter valid format of current location.
+                  </span>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
