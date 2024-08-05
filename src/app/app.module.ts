@@ -8,6 +8,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule, } from '@angular/common/http';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { APIInterceptor } from './shared/interceptor/ApiInterceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,11 +28,11 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass:APIInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:APIInterceptor,
+      multi: true
+    },
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
   ],
