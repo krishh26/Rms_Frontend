@@ -135,7 +135,8 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Key Contact Person phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Key Contact Person phone number"
+                    <input type="tel" class="form-control" placeholder="Key Contact Person phone number"  [maxlength]="10"
+                    (keypress)="NumberOnly($event)"
                       formControlName="phoneNumber">
                     <span class="text-danger" *ngIf="
                       agencyForm.controls?.['phoneNumber']?.touched &&

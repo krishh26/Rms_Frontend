@@ -83,6 +83,15 @@ export class AcrFormComponent implements OnInit {
 
   // Function to be used for submit details
   submit() {
-    console.log('agency details : ' , this.agencyForm.value);
+    this.acrservice.register(this.agencyForm.value).subscribe((response) => {
+      if (response?.status == true) {
+        this.router.navigate(['/acr/acr-card']);
+        this.notificationService.showSuccess(response?.message, 'Success !');
+      } else {
+        this.notificationService.showError(response?.message, 'Select different Username!');
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.error?.message, 'Select different Username!');
+    })
   }
 }
