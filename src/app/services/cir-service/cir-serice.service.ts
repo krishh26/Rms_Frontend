@@ -7,7 +7,8 @@ export enum CirEndPoint {
   LOGIN_USER = '/user/login',
   REGISTER = '/user/register',
   UPDATE_REGISTER = '/user/update/',
-  SEND_DATA = '/card/create'
+  SEND_DATA = '/card/create',
+  FILE_UPLOAD = "/upload"
 }
 
 @Injectable({
@@ -48,5 +49,10 @@ export class CirSericeService {
   sendResume(payload: any) {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.SEND_DATA, payload);
+  }
+
+  fileUpload(payload: any) {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.FILE_UPLOAD, payload);
   }
 }

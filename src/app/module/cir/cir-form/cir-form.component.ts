@@ -63,7 +63,7 @@ export class CirFormComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       confirmPassword: new FormControl('', [Validators.pattern(Patterns.password)]),
       emergencyName: new FormControl('', [Validators.required]),
-      emergencyEmail:new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
+      emergencyEmail: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       courseName: new FormControl('', [Validators.required]),
       qualificationAndCertification: new FormControl('', [Validators.required]),
     });
@@ -104,7 +104,6 @@ export class CirFormComponent implements OnInit {
 
 
   submitPersonalDetail() {
-
     const data = new FormData();
     data.append('name', this.personalDetailForm.controls['name'].value || '');
     data.append('email', this.personalDetailForm.controls['email'].value || '');
@@ -127,7 +126,6 @@ export class CirFormComponent implements OnInit {
     data.append('profilePicture', this.file || '');
 
     this.cirservice.register(data).subscribe((response) => {
-      console.log('response', response);
       if (response?.status == true) {
         this.formType = 'otherDetails';
         // this.localStorageService.setLogger(response?.data);
@@ -144,14 +142,10 @@ export class CirFormComponent implements OnInit {
   fileUpload(event: any): void {
     this.file = event.target.files[0];
     this.selectedImage = this.file;
- //   item.file = this.file;
-    console.log(this.file);
-    
   }
 
   submitOtherDetails() {
     this.cirservice.updateregister(this.user_id, this.personalDetailForm.value).subscribe((response) => {
-      console.log('response', response);
       if (response?.status == true) {
         this.router.navigate(['/cir/cir-card']);
         this.notificationService.showSuccess(response?.message, 'Success !');
@@ -167,7 +161,6 @@ export class CirFormComponent implements OnInit {
   submitLoginDetails() {
     this.formType = 'loginDetails';
     this.router.navigate(['/cir/cir-login']);
-    console.log('login details : ', this.loginDetailForm.value);
   }
 
   // previous step

@@ -11,14 +11,14 @@ import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { CirProfileComponent } from './cir-profile/cir-profile.component';
-import { CirHeaderComponent } from './cir-header/cir-header.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
     CirRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
@@ -33,8 +33,7 @@ import { CirHeaderComponent } from './cir-header/cir-header.component';
     ManchesterDetailsComponent,
     Dps21DetailsComponent,
     NorthenIrelandDetailsComponent,
-    CirProfileComponent,
-    CirHeaderComponent
+    CirProfileComponent
   ]
 })
 export class CirModule { }

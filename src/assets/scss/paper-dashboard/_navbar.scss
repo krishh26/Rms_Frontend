@@ -217,7 +217,7 @@
     }
 
     &.navbar-transparent{
-      background-color: $transparent-bg !important;
+      background-color: #007F83 !important;
       box-shadow: none;
       border-bottom: 1px solid #ddd;
 
@@ -235,7 +235,7 @@
        }
 
       .nav-item .nav-link:not(.btn){
-        color: $default-color;
+        color: white;
       }
       .nav-item.active .nav-link:not(.btn),
       .nav-item .nav-link:not(.btn):focus,

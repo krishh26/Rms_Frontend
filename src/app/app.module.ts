@@ -30,7 +30,7 @@ import { APIInterceptor } from './shared/interceptor/ApiInterceptor';
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass:APIInterceptor,
+      useClass: APIInterceptor,
       multi: true
     },
     provideAnimations(), // required animations providers
