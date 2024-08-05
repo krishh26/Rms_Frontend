@@ -145,7 +145,7 @@ export class CirFormComponent implements OnInit {
   }
 
   submitOtherDetails() {
-    this.cirservice.updateregister(this.user_id, this.personalDetailForm.value).subscribe((response) => {
+    this.cirservice.updateregister(this.user_id, this.otherDetailForm.value).subscribe((response) => {
       if (response?.status == true) {
         this.router.navigate(['/cir/cir-card']);
         this.notificationService.showSuccess(response?.message, 'Success !');
