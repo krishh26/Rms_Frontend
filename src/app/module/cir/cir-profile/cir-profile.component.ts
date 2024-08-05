@@ -34,7 +34,7 @@ export class CirProfileComponent implements OnInit {
       profilePhoto: new FormControl('', [Validators.required]),
       userName: new FormControl(this.loginDetails.userName, [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
-      confirmPassword: new FormControl('', [Validators.pattern(Patterns.password)]),
+      confirmPassword: new FormControl('', [Validators.required,Validators.pattern(Patterns.password)]),
       name: new FormControl(this.loginDetails.name, [Validators.required, Validators.pattern(Patterns.name)]),
       email: new FormControl(this.loginDetails.email, [Validators.required, Validators.pattern(Patterns.email)]),
       secondaryEmail: new FormControl(this.loginDetails.secondaryEmail, [Validators.pattern(Patterns.email)]),

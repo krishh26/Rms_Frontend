@@ -23,7 +23,7 @@ export class CirFormComponent implements OnInit {
   user_id: string = '';
   register_data: any = [];
   file: any;
-  selectedImage!: string;
+  selectedImage!: any;
   constructor(
     private router: Router,
     private cirservice: CirSericeService,
@@ -141,7 +141,12 @@ export class CirFormComponent implements OnInit {
 
   fileUpload(event: any): void {
     this.file = event.target.files[0];
-    this.selectedImage = this.file;
+    // this.selectedImage = this.file;
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.selectedImage = event.target.result;
+    }
+    reader.readAsDataURL(this.file);
   }
 
   submitOtherDetails() {
