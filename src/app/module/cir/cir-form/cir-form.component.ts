@@ -12,7 +12,7 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
   styleUrls: ['./cir-form.component.css']
 })
 export class CirFormComponent implements OnInit {
-  formType: string = 'otherDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
+  formType: string = 'personalDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
   personalDetailForm!: FormGroup;
   otherDetailForm!: FormGroup;
   loginDetailForm!: FormGroup;
@@ -23,6 +23,7 @@ export class CirFormComponent implements OnInit {
   user_id: string = '';
   register_data: any = [];
   file: any;
+  selectedImage!: string;
   constructor(
     private router: Router,
     private cirservice: CirSericeService,
@@ -142,6 +143,7 @@ export class CirFormComponent implements OnInit {
 
   fileUpload(event: any): void {
     this.file = event.target.files[0];
+    this.selectedImage = this.file;
  //   item.file = this.file;
     console.log(this.file);
     

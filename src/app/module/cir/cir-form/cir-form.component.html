@@ -21,6 +21,22 @@
             <h4><strong>Personal Details</strong></h4>
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
               <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Profile Picture</label>
+                    <input type="file" id="myfile" name="myfile" class="form-control" placeholder="Profile Picture" (change)="fileUpload($event)" formControlName="profilePicture" accept="image/*">
+                    <!-- <div class="profile-image">
+                      <img src="images/faces/face16.jpg" class="img-fluid">
+                      <img *ngIf="selectedImage" [src]="this.selectedImage" />
+                      <div class="input--file">+
+                        <input name="Select File" type="file" (change)="fileUpload($event)" formControlName="profilePicture"  id="myfile" name="myfile" accept="image/*">
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
                 <div class="col-12">
                   <div class="form-group">
                     <label>Username :</label>
@@ -263,15 +279,6 @@
               </div>
 
               <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Profile Picture</label>
-                    <input type="file" id="myfile" name="myfile" class="form-control" placeholder="Profile Picture" (change)="fileUpload($event)" formControlName="profilePicture">
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Candidate Current Location</label>
@@ -463,7 +470,7 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label>Preferred time for a call, if/when we wish to speak with you :</label>
-                    <select class="form-control" formControlName="callDay">
+                    <select class="form-control mb-3" formControlName="callDay">
                       <option value="" disabled selected hidden>Select preferred day</option>
                       <option value="Monday">Monday</option>
                       <option value="Tuesday">Tuesday</option>
