@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./module/cir/cir.module').then(m => m.CirModule)
   },
   {
+    path: 'database',
+    loadChildren: () => import('./module/show-data-base/show-data-base.module').then(m => m.ShowDataBaseModule)
+  },
+  {
     path: "**",
     pathMatch: "full",
     redirectTo: "cir/cir-login"
