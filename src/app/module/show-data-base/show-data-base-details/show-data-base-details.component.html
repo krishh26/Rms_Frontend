@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">{{ pageType }} Details</h3>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <ng-container *ngIf="pageType == 'USER'">
+        <table class="table">
+          <thead class="text-primary">
+            <th *ngFor="let header of tableHeader"> {{ header }} </th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of tableData; let index = index">
+              <tr>
+                <td>{{ item?.Name }}</td>
+                <td>{{ item?.Location }}</td>
+                <td>{{ item?.Dob }}</td>
+                <td>{{ item?.Gender }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-container *ngIf="pageType == 'ACR_LIST'">
+        <table class="table">
+          <thead class="text-primary">
+              <th *ngFor="let header of tableHeader"> {{ header }} </th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of tableData; let index = index">
+              <tr>
+                <td>{{ item?.Name }}</td>
+                <td>{{ item?.Gender }}</td>
+                <td>{{ item?.UserType }}</td>
+                <td>{{ item?.Location }}</td>
+                <td>{{ item?.JobType }}</td>
+                <td>{{ item?.Rate }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </ng-container>
+    </div>
+  </div>
+</div>
