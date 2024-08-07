@@ -7,7 +7,8 @@ export enum CirEndPoint {
   LOGIN_USER = '/user/login',
   REGISTER = '/user/register',
   UPDATE_REGISTER = '/user/update/',
-  SEND_DATA = '/card/create'
+  SEND_DATA = '/card/create',
+  FILE_UPLOAD = "/upload"
 }
 
 @Injectable({
@@ -37,7 +38,7 @@ export class CirSericeService {
 
   register(payload: any): Observable<any> {
     return this.httpClient
-      .post<any>(this.baseUrl + CirEndPoint.REGISTER, payload, { headers: this.getHeader() });
+      .post<any>(this.baseUrl + CirEndPoint.REGISTER, payload);
   }
 
   updateregister(user_id: string, payload: any): Observable<any> {
@@ -46,10 +47,12 @@ export class CirSericeService {
   }
 
   sendResume(payload: any) {
-    let headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data',
-    });
     return this.httpClient
-      .post<any>(this.baseUrl + CirEndPoint.SEND_DATA, payload, { headers: headers });
+      .post<any>(this.baseUrl + CirEndPoint.SEND_DATA, payload);
+  }
+
+  fileUpload(payload: any) {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.FILE_UPLOAD, payload);
   }
 }

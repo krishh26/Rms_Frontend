@@ -4,19 +4,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CirModule } from './module/cir/cir.module';
 import { AcrModule } from './module/acr/acr.module';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule, } from '@angular/common/http';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { APIInterceptor } from './shared/interceptor/ApiInterceptor';
+import { ShowDataBaseModule } from './module/show-data-base/show-data-base.module';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     CirModule,
     AcrModule,
+    ShowDataBaseModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 3000,
@@ -27,11 +31,11 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass:APIInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
+      multi: true
+    },
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
   ],

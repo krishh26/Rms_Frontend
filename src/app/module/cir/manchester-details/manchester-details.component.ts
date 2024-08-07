@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
@@ -10,6 +11,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class ManchesterDetailsComponent implements OnInit {
   manchesterData: any = [
     {
+      checked: false,
       roleInDemand: "Functional Test Analyst",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -19,6 +21,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "System Integration Test Analys",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -28,6 +31,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Performance Test Analyst",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -37,6 +41,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "End to End Test Manager/Programme Test Manager/Test Delivery Manager",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -46,6 +51,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Programme Test Manager",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -55,6 +61,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Accessibility Tester",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -64,6 +71,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Data Migration Tester",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -73,6 +81,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "UAT Test Analyst",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -82,6 +91,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Functional Test Lead",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -91,6 +101,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "UAT Test Lead",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -100,6 +111,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Performance Test Lead",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -109,6 +121,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Technical Test Analyst",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -118,6 +131,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Defect Manager",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -127,6 +141,7 @@ export class ManchesterDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Test Automation Engineer",
       roleDescription: "Specifications not available on this day",
       qualification: "ITSQB Foundation Certification JIRA Tooling such as: Selenium, Postman, TestLink, SauceLabs, Quality Centre, BrowserStack",
@@ -139,26 +154,38 @@ export class ManchesterDetailsComponent implements OnInit {
   file: any;
   constructor(
     private cirSericeService: CirSericeService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
   }
 
+  submitDetails() {
+    if (!this.file) {
+      return this.notificationService.showError('Please upload file');
+    }
+    let data: any = [];
+    this.manchesterData?.map((element: any) => {
+      if (element?.checked) {
+        element['file'] = this.file;
+        element['type'] = 'CIR';
+        data.push(element)
+      }
+    });
 
-  submitDetails(item: any) {
-    const data = new FormData();
-    data.append('rolesInDemand', item?.roleInDemand || '');
-    data.append('roleDescription', item?.roleDescription || '');
-    data.append('certifications_qualifications', item?.qualification || '');
-    data.append('valueA', item?.relevantExperience || '');
-    data.append('valueB', item?.workLocation || '');
-    data.append('valueC', item?.expectedRate || '');
-    data.append('file', item?.file || '');
+    if (data?.length == 0) {
+      return this.notificationService.showError('Please select role');
+    }
+
+    data?.map((el: any) => {
+      delete el['checked'];
+    });
 
     this.cirSericeService.sendResume(data).subscribe((response) => {
       if (response?.status) {
-        this.notificationService.showSuccess(response?.message || 'Resume successfully uploaded.')
+        this.router.navigate(['/cir/cir-card']);
+        this.notificationService.showSuccess('Thank you for filling the details, Our team will get back to you shortly');
       } else {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
@@ -167,27 +194,20 @@ export class ManchesterDetailsComponent implements OnInit {
     })
   }
 
-  fileUpload(event: any, item: any): void {
-    this.file = event.target.files[0];
-    item.file = this.file;
-
+  fileUpload(event: any): void {
+    const file = event.target.files[0];
     const data = new FormData();
-    data.append('rolesInDemand', item?.roleInDemand || '');
-    data.append('roleDescription', item?.roleDescription || '');
-    data.append('certifications_qualifications', item?.qualification || '');
-    data.append('valueA', item?.relevantExperience || '');
-    data.append('valueB', item?.workLocation || '');
-    data.append('valueC', item?.expectedRate || '');
-    data.append('file', item?.file || '');
+    data.append('files', file || '');
 
-    this.cirSericeService.sendResume(data).subscribe((response) => {
+    this.cirSericeService.fileUpload(data).subscribe((response) => {
       if (response?.status) {
-        this.notificationService.showSuccess(response?.message || 'Resume successfully uploaded.')
+        this.file = response?.data;
+        this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
       } else {
-        this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'Resume Not Send.')
+      this.notificationService.showError(error?.message || 'File not uploaded.')
     })
   }
 }

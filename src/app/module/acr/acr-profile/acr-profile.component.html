@@ -1,0 +1,138 @@
+<section>
+  <div class="container">
+    <div class="FlatCard shadow border-radius24">
+      <div class="row">
+        <div class="col-lg-5 col-xl-5 col-12">
+          <div class="FormLeft-panel">
+            <div class="text-center">
+              <img src="../../../../assets/img/Picture1.png" width="200" class="mb-5" />
+            </div>
+            <h1 class="HeadingLarge">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h1>
+            <p class="mb-5 textfont">SaiVen, a leading member company collaborating with IT firms across the UK and
+              India, is dedicated to delivering top-tier IT projects for public sector clients in UK. As the driving
+              force behind client relationship management, project governance, and delivery management, we ensure
+              seamless execution and exceptional results. We also specialize in engaging immigration-free resources,
+              enabling quick and cost-effective resource augmentation. Partner with us for exciting contract
+              opportunities and be a part of our success story.</p>
+            <p><strong>Saiven Technology Solution</strong><br>
+              1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
+            </p>
+            <p>Phone: 8856876</p>
+          </div>
+        </div>
+        <!--start Form here-->
+        <div class="col-lg-7 col-xl-7 col-12">
+          <div class="FormRight-panel">
+            <h4 class="mb-3"><strong>ACR Profile</strong></h4>
+            <form [formGroup]="agencyForm" (ngSubmit)="submit()">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Supplier/Agency Name :</label>
+                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="agencyName" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Location :
+                    </label>
+                    <input type="text" class="form-control" placeholder="Current Location" formControlName="location" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Number Of Branches in UK :</label>
+                    <input type="number" class="form-control" formControlName="numberOfBranchesInUK" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Key Contact Person Name :</label>
+                    <input type="text" class="form-control" placeholder="Key Contact Person Name"
+                      formControlName="personName" readonly>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Key Contact Person Designation :</label>
+                    <input type="text" class="form-control" placeholder="Key Contact Person Designation"
+                      formControlName="personDesignation" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Key Contact Person Email :</label>
+                    <input type="email" class="form-control" placeholder="Key Contact Person Email"
+                      formControlName="personEmail" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Key Contact Person phone number :</label>
+                    <input type="tel" class="form-control" placeholder="Key Contact Person phone number"  [maxlength]="10" readonly
+                    (keypress)="NumberOnly($event)"
+                      formControlName="phoneNumber">
+                  </div>
+                </div>
+                <div class="col-md-6 px-1">
+                  <div class="form-group">
+                    <label>Secondary contact details (if, any) :
+                    </label>
+                    <input type="text" class="form-control" placeholder="Candidate details "
+                      formControlName="contactDetails" readonly>
+                  </div>
+                </div>
+                <!-- <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label>Emergency Secondary contact details (if, any) :</label>
+                    <input type="text" class="form-control" placeholder="contact details">
+                  </div>
+                </div> -->
+              </div>
+              <div class="row">
+                <div class="col-md-8 pl-1">
+                  <div class="form-group">
+                    <label>Emergency Secondary contact details (if, any) :</label>
+                    <input type="text" class="form-control" placeholder="contact details"
+                      formControlName="emergencySecondaryContactDetails" readonly>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Referred by : </label>
+                    <!-- <select class="form-control" formControlName="referredBy" readonly>
+                      <option value="" disabled selected hidden>Select Referred</option>
+                      <option value="delphi">Delphi</option>
+                      <option value="bigdata">Bigdata </option>
+                    </select> -->
+                    <input type="text" class="form-control" placeholder="contact details"
+                      formControlName="referredBy" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 pl-1">
+                  <div class="form-group">
+                    <label> Username :</label>
+                    <input type="text" class="form-control" placeholder="Username" formControlName="userName" readonly>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="update ml-auto mr-auto">
+                  <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                </div>
+              </div> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

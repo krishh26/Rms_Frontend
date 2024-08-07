@@ -33,7 +33,7 @@ export class LocalStorageService {
   }
 
   // Function to use for the get login user token from the localStorage
-  getLoggerToken(): void {
+  getLoggerToken(): any {
     const loginToken: any = localStorage.getItem('loginToken');
     return loginToken;
   }

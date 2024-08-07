@@ -1,0 +1,245 @@
+<section>
+  <div class="container">
+    <div class="FlatCard shadow border-radius24">
+      <div class="row">
+        <div class="col-lg-5 col-xl-5 col-12">
+          <div class="FormLeft-panel">
+            <div class="text-center">
+              <img src="../../../../assets/img/Picture1.png" width="200" class="mb-5" />
+            </div>
+            <h1 class="HeadingLarge">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h1>
+            <p class="mb-5 textfont">SaiVen, a leading member company collaborating with IT firms across the UK and India, is dedicated to delivering top-tier IT projects for public sector clients in UK. As the driving force behind client relationship management, project governance, and delivery management, we ensure seamless execution and exceptional results. We also specialize in engaging immigration-free resources, enabling quick and cost-effective resource augmentation. Partner with us for exciting contract opportunities and be a part of our success story.</p>
+            <p><strong>Saiven Technology Solution</strong><br>
+              1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
+            </p>
+            <p>Phone: 8856876</p>
+          </div>
+        </div>
+        <!--start Form here-->
+        <div class="col-lg-7 col-xl-7 col-12">
+          <div class="FormRight-panel">
+            <h4><strong>Profile Setting</strong></h4>
+            <form [formGroup]="profileForm" (ngSubmit)="submit()">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Profile Picture</label>
+                    <img style="margin-left: 20px;" [src]="profileForm.controls['profilePhoto'].value" alt="No Image" height="100px" width="100px">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Username :</label>
+                    <input type="email" class="form-control" placeholder="Username" formControlName="userName" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Password :</label>
+                    <div class="input-group mb-0">
+                      <input  class="form-control" placeholder="Password" formControlName="password"
+                        required>
+                    </div>
+                  </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['password']?.touched &&
+                    profileForm.controls?.['password']?.errors?.['required']">
+                    Please enter password
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['password']?.touched &&
+                    profileForm.controls?.['password']?.errors?.['pattern']">
+                        Password must be contain alphabet (1 capital), number and @
+                  </span>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Confirm Password :
+                    </label>
+                    <div class="input-group mb-0">
+                      <input class="form-control" placeholder="Confirm Password"
+                        formControlName="confirmPassword">
+                    </div>
+                  </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['confirmPassword']?.touched &&
+                    profileForm.controls?.['confirmPassword']?.errors?.['required']">
+                    Please enter confirm password
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['confirmPassword']?.touched &&
+                    profileForm.controls?.['confirmPassword']?.errors?.['pattern']">
+                        Password must be contain alphabet (1 capital), number and @
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Candidate Name :</label>
+                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="name">
+                  </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['name']?.touched &&
+                    profileForm.controls?.['name']?.errors?.['required']">
+                    Please enter candidate name.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['name']?.touched &&
+                    profileForm.controls?.['name']?.errors?.['pattern']">
+                    Please enter valid formate of candidate name.
+                  </span>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Contact Email :
+                    </label>
+                    <input type="email" class="form-control" placeholder="Contact Email" formControlName="email" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Secondary Email :
+                    </label>
+                    <input type="email" class="form-control" placeholder="Secondary Email"
+                      formControlName="secondaryEmail" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Contact Phone number :</label>
+                    <input type="tel" class="form-control" placeholder="Contact Phone number" [maxlength]="10"
+                     formControlName="phoneNumber" readonly>
+
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Secondary Phone number :</label>
+                    <input type="tel" class="form-control" placeholder="Secondary Phone number"
+                   maxlength="10" ormControlName="secondaryPhoneNumber" readonly>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="date" class="form-control" placeholder="Date of Birth" formControlName="dataOfBirth" readonly>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Education :</label>
+                    <!-- <input type="text" class="form-control" placeholder="Education" formControlName="education"> -->
+                    <select class="form-control" formControlName="education" readonly>
+                      <option value="" disabled selected hidden>Select Type</option>
+                      <option value="high_school_diploma">High School Diploma </option>
+                      <option value="associate_degree">Associate Degree</option>
+                      <option value="bachelor_degree">Bachelor's Degree</option>
+                      <option value="master_degree">Master's Degree</option>
+                      <option value="doctorate_phd">Doctorate (PhD)</option>
+                      <option value="professional_degree">Professional Degree (e.g., MD, JD)</option>
+                      <option value="vocational_technical_certificate">Vocational/Technical Certificate</option>
+                      <option value="other">Other (please specify)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Course Name</label>
+                    <input type="text" class="form-control" placeholder="Course Name"
+                      formControlName="courseName" readonly>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Qualification and Certification :</label>
+                    <input type="text" class="form-control" placeholder="Qualification and Certification" formControlName="qualificationAndCertification" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Candidate Current Location</label>
+                    <input type="text" class="form-control" placeholder="Current Location"
+                      formControlName="currentLocation">
+                  </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['currentLocation']?.touched &&
+                    profileForm.controls?.['currentLocation']?.errors?.['required']">
+                    Please enter current location.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['currentLocation']?.touched &&
+                    profileForm.controls?.['currentLocation']?.errors?.['pattern']">
+                    Please enter valid format of current location.
+                  </span>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Nationality :</label>
+                    <input type="text" class="form-control" placeholder="Nationality" formControlName="nationality" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Do you Have a UK Driving license? :</label>
+                    <select class="form-control" formControlName="UKDrivinglicense" readonly>
+                      <option value="" disabled selected hidden>Select Type</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Emergency Contact No. :</label>
+                    <input type="text" class="form-control" placeholder="Emergency contact details"
+                      formControlName="emergencyContact"  [maxlength]="10" readonly>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Emergency Contact Name :</label>
+                    <input type="text" class="form-control" placeholder="Emergency Contact Name"
+                      formControlName="emergencyName" readonly>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Emergency Contact Email :</label>
+                    <input type="text" class="form-control" placeholder="Emergency Contact Email" formControlName="emergencyEmail" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                  <button type="submit" class="btn btn-primary btn-round">Update</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

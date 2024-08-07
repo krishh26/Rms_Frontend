@@ -10,13 +10,15 @@ import { Dps21DetailsComponent } from './dps21-details/dps21-details.component';
 import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northen-Ireland-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-
+import { CirProfileComponent } from './cir-profile/cir-profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
     CirRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
@@ -30,7 +32,8 @@ import { ToastrModule } from 'ngx-toastr';
     CirLoginComponent,
     ManchesterDetailsComponent,
     Dps21DetailsComponent,
-    NorthenIrelandDetailsComponent
+    NorthenIrelandDetailsComponent,
+    CirProfileComponent
   ]
 })
 export class CirModule { }

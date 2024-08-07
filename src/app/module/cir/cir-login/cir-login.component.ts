@@ -18,7 +18,7 @@ export class CirLoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private cirservice : CirSericeService,
+    private cirservice: CirSericeService,
     private notificationService: NotificationService,
     private localStorageService: LocalStorageService,
   ) {
@@ -31,41 +31,19 @@ export class CirLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  // login() {
-  //   if (!this.loginForm.valid) {
-  //     return
-  //   }
-  //   console.log('login details', this.loginForm.value)
-  //   this.router.navigate(['/cir/cir-card']);
-  // }
-
   login(): void {
     this.loginForm.markAllAsTouched();
-    console.log('adasdasdasdasd', this.loginForm.valid)
     if (this.loginForm.valid) {
       this.cirservice.loginUser(this.loginForm.value).subscribe((response) => {
-        console.log('response', response);
         if (response?.status == true) {
           this.localStorageService.setLoginToken(response?.data);
-         // this.tokenDecode = response?.data?.token;
-          // const decoded = jwtDecode(response?.data?.token);
-          // this.loginDetails = decoded;
-         // this.localStorageService.setLogger(this.loginDetails);
-         this.router.navigate(['/cir/cir-card']);
-          // setTimeout(() => {
-          //   window.location.reload();
-          // }, 500);
+          this.localStorageService.setLogger(response?.data?.user);
+          this.router.navigate(['/cir/cir-card']);
         } else {
-          console.log(
-
-            response?.message
-          );
-          
-           this.notificationService.showError(response?.message);
+          this.notificationService.showError(response?.message);
         }
       }, (error) => {
-         this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+        this.notificationService.showError(error?.error?.message || 'Something went wrong!');
       })
     }
   }

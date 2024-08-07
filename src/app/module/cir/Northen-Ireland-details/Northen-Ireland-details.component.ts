@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
@@ -10,6 +11,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class NorthenIrelandDetailsComponent implements OnInit {
   tableData: any = [
     {
+      checked: false,
       roleInDemand: "QA / Test Architect",
       roleDescription: "Ref NI_Roles.PDF",
       qualification: "NONE Specified by Client",
@@ -19,6 +21,7 @@ export class NorthenIrelandDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "QA / Test Manager",
       roleDescription: "Ref NI_Roles.PDF",
       qualification: "NONE Specified by Client",
@@ -28,6 +31,7 @@ export class NorthenIrelandDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "QA/Functional Test Lead",
       roleDescription: "Ref NI_Roles.PDF",
       qualification: "NONE Specified by Client",
@@ -37,6 +41,7 @@ export class NorthenIrelandDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "QA / Test Analyst",
       roleDescription: "Ref NI_Roles.PDF",
       qualification: "NONE Specified by Client",
@@ -46,6 +51,7 @@ export class NorthenIrelandDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Non-Functional Test (NFT) Lead",
       roleDescription: "Ref NI_Roles.PDF",
       qualification: "NONE Specified by Client",
@@ -55,6 +61,7 @@ export class NorthenIrelandDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Non-Functional Test (NFT) Analyst",
       roleDescription: "Ref NI_Roles.PDF",
       qualification: "NONE Specified by Client",
@@ -64,6 +71,7 @@ export class NorthenIrelandDetailsComponent implements OnInit {
       file: ""
     },
     {
+      checked: false,
       roleInDemand: "Automation Analyst/Engineer",
       roleDescription: "Ref NI_Roles.PDF",
       qualification: "NONE Specified by Client",
@@ -77,26 +85,40 @@ export class NorthenIrelandDetailsComponent implements OnInit {
   file: any;
   constructor(
     private cirSericeService: CirSericeService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
   }
 
+  submitDetails() {
+    if (!this.file) {
+      return this.notificationService.showError('Please upload file');
+    }
 
-  submitDetails(item: any) {
-    const data = new FormData();
-    data.append('rolesInDemand', item?.roleInDemand || '');
-    data.append('roleDescription', item?.roleDescription || '');
-    data.append('certifications_qualifications', item?.qualification || '');
-    data.append('valueA', item?.relevantExperience || '');
-    data.append('valueB', item?.workLocation || '');
-    data.append('valueC', item?.expectedRate || '');
-    data.append('file', item?.file || '');
+    let data: any = [];
+
+    this.tableData?.map((element: any) => {
+      if (element?.checked) {
+        element['file'] = this.file;
+        element['type'] = 'CIR';
+        data.push(element)
+      }
+    });
+
+    if (data?.length == 0) {
+      return this.notificationService.showError('Please select role');
+    }
+
+    data?.map((el: any) => {
+      delete el['checked'];
+    });
 
     this.cirSericeService.sendResume(data).subscribe((response) => {
       if (response?.status) {
-        this.notificationService.showSuccess(response?.message || 'Resume successfully uploaded.')
+        this.router.navigate(['/cir/cir-card']);
+        this.notificationService.showSuccess('Thank you for filling the details, Our team will get back to you shortly');
       } else {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
@@ -105,28 +127,20 @@ export class NorthenIrelandDetailsComponent implements OnInit {
     })
   }
 
-  fileUpload(event: any, item: any): void {
-    this.file = event.target.files[0];
-    item.file = this.file;
-
+  fileUpload(event: any): void {
+    const file = event.target.files[0];
     const data = new FormData();
-    data.append('rolesInDemand', item?.roleInDemand || '');
-    data.append('roleDescription', item?.roleDescription || '');
-    data.append('certifications_qualifications', item?.qualification || '');
-    data.append('valueA', item?.relevantExperience || '');
-    data.append('valueB', item?.workLocation || '');
-    data.append('valueC', item?.expectedRate || '');
-    data.append('file', item?.file || '');
+    data.append('files', file || '');
 
-    this.cirSericeService.sendResume(data).subscribe((response) => {
+    this.cirSericeService.fileUpload(data).subscribe((response) => {
       if (response?.status) {
-        this.notificationService.showSuccess(response?.message || 'Resume successfully uploaded.')
+        this.file = response?.data;
+        this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
       } else {
-        this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'Resume Not Send.')
+      this.notificationService.showError(error?.message || 'File not uploaded.')
     })
   }
-
 }
