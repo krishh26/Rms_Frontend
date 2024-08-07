@@ -12,6 +12,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { CirProfileComponent } from './cir-profile/cir-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CirForgotPasswrdComponent } from './cir-forgot-passwrd/cir-forgot-passwrd.component';
+import { CirResetPasswordComponent } from './cir-reset-password/cir-reset-password.component';
+import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherdetails-form.component';
+import { CirRolesDemandCardComponent } from './cir-roles-demand-card/cir-roles-demand-card.component';
+import { CirRolesDemandDetailsComponent } from './cir-roles-demand-details/cir-roles-demand-details.component';
+import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -33,7 +39,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ManchesterDetailsComponent,
     Dps21DetailsComponent,
     NorthenIrelandDetailsComponent,
-    CirProfileComponent
+    CirProfileComponent,
+    CirForgotPasswrdComponent,
+    CirResetPasswordComponent,
+    CirOtherdetailsFormComponent,
+    CirRolesDemandCardComponent,
+    CirRolesDemandDetailsComponent,
+    CirReferEarnComponent
   ]
 })
 export class CirModule { }

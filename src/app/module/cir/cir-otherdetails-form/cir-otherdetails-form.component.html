@@ -1,0 +1,252 @@
+<section>
+  <div class="container">
+    <div class="FlatCard shadow border-radius24">
+      <div class="row">
+        <div class="col-lg-5 col-xl-5 col-12">
+          <div class="FormLeft-panel">
+            <div class="text-center">
+              <img src="../../../../assets/img/Picture1.png" width="200" class="mb-5" />
+            </div>
+            <h1 class="HeadingLarge">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h1>
+            <p class="mb-5 textfont">SaiVen, a leading member company collaborating with IT firms across the UK and
+              India, is dedicated to delivering top-tier IT projects for public sector clients in UK. As the driving
+              force behind client relationship management, project governance, and delivery management, we ensure
+              seamless execution and exceptional results. We also specialize in engaging immigration-free resources,
+              enabling quick and cost-effective resource augmentation. Partner with us for exciting contract
+              opportunities and be a part of our success story.</p>
+            <p><strong>Saiven Technology Solution</strong><br>
+              1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
+            </p>
+            <p>Phone: 8856876</p>
+          </div>
+        </div>
+        <div class="col-lg-7 col-xl-7 col-12">
+          <div class="FormRight-panel">
+            <h4><strong>Personal Details</strong></h4>
+            <form>
+              <div class="row">
+                <div class="col-lg-12 colxl-12 col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+                    <label>Work Location Preferences :</label><br>
+                    <label>
+                      <input type="checkbox" name="work_location" value="client-location">
+                      I am ok to work at Client location
+                    </label><br>
+                    <label>
+                      <input type="checkbox" name="work_location" value="work-from-home-on-demand">
+                      I would like to work from home with on demand reporting to location
+                    </label><br>
+                    <label>
+                      <input type="checkbox" name="work_location" value="100-percent-remote">
+                      I would like to work 100% Remotely
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 colxl-3 col-md-3 col-sm-3 col-12">
+                  <div class="form-group">
+                    <label>Currency:
+                    </label>
+                    <select class="form-control" formControlName="currency">
+                      <option value="" disabled selected hidden>Select Currency</option>
+                      <option value="pound">Pound</option>
+                      <option value="dollor">Dollar</option>
+                      <option value="inr">INR</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-5 colxl-5 col-md-5 col-sm-5 col-12">
+                  <div class="form-group">
+                    <label>Your expected day rate:
+                    </label>
+                    <input type="text" class="form-control" placeholder="expected day rate"
+                      formControlName="expectedDayRate" (keypress)="NumberOnly($event)">
+                  </div>
+                </div>
+                <div class="col-lg-4 colxl-4 col-md-4 col-sm-4 col-12">
+                  <div class="form-group">
+                    <label>Referred by :
+                    </label>
+                    <!-- <input type="text" class="form-control" placeholder="Referred by" formControlName="referredBy"> -->
+                    <select class="form-control"  formControlName="">
+                      <option value="" disabled selected hidden>Select referred by</option>
+                      <option value="00">00</option>
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                      <option value="24">24</option>
+                      <option value="25">25</option>
+                      <option value="26">26</option>
+                      <option value="27">27</option>
+                      <option value="28">28</option>
+                      <option value="29">29</option>
+                      <option value="30">30</option>
+                      <option value="31">31</option>
+                      <option value="32">32</option>
+                      <option value="33">33</option>
+                      <option value="34">34</option>
+                      <option value="35">35</option>
+                      <option value="36">36</option>
+                      <option value="37">37</option>
+                      <option value="38">38</option>
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                      <option value="46">46</option>
+                      <option value="47">47</option>
+                      <option value="48">48</option>
+                      <option value="49">49</option>
+                    </select>
+                  </div>
+                </div>
+               <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>Preferred contact Day :</label>
+                    <select class="form-control mb-3" formControlName="callDay">
+                      <option value="" disabled selected hidden>Select preferred day</option>
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label>Preferred contact Time :</label>
+                    <select class="form-control" formControlName="callTime">
+                      <option value="" disabled selected hidden>Select preferred time</option>
+                      <option value="1">1-2 AM</option>
+                      <option value="2">2-3 AM</option>
+                      <option value="3">3-4 AM</option>
+                      <option value="4">4-5 AM</option>
+                      <option value="5">5-6 AM</option>
+                      <option value="6">6-7 AM</option>
+                      <option value="7">7-8 AM</option>
+                      <option value="8">8-9 AM</option>
+                      <option value="9">9-10 AM</option>
+                      <option value="10">10-11 AM</option>
+                      <option value="11">11-12 AM</option>
+                      <option value="12">12-1 PM</option>
+                      <option value="13">1-2 PM</option>
+                      <option value="14">2-3 PM</option>
+                      <option value="15">3-4 PM</option>
+                      <option value="16">4-5 PM</option>
+                      <option value="17">5-6 PM</option>
+                      <option value="18">6-7 PM</option>
+                      <option value="19">7-8 PM</option>
+                      <option value="20">8-9 PM</option>
+                      <option value="21">9-10 PM</option>
+                      <option value="22">10-11 PM</option>
+                      <option value="23">11-12 PM</option>
+                    </select>
+                </div>
+               </div>
+             
+              </div>
+              <div class="row">
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Password :</label>
+                    <div class="input-group mb-0">
+                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
+                        required>
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
+                          <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['password']?.touched &&
+                      personalDetailForm.controls?.['password']?.errors?.['required']">
+                      Please enter password.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['password']?.touched &&
+                      personalDetailForm.controls?.['password']?.errors?.['pattern']">
+                      Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
+                      character.
+                    </span> -->
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Confirm Password :
+                    </label>
+                    <div class="input-group mb-0">
+                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password"
+                        formControlName="confirmPassword">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span *ngIf="!confirmShowPassword" class="fas fa-eye"
+                            (click)="showHidePass('confirmPassword')"></span>
+                          <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
+                            (click)="showHidePass('confirmPassword')"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['password']?.touched &&
+                      personalDetailForm.controls?.['password']?.errors?.['required']">
+                      Please enter password.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['password']?.touched &&
+                      personalDetailForm.controls?.['password']?.errors?.['pattern']">
+                      Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
+                      character.
+                    </span> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Any Questions for us? :</label>
+                  <textarea type="text" class="form-control" placeholder="Candidate Name" formControlName="name">
+                  </textarea>
+                </div>
+              </div>
+              <div style="width: 106px; margin: 2px;">
+                <label>Upload CV :</label>
+                <input type="file" class="form-control" height="50px" width="100px" style="height: 38px;" (change)="fileUpload($event)">
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <button type="button" class="btn btn-primary btn-round">previous Step</button>
+                <button type="button" class="btn btn-primary btn-round">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

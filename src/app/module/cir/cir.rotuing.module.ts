@@ -9,6 +9,12 @@ import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northe
 import { ManchesterDetailsComponent } from './manchester-details/manchester-details.component';
 import { CirProfileComponent } from './cir-profile/cir-profile.component';
 import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
+import { CirResetPasswordComponent } from './cir-reset-password/cir-reset-password.component';
+import { CirForgotPasswrdComponent } from './cir-forgot-passwrd/cir-forgot-passwrd.component';
+import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component';
+import { CirRolesDemandCardComponent } from './cir-roles-demand-card/cir-roles-demand-card.component';
+import { CirRolesDemandDetailsComponent } from './cir-roles-demand-details/cir-roles-demand-details.component';
+import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherdetails-form.component';
 
 const routes: Routes = [
   {
@@ -17,28 +23,43 @@ const routes: Routes = [
     children: [
       {
         path: "cir-card",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirCardComponent
       },
       {
         path: "manchester-details",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: ManchesterDetailsComponent
       },
       {
         path: "northern-ireland-details",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: NorthenIrelandDetailsComponent
       },
       {
         path: "dps21-details",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: Dps21DetailsComponent
       },
       {
         path: "cir-profile",
-        canActivate : [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirProfileComponent
+      },
+      {
+        path: "cir-refer-earn",
+        canActivate: [AuthGuard],
+        component: CirReferEarnComponent
+      },
+      {
+        path: "cir-roles-demand-card",
+        canActivate: [AuthGuard],
+        component: CirRolesDemandCardComponent
+      },
+      {
+        path: "cir-roles-demand-details",
+        canActivate: [AuthGuard],
+        component: CirRolesDemandDetailsComponent
       },
     ]
   },
@@ -49,6 +70,18 @@ const routes: Routes = [
   {
     path: "cir-register",
     component: CirFormComponent
+  },
+  {
+    path: "cir-otherdetails-form",
+    component: CirOtherdetailsFormComponent
+  },
+  {
+    path: "cir-reset-password",
+    component: CirResetPasswordComponent
+  },
+  {
+    path: "cir-forgot-password",
+    component: CirForgotPasswrdComponent
   },
   {
     path: "**",
