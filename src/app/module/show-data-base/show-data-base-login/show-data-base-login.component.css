@@ -1,0 +1,32 @@
+/*-------------------------------------------------------
+Login Page CSS
+-------------------------------------------------------*/
+.body-login {
+    background-image: url("../../../../assets/img/businesspeople-having-discussion-office.png");
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-modal {
+    display: block;
+    border-radius: 30px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.login-modal .login-body {
+    padding: 30px;
+}
+
+.btn-login {
+    font-weight: 700;
+    font-size: 18px;
+    background-color: transparent;
+    color: #000;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+  }
