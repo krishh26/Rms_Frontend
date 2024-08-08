@@ -6,14 +6,14 @@
     <div class="table-responsive">
       <table class="table">
         <thead class="text-primary">
-          <th>Table Name</th>
-          <th>Action</th>
+          <th style="text-align: center;">Table Name</th>
+          <th style="text-align: center;">Action</th>
         </thead>
         <tbody>
           <ng-container *ngFor="let item of tableData">
             <tr>
-              <td>{{ item?.tableName }}</td>
-              <td>
+              <td style="text-align: center;">{{ item?.tableName }}</td>
+              <td style="text-align: center;">
                 <button class="btn btn-sm btn-primary" (click)="redirectToDetailPage(item?.type)">View Details</button>
               </td>
             </tr>

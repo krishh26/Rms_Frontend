@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <ng-container *ngIf="pageType == 'USER'">
+      <ng-container *ngIf="pageType == 'User'">
         <table class="table">
           <thead class="text-primary">
             <th *ngFor="let header of tableHeader"> {{ header }} </th>
@@ -12,16 +12,20 @@
           <tbody>
             <ng-container *ngFor="let item of tableData; let index = index">
               <tr>
-                <td>{{ item?.Name }}</td>
-                <td>{{ item?.Location }}</td>
-                <td>{{ item?.Dob }}</td>
-                <td>{{ item?.Gender }}</td>
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.email }}</td>
+                <td>{{ item?.phoneNumber }}</td>
+                <td>{{ item?.emergencyContact }}</td>
+                <td>{{ item?.education }}</td>
+                <td>{{ item?.currentLocation }}</td>
+                <td>{{ item?.currentJobIs }}</td>
+                <td>{{ item?.workingPreference }}</td>
               </tr>
             </ng-container>
           </tbody>
         </table>
       </ng-container>
-      <ng-container *ngIf="pageType == 'ACR_LIST'">
+      <ng-container *ngIf="pageType == 'ACRUser'">
         <table class="table">
           <thead class="text-primary">
               <th *ngFor="let header of tableHeader"> {{ header }} </th>
@@ -29,12 +33,35 @@
           <tbody>
             <ng-container *ngFor="let item of tableData; let index = index">
               <tr>
-                <td>{{ item?.Name }}</td>
-                <td>{{ item?.Gender }}</td>
-                <td>{{ item?.UserType }}</td>
-                <td>{{ item?.Location }}</td>
-                <td>{{ item?.JobType }}</td>
-                <td>{{ item?.Rate }}</td>
+                <td>{{ item?.personName }}</td>
+                <td>{{ item?.phoneNumber }}</td>
+                <td>{{ item?.personEmail }}</td>
+                <td>{{ item?.personDesignation }}</td>
+                <td>{{ item?.agencyName }}</td>
+                <td>{{ item?.numberOfBranchesInUK }}</td>
+                <td>{{ item?.location }}</td>
+                <td>{{ item?.createdAt | date : 'dd-MM-YYY' }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-container *ngIf="pageType == 'card'">
+        <table class="table">
+          <thead class="text-primary">
+              <th *ngFor="let header of tableHeader"> {{ header }} </th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of tableData; let index = index">
+              <tr>
+                <td>{{ item?.type }}</td>
+                <td>{{ item?.rolesInDemand }}</td>
+                <td>{{ item?.roleDescription }}</td>
+                <td>{{ item?.valueA }}</td>
+                <td>{{ item?.valueB }}</td>
+                <td>{{ item?.valueC }}</td>
+                <td>{{ item?.certifications_qualifications }}</td>
+                <td>{{ item?.createdAt | date : 'dd-MM-YYY' }}</td>
               </tr>
             </ng-container>
           </tbody>

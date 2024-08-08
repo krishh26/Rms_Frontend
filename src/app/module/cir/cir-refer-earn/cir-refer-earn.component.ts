@@ -1,5 +1,7 @@
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 
 @Component({
@@ -10,19 +12,34 @@ import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 export class CirReferEarnComponent implements OnInit {
   referForm!: FormGroup;
 
-  constructor() {
+  constructor(
+    private cirSericeService: CirSericeService,
+    private notificationService: NotificationService
+  ) {
     this.referForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
     });
-   }
+  }
 
   ngOnInit() {
   }
-  submit(){
+
+  submit() {
     this.referForm.markAllAsTouched();
-    if (this.referForm.valid) {
-      console.log('this.referForm.value :', this.referForm.value);
+    if (!this.referForm.valid) {
+      return this.notificationService.showError('Please fill all details');
     }
+
+    this.cirSericeService.referAndEarn(this.referForm.value).subscribe((response) => {
+      if (response?.status) {
+        this.notificationService.showSuccess('Refer and Earn Successful');
+        this.referForm.reset();
+      } else {
+        return this.notificationService.showError('User not refer');
+      }
+    }, (error) => {
+      return this.notificationService.showError(error?.message || 'User not refer');
+    });
   }
 }
