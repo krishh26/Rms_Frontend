@@ -13,7 +13,7 @@ import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 })
 export class CirResetPasswordComponent implements OnInit {
 
-  resetForm: FormGroup;
+  resetpasswordForm: FormGroup;
   password = 'password';
   showPassword = false;
   confirmPassword = 'password';
@@ -25,7 +25,7 @@ export class CirResetPasswordComponent implements OnInit {
     private notificationService: NotificationService,
     private localStorageService: LocalStorageService,
   ) {
-    this.resetForm = new FormGroup({
+    this.resetpasswordForm = new FormGroup({
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       confirmpassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)])
     });
@@ -36,7 +36,19 @@ export class CirResetPasswordComponent implements OnInit {
   }
 
   submit() {
-
+    this.resetpasswordForm.markAllAsTouched();
+    if (this.resetpasswordForm.valid) {
+      this.cirservice.resetpassword(this.resetpasswordForm.value).subscribe((response) => {
+        if (response?.status == true) {
+          this.localStorageService.setLoginToken(response?.data);
+          this.localStorageService.setLogger(response?.data?.user);
+        } else {
+          this.notificationService.showError(response?.message);
+        }
+      }, (error) => {
+        this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+      })
+    }
   }
 
   public showHidePass(type: string): void {
