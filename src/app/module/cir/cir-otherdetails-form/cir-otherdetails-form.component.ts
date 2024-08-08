@@ -122,6 +122,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
     console.log(this.userID);
     this.cirSericeService.updateregister(this.userID, this.otherDetailForm.value).subscribe((response) => {
       if (response?.status == true) {
+        this.router.navigate(['/cir/cir-thankyou']);
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
         this.notificationService.showError(response?.message, 'Select different Username!');
