@@ -1,19 +1,14 @@
 /*-------------------------------------------------------
 Login Page CSS
 -------------------------------------------------------*/
-.body-login {
-    background-image: url("../../../../assets/img/businesspeople-having-discussion-office.png");
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 
 .login-modal {
     display: block;
     border-radius: 30px;
     position: relative;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 4rem;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
 }
 
 .login-modal .login-body {
@@ -29,4 +24,29 @@ Login Page CSS
 
 .form-group label {
     margin-bottom: 5px;
-  }
+    font-weight: 600;
+}
+
+.login-container {
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0px;
+}
+.Login-leftside{
+    background-image: url("../../../../assets/img/Login-leftside-image-white-1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    position: relative;
+}
+.Login-leftside .company-logo{
+    position:absolute;
+    bottom: 3%;
+    left: 23%;
+    max-width: 60%;
+    padding: 15px;
+    text-align: center;
+}

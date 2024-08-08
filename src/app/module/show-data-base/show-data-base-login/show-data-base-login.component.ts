@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
+import { DatabaseService } from 'src/app/services/database-service/database.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
@@ -18,7 +19,7 @@ export class ShowDataBaseLoginComponent {
 
   constructor(
     private router: Router,
-    private acrservice: AcrServiceService,
+    private databaseservice: DatabaseService,
     private notificationService: NotificationService,
     private localStorageService: LocalStorageService,
   ) {
@@ -37,19 +38,19 @@ export class ShowDataBaseLoginComponent {
 
     // Here is call login API For database
 
-    // if (this.loginForm.valid) {
-      // this.acrservice.loginUser(this.loginForm.value).subscribe((response) => {
-      //   if (response?.status == true) {
-      //     this.localStorageService.setLoginToken(response?.data);
-      //     this.localStorageService.setLogger(response?.data?.user);
-      //     this.router.navigate(['/database/list']);
-      //   } else {
-      //     this.notificationService.showError(response?.message);
-      //   }
-      // }, (error) => {
-      //   this.notificationService.showError(error?.error?.message || 'Something went wrong!');
-      // })
-    // }
+    if (this.loginForm.valid) {
+      this.databaseservice.loginUser(this.loginForm.value).subscribe((response) => {
+        if (response?.status == true) {
+          this.localStorageService.setLoginToken(response?.data);
+          this.localStorageService.setLogger(response?.data?.user);
+          this.router.navigate(['/database/list']);
+        } else {
+          this.notificationService.showError(response?.message);
+        }
+      }, (error) => {
+        this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+      })
+    }
   }
 
   public showHidePass(): void {
