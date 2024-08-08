@@ -14,6 +14,10 @@ import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 export class CirResetPasswordComponent implements OnInit {
 
   resetForm: FormGroup;
+  password = 'password';
+  showPassword = false;
+  confirmPassword = 'password';
+  confirmShowPassword = false;
 
   constructor(
     private router: Router,
@@ -34,4 +38,23 @@ export class CirResetPasswordComponent implements OnInit {
   submit() {
 
   }
+
+  public showHidePass(type: string): void {
+    if (type == 'password' && this.password === 'password') {
+      this.password = 'text';
+      this.showPassword = true;
+    } else {
+      this.password = 'password';
+      this.showPassword = false;
+    }
+
+    if (type !== 'password' && this.confirmPassword === 'password') {
+      this.confirmPassword = 'text';
+      this.confirmShowPassword = true;
+    } else {
+      this.confirmPassword = 'password';
+      this.confirmShowPassword = false;
+    }
+  }
+
 }
