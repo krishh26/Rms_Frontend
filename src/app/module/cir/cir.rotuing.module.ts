@@ -12,10 +12,11 @@ import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
 import { CirResetPasswordComponent } from './cir-reset-password/cir-reset-password.component';
 import { CirForgotPasswrdComponent } from './cir-forgot-passwrd/cir-forgot-passwrd.component';
 import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component';
-import { CirRolesDemandCardComponent } from './cir-roles-demand-card/cir-roles-demand-card.component';
-import { CirRolesDemandDetailsComponent } from './cir-roles-demand-details/cir-roles-demand-details.component';
+import { CirRolesDemandCardComponent } from './cir-roles-demand-manchaster-card/cir-roles-demand-card.component';
 import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherdetails-form.component';
 import { CirAccordianCardComponent } from './cir-accordian-card/cir-accordian-card.component';
+import { CirRolesDemandNothernIrelandDetailsComponent } from './cir-roles-demand-nothern-ireland-details/cir-roles-demand-nothern-ireland-details.component';
+import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-over-uk-details/cir-roles-demand-all-over-uk-details.component';
 
 const routes: Routes = [
   {
@@ -24,17 +25,17 @@ const routes: Routes = [
     children: [
       {
         path: "cir-card",
-    //    canActivate: [AuthGuard],
+        //    canActivate: [AuthGuard],
         component: CirCardComponent
       },
       {
         path: "manchester-details",
-      //  canActivate: [AuthGuard],
+        //  canActivate: [AuthGuard],
         component: ManchesterDetailsComponent
       },
       {
         path: "northern-ireland-details",
-      //  canActivate: [AuthGuard],
+        //  canActivate: [AuthGuard],
         component: NorthenIrelandDetailsComponent
       },
       {
@@ -44,22 +45,28 @@ const routes: Routes = [
       },
       {
         path: "cir-profile",
-       // canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: CirProfileComponent
       },
       {
-        path: "cir-roles-demand-card",
-     //   canActivate: [AuthGuard],
+      {
+        path: "cir-roles-demand-manchester-card",
+        // canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
       },
       {
-        path: "cir-roles-demand-details",
-       // canActivate: [AuthGuard],
-        component: CirRolesDemandDetailsComponent
+        path: "cir-roles-demand-northern-ireland-card",
+        // canActivate: [AuthGuard],
+        component: CirRolesDemandNothernIrelandDetailsComponent
+      },
+      {
+        path: "cir-roles-demand-all-over-uk-card",
+        // canActivate: [AuthGuard],
+        component: CirRolesDemandAllOverUkDetailsComponent
       },
       {
         path: "cir-accordian-card-details",
-      //  canActivate: [AuthGuard],
+        //  canActivate: [AuthGuard],
         component: CirAccordianCardComponent
       },
     ]
