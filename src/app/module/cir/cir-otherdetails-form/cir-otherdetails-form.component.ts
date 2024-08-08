@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
@@ -25,6 +25,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
     private notificationService: NotificationService,
     private router: Router,
     private localStorageService: LocalStorageService,
+    private renderer: Renderer2
 
   ) {
     this.initializeForms();
@@ -56,7 +57,6 @@ export class CirOtherdetailsFormComponent implements OnInit {
 
   onCheckboxChange(event: any) {
     const workLocation: string[] = this.otherDetailForm.get('workLocation')?.value || [];
-
     if (event.target.checked) {
       workLocation.push(event.target.value);
     } else {
@@ -65,7 +65,6 @@ export class CirOtherdetailsFormComponent implements OnInit {
         workLocation.splice(index, 1);
       }
     }
-
     this.otherDetailForm.patchValue({ workLocation: workLocation });
   }
 

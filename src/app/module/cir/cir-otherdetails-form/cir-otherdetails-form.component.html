@@ -29,15 +29,18 @@
                   <div class="form-group">
                     <label>Work Location Preferences :</label><br>
                     <label>
-                      <input type="checkbox" name="work_location" value="client-location" (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="work_location" value="client-location"
+                        (change)="onCheckboxChange($event)">
                       I am ok to work at Client location
                     </label><br>
                     <label>
-                      <input type="checkbox" name="work_location" value="work-from-home-on-demand" (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="work_location" value="work-from-home-on-demand"
+                        (change)="onCheckboxChange($event)">
                       I would like to work from home with on-demand reporting to location
                     </label><br>
                     <label>
-                      <input type="checkbox" name="work_location" value="100-percent-remote" (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="work_location" value="100-percent-remote"
+                        (change)="onCheckboxChange($event)">
                       I would like to work 100% Remotely
                     </label>
                     <span class="text-danger" *ngIf="
@@ -302,6 +305,27 @@
                 <button type="submit" class="btn btn-primary btn-round">Submit</button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-registration">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div id="successModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body text-center">
+              <img src="assets/img/success-icon.gif" width="100" class="mt-5 mb-5" />
+              <h5 class="mb-5">
+                <strong>Thank you for registering with us, our team will get back to you soon. We have sent the login
+                  link to your email address for you to access all the information.</strong>
+              </h5>
+            </div>
           </div>
         </div>
       </div>
