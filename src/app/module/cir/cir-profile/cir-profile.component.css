@@ -1,5 +1,9 @@
-section {
-    padding: 40px 0
+.section-registration{
+    padding: 40px 0;
+    background-image: url("../../../../assets/img/registraion-page-background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1,
@@ -34,6 +38,9 @@ h6 {
 }
 
 .FormLeft-panel {
+    background-image: url("../../../../assets/img/registration-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
     background-color: #007f83;
     height: 100%;

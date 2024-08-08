@@ -37,19 +37,11 @@ export class CirProfileComponent implements OnInit {
       confirmPassword: new FormControl('', [Validators.required,Validators.pattern(Patterns.password)]),
       name: new FormControl(this.loginDetails.name, [Validators.required, Validators.pattern(Patterns.name)]),
       email: new FormControl(this.loginDetails.email, [Validators.required, Validators.pattern(Patterns.email)]),
-      secondaryEmail: new FormControl(this.loginDetails.secondaryEmail, [Validators.pattern(Patterns.email)]),
       phoneNumber: new FormControl(this.loginDetails.phoneNumber, [Validators.required, Validators.pattern(Patterns.mobile)]),
-      secondaryPhoneNumber: new FormControl(this.loginDetails.secondaryPhoneNumber, [Validators.pattern(Patterns.mobile)]),
-      dataOfBirth: new FormControl(this.loginDetails.dataOfBirth, [Validators.required]),
       education: new FormControl(this.loginDetails.education, [Validators.required]),
-      courseName: new FormControl(this.loginDetails.courseName, [Validators.required]),
-      qualificationAndCertification: new FormControl(this.loginDetails.qualificationAndCertification, [Validators.required]),
       currentLocation: new FormControl(this.loginDetails.currentLocation, [Validators.required]),
       nationality: new FormControl(this.loginDetails.nationality, [Validators.required]),
       UKDrivinglicense: new FormControl(this.loginDetails.UKDrivinglicense ? 'yes' : 'no', [Validators.required]),
-      emergencyContact: new FormControl(this.loginDetails.emergencyContact, [Validators.required, Validators.pattern(Patterns.mobile)]),
-      emergencyName: new FormControl(this.loginDetails.emergencyName, [Validators.required]),
-      emergencyEmail: new FormControl(this.loginDetails.emergencyEmail, [Validators.required, Validators.pattern(Patterns.email)]),
     });
   }
 
