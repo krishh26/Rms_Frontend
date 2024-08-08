@@ -62,18 +62,18 @@ const routes: Routes = [
        // canActivate: [AuthGuard],
         component: CirRolesDemandDetailsComponent
       },
-     
+      {
+        path: "cir-accordian-card-details",
+      //  canActivate: [AuthGuard],
+        component: CirAccordianCardComponent
+      },
     ]
   },
   {
     path: "cir-login",
     component: CirLoginComponent
   },
-  {
-    path: "cir-accordian-card-details",
-  //  canActivate: [AuthGuard],
-    component: CirAccordianCardComponent
-  },
+
   {
     path: "cir-register",
     component: CirFormComponent
