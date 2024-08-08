@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -15,14 +16,23 @@ export class CirOtherdetailsFormComponent implements OnInit {
   confirmPassword = 'password';
   confirmShowPassword = false;
   otherDetailForm!: FormGroup;
+  userID!: string;
+  userdata: any = [];
 
   file: any;
   constructor(
     private cirSericeService: CirSericeService,
     private notificationService: NotificationService,
     private router: Router,
+    private localStorageService: LocalStorageService,
 
-  ) { }
+  ) {
+    this.initializeForms();
+  
+    this.userdata = this.localStorageService.getLogger();
+    this.userID = this.userdata?.user?._id
+    console.log(this.userID);
+  }
 
   ngOnInit() {
   }
@@ -30,7 +40,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   initializeForms() {
     this.otherDetailForm = new FormGroup({
 
-      workLocation: new FormControl('', [Validators.required]),
+      workLocation: new FormControl([], [Validators.required]),
       currency: new FormControl('', [Validators.required]),
       expectedDayRate: new FormControl('', [Validators.required]),
       referredBy: new FormControl('', [Validators.required]),
@@ -39,16 +49,19 @@ export class CirOtherdetailsFormComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
       anyQuestion: new FormControl('', [Validators.required]),
       cv: new FormControl('', [Validators.required]),
-
-
-      // sponsorForClearanceCertificate: new FormControl('', [Validators.required]),
-      // currentJobIs: new FormControl('', [Validators.required]),
-      // lookingFor: new FormControl('', [Validators.required]),
-      // workingPreference: new FormControl('', [Validators.required]),
-      // Availability: new FormControl('', [Validators.required]),
-
     });
   }
+
+  onCheckboxChange(event:any) {
+    const workLocationArray: FormArray = this.otherDetailForm.get('workLocation') as FormArray;
+
+    if (event.target.checked) {
+        workLocationArray.push(new FormControl(event.target.value));
+    } else {
+        const index = workLocationArray.controls.findIndex(x => x.value === event.target.value);
+        workLocationArray.removeAt(index);
+    }
+}
 
   // Number only validation
   NumberOnly(event: any): boolean {
@@ -99,7 +112,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
     if (!this.file) {
       return this.notificationService.showError('Please upload file');
     }
-    this.cirSericeService.updateregister('1', this.otherDetailForm.value).subscribe((response) => {
+    console.log(this.userID);
+    this.cirSericeService.updateregister(this.userID, this.otherDetailForm.value).subscribe((response) => {
       if (response?.status == true) {
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {

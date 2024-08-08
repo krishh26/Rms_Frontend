@@ -30,17 +30,17 @@
                     <label>Work Location Preferences :</label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="client-location"
-                        formControlName="workLocation">
+                        (change)="onCheckboxChange($event)">
                       I am ok to work at Client location
                     </label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="work-from-home-on-demand"
-                        formControlName="workLocation">
+                        (change)="onCheckboxChange($event)">
                       I would like to work from home with on demand reporting to location
                     </label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="100-percent-remote"
-                        formControlName="workLocation">
+                        (change)="onCheckboxChange($event)">
                       I would like to work 100% Remotely
                     </label>
                     <span class="text-danger" *ngIf="
@@ -307,7 +307,7 @@
               <div style="display: flex; justify-content: space-between;">
                 <button type="button" routerLink="/cir/cir-accordian-card-details"
                   class="btn btn-primary btn-round">previous Step</button>
-                <button type="button" class="btn btn-primary btn-round">Submit</button>
+                <button type="submit" class="btn btn-primary btn-round">Submit</button>
               </div>
             </form>
           </div>
