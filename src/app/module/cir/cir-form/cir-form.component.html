@@ -100,7 +100,7 @@
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Nationality :</label>
-                    <select class="form-control" formControlName="nationality">
+                    <select class="form-control" formControlName="nationality" (change)="onNationalityChange($event)">
                       <option value="" disabled selected hidden>Select Nationality</option>
                       <option value="british">British</option>
                       <option value="other">Others</option>
@@ -117,7 +117,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="col-md-6 pl-1">
+                <div class="col-md-6 pl-1" *ngIf="showUKVisaType">
                   <div class="form-group">
                     <label>UK visa type :</label>
                     <input type="text" class="form-control" placeholder="UK visa type" formControlName="UKVisaType">

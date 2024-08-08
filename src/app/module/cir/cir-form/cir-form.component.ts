@@ -24,6 +24,8 @@ export class CirFormComponent implements OnInit {
   register_data: any = [];
   file: any;
   selectedImage!: any;
+  showUKVisaType: boolean = false;
+
   constructor(
     private router: Router,
     private cirservice: CirSericeService,
@@ -93,6 +95,10 @@ export class CirFormComponent implements OnInit {
     }
   }
 
+  onNationalityChange(event: Event): void {
+    const selectedNationality = (event.target as HTMLSelectElement).value;
+    this.showUKVisaType = selectedNationality === 'other';
+  }
 
   submitPersonalDetail() {
     const data = new FormData();
