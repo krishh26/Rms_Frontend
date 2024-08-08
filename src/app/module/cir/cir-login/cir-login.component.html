@@ -1,69 +1,62 @@
-<div class="hold-transition login-page">
-  <div class="login-box">
-    <!-- /.login-logo -->
-    <div class="card card-outline card-primary">
-      <div class="card-header text-center">
-        <a class="h1"><b>CIR</b> Login</a>
-      </div>
-      <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+<div class="body-login">
 
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
-          <div class="mb-3">
-              <div class="input-group mb-0">
-                <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
-                  </div>
-                </div>
-              </div>
-              <span class="text-danger" *ngIf="
+  <div class="container d-flex justify-content-center align-items-center" style="height:100vh; overflow:hidden;">
+    <div class="row d-flex align-items-center justify-content-center"
+      style="overflow:hidden; width:100vw; height:100vh;">
+
+      <div class="col-lg-4 col-xl-4 col-12 text-center">
+        <img src="../../../../assets/img/Picture1.png" width="250" /><br>
+        <h5>“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h5>
+      </div>
+      <div class="col-lg-4 col-xl-4 col-12">
+        <div class="login-modal">
+          <div class="login-body">
+            <h4 class="mb-4"><strong>CIR Login</strong></h4>
+
+            <form class="needs-validation" [formGroup]="loginForm" (ngSubmit)="login()">
+
+              <div class="form-group">
+                <label>Email id</label>
+                <input type="email" formControlName="email" required class="form-control" placeholder="Enter email id">
+                <span class="text-danger" *ngIf="
                 loginForm.controls?.['email']?.touched &&
                 loginForm.controls?.['email']?.errors?.['required']">
-                Please enter email
-              </span>
-              <span class="text-danger" *ngIf="
+                  Please enter email
+                </span>
+                <span class="text-danger" *ngIf="
                 loginForm.controls?.['email']?.touched &&
                 loginForm.controls?.['email']?.errors?.['pattern']">
-                    Please enter valid email
-              </span>
-          </div>
-          <div class="mb-3">
-            <div class="input-group mb-0">
-              <input [type]="password" class="form-control" placeholder="Password" formControlName="password" required>
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass()"></span>
-                  <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass()"></span>
-                </div>
+                  Please enter valid email
+                </span>
               </div>
-            </div>
-            <span class="text-danger" *ngIf="
-                loginForm.controls?.['password']?.touched &&
-                loginForm.controls?.['password']?.errors?.['required']">
-                Please enter password
-              </span>
-              <span class="text-danger" *ngIf="
-                loginForm.controls?.['password']?.touched &&
-                loginForm.controls?.['password']?.errors?.['pattern']">
-                    Password must be contain alphabet (1 capital), number and @
-              </span>
-          </div>
-          <div class="row">
-            <div class="col-8">
-              <!-- Blank -->
-            </div>
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-            </div>
-          </div>
-        </form>
 
-        <p class="mb-4 mt-2 text-center">
-          <a class="text-center" routerLink="/cir/cir-register">Register a new account ?</a>
-        </p>
+              <div class="form-group">
+                <label>Password</label>
+                <input [type]="password" class="form-control" placeholder="Enter password" formControlName="password"
+                  required>
+                <span class="showicon" *ngIf="!showPassword" (click)="showHidePass()"><i
+                    class="bi bi-eye-fill"></i></span>
+                <span class="showicon" *ngIf="showPassword" (click)="showHidePass()"><i
+                    class="bi bi-eye-slash-fill"></i></span>
+                <span class="text-danger" *ngIf="
+                    loginForm.controls?.['password']?.touched &&
+                    loginForm.controls?.['password']?.errors?.['required']">
+                  Please enter password
+                </span>
+                <span class="text-danger" *ngIf="
+                    loginForm.controls?.['password']?.touched &&
+                    loginForm.controls?.['password']?.errors?.['pattern']">
+                  Password must be contain alphabet (1 capital), number and @
+                </span>
+              </div>
+              <p><a href="javascript:void(0)" routerLink="/cir/cir-register">Don't have an account?</a></p>
+              <p><a href="javascript:void(0)" routerLink="/cir/cir-forgot-password">Forgot Password?</a></p>
+              <button type="submit" class="btn btn-login w-100">Login</button>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+    </div> <!-- Inner row -->
+  </div> <!-- Outer container -->
 </div>
