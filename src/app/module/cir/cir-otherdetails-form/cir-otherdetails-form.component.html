@@ -29,29 +29,21 @@
                   <div class="form-group">
                     <label>Work Location Preferences :</label><br>
                     <label>
-                      <input type="checkbox" name="work_location" value="client-location"
-                        (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="work_location" value="client-location" (change)="onCheckboxChange($event)">
                       I am ok to work at Client location
                     </label><br>
                     <label>
-                      <input type="checkbox" name="work_location" value="work-from-home-on-demand"
-                        (change)="onCheckboxChange($event)">
-                      I would like to work from home with on demand reporting to location
+                      <input type="checkbox" name="work_location" value="work-from-home-on-demand" (change)="onCheckboxChange($event)">
+                      I would like to work from home with on-demand reporting to location
                     </label><br>
                     <label>
-                      <input type="checkbox" name="work_location" value="100-percent-remote"
-                        (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="work_location" value="100-percent-remote" (change)="onCheckboxChange($event)">
                       I would like to work 100% Remotely
                     </label>
                     <span class="text-danger" *ngIf="
-                    otherDetailForm.controls?.['workLocation']?.touched &&
-                    otherDetailForm.controls?.['workLocation']?.errors?.['required']">
+                      otherDetailForm.controls?.['workLocation']?.touched &&
+                      otherDetailForm.controls?.['workLocation']?.errors?.['required']">
                       Please enter workLocation.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                    otherDetailForm.controls?.['workLocation']?.touched &&
-                    otherDetailForm.controls?.['workLocation']?.errors?.['pattern']">
-                      Please enter a valid workLocation' .
                     </span>
                   </div>
                 </div>

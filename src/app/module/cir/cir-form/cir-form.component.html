@@ -179,15 +179,15 @@
                   <div class="form-group">
                     <label>I am looking for: </label><br>
                     <label>
-                      <input type="checkbox" name="roles" value="full-time-role">
+                      <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)">
                       Full time role
                     </label><br>
                     <label>
-                      <input type="checkbox" name="roles" value="additional-role">
+                      <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)">
                       Additional role
                     </label><br>
                     <label>
-                      <input type="checkbox" name="roles" value="part-time-role">
+                      <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)">
                       Part-time role
                     </label>
                     <span class="text-danger" *ngIf="

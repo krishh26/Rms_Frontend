@@ -45,6 +45,21 @@ export class CirFormComponent implements OnInit {
     return true;
   }
 
+  selectedRoles: string[] = [];
+
+  onCheckboxChange(event: any) {
+    const value = event.target.value;
+
+    if (event.target.checked) {
+      this.selectedRoles.push(value);
+    } else {
+      const index = this.selectedRoles.indexOf(value);
+      if (index > -1) {
+        this.selectedRoles.splice(index, 1);
+      }
+    }
+  }
+
   initializeForms() {
     this.personalDetailForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
@@ -57,37 +72,7 @@ export class CirFormComponent implements OnInit {
       postalCode: new FormControl('', [Validators.required]),
       lookingFor: new FormControl('', [Validators.required]),
       currentWork: new FormControl('', [Validators.required]),
-
-      // secondaryPhoneNumber: new FormControl('', [Validators.pattern(Patterns.mobile)]),
-      // dataOfBirth: new FormControl('', [Validators.required]),
-      // education: new FormControl('', [Validators.required]),
-      // profilePhoto: new FormControl('', [Validators.required]),
-      // currentLocation: new FormControl('', [Validators.required]),
-      // emergencyContact: new FormControl('', [Validators.required, Validators.pattern(Patterns.mobile)]),
-      // userName: new FormControl('', [Validators.required]),
-      // password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
-      // confirmPassword: new FormControl('', [Validators.pattern(Patterns.password)]),
-      // emergencyName: new FormControl('', [Validators.required]),
-      // emergencyEmail: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
-      // courseName: new FormControl('', [Validators.required]),
-      // qualificationAndCertification: new FormControl('', [Validators.required]),
-
     });
-    // this.otherDetailForm = new FormGroup({
-    //   anySC_DV: new FormControl('', [Validators.required]),
-    //   sponsorForClearanceCertificate: new FormControl('', [Validators.required]),
-    //   callDay: new FormControl('', [Validators.required]),
-    //   callTime: new FormControl('', [Validators.required]),
-    //   expectedDayRate: new FormControl('', [Validators.required]),
-    //   referredBy: new FormControl('', [Validators.required]),
-    //   noticePeriod: new FormControl('', [Validators.required]),
-    //   futureAvailability: new FormControl('', [Validators.required]),
-    //   currentJobIs: new FormControl('', [Validators.required]),
-    //   lookingFor: new FormControl('', [Validators.required]),
-    //   workingPreference: new FormControl('', [Validators.required]),
-    //   Availability: new FormControl('', [Validators.required]),
-    //   currency: new FormControl('', [Validators.required]),
-    // });
   }
 
   public showHidePass(type: string): void {
@@ -119,22 +104,10 @@ export class CirFormComponent implements OnInit {
     data.append('UKVisaType', this.personalDetailForm.controls['UKVisaType'].value || '');
     data.append('UKDrivinglicense', this.personalDetailForm.controls['UKDrivinglicense'].value || '');
     data.append('postalCode', this.personalDetailForm.controls['postalCode'].value || '');
-    data.append('lookingFor', this.personalDetailForm.controls['lookingFor'].value || '');
+    data.append('lookingFor', JSON.stringify(this.selectedRoles) || '');
     data.append('currentWork', this.personalDetailForm.controls['currentWork'].value || '');
-
-
-    // data.append('userName', this.personalDetailForm.controls['userName'].value || '');
-    // data.append('password', this.personalDetailForm.controls['password'].value || '');
-    // data.append('confirmPassword', this.personalDetailForm.controls['confirmPassword'].value || '');
-    // data.append('emergencyName', this.personalDetailForm.controls['emergencyName'].value || '');
-    // data.append('emergencyEmail', this.personalDetailForm.controls['emergencyEmail'].value || '');
-    // data.append('courseName', this.personalDetailForm.controls['courseName'].value || '');
-    // data.append('qualificationAndCertification', this.personalDetailForm.controls['qualificationAndCertification'].value || '');
-    // data.append('profilePicture', this.file || '');
-
     this.cirservice.register(data).subscribe((response) => {
       if (response?.status == true) {
-        //  this.formType = 'otherDetails';
         this.localStorageService.setLogger(response?.data);
         this.router.navigate(['/cir/cir-accordian-card-details']);
         this.notificationService.showSuccess(response?.message, 'Success !');
