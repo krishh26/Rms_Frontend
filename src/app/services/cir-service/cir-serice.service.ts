@@ -8,7 +8,9 @@ export enum CirEndPoint {
   REGISTER = '/user/register',
   UPDATE_REGISTER = '/user/update/',
   SEND_DATA = '/card/create',
-  FILE_UPLOAD = "/upload"
+  FILE_UPLOAD = "/upload",
+  FORGOT_PASSWORD = '/user/forgot',
+  RESET_PASSWORD = '/user/reset',
 }
 
 @Injectable({
@@ -55,4 +57,15 @@ export class CirSericeService {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.FILE_UPLOAD, payload);
   }
+
+  forgotpassword(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.FORGOT_PASSWORD, payload);
+  }
+
+  resetpassword(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.RESET_PASSWORD, payload);
+  }
+
 }

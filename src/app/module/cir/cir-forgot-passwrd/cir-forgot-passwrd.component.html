@@ -1,4 +1,3 @@
-
 <div>
   <div class="container d-flex justify-content-center align-items-center login-container">
     <div class="row d-flex align-items-center justify-content-center"
@@ -9,35 +8,36 @@
           <div class="company-logo">
             <img src="../../../../assets/img/Picture1.png" width="200" class="mb-2" />
             <h3 class="text-white">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h3>
-          </div>         
-        </div>        
+          </div>
+        </div>
       </div>
       <div class="col-lg-5 col-xl-5 col-md-5 col-sm-5 col-12">
         <div class="login-modal">
           <div class="login-body">
             <h2 class="Heading-medium">Forgot Password</h2>
-            <p>Enter registerd email to recover your password</p>            
-            <form class="needs-validation" [formGroup]="forgotForm" (ngSubmit)="submit()">
+            <p>Enter registerd email to recover your password</p>
+            <form class="needs-validation" [formGroup]="forgotpasswordForm" (ngSubmit)="submit()">
 
               <div class="form-group">
                 <label>Email id</label>
                 <input type="email" formControlName="email" required class="form-control" placeholder="Enter email id">
-                <!-- <span class="text-danger" *ngIf="
-                loginForm.controls?.['email']?.touched &&
-                loginForm.controls?.['email']?.errors?.['required']">
-                  Please enter email
+                <span class="text-danger" *ngIf="
+                forgotpasswordForm.controls?.['email']?.touched &&
+                forgotpasswordForm.controls?.['email']?.errors?.['required']">
+                  Please enter email.
                 </span>
                 <span class="text-danger" *ngIf="
-                loginForm.controls?.['email']?.touched &&
-                loginForm.controls?.['email']?.errors?.['pattern']">
-                  Please enter valid email
-                </span> -->
+                forgotpasswordForm.controls?.['email']?.touched &&
+                forgotpasswordForm.controls?.['email']?.errors?.['pattern']">
+                Please enter a valid email address in the format 'username@example.com'.
+                </span>
               </div>
 
-              <p>I have remeber my password <a href="javascript:void(0)" routerLink="/cir/cir-login">Back to login !</a></p>
+              <p>I have remeber my password <a href="javascript:void(0)" routerLink="/cir/cir-login">Back to login !</a>
+              </p>
               <!-- <p><a href="javascript:void(0)" routerLink="/cir/cir-forgot-password">Forgot Password?</a></p> -->
               <button type="submit" class="btn btn-primary w-100">Submit</button>
-            </form>            
+            </form>
           </div>
         </div>
       </div>
