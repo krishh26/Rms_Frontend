@@ -11,6 +11,7 @@ export enum CirEndPoint {
   FILE_UPLOAD = "/upload",
   FORGOT_PASSWORD = '/user/forgot',
   RESET_PASSWORD = '/user/reset',
+  REFER_EARN = '/user/refer',
 }
 
 @Injectable({
@@ -45,7 +46,7 @@ export class CirSericeService {
 
   updateregister(user_id: string, payload: any): Observable<any> {
     return this.httpClient
-      .patch<any>(this.baseUrl + CirEndPoint.UPDATE_REGISTER  + user_id, payload, { headers: this.getHeader() });
+      .patch<any>(this.baseUrl + CirEndPoint.UPDATE_REGISTER + user_id, payload, { headers: this.getHeader() });
   }
 
   sendResume(payload: any) {
@@ -68,4 +69,8 @@ export class CirSericeService {
       .post<any>(this.baseUrl + CirEndPoint.RESET_PASSWORD, payload);
   }
 
+  referAndEarn(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.REFER_EARN, payload);
+  }
 }
