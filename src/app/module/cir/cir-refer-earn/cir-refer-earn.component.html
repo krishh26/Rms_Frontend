@@ -1,3 +1,59 @@
-<p>
-  cir-refer-earn works!
-</p>
+<div>
+  <div class="container d-flex justify-content-center align-items-center login-container">
+    <div class="row d-flex align-items-center justify-content-center"
+      style="overflow:hidden; width:100vw; height:100vh;">
+
+      <div class="col-lg-7 col-xl-7 col-md-7 col-sm-7 col-12 text-center p-0">
+        <div class="Login-leftside" style="opacity: 50%;">
+          <div class="company-logo">
+            <img src="../../../../assets/img/Picture1.png" width="200" class="mb-2" />
+            <h3 class="text-white">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-xl-5 col-md-5 col-sm-5 col-12">
+        <div class="login-modal">
+          <div class="login-body">
+            <h2 class="Heading-medium">Refer & Earn</h2>
+            <!-- <h4 class="mb-4"><strong>CIR Login</strong></h4> -->
+
+            <form class="needs-validation" [formGroup]="referForm" (ngSubmit)="submit()">
+
+              
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Enter Name" formControlName="name"
+                  required>
+                <span class="text-danger" *ngIf="
+                    referForm.controls?.['name']?.touched &&
+                    referForm.controls?.['name']?.errors?.['required']">
+                  Please enter name
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Email id</label>
+                <input type="email" formControlName="email" required class="form-control" placeholder="Enter email id">
+                <span class="text-danger" *ngIf="
+                referForm.controls?.['email']?.touched &&
+                referForm.controls?.['email']?.errors?.['required']">
+                  Please enter email
+                </span>
+                <span class="text-danger" *ngIf="
+                referForm.controls?.['email']?.touched &&
+                referForm.controls?.['email']?.errors?.['pattern']">
+                  Please enter valid email
+                </span>
+              </div>
+
+              <!-- <p class="p-14">Don't have an account?<a href="javascript:void(0)" routerLink="/cir/cir-register">
+                  Register Now </a> | <a href="javascript:void(0)" routerLink="/cir/cir-forgot-password">Forgot
+                  Password?</a></p> -->
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- Inner row -->
+  </div> <!-- Outer container -->
+</div>
