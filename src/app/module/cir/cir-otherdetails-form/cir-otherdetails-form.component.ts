@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
@@ -25,10 +25,11 @@ export class CirOtherdetailsFormComponent implements OnInit {
     private notificationService: NotificationService,
     private router: Router,
     private localStorageService: LocalStorageService,
+    private renderer: Renderer2
 
   ) {
     this.initializeForms();
-  
+
     this.userdata = this.localStorageService.getLogger();
     this.userID = this.userdata?.user?._id
     console.log(this.userID);
@@ -52,16 +53,20 @@ export class CirOtherdetailsFormComponent implements OnInit {
     });
   }
 
-  onCheckboxChange(event:any) {
-    const workLocationArray: FormArray = this.otherDetailForm.get('workLocation') as FormArray;
+  selectedRoles: string[] = [];
 
+  onCheckboxChange(event: any) {
+    const workLocation: string[] = this.otherDetailForm.get('workLocation')?.value || [];
     if (event.target.checked) {
-        workLocationArray.push(new FormControl(event.target.value));
+      workLocation.push(event.target.value);
     } else {
-        const index = workLocationArray.controls.findIndex(x => x.value === event.target.value);
-        workLocationArray.removeAt(index);
+      const index = workLocation.indexOf(event.target.value);
+      if (index > -1) {
+        workLocation.splice(index, 1);
+      }
     }
-}
+    this.otherDetailForm.patchValue({ workLocation: workLocation });
+  }
 
   // Number only validation
   NumberOnly(event: any): boolean {
@@ -98,6 +103,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
     this.cirSericeService.fileUpload(data).subscribe((response) => {
       if (response?.status) {
         this.file = response?.data;
+        console.log(this.file);
+
         this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
       } else {
         this.notificationService.showError(response?.message || 'File not uploaded.')
@@ -108,13 +115,14 @@ export class CirOtherdetailsFormComponent implements OnInit {
   }
 
   submitotherDetail() {
-
     if (!this.file) {
       return this.notificationService.showError('Please upload file');
     }
+    this.otherDetailForm.controls['cv'].patchValue(this.file);
     console.log(this.userID);
     this.cirSericeService.updateregister(this.userID, this.otherDetailForm.value).subscribe((response) => {
       if (response?.status == true) {
+        this.router.navigate(['/cir/cir-thankyou']);
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
         this.notificationService.showError(response?.message, 'Select different Username!');

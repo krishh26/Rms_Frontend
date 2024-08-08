@@ -17,6 +17,7 @@ import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherd
 import { CirAccordianCardComponent } from './cir-accordian-card/cir-accordian-card.component';
 import { CirRolesDemandNothernIrelandDetailsComponent } from './cir-roles-demand-nothern-ireland-details/cir-roles-demand-nothern-ireland-details.component';
 import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-over-uk-details/cir-roles-demand-all-over-uk-details.component';
+import { ThankyouPageComponent } from './thankyou-page/thankyou-page.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
         path: "cir-accordian-card-details",
         //  canActivate: [AuthGuard],
         component: CirAccordianCardComponent
+      },
+      {
+        path: "cir-thankyou",
+        //  canActivate: [AuthGuard],
+        component: ThankyouPageComponent
       },
     ]
   },
