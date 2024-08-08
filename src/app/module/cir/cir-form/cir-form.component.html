@@ -24,93 +24,6 @@
           <div class="FormRight-panel">
             <h4><strong>Personal Details</strong></h4>
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
-              <!-- <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Profile Picture</label>
-                    <div class="profile-image">
-                      <img *ngIf="selectedImage" [src]="this.selectedImage" />
-                      <div class="input--file">+
-                        <input name="Select File" type="file" (change)="fileUpload($event)" id="myfile" name="myfile"
-                          accept="image/*">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-
-              <!-- <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Username :</label>
-                    <input type="email" class="form-control" placeholder="Username" formControlName="userName">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['userName']?.touched &&
-                      personalDetailForm.controls?.['userName']?.errors?.['required']">
-                      Please enter username.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['userName']?.touched &&
-                      personalDetailForm.controls?.['userName']?.errors?.['pattern']">
-                      Please enter valid username.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Password :</label>
-                    <div class="input-group mb-0">
-                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
-                        required>
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
-                          <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['password']?.touched &&
-                      personalDetailForm.controls?.['password']?.errors?.['required']">
-                      Please enter password.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['password']?.touched &&
-                      personalDetailForm.controls?.['password']?.errors?.['pattern']">
-                      Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
-                      character.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Confirm Password :
-                    </label>
-                    <div class="input-group mb-0">
-                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password"
-                        formControlName="confirmPassword">
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!confirmShowPassword" class="fas fa-eye"
-                            (click)="showHidePass('confirmPassword')"></span>
-                          <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
-                            (click)="showHidePass('confirmPassword')"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['confirmPassword']?.touched &&
-                      personalDetailForm.controls?.['confirmPassword']?.errors?.['required']">
-                      Please enter confirm password.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['confirmPassword']?.touched &&
-                      personalDetailForm.controls?.['confirmPassword']?.errors?.['pattern']">
-                      Please enter valid confirm password.
-                    </span>
-                  </div>
-                </div>
-              </div> -->
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
@@ -145,40 +58,22 @@
                     </span>
                   </div>
                 </div>
-                <!-- <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Secondary Email :
-                    </label>
-                    <input type="email" class="form-control" placeholder="Secondary Email"
-                      formControlName="secondaryEmail">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['secondaryEmail']?.touched &&
-                      personalDetailForm.controls?.['secondaryEmail']?.errors?.['required']">
-                      Please enter secondary email.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['secondaryEmail']?.touched &&
-                      personalDetailForm.controls?.['secondaryEmail']?.errors?.['pattern']">
-                      Please enter a valid email address in the format 'username@example.com' .
-                    </span>
-                  </div>
-                </div> -->
                 <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Country Code :</label>
-                    <select class="form-control" formControlName="education">
+                    <select class="form-control" formControlName="countrycode">
                       <option value="" disabled selected hidden>Select Country Code</option>
                       <option value="91">+91 </option>
                       <option value="44">+44</option>
                     </select>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['phoneNumber']?.touched &&
-                      personalDetailForm.controls?.['phoneNumber']?.errors?.['required']">
+                      personalDetailForm.controls?.['countrycode']?.touched &&
+                      personalDetailForm.controls?.['countrycode']?.errors?.['required']">
                       Please enter contact country code.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['phoneNumber']?.touched &&
-                      personalDetailForm.controls?.['phoneNumber']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['countrycode']?.touched &&
+                      personalDetailForm.controls?.['countrycode']?.errors?.['pattern']">
                       Please enter valid formate of contact country code.
                     </span>
                   </div>
@@ -200,111 +95,11 @@
                     </span>
                   </div>
                 </div>
-                <!-- <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Secondary Phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Secondary Phone number"
-                      (keypress)="NumberOnly($event)" maxlength="10" ormControlName="secondaryPhoneNumber">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
-                      personalDetailForm.controls?.['secondaryPhoneNumber']?.errors?.['required']">
-                      Please enter secondary phone number.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['secondaryPhoneNumber']?.touched &&
-                      personalDetailForm.controls?.['secondaryPhoneNumber']?.errors?.['pattern']">
-                      Please enter valid formate of secondary phone number.
-                    </span>
-                  </div>
-                </div> -->
               </div>
-
-              <!-- <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Date of Birth</label>
-                    <input type="date" class="form-control" placeholder="Date of Birth" formControlName="dataOfBirth">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['dataOfBirth']?.touched &&
-                      personalDetailForm.controls?.['dataOfBirth']?.errors?.['required']">
-                      Please enter date of birth.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['dataOfBirth']?.touched &&
-                      personalDetailForm.controls?.['dataOfBirth']?.errors?.['pattern']">
-                      Please enter valid formate of date of birth.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Education :</label>
-                    <select class="form-control" formControlName="education">
-                      <option value="" disabled selected hidden>Select Type</option>
-                      <option value="high_school_diploma">High School Diploma </option>
-                      <option value="associate_degree">Associate Degree</option>
-                      <option value="bachelor_degree">Bachelor's Degree</option>
-                      <option value="master_degree">Master's Degree</option>
-                      <option value="doctorate_phd">Doctorate (PhD)</option>
-                      <option value="professional_degree">Professional Degree (e.g., MD, JD)</option>
-                      <option value="vocational_technical_certificate">Vocational/Technical Certificate</option>
-                      <option value="other">Other (please specify)</option>
-                    </select>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['education']?.touched &&
-                      personalDetailForm.controls?.['education']?.errors?.['required']">
-                      Please enter education.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['education']?.touched &&
-                      personalDetailForm.controls?.['education']?.errors?.['pattern']">
-                      Please enter valid formate of education.
-                    </span>
-                  </div>
-                </div>
-              </div> -->
-
-              <!-- <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Course Name</label>
-                    <input type="text" class="form-control" placeholder="Course Name" formControlName="courseName">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['courseName']?.touched &&
-                      personalDetailForm.controls?.['courseName']?.errors?.['required']">
-                      Please enter Course Name.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['courseName']?.touched &&
-                      personalDetailForm.controls?.['courseName']?.errors?.['pattern']">
-                      Please enter valid formate of Course Name.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Qualification and Certification :</label>
-                    <input type="text" class="form-control" placeholder="Qualification and Certification"
-                      formControlName="qualificationAndCertification">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['qualificationAndCertification']?.touched &&
-                      personalDetailForm.controls?.['qualificationAndCertification']?.errors?.['required']">
-                      Please enter Qualification and Certification.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['qualificationAndCertification']?.touched &&
-                      personalDetailForm.controls?.['qualificationAndCertification']?.errors?.['pattern']">
-                      Please enter valid formate of Qualification and Certification.
-                    </span>
-                  </div>
-                </div>
-              </div> -->
-
               <div class="row">
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Nationality :</label>
-                    <!-- <input type="text" class="form-control" placeholder="Nationality" formControlName="nationality"> -->
                     <select class="form-control" formControlName="nationality">
                       <option value="" disabled selected hidden>Select Nationality</option>
                       <option value="british">British</option>
@@ -325,70 +120,22 @@
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>UK visa type :</label>
-                    <input type="text" class="form-control" placeholder="UK visa type" formControlName="ukvisatype">
+                    <input type="text" class="form-control" placeholder="UK visa type" formControlName="UKVisaType">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['ukvisatype']?.touched &&
-                      personalDetailForm.controls?.['ukvisatype']?.errors?.['required']">
+                      personalDetailForm.controls?.['UKVisaType']?.touched &&
+                      personalDetailForm.controls?.['UKVisaType']?.errors?.['required']">
                       Please enter uk visa type.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['ukvisatype']?.touched &&
-                      personalDetailForm.controls?.['ukvisatype']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['UKVisaType']?.touched &&
+                      personalDetailForm.controls?.['UKVisaType']?.errors?.['pattern']">
                       Please enter valid formate of uk visa type.
                     </span>
                   </div>
                 </div>
               </div>
-
               <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Country</label>
-                    <select class="form-control" formControlName="nationality">
-                      <option value="" disabled selected hidden>Select Country</option>
-                      <option value="high_school_diploma">India </option>
-                      <option value="associate_degree">UK</option>
-                      <option value="bachelor_degree">USA</option>
-                      <option value="other">Canada</option>
-                    </select>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['currentLocation']?.touched &&
-                      personalDetailForm.controls?.['currentLocation']?.errors?.['required']">
-                      Please enter candidate current location.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['currentLocation']?.touched &&
-                      personalDetailForm.controls?.['currentLocation']?.errors?.['pattern']">
-                      Please enter valid formate of candidate current location.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>City</label>
-                    <select class="form-control" formControlName="nationality">
-                      <option value="" disabled selected hidden>Select City</option>
-                      <option value="high_school_diploma">Ahmedabad </option>
-                      <option value="associate_degree">Chennai</option>
-                      <option value="bachelor_degree">Bengluru</option>
-                      <option value="other">Swindon </option>
-                    </select>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['currentLocation']?.touched &&
-                      personalDetailForm.controls?.['currentLocation']?.errors?.['required']">
-                      Please enter candidate current location.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['currentLocation']?.touched &&
-                      personalDetailForm.controls?.['currentLocation']?.errors?.['pattern']">
-                      Please enter valid formate of candidate current location.
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 pr-1">
+                <div class="col-md-7 pr-1">
                   <div class="form-group">
                     <label>Do you Have a UK Driving license? :</label>
                     <select class="form-control" formControlName="UKDrivinglicense">
@@ -408,20 +155,20 @@
                     </span>
                   </div>
                 </div>
-                <div class="col-md-6 pr-1">
+                <div class="col-md-5 pr-1">
                   <div class="form-group">
                     <label>Postal Code</label>
-                    <input type="text" class="form-control" placeholder="Postal Code" formControlName="name"
+                    <input type="text" class="form-control" placeholder="Postal Code" formControlName="postalCode"
                       (keypress)="NumberOnly($event)">
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['currentLocation']?.touched &&
-                      personalDetailForm.controls?.['currentLocation']?.errors?.['required']">
-                      Please enter candidate current location.
+                      personalDetailForm.controls?.['postalCode']?.touched &&
+                      personalDetailForm.controls?.['postalCode']?.errors?.['required']">
+                      Please enter candidate Postal Code.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['currentLocation']?.touched &&
-                      personalDetailForm.controls?.['currentLocation']?.errors?.['pattern']">
-                      Please enter valid formate of candidate current location.
+                      personalDetailForm.controls?.['postalCode']?.touched &&
+                      personalDetailForm.controls?.['postalCode']?.errors?.['pattern']">
+                      Please enter valid formate of candidate Postal Code.
                     </span>
                   </div>
                 </div>
@@ -444,13 +191,13 @@
                       Part-time role
                     </label>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['emergencyName']?.touched &&
-                      personalDetailForm.controls?.['emergencyName']?.errors?.['required']">
+                      personalDetailForm.controls?.['lookingFor']?.touched &&
+                      personalDetailForm.controls?.['lookingFor']?.errors?.['required']">
                       Please enter candidate Emergency Contact Name.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['emergencyName']?.touched &&
-                      personalDetailForm.controls?.['emergencyName']?.errors?.['pattern']">
+                      personalDetailForm.controls?.['lookingFor']?.touched &&
+                      personalDetailForm.controls?.['lookingFor']?.errors?.['pattern']">
                       Please enter valid formate of candidate Emergency Contact Name.
                     </span>
                   </div>
@@ -459,26 +206,26 @@
                   <div class="form-group">
                     <label>My current work :</label><br>
                     <label>
-                      <input type="radio" name="work_status" value="full-time">
+                      <input type="radio" name="work_status" value="full-time" formControlName="currentWork">
                       Working full-time
                     </label><br>
                     <label>
-                      <input type="radio" name="work_status" value="part-time">
+                      <input type="radio" name="work_status" value="part-time" formControlName="currentWork">
                       Working part-time
                     </label><br>
                     <label>
-                      <input type="radio" name="work_status" value="not-working">
+                      <input type="radio" name="work_status" value="not-working" formControlName="currentWork">
                       Not working
                     </label>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['emergencyEmail']?.touched &&
-                      personalDetailForm.controls?.['emergencyEmail']?.errors?.['required']">
-                      Please enter Emergency Contact Email.
+                      personalDetailForm.controls?.['currentWork']?.touched &&
+                      personalDetailForm.controls?.['currentWork']?.errors?.['required']">
+                      Please enter current work.
                     </span>
                     <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['emergencyEmail']?.touched &&
-                      personalDetailForm.controls?.['emergencyEmail']?.errors?.['pattern']">
-                      Please enter a valid email address in the format 'username@example.com' .
+                      personalDetailForm.controls?.['currentWork']?.touched &&
+                      personalDetailForm.controls?.['currentWork']?.errors?.['pattern']">
+                      Please enter a valid current work' .
                     </span>
                   </div>
                 </div>
@@ -495,3 +242,4 @@
       </div>
     </div>
   </div>
+</section>
