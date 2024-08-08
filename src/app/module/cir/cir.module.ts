@@ -15,10 +15,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CirForgotPasswrdComponent } from './cir-forgot-passwrd/cir-forgot-passwrd.component';
 import { CirResetPasswordComponent } from './cir-reset-password/cir-reset-password.component';
 import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherdetails-form.component';
-import { CirRolesDemandCardComponent } from './cir-roles-demand-card/cir-roles-demand-card.component';
-import { CirRolesDemandDetailsComponent } from './cir-roles-demand-details/cir-roles-demand-details.component';
+import { CirRolesDemandCardComponent } from './cir-roles-demand-manchaster-card/cir-roles-demand-card.component';
 import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component';
 import { CirAccordianCardComponent } from './cir-accordian-card/cir-accordian-card.component';
+import { CirRolesDemandNothernIrelandDetailsComponent } from './cir-roles-demand-nothern-ireland-details/cir-roles-demand-nothern-ireland-details.component';
+import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-over-uk-details/cir-roles-demand-all-over-uk-details.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,7 +46,8 @@ import { CirAccordianCardComponent } from './cir-accordian-card/cir-accordian-ca
     CirResetPasswordComponent,
     CirOtherdetailsFormComponent,
     CirRolesDemandCardComponent,
-    CirRolesDemandDetailsComponent,
+    CirRolesDemandAllOverUkDetailsComponent,
+    CirRolesDemandNothernIrelandDetailsComponent,
     CirReferEarnComponent,
 
     CirAccordianCardComponent
