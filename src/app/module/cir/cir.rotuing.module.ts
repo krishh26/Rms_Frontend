@@ -48,11 +48,6 @@ const routes: Routes = [
         component: CirProfileComponent
       },
       {
-        path: "cir-refer-earn",
-       // canActivate: [AuthGuard],
-        component: CirReferEarnComponent
-      },
-      {
         path: "cir-roles-demand-card",
      //   canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
@@ -68,6 +63,11 @@ const routes: Routes = [
         component: CirAccordianCardComponent
       },
     ]
+  },
+  {
+    path: "cir-refer-earn",
+   // canActivate: [AuthGuard],
+    component: CirReferEarnComponent
   },
   {
     path: "cir-login",
