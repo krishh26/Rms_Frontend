@@ -1,5 +1,10 @@
-section {
-    padding: 40px 0
+.section-card{
+    padding: 40px 0;
+    background-image: url("../../../../assets/img/registraion-page-background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
 h1,

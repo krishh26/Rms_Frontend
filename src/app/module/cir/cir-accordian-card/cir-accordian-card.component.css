@@ -1,0 +1,30 @@
+.section-accordian-card {
+    padding: 40px 0;
+    background-image: url("../../../../assets/img/accordian-card-section-bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.accordion-flush>.accordion-item {
+    margin-bottom: 15px;
+}
+
+.accordion-button {
+    font-weight: 600;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.form-check input[type=checkbox], .form-check-radio input[type=radio] {
+    opacity: 1;
+    position: absolute;
+    visibility: visible;
+}
+.form-check .form-check-label{
+    padding-left: 5px;
+}
