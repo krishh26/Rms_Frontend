@@ -15,6 +15,7 @@ import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component
 import { CirRolesDemandCardComponent } from './cir-roles-demand-card/cir-roles-demand-card.component';
 import { CirRolesDemandDetailsComponent } from './cir-roles-demand-details/cir-roles-demand-details.component';
 import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherdetails-form.component';
+import { CirAccordianCardComponent } from './cir-accordian-card/cir-accordian-card.component';
 
 const routes: Routes = [
   {
@@ -23,17 +24,17 @@ const routes: Routes = [
     children: [
       {
         path: "cir-card",
-        canActivate: [AuthGuard],
+    //    canActivate: [AuthGuard],
         component: CirCardComponent
       },
       {
         path: "manchester-details",
-        canActivate: [AuthGuard],
+      //  canActivate: [AuthGuard],
         component: ManchesterDetailsComponent
       },
       {
         path: "northern-ireland-details",
-        canActivate: [AuthGuard],
+      //  canActivate: [AuthGuard],
         component: NorthenIrelandDetailsComponent
       },
       {
@@ -43,23 +44,28 @@ const routes: Routes = [
       },
       {
         path: "cir-profile",
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         component: CirProfileComponent
       },
       {
         path: "cir-refer-earn",
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         component: CirReferEarnComponent
       },
       {
         path: "cir-roles-demand-card",
-        canActivate: [AuthGuard],
+     //   canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
       },
       {
         path: "cir-roles-demand-details",
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         component: CirRolesDemandDetailsComponent
+      },
+      {
+        path: "cir-accordian-card-details",
+      //  canActivate: [AuthGuard],
+        component: CirAccordianCardComponent
       },
     ]
   },
@@ -67,6 +73,7 @@ const routes: Routes = [
     path: "cir-login",
     component: CirLoginComponent
   },
+
   {
     path: "cir-register",
     component: CirFormComponent

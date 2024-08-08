@@ -13,21 +13,21 @@ export class ShowDataBaseListComponent {
         type : 'USER'
       },
       {
-        tableName : "CIR List",
-        type : 'ACR_LIST' // 'CIR_LIST'
+        tableName : "ACRUser",
+        type : 'ACRUser' // 'CIR_LIST'
       },
       {
-        tableName : "ACR List",
-        type : 'ACR_LIST'
+        tableName : "Card",
+        type : 'Card'
       },
-      {
-        tableName : "CIR Document",
-        type : 'ACR_LIST'
-      },
-      {
-        tableName : "ACR Document",
-        type : 'ACR_LIST' // 'ACR_DOCUMENT'
-      }
+      // {
+      //   tableName : "CIR Document",
+      //   type : 'ACR_LIST'
+      // },
+      // {
+      //   tableName : "ACR Document",
+      //   type : 'ACR_LIST' // 'ACR_DOCUMENT'
+      // }
     ]
 
     constructor(

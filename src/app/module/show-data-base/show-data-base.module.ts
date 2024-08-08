@@ -13,7 +13,7 @@ import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
 
 const routes: Routes = [
   {
-    path: "login",
+    path: "database-login",
     component: ShowDataBaseLoginComponent
   },
   {

@@ -18,6 +18,7 @@ import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherd
 import { CirRolesDemandCardComponent } from './cir-roles-demand-card/cir-roles-demand-card.component';
 import { CirRolesDemandDetailsComponent } from './cir-roles-demand-details/cir-roles-demand-details.component';
 import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component';
+import { CirAccordianCardComponent } from './cir-accordian-card/cir-accordian-card.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,7 +46,9 @@ import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component
     CirOtherdetailsFormComponent,
     CirRolesDemandCardComponent,
     CirRolesDemandDetailsComponent,
-    CirReferEarnComponent
+    CirReferEarnComponent,
+
+    CirAccordianCardComponent
   ]
 })
 export class CirModule { }
