@@ -7,34 +7,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./show-data-base-list.component.css']
 })
 export class ShowDataBaseListComponent {
-    tableData : any[] = [
-      {
-        tableName : "User",
-        type : 'USER'
-      },
-      {
-        tableName : "ACRUser",
-        type : 'ACRUser' // 'CIR_LIST'
-      },
-      {
-        tableName : "Card",
-        type : 'Card'
-      },
-      // {
-      //   tableName : "CIR Document",
-      //   type : 'ACR_LIST'
-      // },
-      // {
-      //   tableName : "ACR Document",
-      //   type : 'ACR_LIST' // 'ACR_DOCUMENT'
-      // }
-    ]
+  tableData: any[] = [
+    {
+      tableName: "User",
+      type: 'User'
+    },
+    {
+      tableName: "ACR User",
+      type: 'ACRUser'
+    },
+    {
+      tableName: "Card",
+      type: 'card'
+    },
+    // {
+    //   tableName: "Client",
+    //   type: 'client'
+    // }
+  ]
 
-    constructor(
-      private router : Router
-    ) {}
+  constructor(
+    private router: Router
+  ) { }
 
-    redirectToDetailPage(type : string) {
-      this.router.navigateByUrl('/database/details/' + type);
-    }
+  redirectToDetailPage(type: string) {
+    this.router.navigateByUrl('/database/details/' + type);
+  }
 }

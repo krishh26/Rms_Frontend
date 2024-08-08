@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatabaseService } from 'src/app/services/database-service/database.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-show-data-base-details',
@@ -13,7 +15,9 @@ export class ShowDataBaseDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private databaseService: DatabaseService,
+    private notificationService: NotificationService
   ) {
     this.route.params.pipe().subscribe((params) => {
       if (params['type']) {
@@ -29,59 +33,27 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   }
 
   getTableDetails() {
-    if (this.pageType == 'USER') {
-      this.tableHeader = ['Name', 'Location', 'Dob', 'Gender']
-      this.tableData = [
-        {
-          Name: 'Payal',
-          Location: 'Mumbai',
-          Dob: '1990-01-01',
-          Gender: 'Female'
-        },
-        {
-          Name: 'Khushi',
-          Location: 'Mumbai',
-          Dob: '1990-01-01',
-          Gender: 'Female'
-        },
-        {
-          Name: 'Ranvir',
-          Location: 'Mumbai',
-          Dob: '1990-01-01',
-          Gender: 'Male'
-        }
-      ]
-    }
 
-    if (this.pageType == 'ACR_LIST') {
+    if (this.pageType == 'User') {
+      this.tableHeader = ['Name', 'Email', 'Phone', 'Emg Phone', 'Education', 'Current Location', 'Job', 'Working Preference']
+    } else if (this.pageType == 'ACRUser') {
+      this.tableHeader = ['Name', 'PhoneNumber', 'PersonEmail', 'PersonDesignation', 'AgencyName', 'No BranchesInUK', 'Location', 'Created Date']
+    } else if (this.pageType == 'card') {
+      this.tableHeader = ['Type', 'Role Demand', 'Role Description', 'Value A', 'Value B', 'Value C','Certificate', 'Created At']
+    } else if (this.pageType == 'client') {
       this.tableHeader = ['Name', 'Gender', 'UserType', 'Location', 'JobType', 'Rate']
-      this.tableData = [
-        {
-          Name: 'Payal',
-          Gender: 'Female',
-          UserType: 'ACR',
-          Location: 'Mumbai',
-          JobType: 'Permanent',
-          Rate: '$10 / h',
-        },
-        {
-          Name: 'Khushi',
-          Gender: 'Female',
-          UserType: 'ACR',
-          Location: 'Mumbai',
-          JobType: 'Permanent',
-          Rate: '$15 / h',
-        },
-        {
-          Name: 'Ranjit',
-          Gender: 'Male',
-          UserType: 'ACR',
-          Location: 'Mumbai',
-          JobType: 'Part Time',
-          Rate: '$13 / h',
-        },
-      ]
     }
     // Here is call get details API for table
+    const payload = {
+      modelName : this.pageType
+    }
+    this.databaseService.getModelData(payload).subscribe((response) => {
+      if (response?.status) {
+        console.log('response', response);
+        this.tableData = response.data;
+      } else {
+        this.notificationService.showError(response?.message || 'Resume not uploaded.')
+      }
+    })
   }
 }
