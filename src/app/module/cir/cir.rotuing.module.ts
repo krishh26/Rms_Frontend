@@ -49,7 +49,6 @@ const routes: Routes = [
         component: CirProfileComponent
       },
       {
-      {
         path: "cir-roles-demand-manchester-card",
         // canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
