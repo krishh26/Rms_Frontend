@@ -34,10 +34,7 @@ export class ShowDataBaseLoginComponent {
 
   login(): void {
     this.loginForm.markAllAsTouched();
-    this.router.navigate(['/database/list']);
-
-    // Here is call login API For database
-
+    // this.router.navigate(['/database/list']);
     if (this.loginForm.valid) {
       this.databaseservice.loginUser(this.loginForm.value).subscribe((response) => {
         if (response?.status == true) {
