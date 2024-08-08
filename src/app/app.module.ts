@@ -10,9 +10,13 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { APIInterceptor } from './shared/interceptor/ApiInterceptor';
 import { ShowDataBaseModule } from './module/show-data-base/show-data-base.module';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
