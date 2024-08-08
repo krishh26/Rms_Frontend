@@ -13,7 +13,7 @@ import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 })
 export class CirForgotPasswrdComponent implements OnInit {
 
-  forgotForm: FormGroup;
+  forgotpasswordForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -21,7 +21,7 @@ export class CirForgotPasswrdComponent implements OnInit {
     private notificationService: NotificationService,
     private localStorageService: LocalStorageService,
   ) {
-    this.forgotForm = new FormGroup({
+    this.forgotpasswordForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
     });
   }
@@ -31,7 +31,19 @@ export class CirForgotPasswrdComponent implements OnInit {
   }
 
   submit() {
-    
+    this.forgotpasswordForm.markAllAsTouched();
+    if (this.forgotpasswordForm.valid) {
+      this.cirservice.forgotpassword(this.forgotpasswordForm.value).subscribe((response) => {
+        if (response?.status == true) {
+          this.localStorageService.setLoginToken(response?.data);
+          this.localStorageService.setLogger(response?.data?.user);
+        } else {
+          this.notificationService.showError(response?.message);
+        }
+      }, (error) => {
+        this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+      })
+    }
   }
 
 }
