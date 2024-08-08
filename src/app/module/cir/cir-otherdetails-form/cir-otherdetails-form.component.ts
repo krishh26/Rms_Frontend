@@ -95,9 +95,12 @@ export class CirOtherdetailsFormComponent implements OnInit {
   }
 
   submitotherDetail() {
+
+    if (!this.file) {
+      return this.notificationService.showError('Please upload file');
+    }
     this.cirSericeService.updateregister('1', this.otherDetailForm.value).subscribe((response) => {
       if (response?.status == true) {
-        this.router.navigate(['/cir/cir-card']);
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
         this.notificationService.showError(response?.message, 'Select different Username!');
