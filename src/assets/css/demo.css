@@ -204,3 +204,29 @@
   outline: none;
   display: none;
 }
+.p-12{
+  font-size: 12px !important;
+}
+.p-13{
+  font-size: 13px !important;
+}
+.p-14{
+  font-size: 14px !important;
+}
+.Heading-medium{
+  font-size: 32px;
+  font-weight: 700;
+}
+
+
+/*Button css*/
+.btn{
+  padding: 0.73rem 1rem !important;
+}
+.btn-primary,
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary.active:focus, .btn-primary.active:hover, .show > .btn-primary.dropdown-toggle, .show > .btn-primary.dropdown-toggle:focus, .show > .btn-primary.dropdown-toggle:hover {
+  background-color: #34b5b8 !important;
+  border-color: #34b5b8 !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+}
