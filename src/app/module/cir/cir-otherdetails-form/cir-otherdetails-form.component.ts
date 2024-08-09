@@ -70,9 +70,16 @@ export class CirOtherdetailsFormComponent implements OnInit {
     this.userdata = this.localStorageService.getLogger();
     this.userID = this.userdata?.user?._id
     console.log(this.userID);
+    if (this.userdata) {
+      this.setFormValues(this.userdata?.user);
+    }
   }
 
   ngOnInit() {
+    console.log(this.userdata?.user);
+    if (this.userdata?.user) {
+      this.setFormValues(this.userdata);
+    }
   }
 
   initializeForms() {
@@ -88,6 +95,22 @@ export class CirOtherdetailsFormComponent implements OnInit {
       anyQuestion: new FormControl('', [Validators.required]),
       cv: new FormControl('', [Validators.required]),
     });
+  }
+
+  setFormValues(data: any) {
+    if (data?.user) {
+      this.otherDetailForm.patchValue({
+        workLocation: Array.isArray(data?.user?.workLocation) ? data?.user?.workLocation : [],
+        currency: data?.user?.currency || '',
+        expectedDayRate: data?.user?.expectedDayRate || '',
+        referredBy: data?.user?.referredBy || '',
+        callDay: Array.isArray(data?.user?.callDay) ? data?.user?.callDay : [],
+        callTime: Array.isArray(data?.user?.callTime) ? data?.user?.callTime : [],
+        password: data?.user?.password || '',
+        anyQuestion: data?.user?.anyQuestion || '',
+        cv: data?.user?.cv || ''
+      });
+    }
   }
 
   selectedRoles: string[] = [];
