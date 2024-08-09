@@ -23,7 +23,7 @@
         <!--start Form here-->
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
-            <h4><strong>Profile Setting</strong></h4>
+            <h4><strong>Profile</strong></h4>
             <form [formGroup]="profileForm" (ngSubmit)="submit()">
               <!-- <div class="row">
                 <div class="col-md-12">
@@ -33,6 +33,55 @@
                   </div>
                 </div>
               </div> -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Your Name :</label>
+                    <input type="text" class="form-control" placeholder="Your Name" formControlName="name">
+                  </div>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['name']?.touched &&
+                    profileForm.controls?.['name']?.errors?.['required']">
+                    Please enter your name.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    profileForm.controls?.['name']?.touched &&
+                    profileForm.controls?.['name']?.errors?.['pattern']">
+                    Please enter valid formate of your name.
+                  </span>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Your Email :
+                    </label>
+                    <input type="email" class="form-control" placeholder="Your Email" formControlName="email" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Your Phone number :</label>
+                    <input type="tel" class="form-control" placeholder="Your Phone number" [maxlength]="10"
+                      formControlName="phoneNumber" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Nationality :</label>
+                    <input type="text" class="form-control" placeholder="Nationality" formControlName="nationality"
+                      readonly>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Postalcode :</label>
+                    <input type="text" class="form-control" placeholder="postalCode" formControlName="postalCode"
+                      readonly>
+                  </div>
+                </div>
+              </div>
 
               <div class="row">
                 <div class="col-12">
@@ -79,95 +128,6 @@
                   </span>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Candidate Name :</label>
-                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="name">
-                  </div>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['name']?.touched &&
-                    profileForm.controls?.['name']?.errors?.['required']">
-                    Please enter candidate name.
-                  </span>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['name']?.touched &&
-                    profileForm.controls?.['name']?.errors?.['pattern']">
-                    Please enter valid formate of candidate name.
-                  </span>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Contact Email :
-                    </label>
-                    <input type="email" class="form-control" placeholder="Contact Email" formControlName="email"
-                      readonly>
-                  </div>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Contact Phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Contact Phone number" [maxlength]="10"
-                      formControlName="phoneNumber" readonly>
-                  </div>
-                </div>
-              </div>
-              <!-- <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Course Name</label>
-                    <input type="text" class="form-control" placeholder="Course Name" formControlName="courseName"
-                      readonly>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Qualification and Certification :</label>
-                    <input type="text" class="form-control" placeholder="Qualification and Certification"
-                      formControlName="qualificationAndCertification" readonly>
-                  </div>
-                </div>
-              </div> -->
-
-              <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Candidate Current Location</label>
-                    <input type="text" class="form-control" placeholder="Current Location"
-                      formControlName="currentLocation">
-                  </div>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['currentLocation']?.touched &&
-                    profileForm.controls?.['currentLocation']?.errors?.['required']">
-                    Please enter current location.
-                  </span>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['currentLocation']?.touched &&
-                    profileForm.controls?.['currentLocation']?.errors?.['pattern']">
-                    Please enter valid format of current location.
-                  </span>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Nationality :</label>
-                    <input type="text" class="form-control" placeholder="Nationality" formControlName="nationality"
-                      readonly>
-                  </div>
-                </div>
-              </div>
-
-              <!-- <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Do you Have a UK Driving license? :</label>
-                    <select class="form-control" formControlName="UKDrivinglicense" readonly>
-                      <option value="" disabled selected hidden>Select Type</option>
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
-                    </select>
-                  </div>
-                </div>
-              </div> -->
 
               <div class="row">
                 <div class="update ml-auto mr-auto">

@@ -42,6 +42,7 @@ export class CirProfileComponent implements OnInit {
       currentLocation: new FormControl(this.loginDetails.currentLocation, [Validators.required]),
       nationality: new FormControl(this.loginDetails.nationality, [Validators.required]),
       UKDrivinglicense: new FormControl(this.loginDetails.UKDrivinglicense ? 'yes' : 'no', [Validators.required]),
+      postalCode:new FormControl(''),
     });
   }
 
