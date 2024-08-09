@@ -224,61 +224,61 @@ export class CirAccordianCardComponent {
   qaSpecialistServices = [
     {
       id: 1,
-      title: "Quality Assurance Testing (QAT) Specialists",
+      role: "Quality Assurance Testing (QAT) Specialists",
       description: "Test specialist professionals bought ‘as a service’ and capable of delivering services across the full life cycle of your project or design process.",
       selected: false
     },
     {
       id: 2,
-      title: "Quality Assurance (QA) & DevOps",
+      role: "Quality Assurance (QA) & DevOps",
       description: "To support cost effective continuous release methods within an agile or Dev-Ops environment.",
       selected: false
     },
     {
       id: 3,
-      title: "Load & Performance Testing",
+      role: "Load & Performance Testing",
       description: "To determine how systems perform against specific performance needs and comparative baselines, including under load and stress.",
       selected: false
     },
     {
       id: 4,
-      title: "Quality Assurance (QA) & Testing",
+      role: "Quality Assurance (QA) & Testing",
       description: "To establish and manage an appropriate level of QA and testing in line with programme delivery plans, validation and verification of a system against specifications and requirements covering functional and non-functional aspects.",
       selected: false
     },
     {
       id: 5,
-      title: "Infrastructure Testing",
+      role: "Infrastructure Testing",
       description: "To test the performance of system infrastructures, including network provisions and hosting across LAN, WAN and cloud infrastructures.",
       selected: false
     },
     {
       id: 6,
-      title: "Operational Acceptance Testing (OAT)",
+      role: "Operational Acceptance Testing (OAT)",
       description: "This service focuses on testing and assuring the operational readiness of your system(s). This may include Service Readiness Testing, resilience and disaster recovery.",
       selected: false
     },
     {
       id: 7,
-      title: "Strategic Quality Assurance Consultant (Senior)",
+      role: "Strategic Quality Assurance Consultant (Senior)",
       description: "Strategic consultancy support across all aspects of the test and systems development life cycle.",
       selected: false
     },
     {
       id: 8,
-      title: "Accessibility Quality Assurance (QA) and Testing",
+      role: "Accessibility Quality Assurance (QA) and Testing",
       description: "To assess how far a product or service is easy for its intended audience to use (includes users who access the service via a range of assistive technologies like screen readers, voice recognition and input devices).",
       selected: false
     },
     {
       id: 9,
-      title: "Security Quality Assurance (QA) and Testing",
+      role: "Security Quality Assurance (QA) and Testing",
       description: "To identify threats and measure potential vulnerabilities. The testing scope includes the whole system and not just the software involved. Much of the testing will be automated, supported by advanced exploratory testing and cyber-related defence and assessments.",
       selected: false
     },
     {
       id: 10,
-      title: "Quality Assurance (QA) Capability Development",
+      role: "Quality Assurance (QA) Capability Development",
       description: "Support for all aspects of growing civil servant capability within the QA specialism including learning and development, recruitment, knowledge management and graduate/apprentice onboarding.",
       selected: false
     }
@@ -294,22 +294,76 @@ export class CirAccordianCardComponent {
   ngOnInit() {
   }
 
-  submit() {
-    // const selectedRoles = this.allOverUkDetails
-    //   .filter(item => item.selected)
-    //   .map(item => ({ name: item.field, description: item.description }));
+  submitmanchester() {
+    const selectedRoles = this.manchesterrolesTableData
+      .filter(item => item.selected)
+      .map(item => ({ name: item.role, description: item.description }));
 
-    // if (selectedRoles.length === 0) {
-    //   this.notificationService.showError('Please select at least one role');
-    //   return;
-    // }
+    if (selectedRoles.length === 0) {
+      this.notificationService.showError('Please select at least one role');
+      return;
+    }
+    const payload = {
+      name: "Client 1",
+      location: "Machester Only",
+      roles: selectedRoles
+    };
+    this.cirSericeService.addClientRoles(payload).subscribe(
+      (response) => {
+        if (response?.status) {
+          this.notificationService.showSuccess('Client update Successful');
+        } else {
+          this.notificationService.showError('User not referred');
+        }
+      },
+      (error) => {
+        this.notificationService.showError(error?.message || 'User not referred');
+      }
+    );
+  }
 
+  submitNorthan() {
+    const selectedRoles = this.manchesterrolesTableData
+      .filter(item => item.selected)
+      .map(item => ({ name: item.role, description: item.description }));
+
+    if (selectedRoles.length === 0) {
+      this.notificationService.showError('Please select at least one role');
+      return;
+    }
+    const payload = {
+      name: "Client 2",
+      location: "Northan Ireland Only",
+      roles: selectedRoles
+    };
+    this.cirSericeService.addClientRoles(payload).subscribe(
+      (response) => {
+        if (response?.status) {
+          this.notificationService.showSuccess('Client update Successful');
+        } else {
+          this.notificationService.showError('User not referred');
+        }
+      },
+      (error) => {
+        this.notificationService.showError(error?.message || 'User not referred');
+      }
+    );
+  }
+
+  submitUK() {
+    const selectedRoles = this.qaSpecialistServices
+      .filter(item => item.selected)
+      .map(item => ({ name: item.role, description: item.description }));
+
+    if (selectedRoles.length === 0) {
+      this.notificationService.showError('Please select at least one role');
+      return;
+    }
     const payload = {
       name: "Client 3",
       location: "All Over UK",
-      //roles: selectedRoles
+      roles: selectedRoles
     };
-
     this.cirSericeService.addClientRoles(payload).subscribe(
       (response) => {
         if (response?.status) {
