@@ -323,7 +323,7 @@ export class CirAccordianCardComponent {
   }
 
   submitNorthan() {
-    const selectedRoles = this.manchesterrolesTableData
+    const selectedRoles = this.northanRolesTableData
       .filter(item => item.selected)
       .map(item => ({ name: item.role, description: item.description }));
 
