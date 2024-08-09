@@ -12,6 +12,8 @@ export enum CirEndPoint {
   FORGOT_PASSWORD = '/user/forgot',
   RESET_PASSWORD = '/user/reset',
   REFER_EARN = '/user/refer',
+  ADD_CLIENT_ROLES='/client/',
+  GET_CLIENT_ROLES='/client/'
 }
 
 @Injectable({
@@ -72,5 +74,13 @@ export class CirSericeService {
   referAndEarn(payload: any): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.REFER_EARN, payload);
+  }
+  addClientRoles(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.ADD_CLIENT_ROLES, payload);
+  }
+  getclientRoles(payload: any): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + CirEndPoint.GET_CLIENT_ROLES, payload);
   }
 }
