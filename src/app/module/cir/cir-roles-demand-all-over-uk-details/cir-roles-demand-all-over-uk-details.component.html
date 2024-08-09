@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12 mb-4">
         <div class="FlatCard shadow border-radius6">
-          <div class="card-header text-center">
+          <!-- <div class="card-header text-center">
             <h4>All Over UK</h4>
-          </div>
+          </div> -->
           <div class="card-body text-center p-3">
             <table class="table">
               <thead class="text-primary">
                 <th> </th>
-                <th>Field</th>
+                <th>Roles</th>
                 <th>Description</th>
               </thead>
               <tbody>
@@ -19,11 +19,14 @@
                     <td>
                       <input type="checkbox" [(ngModel)]="item.selected">
                     </td>
-                    <td>{{ item?.field }}</td>
-                    <td>{{ item?.description }}</td>
+                    <td >{{ item?.field }}</td>
+                    <td><a title="{{ item?.description }}">{{ item?.description | slice:0:200 }}</a></td>
                   </tr>
                 </ng-container>
                 <tr>
+                  <td colspan="3" style="float: left;">
+                    <button type="button" routerLink="/cir/cir-card" class="btn btn-primary btn-login">Back</button>
+                  </td>
                   <td colspan="3" style="text-align: end;">
                     <button type="button" class="btn btn-primary btn-login" (click)="submit()">Submit</button>
                   </td>

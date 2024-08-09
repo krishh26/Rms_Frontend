@@ -116,7 +116,7 @@ export class CirFormComponent implements OnInit {
       if (response?.status == true) {
         this.localStorageService.setLogger(response?.data);
         this.router.navigate(['/cir/cir-accordian-card-details']);
-        this.notificationService.showSuccess(response?.message, 'Success !');
+        this.notificationService.showSuccess('Success !');
       } else {
         this.notificationService.showError(response?.message);
       }
