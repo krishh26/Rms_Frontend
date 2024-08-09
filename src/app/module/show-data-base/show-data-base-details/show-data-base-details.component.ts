@@ -35,17 +35,83 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   getTableDetails() {
 
     if (this.pageType == 'User') {
-      this.tableHeader = ['Name', 'Email', 'Phone', 'Emg Phone', 'Education', 'Current Location', 'Job', 'Working Preference']
+      this.tableHeader = [
+        'Name',
+        'Email',
+        'User Name',
+        'Country Code',
+        'Phone Number',
+        'Secondary Email',
+        'Secondary Phone',
+        'Emergency Name',
+        'Emergency Phone',
+        'Emergency Email',
+        'Birth Date',
+        'Current Location',
+        'Education',
+        'Nationality',
+        'Call Day',
+        'Call Time',
+        'Notice Period',
+        'Current Job',
+        'Looking For',
+        'Currency',
+        'Expected Day Rate',
+        'Availability',
+        'Course Name',
+        'SponsorForClearanceCertificate',
+        'Working Preference',
+        'Future Availability',
+        'Qualification And Certification',
+        'UK Driving License',
+        'Any SC_DV ?',
+        'Country',
+        'City',
+        'Postal Code',
+        'UK Visa Type',
+        'Current Work',
+        'Work Location',
+        'Any Question',
+        'Profile',
+        'Resume',
+        'Created At',
+        'Updated At'
+      ]
     } else if (this.pageType == 'ACRUser') {
-      this.tableHeader = ['Name', 'PhoneNumber', 'PersonEmail', 'PersonDesignation', 'AgencyName', 'No BranchesInUK', 'Location', 'Created Date']
+      this.tableHeader = [
+        'Agency Name',
+        'Location',
+        'Number Of Branches In UK',
+        'Person Name',
+        'Person Designation',
+        'User Name',
+        'person Email',
+        'phone Number',
+        'Contact Details',
+        'Emergency Secondary Contact Details',
+        'Referred By',
+        'Created At',
+        'Updated At'
+      ]
     } else if (this.pageType == 'card') {
-      this.tableHeader = ['Type', 'Role Demand', 'Role Description', 'Value A', 'Value B', 'Value C','Certificate', 'Created At']
+      this.tableHeader = [
+        'Role Demand',
+        'Role Description',
+        'Type',
+        'Qualifications Certificate',
+        'Value A',
+        'Value B',
+        'Value C',
+        'Document',
+        'Created At',
+        'Updated At'
+      ]
     } else if (this.pageType == 'client') {
       this.tableHeader = ['Name', 'Gender', 'UserType', 'Location', 'JobType', 'Rate']
     }
     // Here is call get details API for table
     const payload = {
-      modelName : this.pageType
+      modelName: this.pageType
     }
     this.databaseService.getModelData(payload).subscribe((response) => {
       if (response?.status) {
@@ -55,5 +121,9 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
     })
+  }
+
+  openDocument(document: any) {
+    window.open(document?.url, '_blank', 'noopener, noreferrer');
   }
 }

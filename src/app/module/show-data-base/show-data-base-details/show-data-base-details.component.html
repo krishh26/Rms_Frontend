@@ -1,72 +1,131 @@
 <div class="section-card">
-  <div class="card-header">
-    <h3 class="card-title">{{ pageType }} Details</h3>
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <ng-container *ngIf="pageType == 'User'">
-        <table class="table">
-          <thead class="text-primary">
-            <th *ngFor="let header of tableHeader"> {{ header }} </th>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let item of tableData; let index = index">
-              <tr>
-                <td>{{ item?.name }}</td>
-                <td>{{ item?.email }}</td>
-                <td>{{ item?.phoneNumber }}</td>
-                <td>{{ item?.emergencyContact }}</td>
-                <td>{{ item?.education }}</td>
-                <td>{{ item?.currentLocation }}</td>
-                <td>{{ item?.currentJobIs }}</td>
-                <td>{{ item?.workingPreference }}</td>
-              </tr>
-            </ng-container>
-          </tbody>
-        </table>
-      </ng-container>
-      <ng-container *ngIf="pageType == 'ACRUser'">
-        <table class="table">
-          <thead class="text-primary">
+  <div class="FlatCard shadow border-radius6 m-3">
+    <div class="card-header">
+      <h3 class="card-title">{{ pageType }} Details</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <ng-container *ngIf="pageType == 'User'">
+          <table class="table">
+            <thead class="text-primary">
               <th *ngFor="let header of tableHeader"> {{ header }} </th>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let item of tableData; let index = index">
-              <tr>
-                <td>{{ item?.personName }}</td>
-                <td>{{ item?.phoneNumber }}</td>
-                <td>{{ item?.personEmail }}</td>
-                <td>{{ item?.personDesignation }}</td>
-                <td>{{ item?.agencyName }}</td>
-                <td>{{ item?.numberOfBranchesInUK }}</td>
-                <td>{{ item?.location }}</td>
-                <td>{{ item?.createdAt | date : 'dd-MM-YYY' }}</td>
-              </tr>
-            </ng-container>
-          </tbody>
-        </table>
-      </ng-container>
-      <ng-container *ngIf="pageType == 'card'">
-        <table class="table">
-          <thead class="text-primary">
-              <th *ngFor="let header of tableHeader"> {{ header }} </th>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let item of tableData; let index = index">
-              <tr>
-                <td>{{ item?.type }}</td>
-                <td>{{ item?.rolesInDemand }}</td>
-                <td>{{ item?.roleDescription }}</td>
-                <td>{{ item?.valueA }}</td>
-                <td>{{ item?.valueB }}</td>
-                <td>{{ item?.valueC }}</td>
-                <td>{{ item?.certifications_qualifications }}</td>
-                <td>{{ item?.createdAt | date : 'dd-MM-YYY' }}</td>
-              </tr>
-            </ng-container>
-          </tbody>
-        </table>
-      </ng-container>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of tableData; let index = index">
+                <tr>
+                  <td>{{ item?.name }}</td>
+                  <td>{{ item?.email }}</td>
+                  <td>{{ item?.userName }}</td>
+                  <td>{{ item?.countrycode }}</td>
+                  <td>{{ item?.phoneNumber }}</td>
+                  <td>{{ item?.secondaryEmail }}</td>
+                  <td>{{ item?.secondaryPhoneNumber }}</td>
+                  <td>{{ item?.emergencyName }}</td>
+                  <td>{{ item?.emergencyContact }}</td>
+                  <td>{{ item?.emergencyEmail }}</td>
+                  <td>{{ item?.dataOfBirth | date : 'dd-MM-YYY' }}</td>
+                  <td>{{ item?.currentLocation }}</td>
+                  <td>{{ item?.education }}</td>
+                  <td>{{ item?.nationality }}</td>
+                  <td>{{ item?.callDay }}</td>
+                  <td>{{ item?.callTime }}</td>
+                  <td>{{ item?.noticePeriod }}</td>
+                  <td>{{ item?.currentJobIs }}</td>
+                  <td>
+                    <ng-container *ngIf="item?.lookingFor?.length > 0">
+                      <ul>
+                        <li *ngFor="let data of item?.lookingFor">
+                          {{data}}
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </td>
+                  <td>{{ item?.currency }}</td>
+                  <td>{{ item?.expectedDayRate }}</td>
+                  <td>{{ item?.Availability }}</td>
+                  <td>{{ item?.courseName }}</td>
+                  <td>{{ item?.sponsorForClearanceCertificate ? 'True' : 'False' }}</td>
+                  <td>{{ item?.workingPreference }}</td>
+                  <td>{{ item?.futureAvailability | date : 'dd-MM-YYY'}}</td>
+                  <td>{{ item?.qualificationAndCertification }}</td>
+                  <td>{{ item?.UKDrivinglicense }}</td>
+                  <td>{{ item?.anySC_DV }}</td>
+                  <td>{{ item?.country }}</td>
+                  <td>{{ item?.city }}</td>
+                  <td>{{ item?.postalCode }}</td>
+                  <td>{{ item?.UKVisaType }}</td>
+                  <td>{{ item?.currentWork }}</td>
+                  <td>{{ item?.workLocation }}</td>
+                  <td>{{ item?.anyQuestion }}</td>
+                  <td>
+                    <button (click)="openDocument(item?.profilePicture)" type="button" class="btn w-100">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <button (click)="openDocument(item?.cv)" type="button" class="btn w-100"><i class="fa fa-eye"></i></button>
+                  </td>
+                  <td>{{ item?.createdAt | date : 'dd-MM-YYY HH:MM' }}</td>
+                  <td>{{ item?.updatedAt | date : 'dd-MM-YYY HH:MM' }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-container *ngIf="pageType == 'ACRUser'">
+          <table class="table">
+            <thead class="text-primary">
+                <th *ngFor="let header of tableHeader"> {{ header }} </th>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of tableData; let index = index">
+                <tr>
+                  <td>{{ item?.agencyName }}</td>
+                  <td>{{ item?.location }}</td>
+                  <td>{{ item?.numberOfBranchesInUK }}</td>
+                  <td>{{ item?.personName }}</td>
+                  <td>{{ item?.personDesignation }}</td>
+                  <td>{{ item?.userName }}</td>
+                  <td>{{ item?.personEmail }}</td>
+                  <td>{{ item?.phoneNumber }}</td>
+                  <td>{{ item?.contactDetails }}</td>
+                  <td>{{ item?.emergencySecondaryContactDetails }}</td>
+                  <td>{{ item?.referredBy }}</td>
+                  <td>{{ item?.createdAt | date : 'dd-MM-YYY' }}</td>
+                  <td>{{ item?.updatedAt | date : 'dd-MM-YYY' }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-container *ngIf="pageType == 'card'">
+          <table class="table">
+            <thead class="text-primary">
+                <th *ngFor="let header of tableHeader"> {{ header }} </th>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of tableData; let index = index">
+                <tr>
+                  <td>{{ item?.rolesInDemand }}</td>
+                  <td>{{ item?.roleDescription }}</td>
+                  <td>{{ item?.type }}</td>
+                  <td>{{ item?.certifications_qualifications }}</td>
+                  <td>{{ item?.valueA }}</td>
+                  <td>{{ item?.valueB }}</td>
+                  <td>{{ item?.valueC }}</td>
+                  <td>
+                    <button (click)="openDocument(item?.file)" type="button" class="btn w-100">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+                  <td>{{ item?.createdAt | date : 'dd-MM-YYY' }}</td>
+                  <td>{{ item?.updatedAt | date : 'dd-MM-YYY' }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
