@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 
 @Component({
   selector: 'app-cir-otherdetails-form',
@@ -47,7 +48,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       referredBy: new FormControl('', [Validators.required]),
       callDay: new FormControl('', [Validators.required]),
       callTime: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       anyQuestion: new FormControl('', [Validators.required]),
       cv: new FormControl('', [Validators.required]),
     });
