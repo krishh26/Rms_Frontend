@@ -33,10 +33,45 @@ export class CirFormComponent implements OnInit {
     private localStorageService: LocalStorageService,
   ) {
     this.initializeForms();
+    this.register_data = this.localStorageService.getLogger();
+    if (this.register_data) {
+      this.setFormValues(this.register_data?.user);
+    }
   }
 
   ngOnInit() {
+    console.log(this.register_data?.user);
+    if (this.register_data?.user) {
+      this.setFormValues(this.register_data);
+    }
   }
+
+  setFormValues(data: any) {
+    this.personalDetailForm.patchValue({
+      name: data?.user?.name || '',
+      email: data?.user?.email || '',
+      countrycode: data?.user?.countrycode || '',
+      phoneNumber: data?.user?.phoneNumber || '',
+      nationality: data?.user?.nationality || '',
+      UKVisaType: data?.user?.UKVisaType || '',
+      UKDrivinglicense: data?.user?.UKDrivinglicense || '',
+      postalCode: data?.user?.postalCode || '',
+      currentWork: data?.user?.currentWork || ''
+    });
+
+    const lookingForValues = typeof data?.user?.lookingFor === 'string'
+      ? data?.user?.lookingFor.split(',')
+      : [];
+    this.selectedRoles = lookingForValues;
+
+    const checkboxes = document.querySelectorAll('input[name="roles"]') as NodeListOf<HTMLInputElement>;
+    checkboxes.forEach((checkbox: HTMLInputElement) => {
+      checkbox.checked = lookingForValues.includes(checkbox.value);
+    });
+
+    this.showUKVisaType = data?.user?.nationality === 'other';
+  }
+
 
   // Number only validation
   NumberOnly(event: any): boolean {
@@ -53,12 +88,11 @@ export class CirFormComponent implements OnInit {
     const value = event.target.value;
 
     if (event.target.checked) {
-      this.selectedRoles.push(value);
-    } else {
-      const index = this.selectedRoles.indexOf(value);
-      if (index > -1) {
-        this.selectedRoles.splice(index, 1);
+      if (!this.selectedRoles.includes(value)) {
+        this.selectedRoles.push(value);
       }
+    } else {
+      this.selectedRoles = this.selectedRoles.filter(role => role !== value);
     }
   }
 
@@ -72,8 +106,8 @@ export class CirFormComponent implements OnInit {
       UKVisaType: new FormControl('', [Validators.required]),
       UKDrivinglicense: new FormControl('', [Validators.required]),
       postalCode: new FormControl('', [Validators.required]),
-      lookingFor: new FormControl('', [Validators.required]),
       currentWork: new FormControl('', [Validators.required]),
+      lookingFor: new FormControl([], [Validators.required]),
     });
   }
 
@@ -110,10 +144,11 @@ export class CirFormComponent implements OnInit {
     data.append('UKVisaType', this.personalDetailForm.controls['UKVisaType'].value || '');
     data.append('UKDrivinglicense', this.personalDetailForm.controls['UKDrivinglicense'].value || '');
     data.append('postalCode', this.personalDetailForm.controls['postalCode'].value || '');
-    data.append('lookingFor', JSON.stringify(this.selectedRoles) || '');
     data.append('currentWork', this.personalDetailForm.controls['currentWork'].value || '');
+    data.append('lookingFor', this.selectedRoles.join(','));
+
     this.cirservice.register(data).subscribe((response) => {
-      if (response?.status == true) {
+      if (response?.status) {
         this.localStorageService.setLogger(response?.data);
         this.router.navigate(['/cir/cir-accordian-card-details']);
         this.notificationService.showSuccess('Success !');
@@ -122,8 +157,9 @@ export class CirFormComponent implements OnInit {
       }
     }, (error) => {
       this.notificationService.showError(error?.error?.message || 'Something went wrong!');
-    })
+    });
   }
+
 
   fileUpload(event: any): void {
     this.file = event.target.files[0];

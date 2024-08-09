@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-lg-5 colxl-5 col-md-5 col-sm-5 col-12">
+                  <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                     <label>Your expected day rate:
                     </label>
                     <div class="form-group">
@@ -94,7 +94,7 @@
                   </div>
                 </div>
 
-                <div class="col-lg-4 colxl-4 col-md-4 col-sm-4 col-12">
+                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label>Referred by :
                     </label>
@@ -160,7 +160,7 @@
                     <span class="text-danger" *ngIf="
                     otherDetailForm.controls?.['referredBy']?.touched &&
                     otherDetailForm.controls?.['referredBy']?.errors?.['pattern']">
-                      Please enter a valid referredBy' .
+                      Please enter a valid referredBy.
                     </span>
                   </div>
                 </div>
@@ -168,16 +168,11 @@
                   <div class="col-6">
                     <div class="form-group">
                       <label>Preferred contact Day :</label>
-                      <select class="form-control mb-3" formControlName="callDay">
-                        <option value="" disabled selected hidden>Select preferred day</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                      </select>
+
+                      <ng-select [items]="daysOfWeek" bindLabel="label" bindValue="value" formControlName="callDay"
+                        class="form-select custom-ng-select-option" [multiple]="true">
+                      </ng-select>
+
                       <span class="text-danger" *ngIf="
                     otherDetailForm.controls?.['callDay']?.touched &&
                     otherDetailForm.controls?.['callDay']?.errors?.['required']">
@@ -192,32 +187,11 @@
                   </div>
                   <div class="col-6">
                     <label>Preferred contact Time :</label>
-                    <select class="form-control" formControlName="callTime">
-                      <option value="" disabled selected hidden>Select preferred time</option>
-                      <option value="1">1-2 AM</option>
-                      <option value="2">2-3 AM</option>
-                      <option value="3">3-4 AM</option>
-                      <option value="4">4-5 AM</option>
-                      <option value="5">5-6 AM</option>
-                      <option value="6">6-7 AM</option>
-                      <option value="7">7-8 AM</option>
-                      <option value="8">8-9 AM</option>
-                      <option value="9">9-10 AM</option>
-                      <option value="10">10-11 AM</option>
-                      <option value="11">11-12 AM</option>
-                      <option value="12">12-1 PM</option>
-                      <option value="13">1-2 PM</option>
-                      <option value="14">2-3 PM</option>
-                      <option value="15">3-4 PM</option>
-                      <option value="16">4-5 PM</option>
-                      <option value="17">5-6 PM</option>
-                      <option value="18">6-7 PM</option>
-                      <option value="19">7-8 PM</option>
-                      <option value="20">8-9 PM</option>
-                      <option value="21">9-10 PM</option>
-                      <option value="22">10-11 PM</option>
-                      <option value="23">11-12 PM</option>
-                    </select>
+
+                    <ng-select [items]="timeSlots" bindLabel="label" bindValue="value" formControlName="callTime"
+                      class="form-select custom-ng-select-option" [multiple]="true">
+                    </ng-select>
+
                     <span class="text-danger" *ngIf="
                     otherDetailForm.controls?.['callTime']?.touched &&
                     otherDetailForm.controls?.['callTime']?.errors?.['required']">
@@ -226,7 +200,7 @@
                     <span class="text-danger" *ngIf="
                     otherDetailForm.controls?.['callTime']?.touched &&
                     otherDetailForm.controls?.['callTime']?.errors?.['pattern']">
-                      Please enter a valid callTime' .
+                      Please enter a valid callTime.
                     </span>
                   </div>
                 </div>
@@ -301,6 +275,7 @@
                 <input type="file" class="form-control" height="50px" width="100px" style="height: 38px;"
                   (change)="fileUpload($event)">
               </div>
+              {{file?.name}}
               <div style="display: flex; justify-content: space-between;">
                 <button type="button" routerLink="/cir/cir-accordian-card-details"
                   class="btn btn-primary btn-round">previous Step</button>

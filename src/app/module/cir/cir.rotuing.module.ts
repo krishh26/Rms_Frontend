@@ -84,14 +84,22 @@ const routes: Routes = [
         path: "cir-refer-earn-thank-you",
        // canActivate: [AuthGuard],
         component: ThankYouReferComponent
-      },
+      }
     ]
+  {
+    path: "cir-thankyou",
+    //  canActivate: [AuthGuard],
+    component: ThankyouPageComponent
   },
   {
     path: "cir-login",
     component: CirLoginComponent
   },
-
+  {
+    path: "cir-accordian-card-details",
+    //  canActivate: [AuthGuard],
+    component: CirAccordianCardComponent
+  },
   {
     path: "cir-register",
     component: CirFormComponent

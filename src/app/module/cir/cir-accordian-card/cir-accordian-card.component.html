@@ -1,6 +1,9 @@
 <section class="section-accordian-card">
   <div class="container">
-    <h4><strong>Roles in Demand</strong></h4>
+    <h4 style="text-align: center;"><strong>Roles in Demand</strong></h4>
+    <p class="text-center mb-4 text-bold">
+      Please select a client from the options below to view available roles.
+    </p>
     <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingOne">
@@ -12,6 +15,9 @@
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
           data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
+            <p class="text-center mb-4 text-bold">
+              Please select the roles you're interested in from the options below. You may choose multiple roles if applicable.
+            </p>
             <!-- <div class="form-check">
               <label class="form-check-label" for="flexCheckDefault">
                 <p class="mb-0">Location: Manchester</p>
@@ -30,7 +36,7 @@
                 <tbody>
                   <tr *ngFor="let role of manchesterrolesTableData; let i = index">
                     <td>
-                      <input type="checkbox" class="form-check-input ms-3" [(ngModel)]="role.selected"
+                      <input type="checkbox" class="form-check-input chckbox ms-3" [(ngModel)]="role.selected"
                         id="checkbox{{ i + 1 }}">
                     </td>
                     <td>
@@ -57,6 +63,9 @@
         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
           data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
+            <p class="text-center mb-4 text-bold">
+              Please select the roles you're interested in from the options below. You may choose multiple roles if applicable.
+            </p>
             <!-- Table with Checkboxes starts here -->
             <div class="table-responsive">
               <table class="table table-bordered mt-3">
@@ -70,7 +79,7 @@
                 <tbody>
                   <tr *ngFor="let role of northanRolesTableData; let i = index">
                     <td>
-                      <input type="checkbox" class="form-check-input ms-3" [(ngModel)]="role.selected"
+                      <input type="checkbox" class="form-check-input ms-3 chckbox" [(ngModel)]="role.selected"
                         id="checkbox{{ i + 1 }}">
                     </td>
                     <td>
@@ -97,6 +106,9 @@
         <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
           data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
+            <p class="text-center mb-4 text-bold">
+              Please select the roles you're interested in from the options below. You may choose multiple roles if applicable.
+            </p>
             <!-- Table with Checkboxes for Accordion Item #3 -->
             <div class="table-responsive">
               <table class="table table-bordered mt-3">
@@ -110,7 +122,7 @@
                 <tbody>
                   <tr *ngFor="let service of qaSpecialistServices; let i = index">
                     <td>
-                      <input type="checkbox" class="form-check-input ms-3" [(ngModel)]="service.selected"
+                      <input type="checkbox" class="form-check-input ms-3 chckbox" [(ngModel)]="service.selected"
                         id="checkbox{{ i + 1 }}">
                     </td>
                     <td>
@@ -129,8 +141,10 @@
     </div>
     <div class="row">
       <div class="update ml-auto mr-auto">
-        <button type="button" style="float: right;" routerLink="/cir/cir-otherdetails-form" class="btn btn-primary btn-round">Next
-          Step</button>
+        <button type="button" style="float: left;" routerLink="/cir/cir-register"
+          class="btn btn-primary btn-round">Back</button>
+        <button type="button" style="float: right;" routerLink="/cir/cir-otherdetails-form"
+          class="btn btn-primary btn-round">Next Step</button>
       </div>
     </div>
   </div>

@@ -144,12 +144,7 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['UKDrivinglicense']?.touched &&
                       personalDetailForm.controls?.['UKDrivinglicense']?.errors?.['required']">
-                      Please select.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['UKDrivinglicense']?.touched &&
-                      personalDetailForm.controls?.['UKDrivinglicense']?.errors?.['pattern']">
-                      Please select.
+                      Please select value.
                     </span>
                   </div>
                 </div>
@@ -177,15 +172,15 @@
                     <label>My current work :</label><br>
                     <label>
                       <input type="radio" name="work_status" value="full-time" formControlName="currentWork">
-                       <span style="font-weight: normal;"> Working full-time</span>
+                      <span style="font-weight: normal;"> Working full-time</span>
                     </label><br>
                     <label>
                       <input type="radio" name="work_status" value="part-time" formControlName="currentWork">
-                       <span style="font-weight: normal;"> Working part-time</span>
+                      <span style="font-weight: normal;"> Working part-time</span>
                     </label><br>
                     <label>
                       <input type="radio" name="work_status" value="not-working" formControlName="currentWork">
-                       <span style="font-weight: normal;"> Not working</span>
+                      <span style="font-weight: normal;"> Not working</span>
                     </label>
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['currentWork']?.touched &&
@@ -204,7 +199,7 @@
                     <label>I am looking for: </label><br>
                     <label>
                       <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)">
-                      <span style="font-weight: normal;"> Full time role</span> 
+                      <span style="font-weight: normal;"> Full time role</span>
                     </label><br>
                     <label>
                       <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)">
