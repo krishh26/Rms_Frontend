@@ -2,25 +2,29 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12 mb-4">
+        <p class="text-center mb-4 text-bold">
+          Please select the roles you're interested in from the options below. You may choose multiple roles if applicable. <br>
+          Disabled Roles : These are the roles you have already selected during Registration.
+        </p>
         <div class="FlatCard shadow border-radius6">
-          <!-- <div class="card-header text-center">
-            <h4>Manchester</h4>
-          </div> -->
+          <div class="card-header text-center">
+            <h4>Client 1 : Manchester</h4>
+          </div>
           <div class="card-body text-center p-3">
             <table class="table">
               <thead class="text-primary">
-                <th>Select</th>
-                <th>Roles</th>
-                <th>Description</th>
+                <th class="w-10">Select</th>
+                <th class="text-left w-40">Roles</th>
+                <th class="text-left w-50">Description</th>
               </thead>
               <tbody>
                 <ng-container *ngFor="let item of manchesterDetails; let i = index">
                   <tr>
                     <td>
-                      <input type="checkbox" [(ngModel)]="item.selected">
+                      <input [checked]="selected(item.field)" type="checkbox" class="check-box" [(ngModel)]="item.selected" [disabled]="selected(item.field) ? true : false">
                     </td>
-                    <td>{{ item?.field }}</td>
-                    <td><a title="{{ item?.description }}">{{ item?.description | slice:0:200 }}</a></td>
+                    <td class="text-left">{{ item?.field }}</td>
+                    <td class="text-left"><a title="{{ item?.description }}">{{ item?.description | slice:0:200 }}</a></td>
                   </tr>
                 </ng-container>
                 <tr>

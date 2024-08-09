@@ -73,3 +73,15 @@ transition: none; /* Disable transition on all children elements */
   font-size: 18px;
   font-weight: bolder;
 }
+
+.w-10 {
+  width: 10%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-50 {
+  width: 50%;
+}

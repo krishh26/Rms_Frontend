@@ -75,12 +75,14 @@ export class CirSericeService {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.REFER_EARN, payload);
   }
+
   addClientRoles(payload: any): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.ADD_CLIENT_ROLES, payload);
   }
-  getclientRoles(payload: any): Observable<any> {
+
+  getClientRoles(): Observable<any> {
     return this.httpClient
-      .get<any>(this.baseUrl + CirEndPoint.GET_CLIENT_ROLES, payload);
+      .get<any>(this.baseUrl + CirEndPoint.GET_CLIENT_ROLES);
   }
 }

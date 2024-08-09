@@ -80,22 +80,30 @@ export class CirRolesDemandCardComponent implements OnInit {
       description: "Specifications not available on this day", selected: false
     }
   ]
+
+  selectedManchester: any[] = [];
+
   constructor(
     private cirSericeService: CirSericeService,
     private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
+    this.getDetails();
   }
 
   submit() {
-    const selectedRoles = this.manchesterDetails
+    let selectedRoles: any = this.manchesterDetails
       .filter(item => item.selected)
       .map(item => ({ name: item.field, description: item.description }));
 
     if (selectedRoles.length === 0) {
       this.notificationService.showError('Please select at least one role');
       return;
+    }
+
+    if (this.selectedManchester?.length > 0) {
+      selectedRoles = [...selectedRoles, ...this.selectedManchester]
     }
 
     const payload = {
@@ -118,4 +126,28 @@ export class CirRolesDemandCardComponent implements OnInit {
     );
   }
 
+  getDetails() {
+    this.cirSericeService.getClientRoles().subscribe((response) => {
+      if (response?.status) {
+        if (response?.data?.length > 0) {
+          const tempData: any[] = response?.data?.filter((item: any) => item.name == 'Client 1');
+          tempData?.map((element: any) => {
+            if (element?.roles?.length > 0) {
+              element?.roles?.map((el: any) => {
+                this.selectedManchester.push(el);
+              })
+            }
+          })
+        }
+      }
+    })
+  }
+
+  selected(name: string): boolean {
+    const data = this.selectedManchester.find((element: any) => element.name == name);
+    if (data) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -53,23 +53,19 @@ strong{
   border-radius: 6px 6px 0 0;
 }
 
-.FlatCard {
-transition: transform 0.3s ease; /* Smooth zoom transition */
-transform-origin: center center; /* Zoom origin */
-border-radius: 6px;
-cursor: pointer;
-}
-
-/* .FlatCard:hover {
-transform: scale(1.03);
-border: 1px solid rgb(255, 165, 165);
-} */
-
-/* Ensure the text inside doesn't zoom */
-.FlatCard * {
-transition: none; /* Disable transition on all children elements */
-}
 .text-bold {
   font-size: 18px;
   font-weight: bolder;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-50 {
+  width: 50%;
 }
