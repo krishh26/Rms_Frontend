@@ -20,6 +20,42 @@ export class CirOtherdetailsFormComponent implements OnInit {
   userID!: string;
   userdata: any = [];
 
+  timeSlots = [
+    { label: '1-2 AM', value: 1 },
+    { label: '2-3 AM', value: 2 },
+    { label: '3-4 AM', value: 3 },
+    { label: '4-5 AM', value: 4 },
+    { label: '5-6 AM', value: 5 },
+    { label: '6-7 AM', value: 6 },
+    { label: '7-8 AM', value: 7 },
+    { label: '8-9 AM', value: 8 },
+    { label: '9-10 AM', value: 9 },
+    { label: '10-11 AM', value: 10 },
+    { label: '11-12 AM', value: 11 },
+    { label: '12-1 PM', value: 12 },
+    { label: '1-2 PM', value: 13 },
+    { label: '2-3 PM', value: 14 },
+    { label: '3-4 PM', value: 15 },
+    { label: '4-5 PM', value: 16 },
+    { label: '5-6 PM', value: 17 },
+    { label: '6-7 PM', value: 18 },
+    { label: '7-8 PM', value: 19 },
+    { label: '8-9 PM', value: 20 },
+    { label: '9-10 PM', value: 21 },
+    { label: '10-11 PM', value: 22 },
+    { label: '11-12 PM', value: 23 }
+  ];
+
+  daysOfWeek = [
+    { label: 'Monday', value: 'Monday' },
+    { label: 'Tuesday', value: 'Tuesday' },
+    { label: 'Wednesday', value: 'Wednesday' },
+    { label: 'Thursday', value: 'Thursday' },
+    { label: 'Friday', value: 'Friday' },
+    { label: 'Saturday', value: 'Saturday' },
+    { label: 'Sunday', value: 'Sunday' }
+  ];
+
   file: any;
   constructor(
     private cirSericeService: CirSericeService,
@@ -46,8 +82,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
       currency: new FormControl('', [Validators.required]),
       expectedDayRate: new FormControl('', [Validators.required]),
       referredBy: new FormControl('', [Validators.required]),
-      callDay: new FormControl('', [Validators.required]),
-      callTime: new FormControl('', [Validators.required]),
+      callDay: new FormControl([], [Validators.required]),
+      callTime: new FormControl([], [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       anyQuestion: new FormControl('', [Validators.required]),
       cv: new FormControl('', [Validators.required]),
@@ -119,9 +155,24 @@ export class CirOtherdetailsFormComponent implements OnInit {
     if (!this.file) {
       return this.notificationService.showError('Please upload file');
     }
+
+    // Convert selected callDays and callTimes arrays to comma-separated strings
+    const selectedDays = this.otherDetailForm.controls['callDay'].value;
+    const selectedDaysString = Array.isArray(selectedDays) ? selectedDays.join(',') : '';
+
+    const selectedTimes = this.otherDetailForm.controls['callTime'].value;
+    const selectedTimesString = Array.isArray(selectedTimes) ? selectedTimes.join(',') : '';
+
+    // Prepare the form data for submission
+    const formData = {
+      ...this.otherDetailForm.value,
+      callDay: selectedDaysString,
+      callTime: selectedTimesString
+    };
+
     this.otherDetailForm.controls['cv'].patchValue(this.file);
     console.log(this.userID);
-    this.cirSericeService.updateregister(this.userID, this.otherDetailForm.value).subscribe((response) => {
+    this.cirSericeService.updateregister(this.userID, formData).subscribe((response) => {
       if (response?.status == true) {
         this.router.navigate(['/cir/cir-thankyou']);
         this.notificationService.showSuccess(response?.message, 'Success !');
