@@ -301,6 +301,7 @@
                 <input type="file" class="form-control" height="50px" width="100px" style="height: 38px;"
                   (change)="fileUpload($event)">
               </div>
+              {{this.file.name}}
               <div style="display: flex; justify-content: space-between;">
                 <button type="button" routerLink="/cir/cir-accordian-card-details"
                   class="btn btn-primary btn-round">previous Step</button>
