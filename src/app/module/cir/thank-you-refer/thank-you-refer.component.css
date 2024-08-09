@@ -4,22 +4,9 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* height: 100vh; */
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0px;
-}
-p{
-  margin-bottom: 0px;
-}
-strong{
-  font-weight: 600;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .FlatCard {
@@ -35,14 +22,6 @@ strong{
   border-radius: .25rem;
 }
 
-.shadow {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-}
-
-.border-radius6 {
-  border-radius: 6px;
-
-}
 .FlatCard .card-body {
   padding: 1rem;
 }
@@ -51,21 +30,4 @@ strong{
   padding: 1rem;
   color: #FFF;
   border-radius: 6px 6px 0 0;
-}
-
-.text-bold {
-  font-size: 18px;
-  font-weight: bolder;
-}
-
-.w-10 {
-  width: 10%;
-}
-
-.w-40 {
-  width: 40%;
-}
-
-.w-50 {
-  width: 50%;
 }

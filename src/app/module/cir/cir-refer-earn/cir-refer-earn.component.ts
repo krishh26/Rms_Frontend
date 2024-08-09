@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cir-refer-earn',
@@ -14,7 +15,8 @@ export class CirReferEarnComponent implements OnInit {
 
   constructor(
     private cirSericeService: CirSericeService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router : Router
   ) {
     this.referForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -34,6 +36,7 @@ export class CirReferEarnComponent implements OnInit {
     this.cirSericeService.referAndEarn(this.referForm.value).subscribe((response) => {
       if (response?.status) {
         this.notificationService.showSuccess('Refer and Earn Successful');
+        this.router.navigate(['/cir/cir-refer-earn-thank-you']);
         this.referForm.reset();
       } else {
         return this.notificationService.showError('User not refer');

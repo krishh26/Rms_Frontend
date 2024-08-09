@@ -8,7 +8,6 @@ Login Page CSS
     border-radius: 30px;
     position: relative;
     padding: 4rem;
-    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
 }
 
 .login-modal .login-body {
@@ -49,4 +48,38 @@ Login Page CSS
     max-width: 60%;
     padding: 15px;
     text-align: center;
+}
+
+.section-card{
+  padding: 40px 0;
+  background-image: url("../../../../assets/img/registraion-page-background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.FlatCard {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: .25rem;
+}
+
+.FlatCard .card-body {
+  padding: 1rem;
+}
+.FlatCard .card-header{
+  background-color: #007f83;
+  padding: 1rem;
+  color: #FFF;
+  border-radius: 6px 6px 0 0;
 }

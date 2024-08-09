@@ -20,6 +20,7 @@ import { CirReferEarnComponent } from './cir-refer-earn/cir-refer-earn.component
 import { CirAccordianCardComponent } from './cir-accordian-card/cir-accordian-card.component';
 import { CirRolesDemandNothernIrelandDetailsComponent } from './cir-roles-demand-nothern-ireland-details/cir-roles-demand-nothern-ireland-details.component';
 import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-over-uk-details/cir-roles-demand-all-over-uk-details.component';
+import { ThankYouReferComponent } from './thank-you-refer/thank-you-refer.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,7 +50,7 @@ import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-
     CirRolesDemandAllOverUkDetailsComponent,
     CirRolesDemandNothernIrelandDetailsComponent,
     CirReferEarnComponent,
-
+    ThankYouReferComponent,
     CirAccordianCardComponent
   ]
 })
