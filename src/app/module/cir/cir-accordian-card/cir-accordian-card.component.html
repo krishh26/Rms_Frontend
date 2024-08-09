@@ -30,7 +30,7 @@
                 <tbody>
                   <tr *ngFor="let role of manchesterrolesTableData; let i = index">
                     <td>
-                      <input type="checkbox" class="form-check-input ms-3" [(ngModel)]="role.selected"
+                      <input type="checkbox"  class="form-check-input chckbox ms-3" [(ngModel)]="role.selected"
                         id="checkbox{{ i + 1 }}">
                     </td>
                     <td>
@@ -70,7 +70,7 @@
                 <tbody>
                   <tr *ngFor="let role of northanRolesTableData; let i = index">
                     <td>
-                      <input type="checkbox" class="form-check-input ms-3" [(ngModel)]="role.selected"
+                      <input type="checkbox" class="form-check-input ms-3 chckbox" [(ngModel)]="role.selected"
                         id="checkbox{{ i + 1 }}">
                     </td>
                     <td>
@@ -110,7 +110,7 @@
                 <tbody>
                   <tr *ngFor="let service of qaSpecialistServices; let i = index">
                     <td>
-                      <input type="checkbox" class="form-check-input ms-3" [(ngModel)]="service.selected"
+                      <input type="checkbox" class="form-check-input ms-3 chckbox" [(ngModel)]="service.selected"
                         id="checkbox{{ i + 1 }}">
                     </td>
                     <td>
