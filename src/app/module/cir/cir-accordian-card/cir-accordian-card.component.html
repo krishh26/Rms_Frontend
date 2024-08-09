@@ -36,7 +36,7 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}">{{ role.role }}</label>
                     </td>
-                    <td>{{ role.description }}</td>
+                    <td><a title="{{ role?.description }}">{{ role?.description | slice:0:200 }}</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -76,7 +76,7 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}">{{ role.role }}</label>
                     </td>
-                    <td [innerHTML]="role.description"></td>
+                    <td><a title="{{ role?.description }}">{{ role?.description | slice:0:200 }}</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -116,7 +116,7 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}">{{ service.role }}</label>
                     </td>
-                    <td>{{ service.description }}</td>
+                    <td><a title="{{ service?.description }}">{{ service?.description | slice:0:200 }}</a></td>
                   </tr>
                 </tbody>
               </table>
