@@ -9,7 +9,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class CirRolesDemandNothernIrelandDetailsComponent {
 
-   northernIrelandDetails = [
+  northernIrelandDetails = [
     {
       id: 1,
       field: "QA / Test Architect",
@@ -127,14 +127,16 @@ export class CirRolesDemandNothernIrelandDetailsComponent {
     }
   ];
 
+  selectedData: any[] = [];
+
   constructor(
     private cirSericeService: CirSericeService,
     private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
+    this.getDetails();
   }
-
 
   submit() {
     const selectedRoles = this.northernIrelandDetails
@@ -165,6 +167,29 @@ export class CirRolesDemandNothernIrelandDetailsComponent {
       }
     );
   }
-  
 
+  getDetails() {
+    this.cirSericeService.getClientRoles().subscribe((response) => {
+      if (response?.status) {
+        if (response?.data?.length > 0) {
+          const tempData: any[] = response?.data?.filter((item: any) => item.name == 'Client 2');
+          tempData?.map((element: any) => {
+            if (element?.roles?.length > 0) {
+              element?.roles?.map((el: any) => {
+                this.selectedData.push(el);
+              })
+            }
+          })
+        }
+      }
+    })
+  }
+
+  selected(name: string): boolean {
+    const data = this.selectedData.find((element: any) => element.name == name);
+    if (data) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -27,17 +27,17 @@ const routes: Routes = [
     children: [
       {
         path: "cir-card",
-        //    canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirCardComponent
       },
       {
         path: "manchester-details",
-        //  canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: ManchesterDetailsComponent
       },
       {
         path: "northern-ireland-details",
-        //  canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: NorthenIrelandDetailsComponent
       },
       {
@@ -47,49 +47,49 @@ const routes: Routes = [
       },
       {
         path: "cir-profile",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirProfileComponent
       },
       {
         path: "cir-roles-demand-manchester-card",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
       },
       {
         path: "cir-roles-demand-northern-ireland-card",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesDemandNothernIrelandDetailsComponent
       },
       {
         path: "cir-roles-demand-all-over-uk-card",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesDemandAllOverUkDetailsComponent
       },
       {
         path: "cir-accordian-card-details",
-        //  canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirAccordianCardComponent
       },
       {
         path: "cir-thankyou",
-        //  canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: ThankyouPageComponent
       },
       {
         path: "cir-refer-earn",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirReferEarnComponent
       },
       {
         path: "cir-refer-earn-thank-you",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: ThankYouReferComponent
       }
     ]
   },
   {
     path: "cir-thankyou",
-    //  canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: ThankyouPageComponent
   },
   {
@@ -98,7 +98,7 @@ const routes: Routes = [
   },
   {
     path: "cir-accordian-card-details",
-    //  canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: CirAccordianCardComponent
   },
   {

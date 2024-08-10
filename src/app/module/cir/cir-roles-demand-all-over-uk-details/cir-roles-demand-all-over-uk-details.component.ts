@@ -72,12 +72,15 @@ export class CirRolesDemandAllOverUkDetailsComponent {
     }
   ];
 
+  selectedData: any[] = [];
+
   constructor(
     private cirSericeService: CirSericeService,
     private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
+    this.getDetails();
   }
 
   submit() {
@@ -110,4 +113,28 @@ export class CirRolesDemandAllOverUkDetailsComponent {
     );
   }
 
+  getDetails() {
+    this.cirSericeService.getClientRoles().subscribe((response) => {
+      if (response?.status) {
+        if (response?.data?.length > 0) {
+          const tempData: any[] = response?.data?.filter((item: any) => item.name == 'Client 3');
+          tempData?.map((element: any) => {
+            if (element?.roles?.length > 0) {
+              element?.roles?.map((el: any) => {
+                this.selectedData.push(el);
+              })
+            }
+          })
+        }
+      }
+    })
+  }
+
+  selected(name: string): boolean {
+    const data = this.selectedData.find((element: any) => element.name == name);
+    if (data) {
+      return true;
+    }
+    return false;
+  }
 }

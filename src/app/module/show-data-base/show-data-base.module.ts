@@ -22,12 +22,12 @@ const routes: Routes = [
     children: [
       {
         path: "list",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: ShowDataBaseListComponent
       },
       {
         path: "details/:type",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: ShowDataBaseDetailsComponent
       },
     ]

@@ -25,6 +25,7 @@ export class CirFormComponent implements OnInit {
   file: any;
   selectedImage!: any;
   showUKVisaType: boolean = false;
+  lookingFor: any[] = [];
 
   constructor(
     private router: Router,
@@ -54,24 +55,25 @@ export class CirFormComponent implements OnInit {
       phoneNumber: data?.user?.phoneNumber || '',
       nationality: data?.user?.nationality || '',
       UKVisaType: data?.user?.UKVisaType || '',
-      UKDrivinglicense: data?.user?.UKDrivinglicense || '',
+      UKDrivinglicense: data?.user?.UKDrivinglicense ? 'yes' : 'no' || '',
       postalCode: data?.user?.postalCode || '',
       currentWork: data?.user?.currentWork || ''
     });
 
-    const lookingForValues = typeof data?.user?.lookingFor === 'string'
-      ? data?.user?.lookingFor.split(',')
-      : [];
-    this.selectedRoles = lookingForValues;
+    this.lookingFor =  data?.user?.lookingFor;
+    // this.selectedRoles = lookingForValues;
 
-    const checkboxes = document.querySelectorAll('input[name="roles"]') as NodeListOf<HTMLInputElement>;
-    checkboxes.forEach((checkbox: HTMLInputElement) => {
-      checkbox.checked = lookingForValues.includes(checkbox.value);
-    });
-
+    // const checkboxes = document.querySelectorAll('input[name="roles"]') as NodeListOf<HTMLInputElement>;
+    // checkboxes.forEach((checkbox: HTMLInputElement) => {
+    //   checkbox.checked = lookingForValues.includes(checkbox.value);
+    // });
+    console.log('this.lookingFor',this.lookingFor);
     this.showUKVisaType = data?.user?.nationality === 'other';
   }
 
+  selectedLookingFor(type : string) : boolean {
+    return this.lookingFor.includes(type);
+  }
 
   // Number only validation
   NumberOnly(event: any): boolean {

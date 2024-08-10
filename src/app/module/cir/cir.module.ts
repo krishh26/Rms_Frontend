@@ -29,12 +29,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgSelectModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),
+    NgSelectModule
   ],
   declarations: [
     CirComponent,

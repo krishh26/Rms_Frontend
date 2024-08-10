@@ -171,15 +171,15 @@
                   <div class="form-group">
                     <label>My current work :</label><br>
                     <label>
-                      <input type="radio" name="work_status" value="full-time" formControlName="currentWork">
+                      <input type="radio" id="1" name="currentWork" value="full-time" formControlName="currentWork">
                       <span style="font-weight: normal;"> Working full-time</span>
                     </label><br>
                     <label>
-                      <input type="radio" name="work_status" value="part-time" formControlName="currentWork">
+                      <input type="radio" id="2"  name="currentWork" value="part-time" formControlName="currentWork">
                       <span style="font-weight: normal;"> Working part-time</span>
                     </label><br>
                     <label>
-                      <input type="radio" name="work_status" value="not-working" formControlName="currentWork">
+                      <input type="radio" id="3" name="currentWork" value="not-working" formControlName="currentWork">
                       <span style="font-weight: normal;"> Not working</span>
                     </label>
                     <span class="text-danger" *ngIf="
@@ -198,15 +198,15 @@
                   <div class="form-group">
                     <label>I am looking for: </label><br>
                     <label>
-                      <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)" [checked]="selectedLookingFor('full-time-role')">
                       <span style="font-weight: normal;"> Full time role</span>
                     </label><br>
                     <label>
-                      <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)" [checked]="selectedLookingFor('additional-role')">
                       <span style="font-weight: normal;"> Additional role</span>
                     </label><br>
                     <label>
-                      <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)">
+                      <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)" [checked]="selectedLookingFor('part-time-role')">
                       <span style="font-weight: normal;"> Part-time role</span>
                     </label>
                     <span class="text-danger" *ngIf="
