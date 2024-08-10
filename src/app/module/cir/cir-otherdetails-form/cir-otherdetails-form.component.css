@@ -1,4 +1,4 @@
-.section-registration{
+.section-registration {
     padding: 40px 0;
     background-image: url("../../../../assets/img/registraion-page-background.jpg");
     background-position: center center;
@@ -61,50 +61,53 @@ h6 {
 .form-group {
     margin-bottom: 15px;
 }
+
 .textfont {
     font-size: 18px;
 }
 
 /*Profile image*/
-.profile-image{
-  width: 175px;
-  height: 175px;
-  position: relative;
-  border-radius: 100%;
-  padding: 10px;
-  border: 1px dashed #C32C1F;
-  margin-bottom: 15px;
-  background-color: #d9d9d9;
+.profile-image {
+    width: 175px;
+    height: 175px;
+    position: relative;
+    border-radius: 100%;
+    padding: 10px;
+    border: 1px dashed #C32C1F;
+    margin-bottom: 15px;
+    background-color: #d9d9d9;
 }
-.profile-image img{
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
 }
+
 .input--file {
-  right: 0;
-  position: absolute;
-  color: #fff;
-  bottom: 20px;
-  width: 42px;
-  height: 42px;
-  line-height: 42px;
-  text-align: center;
-  background: #0C3642;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  text-align: center;
+    right: 0;
+    position: absolute;
+    color: #fff;
+    bottom: 20px;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    background: #0C3642;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-align: center;
 
 }
 
 .input--file input[type="file"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  width: 42px;
-  cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 42px;
+    cursor: pointer;
 }
 
 
@@ -124,11 +127,14 @@ h6 {
     background-color: #fff;
     font-size: 16px;
     color: #495057;
-  }
-  
-  .form-select:focus {
+}
+
+.form-select:focus {
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
-  
+}
+
+.chckbox {
+    border: 1px solid;
+}

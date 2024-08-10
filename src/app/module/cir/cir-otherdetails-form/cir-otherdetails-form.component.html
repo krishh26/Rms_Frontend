@@ -30,18 +30,18 @@
                     <label>Work Location Preferences :</label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="client-location"
-                        (change)="onCheckboxChange($event)">
+                        (change)="onCheckboxChange($event)" class="chckbox">
                       <span style="font-weight: normal;"> I am ok to work at Client location</span>
                     </label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="work-from-home-on-demand"
-                        (change)="onCheckboxChange($event)">
+                        (change)="onCheckboxChange($event)" class="chckbox">
                       <span style="font-weight: normal;"> I would like to work from home with on-demand reporting to
                         location</span>
                     </label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="100-percent-remote"
-                        (change)="onCheckboxChange($event)">
+                        (change)="onCheckboxChange($event)" class="chckbox">
                       <span style="font-weight: normal;"> I would like to work 100% Remotely</span>
                     </label>
                     <span class="text-danger" *ngIf="
@@ -166,6 +166,24 @@
                 </div>
                 <div class="row">
                   <div class="col-6">
+                    <label>Preferred contact Time :</label>
+
+                    <ng-select [items]="timeSlots" bindLabel="label" bindValue="value" formControlName="callTime"
+                      class="form-select custom-ng-select-option" [multiple]="true">
+                    </ng-select>
+
+                    <span class="text-danger" *ngIf="
+                    otherDetailForm.controls?.['callTime']?.touched &&
+                    otherDetailForm.controls?.['callTime']?.errors?.['required']">
+                      Please enter callTime.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                    otherDetailForm.controls?.['callTime']?.touched &&
+                    otherDetailForm.controls?.['callTime']?.errors?.['pattern']">
+                      Please enter a valid callTime.
+                    </span>
+                  </div>
+                  <div class="col-6">
                     <div class="form-group">
                       <label>Preferred contact Day :</label>
 
@@ -184,24 +202,6 @@
                         Please enter a valid callDay' .
                       </span>
                     </div>
-                  </div>
-                  <div class="col-6">
-                    <label>Preferred contact Time :</label>
-
-                    <ng-select [items]="timeSlots" bindLabel="label" bindValue="value" formControlName="callTime"
-                      class="form-select custom-ng-select-option" [multiple]="true">
-                    </ng-select>
-
-                    <span class="text-danger" *ngIf="
-                    otherDetailForm.controls?.['callTime']?.touched &&
-                    otherDetailForm.controls?.['callTime']?.errors?.['required']">
-                      Please enter callTime.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                    otherDetailForm.controls?.['callTime']?.touched &&
-                    otherDetailForm.controls?.['callTime']?.errors?.['pattern']">
-                      Please enter a valid callTime.
-                    </span>
                   </div>
                 </div>
               </div>

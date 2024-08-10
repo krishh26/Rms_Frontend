@@ -47,6 +47,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   ];
 
   daysOfWeek = [
+    { label: 'Anyday', value: 'Anyday' },
     { label: 'Monday', value: 'Monday' },
     { label: 'Tuesday', value: 'Tuesday' },
     { label: 'Wednesday', value: 'Wednesday' },
