@@ -22,6 +22,7 @@ import { CirRolesDemandNothernIrelandDetailsComponent } from './cir-roles-demand
 import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-over-uk-details/cir-roles-demand-all-over-uk-details.component';
 import { ThankYouReferComponent } from './thank-you-refer/thank-you-refer.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CirActiveRolesComponent } from './cir-active-roles/cir-active-roles.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -53,7 +54,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     CirRolesDemandNothernIrelandDetailsComponent,
     CirReferEarnComponent,
     ThankYouReferComponent,
-    CirAccordianCardComponent
+    CirAccordianCardComponent,
+    CirActiveRolesComponent
   ]
 })
 export class CirModule { }

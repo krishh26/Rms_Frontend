@@ -19,6 +19,7 @@ import { CirRolesDemandNothernIrelandDetailsComponent } from './cir-roles-demand
 import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-over-uk-details/cir-roles-demand-all-over-uk-details.component';
 import { ThankyouPageComponent } from './thankyou-page/thankyou-page.component';
 import { ThankYouReferComponent } from './thank-you-refer/thank-you-refer.component';
+import { CirActiveRolesComponent } from './cir-active-roles/cir-active-roles.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,11 @@ const routes: Routes = [
         path: "cir-refer-earn-thank-you",
         //canActivate: [AuthGuard],
         component: ThankYouReferComponent
+      },
+      {
+        path: "cir-active-roles",
+        //canActivate: [AuthGuard],
+        component: CirActiveRolesComponent
       }
     ]
   },
