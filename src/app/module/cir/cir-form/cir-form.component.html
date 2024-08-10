@@ -22,12 +22,15 @@
         </div>
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
-            <h4><strong>Personal Details</strong></h4>
+            <h4><strong>Personal Details (All fields are mandatory)</strong></h4><br>
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
+              <!-- Name -->
               <div class="row">
-                <div class="col-12">
+                <div class="col-md-4">
+                  <label>Your Name :</label>
+                </div>
+                <div class="col-md-8">
                   <div class="form-group">
-                    <label>Your Name :</label>
                     <input type="text" class="form-control" placeholder="Your Name" formControlName="name">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['name']?.touched &&
@@ -37,67 +40,78 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['name']?.touched &&
                       personalDetailForm.controls?.['name']?.errors?.['pattern']">
-                      Please enter valid formate of your name.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-lg-12 colxl-12 col-md-12 col-sm-12 col-12">
-                  <div class="form-group">
-                    <label>Your Email :
-                    </label>
-                    <input type="email" class="form-control" placeholder="Your Email" formControlName="email">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['email']?.touched &&
-                      personalDetailForm.controls?.['email']?.errors?.['required']">
-                      Please enter candidate email.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['email']?.touched &&
-                      personalDetailForm.controls?.['email']?.errors?.['pattern']">
-                      Please enter a valid email address in the format 'username@example.com' .
+                      Please enter a valid format for your name.
                     </span>
                   </div>
                 </div>
               </div>
 
+              <!-- Email -->
               <div class="row">
-                <label>Your Phone number :</label>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                <div class="col-md-4">
+                  <label>Your Email :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" formControlName="email">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['email']?.touched &&
+                      personalDetailForm.controls?.['email']?.errors?.['required']">
+                      Please enter your email.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['email']?.touched &&
+                      personalDetailForm.controls?.['email']?.errors?.['pattern']">
+                      Please enter a valid email address in the format 'username@example.com'.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Your Phone number :</label>
+                </div>
+                <div class="col-md-4">
                   <div class="form-group">
                     <select class="form-control" formControlName="countrycode">
                       <option value="" disabled selected hidden>Select Country Code</option>
-                      <option value="91">+91 </option>
+                      <option value="91">+91</option>
                       <option value="44">+44</option>
                     </select>
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['countrycode']?.touched &&
                       personalDetailForm.controls?.['countrycode']?.errors?.['required']">
-                      Please enter contact country code.
+                      Please enter the country code.
                     </span>
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['countrycode']?.touched &&
                       personalDetailForm.controls?.['countrycode']?.errors?.['pattern']">
-                      Please enter valid formate of contact country code.
+                      Please enter a valid format for the country code.
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+                <div class="col-md-4">
                   <div class="form-group">
                     <input type="tel" class="form-control" placeholder="Your Phone number" [maxlength]="10"
                       (keypress)="NumberOnly($event)" formControlName="phoneNumber">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['phoneNumber']?.touched &&
                       personalDetailForm.controls?.['phoneNumber']?.errors?.['required']">
-                      Please enter Your phone number.
+                      Please enter your phone number.
                     </span>
                   </div>
                 </div>
               </div>
 
+              <!-- Nationality and UK Visa Type -->
               <div class="row">
-                <div class="col-md-6 pl-1">
+                <div class="col-md-4">
+                  <label>Nationality :</label>
+                </div>
+                <div class="col-md-8">
                   <div class="form-group">
-                    <label>Nationality :</label>
                     <select class="form-control" formControlName="nationality" (change)="onNationalityChange($event)">
                       <option value="" disabled selected hidden>Select Nationality</option>
                       <option value="british">British</option>
@@ -106,36 +120,45 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['nationality']?.touched &&
                       personalDetailForm.controls?.['nationality']?.errors?.['required']">
-                      Please enter nationality.
+                      Please enter your nationality.
                     </span>
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['nationality']?.touched &&
                       personalDetailForm.controls?.['nationality']?.errors?.['pattern']">
-                      Please enter valid formate of nationality.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-1" *ngIf="showUKVisaType">
-                  <div class="form-group">
-                    <label>UK visa type :</label>
-                    <input type="text" class="form-control" placeholder="UK visa type" formControlName="UKVisaType">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['UKVisaType']?.touched &&
-                      personalDetailForm.controls?.['UKVisaType']?.errors?.['required']">
-                      Please enter uk visa type.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['UKVisaType']?.touched &&
-                      personalDetailForm.controls?.['UKVisaType']?.errors?.['pattern']">
-                      Please enter valid formate of uk visa type.
+                      Please enter a valid format for your nationality.
                     </span>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-7 pr-1">
+
+              <div class="row" *ngIf="showUKVisaType">
+                <div class="col-md-4">
+                  <label>UK Visa Type :</label>
+                </div>
+                <div class="col-md-8">
                   <div class="form-group">
-                    <label>Do you Have a UK Driving license? :</label>
+                    <input type="text" class="form-control" placeholder="UK Visa Type" formControlName="UKVisaType">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['UKVisaType']?.touched &&
+                      personalDetailForm.controls?.['UKVisaType']?.errors?.['required']">
+                      Please enter your UK visa type.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['UKVisaType']?.touched &&
+                      personalDetailForm.controls?.['UKVisaType']?.errors?.['pattern']">
+                      Please enter a valid format for your UK visa type.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- UK Driving License -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Do you Have a UK Driving license? :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
                     <select class="form-control" formControlName="UKDrivinglicense">
                       <option value="" disabled selected hidden>Select Type</option>
                       <option value="yes">Yes</option>
@@ -144,38 +167,47 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['UKDrivinglicense']?.touched &&
                       personalDetailForm.controls?.['UKDrivinglicense']?.errors?.['required']">
-                      Please select value.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-5 pr-1">
-                  <div class="form-group">
-                    <label>Postal Code</label>
-                    <input type="text" class="form-control" placeholder="Postal Code" formControlName="postalCode">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['postalCode']?.touched &&
-                      personalDetailForm.controls?.['postalCode']?.errors?.['required']">
-                      Please enter candidate Postal Code.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['postalCode']?.touched &&
-                      personalDetailForm.controls?.['postalCode']?.errors?.['pattern']">
-                      Please enter valid formate of candidate Postal Code.
+                      Please select a value.
                     </span>
                   </div>
                 </div>
               </div>
 
+              <!-- Postal Code -->
               <div class="row">
-                <div class="col-md-6 pl-1">
+                <div class="col-md-4">
+                  <label>Postal Code:</label>
+                </div>
+                <div class="col-md-8">
                   <div class="form-group">
-                    <label>My current work :</label><br>
+                    <input type="text" class="form-control" placeholder="Postal Code" formControlName="postalCode">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['postalCode']?.touched &&
+                      personalDetailForm.controls?.['postalCode']?.errors?.['required']">
+                      Please enter your postal code.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['postalCode']?.touched &&
+                      personalDetailForm.controls?.['postalCode']?.errors?.['pattern']">
+                      Please enter a valid format for your postal code.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Current Work -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>My current work :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
                     <label>
                       <input type="radio" id="1" name="currentWork" value="full-time" formControlName="currentWork">
                       <span style="font-weight: normal;"> Working full-time</span>
                     </label><br>
                     <label>
-                      <input type="radio" id="2"  name="currentWork" value="part-time" formControlName="currentWork">
+                      <input type="radio" id="2" name="currentWork" value="part-time" formControlName="currentWork">
                       <span style="font-weight: normal;"> Working part-time</span>
                     </label><br>
                     <label>
@@ -185,44 +217,44 @@
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['currentWork']?.touched &&
                       personalDetailForm.controls?.['currentWork']?.errors?.['required']">
-                      Please enter current work.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['currentWork']?.touched &&
-                      personalDetailForm.controls?.['currentWork']?.errors?.['pattern']">
-                      Please enter a valid current work' .
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>I am looking for: </label><br>
-                    <label>
-                      <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)" [checked]="selectedLookingFor('full-time-role')">
-                      <span style="font-weight: normal;"> Full time role</span>
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)" [checked]="selectedLookingFor('additional-role')">
-                      <span style="font-weight: normal;"> Additional role</span>
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)" [checked]="selectedLookingFor('part-time-role')">
-                      <span style="font-weight: normal;"> Part-time role</span>
-                    </label>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['lookingFor']?.touched &&
-                      personalDetailForm.controls?.['lookingFor']?.errors?.['required']">
-                      Please enter candidate Emergency Contact Name.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['lookingFor']?.touched &&
-                      personalDetailForm.controls?.['lookingFor']?.errors?.['pattern']">
-                      Please enter valid formate of candidate Emergency Contact Name.
+                      Please select your current work status.
                     </span>
                   </div>
                 </div>
               </div>
 
+              <!-- Looking For -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>I am looking for :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('full-time-role')">
+                      <span style="font-weight: normal;"> Full time role</span>
+                    </label><br>
+                    <label>
+                      <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('additional-role')">
+                      <span style="font-weight: normal;"> Additional role</span>
+                    </label><br>
+                    <label>
+                      <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('part-time-role')">
+                      <span style="font-weight: normal;"> Part-time role</span>
+                    </label>
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['lookingFor']?.touched &&
+                      personalDetailForm.controls?.['lookingFor']?.errors?.['required']">
+                      Please select what you are looking for.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
               <div class="row">
                 <div class="update ml-auto mr-auto">
                   <button type="submit" class="btn btn-primary btn-round">Next Step</button>
