@@ -37,11 +37,11 @@ export class CirForgotPasswrdComponent implements OnInit {
         if (response?.status == true) {
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
-        } else {
-          this.notificationService.showError(response?.message);
+        } else if (response?.status == true && response?.message == 'User not found'){
+          this.notificationService.showError('Invalid Email Address. Try again with registered Email.');
         }
       }, (error) => {
-        this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+        this.notificationService.showError('Invalid Email Address. Try again with registered Email.');
       })
     }
   }
