@@ -13,6 +13,7 @@ import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 export class CirProfileComponent implements OnInit {
   profileForm!: FormGroup;
   loginDetails!: any;
+  showPasswordFields = false;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -44,6 +45,10 @@ export class CirProfileComponent implements OnInit {
       UKDrivinglicense: new FormControl(this.loginDetails.UKDrivinglicense ? 'yes' : 'no', [Validators.required]),
       postalCode:new FormControl(''),
     });
+  }
+
+   togglePasswordFields() {
+    this.showPasswordFields = !this.showPasswordFields;
   }
 
   submit() {

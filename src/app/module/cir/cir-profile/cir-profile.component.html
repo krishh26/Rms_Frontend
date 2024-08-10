@@ -2,6 +2,7 @@
   <div class="container">
     <div class="FlatCard shadow border-radius24">
       <div class="row">
+        <!-- Left Panel -->
         <div class="col-lg-5 col-xl-5 col-12">
           <div class="FormLeft-panel">
             <div class="text-center">
@@ -20,126 +21,128 @@
             <p>Phone: 8856876</p>
           </div>
         </div>
-        <!--start Form here-->
+
+        <!-- Right Panel (Personal Details Form) -->
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Profile</strong></h4>
             <form [formGroup]="profileForm" (ngSubmit)="submit()">
-              <!-- <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Profile Picture</label>
-                    <img style="margin-left: 20px;" [src]="profileForm.controls['profilePhoto'].value" alt="No Image" height="100px" width="100px">
-                  </div>
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <label for="name">Your Name:</label>
                 </div>
-              </div> -->
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Your Name :</label>
-                    <input type="text" class="form-control" placeholder="Your Name" formControlName="name">
-                  </div>
+                <div class="col-md-8">
+                  <input id="name" type="text" class="form-control" placeholder="Your Name" formControlName="name">
                   <span class="text-danger" *ngIf="
-                    profileForm.controls?.['name']?.touched &&
-                    profileForm.controls?.['name']?.errors?.['required']">
+                    profileForm?.controls?.['name']?.touched &&
+                    profileForm?.controls?.['name']?.errors?.['required']">
                     Please enter your name.
                   </span>
                   <span class="text-danger" *ngIf="
-                    profileForm.controls?.['name']?.touched &&
-                    profileForm.controls?.['name']?.errors?.['pattern']">
-                    Please enter valid formate of your name.
+                    profileForm?.controls?.['name']?.touched &&
+                    profileForm?.controls?.['name']?.errors?.['pattern']">
+                    Please enter a valid format of your name.
                   </span>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Your Email :
-                    </label>
-                    <input type="email" class="form-control" placeholder="Your Email" formControlName="email" readonly>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <label for="email">Your Email:</label>
+                </div>
+                <div class="col-md-8">
+                  <input id="email" type="email" class="form-control" placeholder="Your Email" formControlName="email"
+                    readonly>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <label for="phoneNumber">Your Phone Number:</label>
+                </div>
+                <div class="col-md-8">
+                  <input id="phoneNumber" type="tel" class="form-control" placeholder="Your Phone Number"
+                    [maxlength]="10" formControlName="phoneNumber" readonly>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <label for="nationality">Nationality:</label>
+                </div>
+                <div class="col-md-8">
+                  <input id="nationality" type="text" class="form-control" placeholder="Nationality"
+                    formControlName="nationality" readonly>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <label for="postalCode">Postal Code:</label>
+                </div>
+                <div class="col-md-8">
+                  <input id="postalCode" type="text" class="form-control" placeholder="Postal Code"
+                    formControlName="postalCode" readonly>
+                </div>
+              </div>
+
+              <div class="row mt-4 mb-3">
+                <div class="col-12">
+                  <h4>Update Password</h4>
+                </div>
+              </div>
+
+              <div>
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <label for="password">Password:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input id="password" type="password" class="form-control" placeholder="Password"
+                      formControlName="password">
+                    <span class="text-danger" *ngIf="
+                      profileForm?.controls?.['password']?.touched &&
+                      profileForm?.controls?.['password']?.errors?.['required']">
+                      Please enter a password.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      profileForm?.controls?.['password']?.touched &&
+                      profileForm?.controls?.['password']?.errors?.['pattern']">
+                      Password must contain a capital letter, a number, and '@'.
+                    </span>
                   </div>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Your Phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Your Phone number" [maxlength]="10"
-                      formControlName="phoneNumber" readonly>
+
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <label for="confirmPassword">Confirm Password:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input id="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
+                      formControlName="confirmPassword">
+                    <span class="text-danger" *ngIf="
+                      profileForm?.controls?.['confirmPassword']?.touched &&
+                      profileForm?.controls?.['confirmPassword']?.errors?.['required']">
+                      Please confirm your password.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      profileForm?.controls?.['confirmPassword']?.touched &&
+                      profileForm?.controls?.['confirmPassword']?.errors?.['pattern']">
+                      Password must contain a capital letter, a number, and '@'.
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Nationality :</label>
-                    <input type="text" class="form-control" placeholder="Nationality" formControlName="nationality"
-                      readonly>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Postalcode :</label>
-                    <input type="text" class="form-control" placeholder="postalCode" formControlName="postalCode"
-                      readonly>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row mt-4">
-                <!-- <div class="col-12">
-                  <div class="form-group">
-                    <label>Username :</label>
-                    <input type="email" class="form-control" placeholder="Username" formControlName="userName" readonly>
-                  </div>
-                </div> -->
-                <div class="col-12 mb-3">
-                  <h3>Update Password</h3>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Password :</label>
-                    <div class="input-group mb-0">
-                      <input class="form-control" placeholder="Password" formControlName="password" required>
-                    </div>
-                  </div>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['password']?.touched &&
-                    profileForm.controls?.['password']?.errors?.['required']">
-                    Please enter password
-                  </span>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['password']?.touched &&
-                    profileForm.controls?.['password']?.errors?.['pattern']">
-                    Password must be contain alphabet (1 capital), number and @
-                  </span>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Confirm Password :
-                    </label>
-                    <div class="input-group mb-0">
-                      <input class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
-                    </div>
-                  </div>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['confirmPassword']?.touched &&
-                    profileForm.controls?.['confirmPassword']?.errors?.['required']">
-                    Please enter confirm password
-                  </span>
-                  <span class="text-danger" *ngIf="
-                    profileForm.controls?.['confirmPassword']?.touched &&
-                    profileForm.controls?.['confirmPassword']?.errors?.['pattern']">
-                    Password must be contain alphabet (1 capital), number and @
-                  </span>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="update ml-auto mr-auto">
+                <div class="col-md-8 offset-md-4">
                   <button type="submit" class="btn btn-primary btn-round">Update</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
+        <!-- End Form -->
       </div>
     </div>
   </div>
