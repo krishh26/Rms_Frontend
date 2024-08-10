@@ -77,15 +77,16 @@ const routes: Routes = [
       },
       {
         path: "cir-refer-earn",
-       // canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: CirReferEarnComponent
       },
       {
         path: "cir-refer-earn-thank-you",
-       // canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: ThankYouReferComponent
       }
     ]
+  },
   {
     path: "cir-thankyou",
     //  canActivate: [AuthGuard],
