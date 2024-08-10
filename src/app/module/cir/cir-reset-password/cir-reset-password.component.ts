@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -18,16 +18,22 @@ export class CirResetPasswordComponent implements OnInit {
   showPassword = false;
   confirmPassword = 'password';
   confirmShowPassword = false;
+  token: string = '';
 
   constructor(
     private router: Router,
     private cirservice: CirSericeService,
     private notificationService: NotificationService,
     private localStorageService: LocalStorageService,
+    private activatedRoute: ActivatedRoute
   ) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.token = params['token'];
+    });
+
     this.resetpasswordForm = new FormGroup({
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
-      confirmpassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)])
+      confirmPassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)])
     });
   }
 
@@ -38,10 +44,15 @@ export class CirResetPasswordComponent implements OnInit {
   submit() {
     this.resetpasswordForm.markAllAsTouched();
     if (this.resetpasswordForm.valid) {
-      this.cirservice.resetpassword(this.resetpasswordForm.value).subscribe((response) => {
+      const payload = {
+        password: this.resetpasswordForm.get('password')?.value,
+        token: this.token
+      }
+      this.cirservice.resetpassword(payload).subscribe((response) => {
         if (response?.status == true) {
-          this.localStorageService.setLoginToken(response?.data);
-          this.localStorageService.setLogger(response?.data?.user);
+          this.router.navigate(['/cir/cir-login']);
+          // this.localStorageService.setLoginToken(response?.data);
+          // this.localStorageService.setLogger(response?.data?.user);
         } else {
           this.notificationService.showError(response?.message);
         }

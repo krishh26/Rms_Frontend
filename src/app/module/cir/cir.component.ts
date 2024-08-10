@@ -88,7 +88,7 @@ export class CirComponent implements OnInit {
     const mainPanel = <HTMLElement>document.getElementsByClassName('main-panel')[0];
     if (window.innerWidth < 991) {
       setTimeout(function () {
-        mainPanel.style.position = '';
+        mainPanel['style']['position'] = '';
       }, 500);
     }
     this.toggleButton.classList.remove('toggled');

@@ -36,12 +36,11 @@ export class CirFormComponent implements OnInit {
     this.initializeForms();
     this.register_data = this.localStorageService.getLogger();
     if (this.register_data) {
-      this.setFormValues(this.register_data?.user);
+      this.setFormValues(JSON.parse(this.register_data?.user));
     }
   }
 
   ngOnInit() {
-    console.log(this.register_data?.user);
     if (this.register_data?.user) {
       this.setFormValues(this.register_data);
     }
@@ -60,18 +59,11 @@ export class CirFormComponent implements OnInit {
       currentWork: data?.user?.currentWork || ''
     });
 
-    this.lookingFor =  data?.user?.lookingFor;
-    // this.selectedRoles = lookingForValues;
-
-    // const checkboxes = document.querySelectorAll('input[name="roles"]') as NodeListOf<HTMLInputElement>;
-    // checkboxes.forEach((checkbox: HTMLInputElement) => {
-    //   checkbox.checked = lookingForValues.includes(checkbox.value);
-    // });
-    console.log('this.lookingFor',this.lookingFor);
+    this.lookingFor = data?.user?.lookingFor;
     this.showUKVisaType = data?.user?.nationality === 'other';
   }
 
-  selectedLookingFor(type : string) : boolean {
+  selectedLookingFor(type: string): boolean {
     return this.lookingFor.includes(type);
   }
 

@@ -67,12 +67,12 @@ const routes: Routes = [
       },
       {
         path: "cir-accordian-card-details",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: CirAccordianCardComponent
       },
       {
         path: "cir-thankyou",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: ThankyouPageComponent
       },
       {
