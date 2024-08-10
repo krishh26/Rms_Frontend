@@ -36,7 +36,7 @@ export class CirFormComponent implements OnInit {
     this.initializeForms();
     this.register_data = this.localStorageService.getLogger();
     if (this.register_data) {
-      this.setFormValues(JSON.parse(this.register_data?.user));
+      this.setFormValues(this.register_data?.user);
     }
   }
 
@@ -64,7 +64,7 @@ export class CirFormComponent implements OnInit {
   }
 
   selectedLookingFor(type: string): boolean {
-    return this.lookingFor.includes(type);
+    return this.lookingFor?.includes(type);
   }
 
   // Number only validation

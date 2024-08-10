@@ -66,16 +66,6 @@ const routes: Routes = [
         component: CirRolesDemandAllOverUkDetailsComponent
       },
       {
-        path: "cir-accordian-card-details",
-        // canActivate: [AuthGuard],
-        component: CirAccordianCardComponent
-      },
-      {
-        path: "cir-thankyou",
-        // canActivate: [AuthGuard],
-        component: ThankyouPageComponent
-      },
-      {
         path: "cir-refer-earn",
         canActivate: [AuthGuard],
         component: CirReferEarnComponent
@@ -97,6 +87,7 @@ const routes: Routes = [
   },
   {
     path: "cir-accordian-card-details",
+    // canActivate: [AuthGuard],
     component: CirAccordianCardComponent
   },
   {
