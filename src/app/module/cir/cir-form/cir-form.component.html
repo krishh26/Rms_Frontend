@@ -22,7 +22,8 @@
         </div>
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
-            <h4><strong>Personal Details (All fields are mandatory)</strong></h4><br>
+            <h4><strong>Personal Details</strong></h4>
+            <h5><strong>All fields are mandatory</strong></h5><br/>
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
               <!-- Name -->
               <div class="row">
@@ -198,7 +199,7 @@
               <!-- Current Work -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>My current work :</label>
+                  <label>I'm currently :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">

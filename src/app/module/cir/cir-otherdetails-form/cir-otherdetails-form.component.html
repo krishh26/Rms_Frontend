@@ -165,6 +165,16 @@
                   </div>
                 </div>
                 <div class="row">
+                  <div class="col-12">
+                    <div style="width: 106px; margin: 2px;">
+                      <label>Upload CV :</label>
+                      <input type="file" class="form-control" height="50px" width="100px" style="height: 38px;"
+                        (change)="fileUpload($event)">
+                    </div>
+                    {{file?.name}}
+                  </div><br>
+                </div>
+                <div class="row">
                   <div class="col-6">
                     <label>Preferred contact Time :</label>
 
@@ -270,12 +280,6 @@
                   </textarea>
                 </div>
               </div>
-              <div style="width: 106px; margin: 2px;">
-                <label>Upload CV :</label>
-                <input type="file" class="form-control" height="50px" width="100px" style="height: 38px;"
-                  (change)="fileUpload($event)">
-              </div>
-              {{file?.name}}
               <div style="display: flex; justify-content: space-between;">
                 <button type="button" routerLink="/cir/cir-accordian-card-details"
                   class="btn btn-primary btn-round">previous Step</button>
