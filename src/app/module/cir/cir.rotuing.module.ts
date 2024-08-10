@@ -89,7 +89,6 @@ const routes: Routes = [
   },
   {
     path: "cir-thankyou",
-    canActivate: [AuthGuard],
     component: ThankyouPageComponent
   },
   {
@@ -98,7 +97,6 @@ const routes: Routes = [
   },
   {
     path: "cir-accordian-card-details",
-    canActivate: [AuthGuard],
     component: CirAccordianCardComponent
   },
   {
