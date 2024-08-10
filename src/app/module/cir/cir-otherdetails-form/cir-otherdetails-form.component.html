@@ -24,24 +24,26 @@
           <div class="FormRight-panel">
             <h4><strong>Additional details</strong></h4>
             <form [formGroup]="otherDetailForm" (ngSubmit)="submitotherDetail()">
-              <div class="row">
-                <div class="col-lg-12 colxl-12 col-md-12 col-sm-12 col-12">
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Work Location Preferences:</label>
+                </div>
+                <div class="col-lg-8">
                   <div class="form-group">
-                    <label>Work Location Preferences :</label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="client-location"
-                        (change)="onCheckboxChange($event)" class="chckbox">
+                        (change)="onCheckboxChange($event)" class="chckbox mr-1">
                       <span style="font-weight: normal;"> I am ok to work at Client location</span>
                     </label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="work-from-home-on-demand"
-                        (change)="onCheckboxChange($event)" class="chckbox">
+                        (change)="onCheckboxChange($event)" class="chckbox mr-1">
                       <span style="font-weight: normal;"> I would like to work from home with on-demand reporting to
                         location</span>
                     </label><br>
                     <label>
                       <input type="checkbox" name="work_location" value="100-percent-remote"
-                        (change)="onCheckboxChange($event)" class="chckbox">
+                        (change)="onCheckboxChange($event)" class="chckbox mr-1">
                       <span style="font-weight: normal;"> I would like to work 100% Remotely</span>
                     </label>
                     <span class="text-danger" *ngIf="
@@ -51,8 +53,12 @@
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
                   <label>Your expected day rate:</label>
+                </div>
+                <div class="col-lg-8">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="expected day rate"
                       formControlName="expectedDayRate" (keypress)="NumberOnly($event)">
@@ -67,29 +73,14 @@
                       Please enter a valid expectedDayRate' .
                     </span>
                   </div>
-                  <!-- <div class="form-group">
-                      <select class="form-control" formControlName="currency">
-                        <option value="" disabled selected hidden>Select Currency</option>
-                        <option selected value="pound">£</option>
-                      </select>
-                      <span class="text-danger" *ngIf="
-                        otherDetailForm.controls?.['currency']?.touched &&
-                        otherDetailForm.controls?.['currency']?.errors?.['required']">
-                        Please enter currency.
-                      </span>
-                      <span class="text-danger" *ngIf="
-                        otherDetailForm.controls?.['currency']?.touched &&
-                        otherDetailForm.controls?.['currency']?.errors?.['pattern']">
-                        Please enter a valid currency' .
-                      </span>
-                    </div> -->
                 </div>
-
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Referred by:</label>
+                </div>
+                <div class="col-lg-8">
                   <div class="form-group">
-                    <label>Referred by :
-                    </label>
-                    <!-- <input type="text" class="form-control" placeholder="Referred by" formControlName="referredBy"> -->
                     <select class="form-control" formControlName="referredBy">
                       <option value="" disabled selected hidden>Select referred by</option>
                       <option value="00">00</option>
@@ -155,24 +146,27 @@
                     </span>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div style="width: 106px; margin: 2px;">
-                      <label>Upload CV :</label>
-                      <input type="file" class="form-control" height="50px" width="100px" style="height: 38px;"
-                        (change)="fileUpload($event)">
-                    </div>
-                    {{file?.name}}
-                  </div><br>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Upload CV:</label>
                 </div>
-                <div class="row">
-                  <div class="col-6">
-                    <label>Preferred contact Time :</label>
-
+                <div class="col-lg-8">
+                  <div class="form-group">
+                    <input type="file" class="form-control" (change)="fileUpload($event)">
+                    {{file?.name}}
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Preferred contact Time:</label>
+                </div>
+                <div class="col-lg-8">
+                  <div class="form-group">
                     <ng-select [items]="timeSlots" bindLabel="label" bindValue="value" formControlName="callTime"
                       class="form-select custom-ng-select-option" [multiple]="true">
                     </ng-select>
-
                     <span class="text-danger" *ngIf="
                     otherDetailForm.controls?.['callTime']?.touched &&
                     otherDetailForm.controls?.['callTime']?.errors?.['required']">
@@ -184,121 +178,100 @@
                       Please enter a valid callTime.
                     </span>
                   </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label>Preferred contact Day :</label>
-
-                      <ng-select [items]="daysOfWeek" bindLabel="label" bindValue="value" formControlName="callDay"
-                        class="form-select custom-ng-select-option" [multiple]="true">
-                      </ng-select>
-
-                      <span class="text-danger" *ngIf="
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Preferred contact Day:</label>
+                </div>
+                <div class="col-lg-8">
+                  <div class="form-group">
+                    <ng-select [items]="daysOfWeek" bindLabel="label" bindValue="value" formControlName="callDay"
+                      class="form-select custom-ng-select-option" [multiple]="true">
+                    </ng-select>
+                    <span class="text-danger" *ngIf="
                     otherDetailForm.controls?.['callDay']?.touched &&
                     otherDetailForm.controls?.['callDay']?.errors?.['required']">
-                        Please enter callDay.
-                      </span>
-                      <span class="text-danger" *ngIf="
+                      Please enter callDay.
+                    </span>
+                    <span class="text-danger" *ngIf="
                     otherDetailForm.controls?.['callDay']?.touched &&
                     otherDetailForm.controls?.['callDay']?.errors?.['pattern']">
-                        Please enter a valid callDay' .
-                      </span>
+                      Please enter a valid callDay' .
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Password:</label>
+                </div>
+                <div class="col-lg-8">
+                  <div class="input-group mb-0">
+                    <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
+                      required>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
+                        <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
+                      </div>
                     </div>
                   </div>
+                  <span class="text-danger" *ngIf="
+                    otherDetailForm.controls?.['password']?.touched &&
+                    otherDetailForm.controls?.['password']?.errors?.['required']">
+                    Please enter password.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    otherDetailForm.controls?.['password']?.touched &&
+                    otherDetailForm.controls?.['password']?.errors?.['pattern']">
+                    Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
+                    character.
+                  </span>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Confirm Password:</label>
+                </div>
+                <div class="col-lg-8">
+                  <div class="input-group mb-0">
+                    <input [type]="password" class="form-control" placeholder="Password"
+                      formControlName="confirmPassword" required>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span *ngIf="!confirmShowPassword" class="fas fa-eye"
+                          (click)="showHidePass('confirmPassword')"></span>
+                        <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
+                          (click)="showHidePass('confirmPassword')"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="text-danger" *ngIf="
+                    otherDetailForm.controls?.['confirmPassword']?.touched &&
+                    otherDetailForm.controls?.['confirmPassword']?.errors?.['required']">
+                    Please enter confirm password.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    otherDetailForm.controls?.['confirmPassword']?.touched &&
+                    otherDetailForm.controls?.['confirmPassword']?.errors?.['pattern']">
+                    Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
+                    character.
+                  </span>
+                  <span class="text-danger" *ngIf="
+                    otherDetailForm.controls?.['confirmPassword']?.touched &&
+                    otherDetailForm.controls?.['confirmPassword']?.errors?.['notSame']">
+                    Password and Confirm password do not match.
+                  </span>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Password :</label>
-                    <div class="input-group mb-0">
-                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
-                        required>
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
-                          <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="text-danger" *ngIf="
-                      otherDetailForm.controls?.['password']?.touched &&
-                      otherDetailForm.controls?.['password']?.errors?.['required']">
-                      Please enter password.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      otherDetailForm.controls?.['password']?.touched &&
-                      otherDetailForm.controls?.['password']?.errors?.['pattern']">
-                      Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
-                      character.
-                    </span>
-                  </div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+                  <button class="btn btn-primary" type="submit" [disabled]="otherDetailForm.invalid">Submit</button>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Confirm Password :
-                    </label>
-                    <div class="input-group mb-0">
-                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password"
-                        formControlName="confirmPassword">
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!confirmShowPassword" class="fas fa-eye"
-                            (click)="showHidePass('confirmPassword')"></span>
-                          <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
-                            (click)="showHidePass('confirmPassword')"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="text-danger" *ngIf="
-                      otherDetailForm.controls?.['confirmPassword']?.touched &&
-                      otherDetailForm.controls?.['confirmPassword']?.errors?.['required']">
-                      Please enter confirmPassword.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      otherDetailForm.controls?.['confirmPassword']?.touched &&
-                      otherDetailForm.controls?.['confirmPassword']?.errors?.['pattern']">
-                      Password must be at least 8 characters long, contain an uppercase letter, a number, and a special
-                      character.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label>Any Questions for us? :</label>
-                  <textarea type="text" class="form-control" placeholder="Any Questions for us ?"
-                    formControlName="anyQuestion">
-                  </textarea>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: space-between;">
-                <button type="button" routerLink="/cir/cir-accordian-card-details"
-                  class="btn btn-primary btn-round">previous Step</button>
-                <button type="submit" class="btn btn-primary btn-round">Submit</button>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section-registration">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div id="successModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-body text-center">
-              <img src="assets/img/success-icon.gif" width="100" class="mt-5 mb-5" />
-              <h5 class="mb-5">
-                <strong>Thank you for registering with us, our team will get back to you soon. We have sent the login
-                  link to your email address for you to access all the information.</strong>
-              </h5>
-            </div>
           </div>
         </div>
       </div>
