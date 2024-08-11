@@ -12,6 +12,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   tableHeader: string[] = [];
   tableData: any[] = [];
   pageType!: string;
+  showFilter: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
 
     if (this.pageType == 'User') {
       this.tableHeader = [
+        'Sr No.',
         'Name',
         'Email',
         'User Name',
@@ -46,20 +48,20 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         // 'Emergency Name',
         // 'Emergency Phone',
         // 'Emergency Email',
-        'Birth Date',
+        // 'Birth Date',
         'Current Location',
-        'Education',
+        // 'Education',
         'Nationality',
         'Call Day',
         'Call Time',
-        'Notice Period',
+        // 'Notice Period',
         'Current Job',
         'Looking For',
         'Currency',
         'Expected Day Rate',
         'Availability',
         'Course Name',
-        'SponsorForClearanceCertificate',
+        'Sponsor For Clearance Certificate',
         'Working Preference',
         'Future Availability',
         'Qualification And Certification',
@@ -125,5 +127,18 @@ export class ShowDataBaseDetailsComponent implements OnInit {
 
   openDocument(document: any) {
     window.open(document?.url, '_blank', 'noopener, noreferrer');
+  }
+
+  downloadAsExcel() {
+    this.databaseService.ExportToExcel(this.tableData, "usersList");
+  }
+
+  // Number only validation
+  NumberOnly(event: any): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 }
