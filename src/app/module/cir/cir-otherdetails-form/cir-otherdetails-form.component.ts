@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
@@ -87,6 +87,18 @@ export class CirOtherdetailsFormComponent implements OnInit {
     }
   }
 
+  wordCountValidator(maxWords: number): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.value) {
+        const wordCount = control.value.trim().split(/\s+/).length;
+        if (wordCount > maxWords) {
+          return { 'wordCount': { value: control.value, maxWords: maxWords, actualWords: wordCount } };
+        }
+      }
+      return null;
+    };
+  }
+
   initializeForms() {
     this.otherDetailForm = new FormGroup({
 
@@ -97,7 +109,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       callDay: new FormControl([], [Validators.required]),
       callTime: new FormControl([], [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
-      anyQuestion: new FormControl('', [Validators.required]),
+      anyQuestion: new FormControl(''),
       cv: new FormControl('', [Validators.required]),
     });
   }

@@ -218,9 +218,21 @@
                   </span>
                 </div>
               </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Any question for us? : </label>
+                </div>
+                <div class="col-lg-8">
+                  <div class="form-group">
+                    <textarea type="text" class="form-control" placeholder="Any question for us ?"
+                      formControlName="anyQuestion"></textarea>
+                  </div>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-lg-12 update">
-                  <button style="float: right !important;" class="btn btn-primary" type="submit" [disabled]="otherDetailForm.invalid">Submit</button>
+                  <button style="float: right !important;" class="btn btn-primary" type="submit"
+                    [disabled]="otherDetailForm.invalid">Submit</button>
                 </div>
               </div>
             </form>
