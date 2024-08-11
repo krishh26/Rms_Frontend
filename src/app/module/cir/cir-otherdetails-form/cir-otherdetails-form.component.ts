@@ -19,7 +19,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   otherDetailForm!: FormGroup;
   userID!: string;
   userdata: any = [];
-
+  referredByOptions: number[] = [];
   timeSlots = [
     { label: '1-2 AM', value: 1 },
     { label: '2-3 AM', value: 2 },
@@ -73,6 +73,10 @@ export class CirOtherdetailsFormComponent implements OnInit {
     console.log(this.userID);
     if (this.userdata) {
       this.setFormValues(this.userdata?.user);
+    }
+
+    for (let i = 0; i <= 999; i++) {
+      this.referredByOptions.push(i);
     }
   }
 

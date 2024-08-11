@@ -23,12 +23,12 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Personal Details</strong></h4>
-            <h5><strong>All fields are mandatory</strong></h5><br/>
+            <!-- <h5><strong>All fields are mandatory</strong></h5><br/> -->
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
               <!-- Name -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Your Name :</label>
+                  <label>Your Name <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -50,7 +50,7 @@
               <!-- Email -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Your Email :</label>
+                  <label>Your Email <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -72,7 +72,7 @@
               <!-- Phone Number -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Your Phone number :</label>
+                  <label>Your Phone number <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
@@ -109,7 +109,7 @@
               <!-- Nationality and UK Visa Type -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Nationality :</label>
+                  <label>Nationality <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -134,7 +134,7 @@
 
               <div class="row" *ngIf="showUKVisaType">
                 <div class="col-md-4">
-                  <label>UK Visa Type :</label>
+                  <label>UK Visa Type <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -156,7 +156,7 @@
               <!-- UK Driving License -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Do you Have a UK Driving license? :</label>
+                  <label>Do you Have a UK Driving license? <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -177,7 +177,7 @@
               <!-- Postal Code -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Postal Code:</label>
+                  <label>Postal Code <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -199,7 +199,7 @@
               <!-- Current Work -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>I'm currently :</label>
+                  <label>I'm currently <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -227,7 +227,7 @@
               <!-- Looking For -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>I am looking for :</label>
+                  <label>I am looking for <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -255,12 +255,12 @@
                 </div>
               </div>
 
-              <!-- Submit Button -->
               <div class="row">
-                <div class="update ml-auto mr-auto">
-                  <button type="submit" class="btn btn-primary btn-round">Next Step</button>
+                <div class="col-12 update">
+                  <button style="float: right !important;" type="submit" class="btn btn-primary btn-round">Next Step</button>
                 </div>
               </div>
+
             </form>
           </div>
         </div>
