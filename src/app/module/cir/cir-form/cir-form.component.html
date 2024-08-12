@@ -22,7 +22,7 @@
         </div>
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
-            <h4><strong>Personal Details</strong></h4>
+            <h4><strong>Personal Details</strong></h4><br>
             <!-- <h5><strong>All fields are mandatory</strong></h5><br/> -->
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
               <!-- Name -->
@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="UK Visa Type" formControlName="UKVisaType">
+                    <input type="text" class="form-control" placeholder="Your Current Visa Type" formControlName="UKVisaType">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['UKVisaType']?.touched &&
                       personalDetailForm.controls?.['UKVisaType']?.errors?.['required']">
@@ -204,15 +204,15 @@
                 <div class="col-md-8">
                   <div class="form-group">
                     <label>
-                      <input type="radio" id="1" name="currentWork" value="full-time" formControlName="currentWork">
+                      <input type="radio" id="1" name="currentWork" value="full-time" formControlName="currentWork">&nbsp;
                       <span style="font-weight: normal;"> Working full-time</span>
                     </label><br>
                     <label>
-                      <input type="radio" id="2" name="currentWork" value="part-time" formControlName="currentWork">
+                      <input type="radio" id="2" name="currentWork" value="part-time" formControlName="currentWork">&nbsp;
                       <span style="font-weight: normal;"> Working part-time</span>
                     </label><br>
                     <label>
-                      <input type="radio" id="3" name="currentWork" value="not-working" formControlName="currentWork">
+                      <input type="radio" id="3" name="currentWork" value="not-working" formControlName="currentWork">&nbsp;
                       <span style="font-weight: normal;"> Not working</span>
                     </label>
                     <span class="text-danger" *ngIf="
@@ -233,17 +233,17 @@
                   <div class="form-group">
                     <label>
                       <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)"
-                        [checked]="selectedLookingFor('full-time-role')">
+                        [checked]="selectedLookingFor('full-time-role')">&nbsp;
                       <span style="font-weight: normal;"> Full time role</span>
                     </label><br>
                     <label>
                       <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)"
-                        [checked]="selectedLookingFor('additional-role')">
+                        [checked]="selectedLookingFor('additional-role')">&nbsp;
                       <span style="font-weight: normal;"> Additional role</span>
                     </label><br>
                     <label>
                       <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)"
-                        [checked]="selectedLookingFor('part-time-role')">
+                        [checked]="selectedLookingFor('part-time-role')">&nbsp;
                       <span style="font-weight: normal;"> Part-time role</span>
                     </label>
                     <span class="text-danger" *ngIf="
