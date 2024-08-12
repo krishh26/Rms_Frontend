@@ -48,7 +48,7 @@
                   </tr>
                 </tbody>
               </table>
-              <button type="button" class="btn btn-primary btn-login" (click)="submitmanchester()">Submit</button>
+              <!-- <button type="button" class="btn btn-primary btn-login" (click)="submitmanchester()">Submit</button> -->
             </div>
             <!-- Table insertion ends here -->
           </div>
@@ -92,7 +92,7 @@
                   </tr>
                 </tbody>
               </table>
-              <button type="button" class="btn btn-primary btn-login" (click)="submitNorthan()">Submit</button>
+              <!-- <button type="button" class="btn btn-primary btn-login" (click)="submitNorthan()">Submit</button> -->
             </div>
             <!-- Table with Checkboxes ends here -->
           </div>
@@ -136,7 +136,7 @@
                   </tr>
                 </tbody>
               </table>
-              <button type="button" class="btn btn-primary btn-login" (click)="submitUK()">Submit</button>
+              <!-- <button type="button" class="btn btn-primary btn-login" (click)="submitUK()">Submit</button> -->
             </div>
             <!-- Table with Checkboxes ends here -->
           </div>
@@ -147,8 +147,8 @@
       <div class="update ml-auto mr-auto">
         <button type="button" style="float: left;" routerLink="/cir/cir-register"
           class="btn btn-primary btn-round">Back</button>
-        <button type="button" style="float: right;" routerLink="/cir/cir-otherdetails-form"
-          class="btn btn-primary btn-round">Next Step</button>
+          <!-- routerLink="/cir/cir-otherdetails-form" -->
+        <button type="button" style="float: right;" class="btn btn-primary btn-round" (click)="submit()">Next Step</button>
       </div>
     </div>
   </div>
