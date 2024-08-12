@@ -25,7 +25,7 @@
         <!-- Right Panel (Personal Details Form) -->
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
-            <h4><strong>Profile</strong></h4>
+            <h4 class="mb-5"><strong>Profile</strong></h4>
             <form [formGroup]="profileForm" (ngSubmit)="submit()">
               <div class="row mb-3">
                 <div class="col-md-4">
@@ -87,7 +87,7 @@
               </div>
 
               <div class="row mt-4 mb-3">
-                <div class="col-12">
+                <div class="col-12 mb-3">
                   <h4>Update Password</h4>
                 </div>
               </div>
@@ -135,8 +135,8 @@
               </div>
 
               <div class="row">
-                <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary btn-round">Update</button>
+                <div class="col-12 update">
+                  <button style="float: right!important" type="submit" class="btn btn-primary btn-round">Update</button>
                 </div>
               </div>
             </form>

@@ -26,7 +26,6 @@ export class CirForgotPasswrdComponent implements OnInit {
     });
   }
 
-
   ngOnInit() {
   }
 
@@ -37,6 +36,7 @@ export class CirForgotPasswrdComponent implements OnInit {
         if (response?.status == true) {
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
+          this.notificationService.showSuccess('We have sent a password reset link to your registered email address.');
         } else if (response?.status == true && response?.message == 'User not found'){
           this.notificationService.showError('Invalid Email Address. Try again with registered Email.');
         }
