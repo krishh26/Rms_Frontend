@@ -1,4 +1,4 @@
-.section-registration{
+.section-registration {
     padding: 40px 0;
     background-image: url("../../../../assets/img/registraion-page-background.jpg");
     background-position: center center;
@@ -61,48 +61,113 @@ h6 {
 .form-group {
     margin-bottom: 15px;
 }
+
 .textfont {
     font-size: 18px;
 }
 
 /*Profile image*/
-.profile-image{
-  width: 175px;
-  height: 175px;
-  position: relative;
-  border-radius: 100%;
-  padding: 10px;
-  border: 1px dashed #C32C1F;
-  margin-bottom: 15px;
-  background-color: #d9d9d9;
+.profile-image {
+    width: 175px;
+    height: 175px;
+    position: relative;
+    border-radius: 100%;
+    padding: 10px;
+    border: 1px dashed #C32C1F;
+    margin-bottom: 15px;
+    background-color: #d9d9d9;
 }
-.profile-image img{
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
 }
+
 .input--file {
-  right: 0;
-  position: absolute;
-  color: #fff;
-  bottom: 20px;
-  width: 42px;
-  height: 42px;
-  line-height: 42px;
-  text-align: center;
-  background: #0C3642;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  text-align: center;
+    right: 0;
+    position: absolute;
+    color: #fff;
+    bottom: 20px;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    background: #0C3642;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-align: center;
 
 }
 
 .input--file input[type="file"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  width: 42px;
-  cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 42px;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    position: relative;
+    margin-right: 10px;
+}
+
+input[type="radio"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: white;
+}
+
+input[type="radio"]:checked::before {
+    background-color: white;
+}
+
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+/* Style for checkboxes */
+input[type="checkbox"] {
+    position: relative;
+    margin-right: 10px;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid black;
+    background-color: white;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: black;
 }
