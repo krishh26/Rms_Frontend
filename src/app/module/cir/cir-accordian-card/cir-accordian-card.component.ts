@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./cir-accordian-card.component.css']
 })
 export class CirAccordianCardComponent {
-
+  selectedData: any[] = [];
   manchesterrolesTableData = [
     {
       id: 1,
@@ -222,7 +222,6 @@ export class CirAccordianCardComponent {
     }
   ];
 
-
   qaSpecialistServices = [
     {
       id: 1,
@@ -289,97 +288,122 @@ export class CirAccordianCardComponent {
   constructor(
     private cirSericeService: CirSericeService,
     private notificationService: NotificationService,
-    private router : Router,
-    private localStorageService : LocalStorageService
+    private router: Router,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
+    this.getDetails();
   }
 
-  submitmanchester() {
-    const selectedRoles = this.manchesterrolesTableData
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
+  // submitmanchester() {
+  //   const selectedRoles = this.manchesterrolesTableData
+  //     .filter(item => item.selected)
+  //     .map(item => ({ name: item.role, description: item.description }));
 
-    if (selectedRoles.length === 0) {
-      this.notificationService.showError('Please select at least one role');
-      return;
-    }
-    const payload = {
-      name: "Client 1",
-      location: "Machester Only",
-      roles: selectedRoles
-    };
-    this.cirSericeService.addClientRoles(payload).subscribe(
-      (response) => {
-        if (response?.status) {
-          this.notificationService.showSuccess('Client update Successful');
-        } else {
-          this.notificationService.showError('User not referred');
+  //   if (selectedRoles.length === 0) {
+  //     this.notificationService.showError('Please select at least one role');
+  //     return;
+  //   }
+  //   const payload = {
+  //     name: "Client 1",
+  //     location: "Machester Only",
+  //     roles: selectedRoles
+  //   };
+  //   this.cirSericeService.addClientRoles(payload).subscribe(
+  //     (response) => {
+  //       if (response?.status) {
+  //         this.notificationService.showSuccess('Client update Successful');
+  //       } else {
+  //         this.notificationService.showError('User not referred');
+  //       }
+  //     },
+  //     (error) => {
+  //       this.notificationService.showError(error?.message || 'User not referred');
+  //     }
+  //   );
+  // }
+
+  // submitNorthan() {
+  //   const selectedRoles = this.northanRolesTableData
+  //     .filter(item => item.selected)
+  //     .map(item => ({ name: item.role, description: item.description }));
+
+  //   if (selectedRoles.length === 0) {
+  //     this.notificationService.showError('Please select at least one role');
+  //     return;
+  //   }
+  //   const payload = {
+  //     name: "Client 2",
+  //     location: "Northan Ireland Only",
+  //     roles: selectedRoles
+  //   };
+  //   this.cirSericeService.addClientRoles(payload).subscribe(
+  //     (response) => {
+  //       if (response?.status) {
+  //         this.notificationService.showSuccess('Client update Successful');
+  //       } else {
+  //         this.notificationService.showError('User not referred');
+  //       }
+  //     },
+  //     (error) => {
+  //       this.notificationService.showError(error?.message || 'User not referred');
+  //     }
+  //   );
+  // }
+
+  // submitUK() {
+  //   const selectedRoles = this.qaSpecialistServices
+  //     .filter(item => item.selected)
+  //     .map(item => ({ name: item.role, description: item.description }));
+
+  //   if (selectedRoles.length === 0) {
+  //     this.notificationService.showError('Please select at least one role');
+  //     return;
+  //   }
+  //   const payload = {
+  //     name: "Client 3",
+  //     location: "All Over UK",
+  //     roles: selectedRoles
+  //   };
+  //   this.cirSericeService.addClientRoles(payload).subscribe(
+  //     (response) => {
+  //       if (response?.status) {
+  //         this.notificationService.showSuccess('Client update Successful');
+  //       } else {
+  //         this.notificationService.showError('User not referred');
+  //       }
+  //     },
+  //     (error) => {
+  //       this.notificationService.showError(error?.message || 'User not referred');
+  //     }
+  //   );
+  // }
+
+  getDetails() {
+    this.cirSericeService.getClientRoles().subscribe((response) => {
+      if (response?.status) {
+        if (response?.data?.length > 0) {
+          const tempData: any[] = response?.data?.filter((item: any) => item.name == 'Client 2' || 'Client 1' || 'Client 3');
+          tempData?.map((element: any) => {
+            if (element?.roles?.length > 0) {
+              element?.roles?.map((el: any) => {
+                this.selectedData.push(el);
+              })
+            }
+          })
         }
-      },
-      (error) => {
-        this.notificationService.showError(error?.message || 'User not referred');
       }
-    );
+    })
   }
 
-  submitNorthan() {
-    const selectedRoles = this.northanRolesTableData
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
-
-    if (selectedRoles.length === 0) {
-      this.notificationService.showError('Please select at least one role');
-      return;
+  selected(name: string): boolean {
+    const data = this.selectedData.find((element: any) => element.name == name);
+    if (data) {
+      return true;
     }
-    const payload = {
-      name: "Client 2",
-      location: "Northan Ireland Only",
-      roles: selectedRoles
-    };
-    this.cirSericeService.addClientRoles(payload).subscribe(
-      (response) => {
-        if (response?.status) {
-          this.notificationService.showSuccess('Client update Successful');
-        } else {
-          this.notificationService.showError('User not referred');
-        }
-      },
-      (error) => {
-        this.notificationService.showError(error?.message || 'User not referred');
-      }
-    );
+    return false;
   }
-
-  submitUK() {
-    const selectedRoles = this.qaSpecialistServices
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
-
-    if (selectedRoles.length === 0) {
-      this.notificationService.showError('Please select at least one role');
-      return;
-    }
-    const payload = {
-      name: "Client 3",
-      location: "All Over UK",
-      roles: selectedRoles
-    };
-    this.cirSericeService.addClientRoles(payload).subscribe(
-      (response) => {
-        if (response?.status) {
-          this.notificationService.showSuccess('Client update Successful');
-        } else {
-          this.notificationService.showError('User not referred');
-        }
-      },
-      (error) => {
-        this.notificationService.showError(error?.message || 'User not referred');
-      }
-    );
-  }
-
 
   submit() {
     const UKSelected = this.qaSpecialistServices
@@ -417,25 +441,25 @@ export class CirAccordianCardComponent {
     }
 
     const payloadData = {
-      client1 : manchesterrolesPayload,
-      client2 : northanRolesPayload,
-      client3 : UKSelectedPayload
+      client1: manchesterrolesPayload,
+      client2: northanRolesPayload,
+      client3: UKSelectedPayload
     }
     const loginData = this.localStorageService.getLogger();
-    if(!loginData) {
+    if (!loginData) {
       this.notificationService.showError('User not register');
       return;
     }
-    this.cirSericeService.updateUserClient(payloadData, loginData?.user?._id).subscribe((response) => {
-        if (response?.status) {
-          this.notificationService.showSuccess('Client update Successful');
-          this.router.navigate(['/cir/cir-otherdetails-form']);
-        } else {
-          this.notificationService.showError('User not referred');
-        }
-      },(error) => {
-        this.notificationService.showError(error?.message || 'User not referred');
+    this.cirSericeService.updateUserClient(payloadData, loginData?.user?._id || loginData?._id).subscribe((response) => {
+      if (response?.status) {
+        this.notificationService.showSuccess('Client update Successful');
+        this.router.navigate(['/cir/cir-otherdetails-form']);
+      } else {
+        this.notificationService.showError('User not referred');
       }
+    }, (error) => {
+      this.notificationService.showError(error?.message || 'User not referred');
+    }
     );
   }
 }
