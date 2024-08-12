@@ -32,7 +32,8 @@
                   <label for="name">Your Name:</label>
                 </div>
                 <div class="col-md-8">
-                  <input id="name" type="text" class="form-control" placeholder="Your Name" formControlName="name" readonly>
+                  <input id="name" type="text" class="form-control" placeholder="Your Name" formControlName="name"
+                    readonly>
                   <span class="text-danger" *ngIf="
                     profileForm?.controls?.['name']?.touched &&
                     profileForm?.controls?.['name']?.errors?.['required']">
@@ -62,7 +63,7 @@
                 </div>
                 <div class="col-md-8">
                   <input id="phoneNumber" type="tel" class="form-control" placeholder="Your Phone Number"
-                    [maxlength]="10" formControlName="phoneNumber" >
+                    [maxlength]="10" formControlName="phoneNumber">
                 </div>
               </div>
 
@@ -72,7 +73,7 @@
                 </div>
                 <div class="col-md-8">
                   <input id="nationality" type="text" class="form-control" placeholder="Nationality"
-                    formControlName="nationality" >
+                    formControlName="nationality">
                 </div>
               </div>
 
@@ -82,7 +83,7 @@
                 </div>
                 <div class="col-md-8">
                   <input id="postalCode" type="text" class="form-control" placeholder="Postal Code"
-                    formControlName="postalCode" >
+                    formControlName="postalCode">
                 </div>
               </div>
 
@@ -100,6 +101,11 @@
                   <div class="col-md-8">
                     <input id="password" type="password" class="form-control" placeholder="Password"
                       formControlName="password">
+
+
+                    <span *ngIf="!showPassword" style="margin-left: 360px !important;" class="fas fa-eye" (click)="showHidePass('password')"></span>
+                    <span *ngIf="showPassword" style="margin-left: 360px !important;" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
+
                     <span class="text-danger" *ngIf="
                       profileForm?.controls?.['password']?.touched &&
                       profileForm?.controls?.['password']?.errors?.['required']">
@@ -120,6 +126,12 @@
                   <div class="col-md-8">
                     <input id="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
                       formControlName="confirmPassword">
+
+                    <span style="margin-left: 360px !important;" *ngIf="!confirmShowPassword" class="fas fa-eye"
+                      (click)="showHidePass('confirmPassword')"></span>
+                    <span style="margin-left: 360px !important; " *ngIf="confirmShowPassword" class="fas fa-eye-slash"
+                      (click)="showHidePass('confirmPassword')"></span>
+
                     <span class="text-danger" *ngIf="
                       profileForm?.controls?.['confirmPassword']?.touched &&
                       profileForm?.controls?.['confirmPassword']?.errors?.['required']">

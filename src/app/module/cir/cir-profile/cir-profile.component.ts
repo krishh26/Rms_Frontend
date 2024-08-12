@@ -14,6 +14,10 @@ export class CirProfileComponent implements OnInit {
   profileForm!: FormGroup;
   loginDetails!: any;
   showPasswordFields = false;
+  password = 'password';
+  showPassword = false;
+  confirmPassword = 'password';
+  confirmShowPassword = false;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -49,6 +53,24 @@ export class CirProfileComponent implements OnInit {
 
    togglePasswordFields() {
     this.showPasswordFields = !this.showPasswordFields;
+  }
+
+  public showHidePass(type: string): void {
+    if (type == 'password' && this.password === 'password') {
+      this.password = 'text';
+      this.showPassword = true;
+    } else {
+      this.password = 'password';
+      this.showPassword = false;
+    }
+
+    if (type !== 'password' && this.confirmPassword === 'password') {
+      this.confirmPassword = 'text';
+      this.confirmShowPassword = true;
+    } else {
+      this.confirmPassword = 'password';
+      this.confirmShowPassword = false;
+    }
   }
 
   submit() {
