@@ -105,9 +105,9 @@
                   <label>Upload CV <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-lg-8">
-                  <div class="form-group">
-                    <input type="file" class="form-control" (change)="fileUpload($event)" accept=".doc, .docx,.pdf">
-                    {{file?.name}}
+                  <div class="form-file">
+                    <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)" accept=".doc, .docx,.pdf">
+                    <!-- {{file?.name}} -->
                   </div>
                 </div>
               </div>
