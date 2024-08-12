@@ -25,7 +25,7 @@ export class LocalStorageService {
   // Function to use for the get login user details from the localStorage
   getLogger(): any {
     const loginUser: any = localStorage.getItem('loginUser');
-    if (loginUser) {
+    if (!!loginUser && loginUser !== 'undefined') {
       return JSON.parse(loginUser);
     } else {
       return "";

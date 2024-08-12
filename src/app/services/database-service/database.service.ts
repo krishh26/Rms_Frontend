@@ -38,12 +38,15 @@ export class DatabaseService {
       .post<any>(this.baseUrl + CirEndPoint.DATABASE_LOGIN, payload, { headers: this.getHeader() });
   }
 
-  getModelData(payload: any): Observable<any> {
-    let params = new HttpParams();
-    params = params.append('modelName', payload?.modelName);
+  getModelData(payload: any, filter: any): Observable<any> {
+    const filteredData : any = Object.fromEntries(
+      Object.entries({...filter, modelName: payload?.modelName }).filter(([key, value]) => value !== undefined && value !== "")
+    );
+
+    const params = new URLSearchParams(filteredData);
 
     return this.httpClient
-      .get<any>(this.baseUrl + CirEndPoint.GET_MODEL, { params: params, headers: this.getHeader() });
+      .get<any>(this.baseUrl + CirEndPoint.GET_MODEL + `?${params.toString()}`, { headers: this.getHeader() });
   }
 
   ExportToExcel(json: any[], excelfileName: string): void {

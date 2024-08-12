@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 export class ShowDataBaseListComponent {
   tableData: any[] = [
     {
-      tableName: "User",
+      tableName: "CIR User",
       type: 'User'
     },
-    {
-      tableName: "ACR User",
-      type: 'ACRUser'
-    },
+    // {
+    //   tableName: "ACR User",
+    //   type: 'ACRUser'
+    // },
     {
       tableName: "Card",
       type: 'card'

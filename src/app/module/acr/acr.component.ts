@@ -75,7 +75,7 @@ export class AcrComponent implements OnInit {
     const html = document.getElementsByTagName('html')[0];
     const mainPanel = <HTMLElement>document.getElementsByClassName('main-panel')[0];
     setTimeout(function () {
-      toggleButton.classList.add('toggled');
+      toggleButton?.classList.add('toggled');
     }, 500);
 
     html.classList.add('nav-open');
@@ -93,7 +93,7 @@ export class AcrComponent implements OnInit {
         mainPanel.style.position = '';
       }, 500);
     }
-    this.toggleButton.classList.remove('toggled');
+    this.toggleButton?.classList.remove('toggled');
     this.sidebarVisible = false;
     html.classList.remove('nav-open');
   };

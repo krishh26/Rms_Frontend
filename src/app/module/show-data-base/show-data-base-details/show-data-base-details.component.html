@@ -15,64 +15,125 @@
       Hide Filter
     </button>
   </div>
-  <div class="row m-3" *ngIf="showFilter">
-    <div class="col-4">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Name" />
+
+  <!-- Start User Filter -->
+  <ng-container *ngIf="pageType == 'User'">
+    <div class="row m-3" *ngIf="showFilter">
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Name" [(ngModel)]="userFilter.name" />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Phone Number"
+            (keypress)="NumberOnly($event)"
+            [(ngModel)]="userFilter.phoneNumber"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userFilter.email"/>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Country"  [(ngModel)]="userFilter.country"/>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="userFilter.UKDrivinglicense">
+            <option value="" disabled selected hidden>Uk Driving License</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="userFilter.nationality">
+            <option value="" disabled selected hidden>Select Nationality</option>
+            <option value="british">British</option>
+            <option value="other">Others</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="userFilter.currentWork">
+            <option value="" disabled selected hidden>Current Working As</option>
+            <option value="full-time">Full Time</option>
+            <option value="part-time">Part Time</option>
+            <option value="not-working">Not working</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
       </div>
     </div>
-    <div class="col-4">
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Phone Number"
-          (keypress)="NumberOnly($event)"
-        />
+  </ng-container>
+
+  <!-- ACR Filter -->
+  <ng-container *ngIf="pageType == 'card'">
+    <div class="row m-3" *ngIf="showFilter">
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Role Demand" [(ngModel)]="cardFilter.rolesInDemand" />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Role Description" [(ngModel)]="cardFilter.roleDescription" />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="cardFilter.type">
+            <option value="" disabled selected hidden>Type</option>
+            <option value="ACR">ACR</option>
+            <option value="CIR">CIR</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Qualifications Certificate" [(ngModel)]="cardFilter.certifications_qualifications"/>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Value A"  [(ngModel)]="cardFilter.valueA"/>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Value B"  [(ngModel)]="cardFilter.valueB"/>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Value C"  [(ngModel)]="cardFilter.valueC"/>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
       </div>
     </div>
-    <div class="col-4">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Email" />
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Country" />
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-group">
-        <select class="form-control">
-          <option value="" disabled selected hidden>Uk Driving License</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-group">
-        <select class="form-control">
-          <option value="" disabled selected hidden>Select Nationality</option>
-          <option value="british">British</option>
-          <option value="other">Others</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-group">
-        <select class="form-control">
-          <option value="" disabled selected hidden>Current Working As</option>
-          <option value="full-time">Full Time</option>
-          <option value="part-time">Part Time</option>
-          <option value="not-working">Not working</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-4">
-      <button class="btn btn-primary">Submit</button>
-    </div>
-  </div>
+  </ng-container>
+
+  <!-- Start Database Details -->
   <div class="FlatCard shadow border-radius6 m-3">
     <div class="row card-header">
       <div class="col-6 text-start d-flex align-items-center">

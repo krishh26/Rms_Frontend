@@ -13,6 +13,28 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   tableData: any[] = [];
   pageType!: string;
   showFilter: boolean = false;
+  userFilter : any = {
+    name : '',
+    phoneNumber : '',
+    email : '',
+    country : '',
+    UKDrivinglicense : '',
+    nationality : '',
+    currentWork : ''
+  }
+  ACRFilter : any = {
+
+  }
+  cardFilter : any = {
+    rolesInDemand : '',
+    roleDescription : '',
+    type :'',
+    certifications_qualifications : '',
+    valueA : '',
+    valueB : '',
+    valueC : ''
+  }
+
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +56,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   }
 
   getTableDetails() {
-
+    let filter : any = {}
     if (this.pageType == 'User') {
       this.tableHeader = [
         'Sr No.',
@@ -79,6 +101,8 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Created At',
         'Updated At'
       ]
+      filter = this.userFilter;
+
     } else if (this.pageType == 'ACRUser') {
       this.tableHeader = [
         'Agency Name',
@@ -95,6 +119,8 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Created At',
         'Updated At'
       ]
+
+      filter = this.ACRFilter;
     } else if (this.pageType == 'card') {
       this.tableHeader = [
         'Role Demand',
@@ -108,6 +134,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Created At',
         'Updated At'
       ]
+      filter = this.cardFilter;
     } else if (this.pageType == 'client') {
       this.tableHeader = ['Name', 'Gender', 'UserType', 'Location', 'JobType', 'Rate']
     }
@@ -115,9 +142,8 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     const payload = {
       modelName: this.pageType
     }
-    this.databaseService.getModelData(payload).subscribe((response) => {
+    this.databaseService.getModelData(payload, filter).subscribe((response) => {
       if (response?.status) {
-        console.log('response', response);
         this.tableData = response.data;
       } else {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
@@ -140,5 +166,12 @@ export class ShowDataBaseDetailsComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  resetFilter() {
+    this.ACRFilter = {};
+    this.cardFilter = {};
+    this.userFilter = {};
+    this.getTableDetails();
   }
 }
