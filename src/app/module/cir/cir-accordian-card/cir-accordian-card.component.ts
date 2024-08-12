@@ -1,4 +1,6 @@
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
@@ -284,11 +286,11 @@ export class CirAccordianCardComponent {
     }
   ];
 
-
-
   constructor(
     private cirSericeService: CirSericeService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router : Router,
+    private localStorageService : LocalStorageService
   ) { }
 
   ngOnInit() {
@@ -378,4 +380,62 @@ export class CirAccordianCardComponent {
     );
   }
 
+
+  submit() {
+    const UKSelected = this.qaSpecialistServices
+      .filter(item => item.selected)
+      .map(item => ({ name: item.role, description: item.description }));
+    const UKSelectedPayload = {
+      name: "Client 3",
+      location: "All Over UK",
+      roles: UKSelected
+    };
+
+    const northanRolesTableData = this.northanRolesTableData
+      .filter(item => item.selected)
+      .map(item => ({ name: item.role, description: item.description }));
+
+    const northanRolesPayload = {
+      name: "Client 2",
+      location: "Northan Ireland Only",
+      roles: northanRolesTableData
+    };
+
+    const manchesterrolesTableData = this.manchesterrolesTableData
+      .filter(item => item.selected)
+      .map(item => ({ name: item.role, description: item.description }));
+
+    const manchesterrolesPayload = {
+      name: "Client 1",
+      location: "Machester Only",
+      roles: manchesterrolesTableData
+    };
+
+    if (UKSelected?.length === 0 && northanRolesTableData?.length === 0 && manchesterrolesTableData?.length === 0) {
+      this.notificationService.showError('Please select at least one role');
+      return;
+    }
+
+    const payloadData = {
+      client1 : manchesterrolesPayload,
+      client2 : northanRolesPayload,
+      client3 : UKSelectedPayload
+    }
+    const loginData = this.localStorageService.getLogger();
+    if(!loginData) {
+      this.notificationService.showError('User not register');
+      return;
+    }
+    this.cirSericeService.updateUserClient(payloadData, loginData?.user?._id).subscribe((response) => {
+        if (response?.status) {
+          this.notificationService.showSuccess('Client update Successful');
+          this.router.navigate(['/cir/cir-otherdetails-form']);
+        } else {
+          this.notificationService.showError('User not referred');
+        }
+      },(error) => {
+        this.notificationService.showError(error?.message || 'User not referred');
+      }
+    );
+  }
 }
