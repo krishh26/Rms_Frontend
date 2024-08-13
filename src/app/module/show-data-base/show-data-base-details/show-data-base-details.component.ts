@@ -81,21 +81,6 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Call Time',
         'Any Question',
         'Profile',
-
-        // 'Current Job',
-        // 'Currency',
-        // 'Availability',
-        // 'Course Name',
-        // 'Sponsor For Clearance Certificate',
-        // 'Working Preference',
-        // 'Future Availability',
-        // 'Qualification And Certification',
-        // 'Country',
-        // 'City',
-        // 
-        // 'Profile',
-        // 'Created At',
-        // 'Updated At'
       ]
       filter = this.userFilter;
 
