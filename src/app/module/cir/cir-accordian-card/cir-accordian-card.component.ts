@@ -13,6 +13,12 @@ export class CirAccordianCardComponent {
   selectedData: any[] = [];
   manchesterrolesTableData = [
     {
+      id: 15,
+      role: "<b>Not Interested</b>",
+      description: "-",
+      selected: false,
+    },
+    {
       id: 1,
       role: "Functional Test Analyst",
       description: "Specifications not available on this day",
@@ -95,10 +101,16 @@ export class CirAccordianCardComponent {
       role: "Test Automation Engineer",
       description: "Specifications not available on this day",
       selected: false
-    }
+    },
   ];
 
   northanRolesTableData = [
+    {
+      id: 8,
+      role: "<b>Not Interested</b>",
+      description: "-",
+      selected: false,
+    },
     {
       id: 1,
       role: "QA / Test Architect",
@@ -223,6 +235,12 @@ export class CirAccordianCardComponent {
   ];
 
   qaSpecialistServices = [
+    {
+      id: 11,
+      role: "<b>Not Interested</b>",
+      description: "-",
+      selected: false,
+    },
     {
       id: 1,
       role: "Quality Assurance Testing (QAT) Specialists",

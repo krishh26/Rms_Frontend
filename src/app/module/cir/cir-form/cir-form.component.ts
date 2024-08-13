@@ -147,10 +147,10 @@ export class CirFormComponent implements OnInit {
         this.router.navigate(['/cir/cir-accordian-card-details']);
         this.notificationService.showSuccess('Success !');
       } else {
-        this.notificationService.showError(response?.message);
+        this.notificationService.showError('Fill all the fields to proceed to next Page');
       }
     }, (error) => {
-      this.notificationService.showError(error?.error?.message || 'Something went wrong!');
+      this.notificationService.showError('Fill all the fields to proceed to next Page');
     });
   }
 
