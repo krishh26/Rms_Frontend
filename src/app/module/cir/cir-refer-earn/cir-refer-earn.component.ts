@@ -39,7 +39,7 @@ export class CirReferEarnComponent implements OnInit {
   submit() {
     this.referForm.markAllAsTouched();
     if (!this.referForm.valid) {
-      return this.notificationService.showError('Please fill all details');
+      return this.notificationService.showError('Add atleast 1 candidate detail to send the referral.');
     }
 
     this.cirSericeService.referAndEarn([this.referForm.value]).subscribe((response) => {
