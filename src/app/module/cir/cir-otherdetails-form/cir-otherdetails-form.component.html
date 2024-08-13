@@ -127,7 +127,7 @@
               </div>
 
               <!-- answer is NO to above -->
-              <div class="row">
+              <div class="row" *ngIf="otherDetailForm.get('sc_dv_clearance_hold')?.value === 'no'">
                 <div class="col-md-4">
                   <label>Are you willing to undertake if/when we sponsor it? <span
                       style="color: red;">*</span> :</label>

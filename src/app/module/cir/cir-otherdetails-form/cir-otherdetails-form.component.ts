@@ -95,6 +95,18 @@ export class CirOtherdetailsFormComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+    this.otherDetailForm.get('sc_dv_clearance_hold')?.valueChanges.subscribe((value) => {
+      this.setWillingToUndertakeVisibility();
+    });
+  }
+
+  setWillingToUndertakeVisibility(): void {
+    const scDvClearanceValue = this.otherDetailForm.get('sc_dv_clearance_hold')?.value;
+    if (scDvClearanceValue !== 'no') {
+      // Hide and reset the "willing_to_undertake" control if SC/DV clearance is not "No"
+      this.otherDetailForm.get('willing_to_undertake')?.reset();
+    }
   }
 
   onItemSelect(item: any) {
