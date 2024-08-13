@@ -13,6 +13,7 @@
         <div class="FlatCard shadow border-radius6 p-0">
           <div class="card-header text-center">
             <h4>Your Referal Code</h4>
+            <button type="button" class="btn btn-primary w-50" (click)="addSkills()">Add</button>
           </div>
           <div class="card-body text-center p-3">
             <h4>{{referredBy}}</h4>
@@ -25,7 +26,7 @@
             <h4>Refer & Earn</h4>
           </div>
           <div class="card-body text-center p-3">
-            <form>
+            <!-- <form [formGroup]="myForm"> -->
               <table class="table table-bordered">
                 <thead class="card-header">
                   <tr>
@@ -33,50 +34,34 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email Id</th>
                     <th scope="col">Job Title</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td></td>
-                    <td><input type="text" placeholder="Enter name" class="form-control"
-                        formControlName="referForm.name" />
-                      <span class="text-danger text-left d-flex justify-content-left" *ngIf="
-                        referForm.controls?.['name']?.touched &&
-                        referForm.controls?.['name']?.errors?.['required']">
-                        Please enter name.
-                      </span>
-                    </td>
-                    <td><input type="email" placeholder="Enter email id" class="form-control"
-                        formControlName="referForm.email" />
-                      <span class="text-danger text-left d-flex justify-content-left" *ngIf="
-                        referForm.controls?.['email']?.touched &&
-                        referForm.controls?.['email']?.errors?.['required']">
-                        Please enter email.
-                      </span>
-                      <span class="text-danger text-left d-flex justify-content-left" *ngIf="
-                        referForm.controls?.['email']?.touched &&
-                        referForm.controls?.['email']?.errors?.['pattern']">
-                        Please enter valid email.
-                      </span>
-                    </td>
-                    <td><input type="text" placeholder="Enter job title" class="form-control"
-                        formControlName="referForm.jobTitle" />
-                      <span class="text-danger text-left d-flex justify-content-left" *ngIf="
-                        referForm.controls?.['jobTitle']?.touched &&
-                        referForm.controls?.['jobTitle']?.errors?.['required']">
-                        Please enter job title.
-                      </span>
-                    </td>
-                  </tr>
+                  <form [formGroup]="skillsForm">
+                    <ng-container formArrayName="skills">
+                      <ng-container *ngFor="let skill of skills.controls; let i = index; trackBy: trackByFn">
+                        <tr [formGroupName]="i">
+                          <td><input type="text" formControlName="name" placeholder="Enter name" /></td>
+                          <td><input type="email" formControlName="email" placeholder="Enter email" /></td>
+                          <td><input type="text" formControlName="jobTitle" placeholder="Enter job title" /></td>
+                          <td>
+                            <button type="button" (click)="removeSkill(i)">Remove</button>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </ng-container>
+                  </form>
+
                 </tbody>
               </table>
               <div class="col-6" style="float: right;">
                 <div class="d-flex align-items-center justify-content-between">
                   <button type="button" class="btn btn-secondary w-50" routerLink="/cir/cir-card">Back</button>
-                  <button type="submit" class="btn btn-primary w-50">Submit</button>
+                  <button type="button" class="btn btn-primary w-50" (click)="submit()">Submit</button>
                 </div>
               </div>
-            </form>
+            <!-- </form> -->
           </div>
         </div>
       </div>
