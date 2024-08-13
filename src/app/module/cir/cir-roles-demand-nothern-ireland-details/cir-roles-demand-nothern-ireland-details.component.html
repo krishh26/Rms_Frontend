@@ -25,8 +25,8 @@
                       <input [checked]="selected(item.field)" type="checkbox" class="check-box"
                         [(ngModel)]="item.selected" [disabled]="selected(item.field) ? true : false">
                     </td>
-                    <td class="text-left">{{ item?.field }}</td>
-                    <td class="text-left"><a title="{{ item?.description }}">{{ item?.description | slice:0:200 }}</a>
+                    <td class="text-left" [innerHTML]="item?.field"></td>
+                    <td class="text-left"><a ngbTooltip="{{ item?.description }}">{{ item?.description | slice:0:200 }}...</a>
                     </td>
                   </tr>
                 </ng-container>

@@ -44,7 +44,7 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
                     </td>
-                    <td><a title="{{ role?.description }}">{{ role?.description | slice:0:200 }}</a></td>
+                    <td><a ngbTooltip="{{ role?.description }}">{{ role?.description | slice:0:200 }}...</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -88,7 +88,7 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
                     </td>
-                    <td><a title="{{ role?.description }}">{{ role?.description | slice:0:200 }}</a></td>
+                    <td><a ngbTooltip="{{ role?.description }}">{{ role?.description | slice:0:200 }}...</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -132,7 +132,7 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="service.role"></label>
                     </td>
-                    <td><a title="{{ service?.description }}">{{ service?.description | slice:0:200 }}</a></td>
+                    <td><a ngbTooltip="{{ service?.description }}">{{ service?.description | slice:0:200 }}...</a></td>
                   </tr>
                 </tbody>
               </table>

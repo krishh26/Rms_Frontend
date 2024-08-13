@@ -72,7 +72,6 @@ export class CirOtherdetailsFormComponent implements OnInit {
 
     this.userdata = this.localStorageService.getLogger();
     this.userID = this.userdata?.user?._id
-    console.log(this.userID);
     if (this.userdata) {
       this.setFormValues(this.userdata?.user);
     }
