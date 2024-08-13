@@ -1,4 +1,4 @@
-.section-card{
+.section-card {
   padding: 40px 0;
   background-image: url("../../../../assets/img/registraion-page-background.jpg");
   background-position: center center;
@@ -15,10 +15,12 @@ h5,
 h6 {
   margin-top: 0px;
 }
-p{
+
+p {
   margin-bottom: 0px;
 }
-strong{
+
+strong {
   font-weight: 600;
 }
 
@@ -43,10 +45,12 @@ strong{
   border-radius: 6px;
 
 }
+
 .FlatCard .card-body {
   padding: 1rem;
 }
-.FlatCard .card-header{
+
+.FlatCard .card-header {
   background-color: #007f83;
   padding: 1rem;
   color: #FFF;
@@ -54,10 +58,12 @@ strong{
 }
 
 .FlatCard {
-transition: transform 0.3s ease; /* Smooth zoom transition */
-transform-origin: center center; /* Zoom origin */
-border-radius: 6px;
-cursor: pointer;
+  transition: transform 0.3s ease;
+  /* Smooth zoom transition */
+  transform-origin: center center;
+  /* Zoom origin */
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 /* .FlatCard:hover {
@@ -67,8 +73,10 @@ border: 1px solid rgb(255, 165, 165);
 
 /* Ensure the text inside doesn't zoom */
 .FlatCard * {
-transition: none; /* Disable transition on all children elements */
+  transition: none;
+  /* Disable transition on all children elements */
 }
+
 .text-bold {
   font-size: 18px;
   font-weight: bolder;
@@ -85,6 +93,7 @@ transition: none; /* Disable transition on all children elements */
 .w-60 {
   width: 60%;
 }
+
 /* Style for checkboxes */
 input[type="checkbox"] {
   position: relative;
@@ -112,6 +121,7 @@ input[type="checkbox"]:checked::after {
   font-size: 14px;
   color: black;
 }
+
 /* Override ngbTooltip styles */
 ::ng-deep .tooltip.show {
   display: block;
@@ -120,13 +130,16 @@ input[type="checkbox"]:checked::after {
 
 /* Override ngbTooltip styles */
 ::ng-deep .tooltip-inner {
-  text-align: left !important; /* Aligns text to the left */
-  background-color: white !important;
+  text-align: left !important;
+  /* Aligns text to the left */
+  background-color: #ADD8E6 !important;
   color: black !important;
   width: 100% !important;
-  max-width: 80%; /* Adjust this based on your tooltip size */
+  max-width: 80%;
+  /* Adjust this based on your tooltip size */
   padding: 10px !important;
-  white-space: pre-line; /* Preserves line breaks and spacing */
+  white-space: pre-line;
+  /* Preserves line breaks and spacing */
   font-size: 18px;
   font-weight: bold;
 }
