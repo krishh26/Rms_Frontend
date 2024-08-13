@@ -56,7 +56,8 @@ export class CirFormComponent implements OnInit {
       UKVisaType: data?.user?.UKVisaType || '',
       UKDrivinglicense: data?.user?.UKDrivinglicense ? 'yes' : 'no' || '',
       postalCode: data?.user?.postalCode || '',
-      currentWork: data?.user?.currentWork || ''
+      currentWork: data?.user?.currentWork || '',
+      noticePeriodDay: data?.user?.noticePeriodDay || '',
     });
 
     this.lookingFor = data?.user?.lookingFor;
@@ -102,6 +103,7 @@ export class CirFormComponent implements OnInit {
       postalCode: new FormControl('', [Validators.required]),
       currentWork: new FormControl('', [Validators.required]),
       lookingFor: new FormControl([], [Validators.required]),
+      noticePeriodDay: new FormControl([], [Validators.required]),
     });
   }
 

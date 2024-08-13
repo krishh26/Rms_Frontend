@@ -82,7 +82,7 @@
                 <div class="col-lg-8">
                   <div class="form-group">
                     <select class="form-control" formControlName="referredBy">
-                      <option value="" disabled selected >000</option>
+                      <option value="" disabled selected>000</option>
                       <option *ngFor="let option of referredByOptions" [value]="option">
                         {{ option | number: '3.0' }}
                       </option>
@@ -104,6 +104,50 @@
                   </div>
                 </div>
               </div>
+
+              <!-- SC/DV clearance -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Do you hold any SC/DV clearance? <span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="sc_dv_clearance_hold">
+                      <option value="" disabled selected hidden>Select Type</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['sc_dv_clearance_hold']?.touched &&
+                      otherDetailForm.controls?.['sc_dv_clearance_hold']?.errors?.['required']">
+                      Please select a SC/DV clearance.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- answer is NO to above -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>If your answer is NO to above, are you willing to undertake if/when we sponsor it? <span
+                      style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="willing_to_undertake">
+                      <option value="" disabled selected hidden>Select Type</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['willing_to_undertake']?.touched &&
+                      otherDetailForm.controls?.['willing_to_undertake']?.errors?.['required']">
+                      Please select a value.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <br>
               <div class="row mb-3">
                 <div class="col-lg-4">
                   <label>Upload CV <span style="color: red;">*</span> :</label>

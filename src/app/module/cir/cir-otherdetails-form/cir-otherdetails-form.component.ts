@@ -128,6 +128,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       anyQuestion: new FormControl(''),
       cv: new FormControl('', [Validators.required]),
+      sc_dv_clearance_hold: new FormControl('', [Validators.required]),
+      willing_to_undertake: new FormControl('', [Validators.required]),
     });
   }
 
@@ -142,7 +144,9 @@ export class CirOtherdetailsFormComponent implements OnInit {
         callTime: Array.isArray(data?.user?.callTime) ? data?.user?.callTime : [],
         password: data?.user?.password || '',
         anyQuestion: data?.user?.anyQuestion || '',
-        cv: data?.user?.cv || ''
+        cv: data?.user?.cv || '',
+        sc_dv_clearance_hold: data?.user?.sc_dv_clearance_hold || '',
+        willing_to_undertake: data?.user?.willing_to_undertake || '',
       });
     }
   }

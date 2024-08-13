@@ -1,4 +1,3 @@
-
 <section class="section-registration">
   <div class="container">
     <div class="FlatCard shadow border-radius24">
@@ -139,7 +138,8 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your Current Visa Type" formControlName="UKVisaType">
+                    <input type="text" class="form-control" placeholder="Your Current Visa Type"
+                      formControlName="UKVisaType">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['UKVisaType']?.touched &&
                       personalDetailForm.controls?.['UKVisaType']?.errors?.['required']">
@@ -197,6 +197,24 @@
                 </div>
               </div>
 
+              <!-- My current notice period (Days) -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>My current notice period (Days) <span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter current notice period (Days)"
+                      formControlName="noticePeriodDay">
+                    <span class="text-danger" *ngIf="
+                      personalDetailForm.controls?.['noticePeriodDay']?.touched &&
+                      personalDetailForm.controls?.['noticePeriodDay']?.errors?.['required']">
+                      Please enter your notice period.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <!-- Current Work -->
               <div class="row">
                 <div class="col-md-4">
@@ -205,15 +223,18 @@
                 <div class="col-md-8">
                   <div class="form-group">
                     <label>
-                      <input type="radio" id="1" name="currentWork" value="full-time" formControlName="currentWork">&nbsp;
+                      <input type="radio" id="1" name="currentWork" value="full-time"
+                        formControlName="currentWork">&nbsp;
                       <span style="font-weight: normal;"> Working full-time</span>
                     </label><br>
                     <label>
-                      <input type="radio" id="2" name="currentWork" value="part-time" formControlName="currentWork">&nbsp;
+                      <input type="radio" id="2" name="currentWork" value="part-time"
+                        formControlName="currentWork">&nbsp;
                       <span style="font-weight: normal;"> Working part-time</span>
                     </label><br>
                     <label>
-                      <input type="radio" id="3" name="currentWork" value="not-working" formControlName="currentWork">&nbsp;
+                      <input type="radio" id="3" name="currentWork" value="not-working"
+                        formControlName="currentWork">&nbsp;
                       <span style="font-weight: normal;"> Not working</span>
                     </label>
                     <span class="text-danger" *ngIf="
@@ -258,7 +279,8 @@
 
               <div class="row">
                 <div class="col-12 update">
-                  <button style="float: right !important;" type="submit" class="btn btn-primary btn-round">Next Step</button>
+                  <button style="float: right !important;" type="submit" class="btn btn-primary btn-round">Next
+                    Step</button>
                 </div>
               </div>
 
