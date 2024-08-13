@@ -39,19 +39,14 @@ export class CirProfileComponent implements OnInit {
       profilePhoto: new FormControl('', [Validators.required]),
       userName: new FormControl(this.loginDetails.userName, [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
-    //  confirmPassword: new FormControl('', [Validators.required,Validators.pattern(Patterns.password)]),
       name: new FormControl(this.loginDetails.name, [Validators.required, Validators.pattern(Patterns.name)]),
-     // email: new FormControl(this.loginDetails.email, [Validators.required, Validators.pattern(Patterns.email)]),
       phoneNumber: new FormControl(this.loginDetails.phoneNumber, [Validators.required, Validators.pattern(Patterns.mobile)]),
-      // education: new FormControl(this.loginDetails.education, [Validators.required]),
-      // currentLocation: new FormControl(this.loginDetails.currentLocation, [Validators.required]),
       nationality: new FormControl(this.loginDetails.nationality, [Validators.required]),
-     // UKDrivinglicense: new FormControl(this.loginDetails.UKDrivinglicense ? 'yes' : 'no', [Validators.required]),
-      postalCode:new FormControl(this.loginDetails.postalCode),
+      postalCode: new FormControl(this.loginDetails.postalCode),
     });
   }
 
-   togglePasswordFields() {
+  togglePasswordFields() {
     this.showPasswordFields = !this.showPasswordFields;
   }
 
@@ -74,10 +69,6 @@ export class CirProfileComponent implements OnInit {
   }
 
   submit() {
-    // if (!this.profileForm.controls['name']?.value) {
-    //   return this.notificationService.showError('Please enter name');
-    // }
-
     if (!this.profileForm.controls['phoneNumber']?.value) {
       return this.notificationService.showError('Please enter phoneNumber');
     }
@@ -99,7 +90,6 @@ export class CirProfileComponent implements OnInit {
     }
 
     const data: any = {
-      // "name": this.profileForm.controls['name']?.value,
       "phoneNumber": this.profileForm.controls['phoneNumber']?.value,
       "postalCode": this.profileForm.controls['postalCode']?.value,
       "nationality": this.profileForm.controls['nationality']?.value,

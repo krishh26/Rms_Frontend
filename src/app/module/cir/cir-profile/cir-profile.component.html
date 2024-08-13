@@ -27,6 +27,14 @@
           <div class="FormRight-panel">
             <h4 class="mb-5"><strong>Profile</strong></h4>
             <form [formGroup]="profileForm" (ngSubmit)="submit()">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Profile Picture</label>
+                    <img style="margin-left: 20px;" [src]="profileForm.controls['profilePhoto'].value" alt="No Image" height="100px" width="100px">
+                  </div>
+                </div>
+              </div>
               <div class="row mb-3">
                 <div class="col-md-4">
                   <label for="name">Your Name:</label>
