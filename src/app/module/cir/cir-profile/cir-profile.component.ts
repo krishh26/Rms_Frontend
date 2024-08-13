@@ -18,7 +18,7 @@ export class CirProfileComponent implements OnInit {
   showPassword = false;
   confirmPassword = 'password';
   confirmShowPassword = false;
-
+  file: any;
   constructor(
     private localStorageService: LocalStorageService,
     private notificationService: NotificationService,
@@ -48,6 +48,25 @@ export class CirProfileComponent implements OnInit {
 
   togglePasswordFields() {
     this.showPasswordFields = !this.showPasswordFields;
+  }
+
+  fileUpload(event: any): void {
+    const file = event.target.files[0];
+    const data = new FormData();
+    data.append('files', file || '');
+
+    this.cirSericeService.fileUpload(data).subscribe((response) => {
+      if (response?.status) {
+        this.file = response?.data;
+        console.log(this.file);
+
+        this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
+      } else {
+        this.notificationService.showError(response?.message || 'File not uploaded.')
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message || 'File not uploaded.')
+    })
   }
 
   public showHidePass(type: string): void {
