@@ -28,7 +28,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-right',
       preventDuplicates: false,
     }),
     BrowserAnimationsModule,

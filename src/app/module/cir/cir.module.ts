@@ -33,7 +33,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgbModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-right',
       preventDuplicates: false,
     }),
     NgSelectModule,
