@@ -76,11 +76,12 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <select class="form-control" formControlName="countrycode">
+                    <!-- <select class="form-control" formControlName="countrycode">
                       <option value="" disabled selected hidden>Select Country Code</option>
                       <option value="91">+91</option>
                       <option value="44">+44</option>
-                    </select>
+                    </select> -->
+                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc." formControlName="countrycode">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['countrycode']?.touched &&
                       personalDetailForm.controls?.['countrycode']?.errors?.['required']">
@@ -178,11 +179,11 @@
               <!-- Postal Code -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Postal Code <span style="color: red;">*</span> :</label>
+                  <label>Your Current Location <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Postal Code" formControlName="postalCode">
+                    <input type="text" class="form-control" placeholder="Enter your current city or postcode" formControlName="postalCode">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['postalCode']?.touched &&
                       personalDetailForm.controls?.['postalCode']?.errors?.['required']">
