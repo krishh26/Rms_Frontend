@@ -26,7 +26,15 @@
                         [(ngModel)]="item.selected" [disabled]="selected(item.field) ? true : false">
                     </td>
                     <td class="text-left" [innerHTML]="item?.field"></td>
-                    <td class="text-left"><a ngbTooltip="{{ item?.description }}">{{ item?.description | slice:0:200 }}...</a>
+                    <td class="text-left">
+                      <a ngbTooltip="{{ item?.description }}">
+                        <span>
+                          {{ (item?.description ?? '').length > 200
+                          ? (item?.description | slice: 0:200) + '... '
+                          : item?.description }}
+                          <span *ngIf="(item?.description ?? '').length > 200" style="color: #34b5b8 ;">Read more</span>
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </ng-container>

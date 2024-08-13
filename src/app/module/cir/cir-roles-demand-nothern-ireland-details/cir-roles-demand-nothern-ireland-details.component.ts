@@ -11,6 +11,12 @@ export class CirRolesDemandNothernIrelandDetailsComponent {
 
   northernIrelandDetails = [
     {
+      id: 8,
+      field: "<b>None Interested in this Contract</b>",
+      description: "-",
+      selected: false
+    },
+    {
       id: 1,
       field: "QA / Test Architect",
       description: `
@@ -125,6 +131,7 @@ export class CirRolesDemandNothernIrelandDetailsComponent {
       `,
       selected: false
     }
+
   ];
 
   selectedData: any[] = [];

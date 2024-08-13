@@ -11,6 +11,12 @@ export class CirRolesDemandAllOverUkDetailsComponent {
 
   allOverUkDetails = [
     {
+      id: 11,
+      field: "<b>None Interested in this Contract</b>",
+      description: "-",
+      selected: false
+    },
+    {
       id: 1,
       field: "Quality Assurance Testing (QAT) Specialists",
       description: "Test specialist professionals bought ‘as a service’ and capable of delivering services across the full life cycle of your project or design process.",

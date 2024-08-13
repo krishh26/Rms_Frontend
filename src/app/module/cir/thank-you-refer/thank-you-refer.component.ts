@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThankYouReferComponent implements OnInit {
   loginUser: any;
+  referredBy : string ='';
 
   constructor(
     private localStorageService: LocalStorageService
@@ -17,6 +18,7 @@ export class ThankYouReferComponent implements OnInit {
     const loginData = this.localStorageService.getLogger();
     if (loginData) {
       this.loginUser = loginData;
+      this.referredBy = this.loginUser?.referredBy
     }
   }
 }

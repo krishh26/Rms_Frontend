@@ -44,7 +44,16 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
                     </td>
-                    <td><a ngbTooltip="{{ role?.description }}">{{ role?.description | slice:0:200 }}...</a></td>
+                    <td>
+                      <a ngbTooltip="{{ role?.description }}">
+                        <span>
+                          {{ (role?.description ?? '').length > 200
+                          ? (role?.description | slice: 0:200) + '... '
+                          : role?.description }}
+                          <span *ngIf="(role?.description ?? '').length > 200" style="color: #34b5b8 ;">Read more</span>
+                        </span>
+                      </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -88,7 +97,16 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
                     </td>
-                    <td><a ngbTooltip="{{ role?.description }}">{{ role?.description | slice:0:200 }}...</a></td>
+                    <td>
+                      <a ngbTooltip="{{ role?.description }}">
+                        <span>
+                          {{ (role?.description ?? '').length > 200
+                          ? (role?.description | slice: 0:200) + '... '
+                          : role?.description }}
+                          <span *ngIf="(role?.description ?? '').length > 200" style="color: #34b5b8 ;">Read more</span>
+                        </span>
+                      </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -132,7 +150,16 @@
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="service.role"></label>
                     </td>
-                    <td><a ngbTooltip="{{ service?.description }}">{{ service?.description | slice:0:200 }}...</a></td>
+                    <td>
+                      <a ngbTooltip="{{ service?.description }}">
+                        <span>
+                          {{ (service?.description ?? '').length > 200
+                          ? (service?.description | slice: 0:200) + '... '
+                          : service?.description }}
+                          <span *ngIf="(service?.description ?? '').length > 200" style="color: #34b5b8 ;">Read more</span>
+                        </span>
+                      </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>

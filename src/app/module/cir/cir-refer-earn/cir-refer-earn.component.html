@@ -25,7 +25,7 @@
             <h4>Refer & Earn</h4>
           </div>
           <div class="card-body text-center p-3">
-            <form>
+            <form [formGroup]="referForm" >
               <table class="table table-bordered">
                 <thead class="card-header">
                   <tr>
@@ -37,9 +37,9 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td></td>
+                    <td>1.</td>
                     <td><input type="text" placeholder="Enter name" class="form-control"
-                        formControlName="referForm.name" />
+                        formControlName="name" />
                       <span class="text-danger text-left d-flex justify-content-left" *ngIf="
                         referForm.controls?.['name']?.touched &&
                         referForm.controls?.['name']?.errors?.['required']">
@@ -47,7 +47,7 @@
                       </span>
                     </td>
                     <td><input type="email" placeholder="Enter email id" class="form-control"
-                        formControlName="referForm.email" />
+                        formControlName="email" />
                       <span class="text-danger text-left d-flex justify-content-left" *ngIf="
                         referForm.controls?.['email']?.touched &&
                         referForm.controls?.['email']?.errors?.['required']">
@@ -60,10 +60,10 @@
                       </span>
                     </td>
                     <td><input type="text" placeholder="Enter job title" class="form-control"
-                        formControlName="referForm.jobTitle" />
+                        formControlName="job_title" />
                       <span class="text-danger text-left d-flex justify-content-left" *ngIf="
-                        referForm.controls?.['jobTitle']?.touched &&
-                        referForm.controls?.['jobTitle']?.errors?.['required']">
+                        referForm.controls?.['job_title']?.touched &&
+                        referForm.controls?.['job_title']?.errors?.['required']">
                         Please enter job title.
                       </span>
                     </td>
@@ -73,7 +73,7 @@
               <div class="col-6" style="float: right;">
                 <div class="d-flex align-items-center justify-content-between">
                   <button type="button" class="btn btn-secondary w-50" routerLink="/cir/cir-card">Back</button>
-                  <button type="submit" class="btn btn-primary w-50">Submit</button>
+                  <button type="button" (click)="submit()" class="btn btn-primary w-50">Submit</button>
                 </div>
               </div>
             </form>

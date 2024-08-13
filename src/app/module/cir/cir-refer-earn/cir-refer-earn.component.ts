@@ -42,7 +42,7 @@ export class CirReferEarnComponent implements OnInit {
       return this.notificationService.showError('Please fill all details');
     }
 
-    this.cirSericeService.referAndEarn(this.referForm.value).subscribe((response) => {
+    this.cirSericeService.referAndEarn([this.referForm.value]).subscribe((response) => {
       if (response?.status) {
         this.notificationService.showSuccess('Refer and Earn Successful');
         this.router.navigate(['/cir/cir-refer-earn-thank-you']);

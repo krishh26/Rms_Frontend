@@ -10,6 +10,11 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class CirRolesDemandCardComponent implements OnInit {
   manchesterDetails = [
     {
+      id: 15,
+      field: "<b>None Interested in this Contract</b>",
+      description: "-", selected: false
+    },
+    {
       id: 1,
       field: "Functional Test Analyst",
       description: "Specifications not available on this day", selected: false
