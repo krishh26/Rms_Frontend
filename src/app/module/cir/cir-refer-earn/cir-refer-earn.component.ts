@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-cir-refer-earn',
@@ -12,19 +13,27 @@ import { Router } from '@angular/router';
 })
 export class CirReferEarnComponent implements OnInit {
   referForm!: FormGroup;
+  loginUser: any = [];
+  referredBy : string ='';
 
   constructor(
     private cirSericeService: CirSericeService,
     private notificationService: NotificationService,
-    private router : Router
+    private router: Router,
+    private localStorageService: LocalStorageService,
   ) {
+   // this.loginUser = this.localStorageService.getLogger();
     this.referForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
+      job_title: new FormControl('', [Validators.required]),
     });
+
   }
 
   ngOnInit() {
+    this.loginUser = this.localStorageService.getLogger();
+    this.referredBy = this.loginUser?.referredBy
   }
 
   submit() {
