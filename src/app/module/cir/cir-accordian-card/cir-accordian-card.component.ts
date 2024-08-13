@@ -14,7 +14,7 @@ export class CirAccordianCardComponent {
   manchesterrolesTableData = [
     {
       id: 15,
-      role: "<b>Not Interested</b>",
+      role: "<b>None Interested in this Contract</b>",
       description: "-",
       selected: false,
     },
@@ -107,7 +107,7 @@ export class CirAccordianCardComponent {
   northanRolesTableData = [
     {
       id: 8,
-      role: "<b>Not Interested</b>",
+      role: "<b>None Interested in this Contract</b>",
       description: "-",
       selected: false,
     },
@@ -237,7 +237,7 @@ export class CirAccordianCardComponent {
   qaSpecialistServices = [
     {
       id: 11,
-      role: "<b>Not Interested</b>",
+      role: "<b>None Interested in this Contract</b>",
       description: "-",
       selected: false,
     },

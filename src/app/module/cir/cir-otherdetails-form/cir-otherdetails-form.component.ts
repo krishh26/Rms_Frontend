@@ -217,13 +217,13 @@ export class CirOtherdetailsFormComponent implements OnInit {
     // Extract labels from selected callDays and callTimes and keep them as arrays of strings
     const selectedDays = this.otherDetailForm.controls['callDay'].value;
     const selectedDaysArray = Array.isArray(selectedDays)
-        ? selectedDays.map((day: any) => day.label).filter((label: string) => label)
-        : [];
+      ? selectedDays.map((day: any) => day.label).filter((label: string) => label)
+      : [];
 
     const selectedTimes = this.otherDetailForm.controls['callTime'].value;
     const selectedTimesArray = Array.isArray(selectedTimes)
-        ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
-        : [];
+      ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
+      : [];
 
     // Prepare the CV object
     const cvFile = this.file;
