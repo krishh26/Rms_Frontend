@@ -12,18 +12,13 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
   styleUrls: ['./cir-form.component.css']
 })
 export class CirFormComponent implements OnInit {
-  formType: string = 'personalDetails' // 'personalDetails', 'otherDetails', 'loginDetails'
   personalDetailForm!: FormGroup;
-  otherDetailForm!: FormGroup;
-  loginDetailForm!: FormGroup;
   password = 'password';
   showPassword = false;
   confirmPassword = 'password';
   confirmShowPassword = false;
   user_id: string = '';
-  register_data: any = [];
-  file: any;
-  selectedImage!: any;
+  register_data: any;
   showUKVisaType: boolean = false;
   lookingFor: any[] = [];
 
@@ -34,34 +29,34 @@ export class CirFormComponent implements OnInit {
     private localStorageService: LocalStorageService,
   ) {
     this.initializeForms();
-    this.register_data = this.localStorageService.getLogger();
-    if (this.register_data) {
-      this.setFormValues(this.register_data?.user);
+    const localData: any = localStorage.getItem('rmsPersonalDetails');
+    if (localData || localData !== undefined || localData !== 'undefined') {
+      this.setFormValues(JSON.parse(localData));
     }
   }
 
   ngOnInit() {
-    if (this.register_data?.user) {
-      this.setFormValues(this.register_data);
-    }
+    // if (this.register_data?.user) {
+    //   this.setFormValues(this.register_data);
+    // }
   }
 
   setFormValues(data: any) {
     this.personalDetailForm.patchValue({
-      name: data?.user?.name || '',
-      email: data?.user?.email || '',
-      countrycode: data?.user?.countrycode || '',
-      phoneNumber: data?.user?.phoneNumber || '',
-      nationality: data?.user?.nationality || '',
-      UKVisaType: data?.user?.UKVisaType || '',
-      UKDrivinglicense: data?.user?.UKDrivinglicense ? 'yes' : 'no' || '',
-      postalCode: data?.user?.postalCode || '',
-      currentWork: data?.user?.currentWork || '',
-      noticePeriodDay: data?.user?.noticePeriodDay || '',
+      name: data?.name || '',
+      email: data?.email || '',
+      countrycode: data?.countrycode || '',
+      phoneNumber: data?.phoneNumber || '',
+      nationality: data?.nationality || '',
+      UKVisaType: data?.UKVisaType || '',
+      UKDrivinglicense: data?.UKDrivinglicense ? 'yes' : 'no' || '',
+      postalCode: data?.postalCode || '',
+      currentWork: data?.currentWork || '',
+      noticePeriodDay: data?.noticePeriodDay || '',
     });
 
-    this.lookingFor = data?.user?.lookingFor;
-    this.showUKVisaType = data?.user?.nationality === 'other';
+    this.lookingFor = data?.lookingFor;
+    this.showUKVisaType = data?.nationality === 'other';
   }
 
   selectedLookingFor(type: string): boolean {
@@ -131,63 +126,44 @@ export class CirFormComponent implements OnInit {
   }
 
   submitPersonalDetail() {
-    const data = new FormData();
-    data.append('name', this.personalDetailForm.controls['name'].value || '');
-    data.append('email', this.personalDetailForm.controls['email'].value || '');
-    data.append('countrycode', this.personalDetailForm.controls['countrycode'].value || '');
-    data.append('phoneNumber', this.personalDetailForm.controls['phoneNumber'].value || '');
-    data.append('nationality', this.personalDetailForm.controls['nationality'].value || '');
-    data.append('UKVisaType', this.personalDetailForm.controls['UKVisaType'].value || '');
-    data.append('UKDrivinglicense', this.personalDetailForm.controls['UKDrivinglicense'].value || '');
-    data.append('postalCode', this.personalDetailForm.controls['postalCode'].value || '');
-    data.append('currentWork', this.personalDetailForm.controls['currentWork'].value || '');
-    data.append('lookingFor', this.selectedRoles.join(','));
-
-    this.cirservice.register(data).subscribe((response) => {
-      if (response?.status) {
-        this.localStorageService.setLogger(response?.data);
-        this.router.navigate(['/cir/cir-accordian-card-details']);
-        this.notificationService.showSuccess('Success !');
-      } else {
-        this.notificationService.showError('Fill all the fields to proceed to next Page');
-      }
-    }, (error) => {
-      this.notificationService.showError('Fill all the fields to proceed to next Page');
-    });
-  }
-
-
-  fileUpload(event: any): void {
-    this.file = event.target.files[0];
-    // this.selectedImage = this.file;
-    let reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.selectedImage = event.target.result;
+    this.personalDetailForm.markAllAsTouched();
+    const data = {
+      name: this.personalDetailForm.controls['name'].value || '',
+      email: this.personalDetailForm.controls['email'].value || '',
+      countrycode: this.personalDetailForm.controls['countrycode'].value || '',
+      phoneNumber: this.personalDetailForm.controls['phoneNumber'].value || '',
+      nationality: this.personalDetailForm.controls['nationality'].value || '',
+      UKVisaType: this.personalDetailForm.controls['UKVisaType'].value || '',
+      UKDrivinglicense: this.personalDetailForm.controls['UKDrivinglicense'].value || '',
+      postalCode: this.personalDetailForm.controls['postalCode'].value || '',
+      currentWork: this.personalDetailForm.controls['currentWork'].value || '',
+      lookingFor: this.selectedRoles.join(',') || this.lookingFor,
+      noticePeriodDay: this.personalDetailForm.controls['noticePeriodDay'].value || ''
     }
-    reader.readAsDataURL(this.file);
-  }
+    localStorage.setItem('rmsPersonalDetails', JSON.stringify(data));
+    this.router.navigate(['/cir/cir-accordian-card-details']);
+    // const data = new FormData();
+    // data.append('name', this.personalDetailForm.controls['name'].value || '');
+    // data.append('email', this.personalDetailForm.controls['email'].value || '');
+    // data.append('countrycode', this.personalDetailForm.controls['countrycode'].value || '');
+    // data.append('phoneNumber', this.personalDetailForm.controls['phoneNumber'].value || '');
+    // data.append('nationality', this.personalDetailForm.controls['nationality'].value || '');
+    // data.append('UKVisaType', this.personalDetailForm.controls['UKVisaType'].value || '');
+    // data.append('UKDrivinglicense', this.personalDetailForm.controls['UKDrivinglicense'].value || '');
+    // data.append('postalCode', this.personalDetailForm.controls['postalCode'].value || '');
+    // data.append('currentWork', this.personalDetailForm.controls['currentWork'].value || '');
+    // data.append('lookingFor', this.selectedRoles.join(','));
 
-  submitOtherDetails() {
-    this.cirservice.updateregister(this.user_id, this.otherDetailForm.value).subscribe((response) => {
-      if (response?.status == true) {
-        this.router.navigate(['/cir/cir-card']);
-        this.notificationService.showSuccess(response?.message, 'Success !');
-      } else {
-        this.notificationService.showError(response?.message, 'Select different Username!');
-      }
-    }, (error) => {
-      this.notificationService.showError(error?.error?.message, 'Select different Username!');
-    })
-  }
-
-  // Function to be used for submit login Details
-  submitLoginDetails() {
-    this.formType = 'loginDetails';
-    this.router.navigate(['/cir/cir-login']);
-  }
-
-  // previous step
-  previousStep(type: string) {
-    this.formType = type;
+    // this.cirservice.register(data).subscribe((response) => {
+    //   if (response?.status) {
+    //     this.localStorageService.setLogger(response?.data);
+    //     this.router.navigate(['/cir/cir-accordian-card-details']);
+    //     this.notificationService.showSuccess('Success !');
+    //   } else {
+    //     this.notificationService.showError('Fill all the fields to proceed to next Page');
+    //   }
+    // }, (error) => {
+    //   this.notificationService.showError('Fill all the fields to proceed to next Page');
+    // });
   }
 }

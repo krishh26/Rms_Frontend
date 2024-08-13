@@ -70,22 +70,12 @@ export class CirOtherdetailsFormComponent implements OnInit {
   ) {
     this.initializeForms();
 
-    this.userdata = this.localStorageService.getLogger();
-    this.userID = this.userdata?.user?._id
-    if (this.userdata) {
-      this.setFormValues(this.userdata?.user);
-    }
-
     for (let i = 0; i <= 999; i++) {
       this.referredByOptions.push(i);
     }
   }
 
   ngOnInit() {
-    console.log(this.userdata?.user);
-    if (this.userdata?.user) {
-      this.setFormValues(this.userdata);
-    }
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'value',
@@ -142,25 +132,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
       cv: new FormControl('', [Validators.required]),
       sc_dv_clearance_hold: new FormControl('', [Validators.required]),
       willing_to_undertake: new FormControl('', [Validators.required]),
+      confirmPassword: new FormControl('', [Validators.required])
     });
-  }
-
-  setFormValues(data: any) {
-    if (data?.user) {
-      this.otherDetailForm.patchValue({
-        workLocation: Array.isArray(data?.user?.workLocation) ? data?.user?.workLocation : [],
-        currency: data?.user?.currency || '',
-        expectedDayRate: data?.user?.expectedDayRate || '',
-        referredBy: data?.user?.referredBy || '',
-        callDay: Array.isArray(data?.user?.callDay) ? data?.user?.callDay : [],
-        callTime: Array.isArray(data?.user?.callTime) ? data?.user?.callTime : [],
-        password: data?.user?.password || '',
-        anyQuestion: data?.user?.anyQuestion || '',
-        cv: data?.user?.cv || '',
-        sc_dv_clearance_hold: data?.user?.sc_dv_clearance_hold || '',
-        willing_to_undertake: data?.user?.willing_to_undertake || '',
-      });
-    }
   }
 
   selectedRoles: string[] = [];
@@ -224,6 +197,30 @@ export class CirOtherdetailsFormComponent implements OnInit {
     })
   }
 
+  submit() {
+    const localData: any = localStorage.getItem('rmsPersonalDetails');
+    if (!localData || localData == undefined || localData == 'undefined') {
+      return this.submitotherDetail();
+    }
+
+    this.cirSericeService.register(JSON.parse(localData)).subscribe((response) => {
+      if (response?.status) {
+        console.log('response?.data', response?.data);
+        this.localStorageService.setLogger(response?.data);
+        setTimeout(() => {
+            localStorage.removeItem('rmsPersonalDetails');
+            this.submitRoles();
+            this.submitotherDetail();
+        }, 300);
+      } else {
+        this.notificationService.showError(response?.message || 'Fill all the fields of register page to proceed to next Page');
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.error?.message || 'Fill all the fields of register page to proceed to next Page');
+    });
+  }
+
+
   submitotherDetail() {
     if (!this.file) {
       return this.notificationService.showError('Please upload file');
@@ -258,6 +255,9 @@ export class CirOtherdetailsFormComponent implements OnInit {
       cv: cvObject
     };
 
+    this.userdata = this.localStorageService.getLogger();
+    this.userID = this.userdata?.user?._id
+
     // Attach the file to the form data
     this.otherDetailForm.controls['cv'].patchValue(this.file);
 
@@ -266,6 +266,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
         if (response?.status == true) {
           this.router.navigate(['/cir/cir-thankyou']);
           this.notificationService.showSuccess(response?.message, 'Success !');
+          localStorage.removeItem('rmsRolesDetails');
         } else {
           this.notificationService.showError(response?.message, 'Select different Username!');
         }
@@ -276,5 +277,24 @@ export class CirOtherdetailsFormComponent implements OnInit {
     );
   }
 
-
+  submitRoles() {
+    const rolesData: any = localStorage.getItem('rmsRolesDetails');
+    if (rolesData || rolesData !== undefined || rolesData !== 'undefined') {
+      this.userdata = this.localStorageService.getLogger();
+      this.userID = this.userdata?.user?._id
+      const roles = JSON.parse(rolesData);
+      this.cirSericeService.updateUserClient(roles, this.userID).subscribe((response) => {
+        if (response?.status) {
+          this.notificationService.showSuccess('Client update Successful');
+          localStorage.removeItem('rmsRolesDetails');
+          // this.router.navigate(['/cir/cir-otherdetails-form']);
+        } else {
+          this.notificationService.showError('User not referred');
+        }
+      }, (error) => {
+        this.notificationService.showError(error?.message || 'User not referred');
+      }
+      );
+    }
+  }
 }
