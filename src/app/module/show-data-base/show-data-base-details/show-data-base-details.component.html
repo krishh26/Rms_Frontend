@@ -1,17 +1,9 @@
 <div class="section-card">
   <div class="m-3">
-    <button
-      class="btn btn-primary"
-      *ngIf="!showFilter"
-      (click)="showFilter = !showFilter"
-    >
+    <button class="btn btn-primary" *ngIf="!showFilter" (click)="showFilter = !showFilter">
       Show Filter
     </button>
-    <button
-      class="btn btn-primary"
-      *ngIf="showFilter"
-      (click)="showFilter = !showFilter"
-    >
+    <button class="btn btn-primary" *ngIf="showFilter" (click)="showFilter = !showFilter">
       Hide Filter
     </button>
   </div>
@@ -26,23 +18,18 @@
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Phone Number"
-            (keypress)="NumberOnly($event)"
-            [(ngModel)]="userFilter.phoneNumber"
-          />
+          <input type="text" class="form-control" placeholder="Phone Number" (keypress)="NumberOnly($event)"
+            [(ngModel)]="userFilter.phoneNumber" />
         </div>
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userFilter.email"/>
+          <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userFilter.email" />
         </div>
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Country"  [(ngModel)]="userFilter.country"/>
+          <input type="text" class="form-control" placeholder="Country" [(ngModel)]="userFilter.country" />
         </div>
       </div>
       <div class="col-4">
@@ -90,7 +77,8 @@
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Role Description" [(ngModel)]="cardFilter.roleDescription" />
+          <input type="text" class="form-control" placeholder="Role Description"
+            [(ngModel)]="cardFilter.roleDescription" />
         </div>
       </div>
       <div class="col-4">
@@ -104,25 +92,26 @@
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Qualifications Certificate" [(ngModel)]="cardFilter.certifications_qualifications"/>
+          <input type="text" class="form-control" placeholder="Qualifications Certificate"
+            [(ngModel)]="cardFilter.certifications_qualifications" />
         </div>
       </div>
 
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value A"  [(ngModel)]="cardFilter.valueA"/>
+          <input type="text" class="form-control" placeholder="Value A" [(ngModel)]="cardFilter.valueA" />
         </div>
       </div>
 
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value B"  [(ngModel)]="cardFilter.valueB"/>
+          <input type="text" class="form-control" placeholder="Value B" [(ngModel)]="cardFilter.valueB" />
         </div>
       </div>
 
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value C"  [(ngModel)]="cardFilter.valueC"/>
+          <input type="text" class="form-control" placeholder="Value C" [(ngModel)]="cardFilter.valueC" />
         </div>
       </div>
 
@@ -140,12 +129,7 @@
         <h2 class="card-title">{{ pageType }} Details</h2>
       </div>
       <div class="col-6 text-end">
-        <button
-          type="button"
-          class="btn btn-primary"
-          style="padding: 0px 10px !important"
-          (click)="downloadAsExcel()"
-        >
+        <button type="button" class="btn btn-primary" style="padding: 0px 10px !important" (click)="downloadAsExcel()">
           Download Excel
         </button>
       </div>
@@ -163,22 +147,14 @@
                   <td>{{ index + 1 }}</td>
                   <td>{{ item?.name }}</td>
                   <td>{{ item?.email }}</td>
-                  <td>{{ item?.userName }}</td>
                   <td>{{ item?.countrycode }}</td>
                   <td>{{ item?.phoneNumber }}</td>
-                  <!-- <td>{{ item?.secondaryEmail }}</td>
-                  <td>{{ item?.secondaryPhoneNumber }}</td>
-                  <td>{{ item?.emergencyName }}</td>
-                  <td>{{ item?.emergencyContact }}</td>
-                  <td>{{ item?.emergencyEmail }}</td> -->
-                  <!-- <td>{{ item?.dataOfBirth | date : 'dd-MM-YYY' }}</td> -->
-                  <td>{{ item?.currentLocation }}</td>
-                  <!-- <td>{{ item?.education }}</td> -->
                   <td>{{ item?.nationality }}</td>
-                  <td>{{ item?.callDay }}</td>
-                  <td>{{ item?.callTime }}</td>
-                  <!-- <td>{{ item?.noticePeriod }}</td> -->
-                  <td>{{ item?.currentJobIs }}</td>
+                  <td>{{ item?.UKDrivinglicense }}</td>
+                  <td>{{ item?.UKVisaType }}</td>
+                  <td>{{ item?.postalCode }}</td>
+                  <td>{{ item?.noticePeriodDay }}</td>
+                  <td>{{ item?.currentWork }}</td>
                   <td>
                     <ng-container *ngIf="item?.lookingFor?.length > 0">
                       <ul>
@@ -188,47 +164,44 @@
                       </ul>
                     </ng-container>
                   </td>
-                  <td>{{ item?.currency }}</td>
+                  <td>{{ item?.workLocation }}</td>
                   <td>{{ item?.expectedDayRate }}</td>
-                  <td>{{ item?.Availability }}</td>
-                  <td>{{ item?.courseName }}</td>
+                  <td>{{ item?.referredBy }}</td>
+                  <td>{{item?.sc_dv_clearance_hold}}</td>
                   <td>
+                    <button (click)="openDocument(item?.cv)" type="button" class="btn w-100">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+                  <td>{{item?.willing_to_undertake}}</td>
+                  <td>{{ item?.callDay }}</td>
+                  <td>{{ item?.callTime }}</td>
+                  <td>{{ item?.anyQuestion }}</td>
+                  <td>
+                    <button (click)="openDocument(item?.profilePicture)" type="button" class="btn w-100">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+
+                  <!-- <td>{{ item?.currentJobIs }}</td>
+                  <td>{{ item?.currency }}</td>
+                  <td>{{ item?.Availability }}</td>
+                  <td>{{ item?.courseName }}</td> -->
+                  <!-- <td>
                     {{
-                      item?.sponsorForClearanceCertificate ? "True" : "False"
+                    item?.sponsorForClearanceCertificate ? "True" : "False"
                     }}
                   </td>
                   <td>{{ item?.workingPreference }}</td>
                   <td>{{ item?.futureAvailability | date : "dd-MM-YYY" }}</td>
                   <td>{{ item?.qualificationAndCertification }}</td>
-                  <td>{{ item?.UKDrivinglicense }}</td>
                   <td>{{ item?.anySC_DV }}</td>
                   <td>{{ item?.country }}</td>
                   <td>{{ item?.city }}</td>
-                  <td>{{ item?.postalCode }}</td>
-                  <td>{{ item?.UKVisaType }}</td>
-                  <td>{{ item?.currentWork }}</td>
-                  <td>{{ item?.workLocation }}</td>
-                  <td>{{ item?.anyQuestion }}</td>
-                  <td>
-                    <button
-                      (click)="openDocument(item?.profilePicture)"
-                      type="button"
-                      class="btn w-100"
-                    >
-                      <i class="fa fa-eye"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      (click)="openDocument(item?.cv)"
-                      type="button"
-                      class="btn w-100"
-                    >
-                      <i class="fa fa-eye"></i>
-                    </button>
-                  </td>
+                
                   <td>{{ item?.createdAt | date : "dd-MM-YYY HH:MM" }}</td>
-                  <td>{{ item?.updatedAt | date : "dd-MM-YYY HH:MM" }}</td>
+                  <td>{{ item?.updatedAt | date : "dd-MM-YYY HH:MM" }}</td> -->
+
                 </tr>
               </ng-container>
             </tbody>
@@ -252,7 +225,7 @@
                   <td>{{ item?.phoneNumber }}</td>
                   <td>{{ item?.contactDetails }}</td>
                   <td>{{ item?.emergencySecondaryContactDetails }}</td>
-                  <td>{{ item?.referredBy }}</td>
+
                   <td>{{ item?.createdAt | date : "dd-MM-YYY" }}</td>
                   <td>{{ item?.updatedAt | date : "dd-MM-YYY" }}</td>
                 </tr>
@@ -276,11 +249,7 @@
                   <td>{{ item?.valueB }}</td>
                   <td>{{ item?.valueC }}</td>
                   <td>
-                    <button
-                      (click)="openDocument(item?.file)"
-                      type="button"
-                      class="btn w-100"
-                    >
+                    <button (click)="openDocument(item?.file)" type="button" class="btn w-100">
                       <i class="fa fa-eye"></i>
                     </button>
                   </td>

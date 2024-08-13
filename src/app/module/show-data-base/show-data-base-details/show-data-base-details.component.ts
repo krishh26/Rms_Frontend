@@ -13,26 +13,26 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   tableData: any[] = [];
   pageType!: string;
   showFilter: boolean = false;
-  userFilter : any = {
-    name : '',
-    phoneNumber : '',
-    email : '',
-    country : '',
-    UKDrivinglicense : '',
-    nationality : '',
-    currentWork : ''
+  userFilter: any = {
+    name: '',
+    phoneNumber: '',
+    email: '',
+    country: '',
+    UKDrivinglicense: '',
+    nationality: '',
+    currentWork: ''
   }
-  ACRFilter : any = {
+  ACRFilter: any = {
 
   }
-  cardFilter : any = {
-    rolesInDemand : '',
-    roleDescription : '',
-    type :'',
-    certifications_qualifications : '',
-    valueA : '',
-    valueB : '',
-    valueC : ''
+  cardFilter: any = {
+    rolesInDemand: '',
+    roleDescription: '',
+    type: '',
+    certifications_qualifications: '',
+    valueA: '',
+    valueB: '',
+    valueC: ''
   }
 
 
@@ -56,50 +56,46 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   }
 
   getTableDetails() {
-    let filter : any = {}
+    let filter: any = {}
     if (this.pageType == 'User') {
       this.tableHeader = [
         'Sr No.',
         'Name',
         'Email',
-        'User Name',
         'Country Code',
         'Phone Number',
-        // 'Secondary Email',
-        // 'Secondary Phone',
-        // 'Emergency Name',
-        // 'Emergency Phone',
-        // 'Emergency Email',
-        // 'Birth Date',
-        'Current Location',
-        // 'Education',
         'Nationality',
+        'UK Driving License',
+        'UK Visa Type',
+        'Current Location',
+        'notice period (Days)',
+        'Current Work',
+        'Looking For',
+        'Work Location',
+        'Expected Day Rate',
+        'Referred By',
+        'Any SC_DV ?',
+        'Resume',
+        'Are you willing to undertake',
         'Call Day',
         'Call Time',
-        // 'Notice Period',
-        'Current Job',
-        'Looking For',
-        'Currency',
-        'Expected Day Rate',
-        'Availability',
-        'Course Name',
-        'Sponsor For Clearance Certificate',
-        'Working Preference',
-        'Future Availability',
-        'Qualification And Certification',
-        'UK Driving License',
-        'Any SC_DV ?',
-        'Country',
-        'City',
-        'Postal Code',
-        'UK Visa Type',
-        'Current Work',
-        'Work Location',
         'Any Question',
         'Profile',
-        'Resume',
-        'Created At',
-        'Updated At'
+
+        // 'Current Job',
+        // 'Currency',
+        // 'Availability',
+        // 'Course Name',
+        // 'Sponsor For Clearance Certificate',
+        // 'Working Preference',
+        // 'Future Availability',
+        // 'Qualification And Certification',
+        // 'Country',
+        // 'City',
+        // 
+        // 'Profile',
+        // 'Created At',
+        // 'Updated At'
       ]
       filter = this.userFilter;
 
@@ -115,7 +111,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'phone Number',
         'Contact Details',
         'Emergency Secondary Contact Details',
-        'Referred By',
+
         'Created At',
         'Updated At'
       ]
