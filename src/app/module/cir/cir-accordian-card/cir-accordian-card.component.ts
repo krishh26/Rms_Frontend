@@ -436,7 +436,7 @@ export class CirAccordianCardComponent {
     };
 
     if (UKSelected?.length === 0 && northanRolesTableData?.length === 0 && manchesterrolesTableData?.length === 0) {
-      this.notificationService.showError('Please select at least one role');
+      this.notificationService.showError('Please select atleast 1 option in each Contract to move to next page');
       return;
     }
 

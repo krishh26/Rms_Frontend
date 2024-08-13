@@ -23,6 +23,7 @@ import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-
 import { ThankYouReferComponent } from './thank-you-refer/thank-you-refer.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CirActiveRolesComponent } from './cir-active-roles/cir-active-roles.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +36,9 @@ import { CirActiveRolesComponent } from './cir-active-roles/cir-active-roles.com
       positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),
-    NgSelectModule
+    NgSelectModule,
+    NgMultiSelectDropDownModule.forRoot()
+
   ],
   declarations: [
     CirComponent,

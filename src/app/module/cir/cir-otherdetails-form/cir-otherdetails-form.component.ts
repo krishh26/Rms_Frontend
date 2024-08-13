@@ -5,7 +5,7 @@ import { CirSericeService } from 'src/app/services/cir-service/cir-serice.servic
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-cir-otherdetails-form',
   templateUrl: './cir-otherdetails-form.component.html',
@@ -20,6 +20,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
   userID!: string;
   userdata: any = [];
   referredByOptions: number[] = [];
+  dropdownSettings = {};
+
   timeSlots = [
     { label: '1-2 AM', value: 1 },
     { label: '2-3 AM', value: 2 },
@@ -85,6 +87,22 @@ export class CirOtherdetailsFormComponent implements OnInit {
     if (this.userdata?.user) {
       this.setFormValues(this.userdata);
     }
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'value',
+      textField: 'label',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   wordCountValidator(maxWords: number): ValidatorFn {
@@ -196,32 +214,51 @@ export class CirOtherdetailsFormComponent implements OnInit {
       return this.notificationService.showError('Please upload file');
     }
 
-    // Convert selected callDays and callTimes arrays to comma-separated strings
+    // Extract labels from selected callDays and callTimes and keep them as arrays of strings
     const selectedDays = this.otherDetailForm.controls['callDay'].value;
-    const selectedDaysString = Array.isArray(selectedDays) ? selectedDays.join(',') : '';
+    const selectedDaysArray = Array.isArray(selectedDays)
+        ? selectedDays.map((day: any) => day.label).filter((label: string) => label)
+        : [];
 
     const selectedTimes = this.otherDetailForm.controls['callTime'].value;
-    const selectedTimesString = Array.isArray(selectedTimes) ? selectedTimes.join(',') : '';
+    const selectedTimesArray = Array.isArray(selectedTimes)
+        ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
+        : [];
+
+    // Prepare the CV object
+    const cvFile = this.file;
+    console.log(cvFile.key);
+
+    const cvObject = {
+      key: cvFile.key,
+      url: cvFile.url,
+      name: cvFile.name
+    };
 
     // Prepare the form data for submission
     const formData = {
       ...this.otherDetailForm.value,
-      callDay: selectedDaysString,
-      callTime: selectedTimesString
+      callDay: selectedDaysArray,
+      callTime: selectedTimesArray,
+      cv: cvObject
     };
 
+    // Attach the file to the form data
     this.otherDetailForm.controls['cv'].patchValue(this.file);
-    console.log(this.userID);
-    this.cirSericeService.updateregister(this.userID, formData).subscribe((response) => {
-      if (response?.status == true) {
-        this.router.navigate(['/cir/cir-thankyou']);
-        this.notificationService.showSuccess(response?.message, 'Success !');
-      } else {
-        this.notificationService.showError(response?.message, 'Select different Username!');
+
+    this.cirSericeService.updateregister(this.userID, formData).subscribe(
+      (response) => {
+        if (response?.status == true) {
+          this.router.navigate(['/cir/cir-thankyou']);
+          this.notificationService.showSuccess(response?.message, 'Success !');
+        } else {
+          this.notificationService.showError(response?.message, 'Select different Username!');
+        }
+      },
+      (error) => {
+        this.notificationService.showError(error?.error?.message, 'Select different Username!');
       }
-    }, (error) => {
-      this.notificationService.showError(error?.error?.message, 'Select different Username!');
-    })
+    );
   }
 
 
