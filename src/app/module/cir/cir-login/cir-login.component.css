@@ -34,7 +34,8 @@ Login Page CSS
     overflow: hidden;
     padding: 0px;
 }
-.Login-leftside{
+
+.Login-leftside {
     background-image: url("../../../../assets/img/Login-leftside-image-white-1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -42,11 +43,28 @@ Login Page CSS
     height: 100vh;
     position: relative;
 }
-.Login-leftside .company-logo{
-    position:absolute;
+
+.Login-leftside .company-logo {
+    position: absolute;
     bottom: 3%;
     left: 23%;
     max-width: 60%;
     padding: 15px;
     text-align: center;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .Login-leftside {
+        display: none;
+    }
+    .mobile-login-modal {
+        background-image: url("../../../../assets/img/mobile-Login-leftside-image-white.jpg");       
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100vh; 
+    }
+    .login-modal {
+        padding: 0px;
+    }
 }
