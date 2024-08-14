@@ -39,6 +39,7 @@ export class CirLoginComponent implements OnInit {
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
           this.router.navigate(['/cir/cir-card']);
+          this.notificationService.showSuccess(response?.message);
         } else {
           this.notificationService.showError(response?.message);
         }

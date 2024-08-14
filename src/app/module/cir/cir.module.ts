@@ -9,7 +9,7 @@ import { ManchesterDetailsComponent } from './manchester-details/manchester-deta
 import { Dps21DetailsComponent } from './dps21-details/dps21-details.component';
 import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northen-Ireland-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { CirProfileComponent } from './cir-profile/cir-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CirForgotPasswrdComponent } from './cir-forgot-passwrd/cir-forgot-passwrd.component';
@@ -34,8 +34,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
-      preventDuplicates: false,
+      preventDuplicates: true,
     }),
+    ToastNoAnimationModule.forRoot(),
     NgSelectModule,
     NgMultiSelectDropDownModule.forRoot()
 

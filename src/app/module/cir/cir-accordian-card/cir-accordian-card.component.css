@@ -65,25 +65,23 @@ input[type="checkbox"]:checked::after {
     color: black;
 }
 
-/* Override ngbTooltip styles */
 ::ng-deep .tooltip.show {
     display: block;
     opacity: 1;
 }
 
-/* Override ngbTooltip styles */
 ::ng-deep .tooltip-inner {
-    text-align: left !important; /* Aligns text to the left */
+    text-align: left !important;
     background-color: #ADD8E6 !important;
     color: black !important;
     width: 100% !important;
-    max-width: 80%; /* Adjust this based on your tooltip size */
+    max-width: 80%;
     padding: 10px !important;
-    white-space: pre-line; /* Preserves line breaks and spacing */
-    font-size: 18px;
+    white-space: pre-line;
+    font-size: 13px;
     font-weight: bold;
-  }
-  
-  ::ng-deep .tooltip-arrow::before {
+}
+
+::ng-deep .tooltip-arrow::before {
     border-top-color: white !important;
-  }
+}

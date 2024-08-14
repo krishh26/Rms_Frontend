@@ -6,8 +6,8 @@ import { CirModule } from './module/cir/cir.module';
 import { AcrModule } from './module/acr/acr.module';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule, } from '@angular/common/http';
-import { provideToastr, ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr, ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
+import {  provideAnimations } from '@angular/platform-browser/animations';
 import { APIInterceptor } from './shared/interceptor/ApiInterceptor';
 import { ShowDataBaseModule } from './module/show-data-base/show-data-base.module';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -29,9 +29,9 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
-      preventDuplicates: false,
+      preventDuplicates: true,
     }),
-    BrowserAnimationsModule,
+    ToastNoAnimationModule.forRoot(),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
