@@ -8,16 +8,19 @@
               <img src="../../../../assets/img/Picture1.png" width="200" class="mb-5" />
             </div>
             <h1 class="HeadingLarge">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h1>
-            <p class="mb-5 textfont">SaiVen, a leading member company collaborating with IT firms across the UK and
-              India, is dedicated to delivering top-tier IT projects for public sector clients in UK. As the driving
-              force behind client relationship management, project governance, and delivery management, we ensure
-              seamless execution and exceptional results. We also specialize in engaging immigration-free resources,
-              enabling quick and cost-effective resource augmentation. Partner with us for exciting contract
-              opportunities and be a part of our success story.</p>
-            <p><strong>Saiven Technology Solution</strong><br>
+            <p class="mb-5 textfont">SaiVen, is an emerging IT QA lead business with 40+ businesses collaborations
+              across UK and India. We are a dedicated business to lead the governance of all public sector QA projects
+              signing by the group and we are the driving force for client relationship management, project governance,
+              and people/delivery management.
+              Our job is to ensure seamless execution for exceptional results, through bringing our industry expertise
+              added with right skills at right time - enabling quick and cost-effective resource augmentation, for
+              benefit of our clients.Partner with us for exciting contract opportunities and be a part of our success
+              story</p>
+            <p><strong>Saiven Technology Solutions Limited</strong><br>
               1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
             </p>
-            <p>Phone: 8856876</p>
+            <p>Company Registration Number: 8856876</p>
+            <p>Email: Info@saivensolutions.co.uk</p>
           </div>
         </div>
         <!--start Form here-->
@@ -135,9 +138,8 @@
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Key Contact Person phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Key Contact Person phone number"  [maxlength]="10"
-                    (keypress)="NumberOnly($event)"
-                      formControlName="phoneNumber">
+                    <input type="tel" class="form-control" placeholder="Key Contact Person phone number"
+                      [maxlength]="10" (keypress)="NumberOnly($event)" formControlName="phoneNumber">
                     <span class="text-danger" *ngIf="
                       agencyForm.controls?.['phoneNumber']?.touched &&
                       agencyForm.controls?.['phoneNumber']?.errors?.['required']">
