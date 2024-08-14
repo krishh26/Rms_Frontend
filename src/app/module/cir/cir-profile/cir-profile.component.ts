@@ -32,11 +32,13 @@ export class CirProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.loginDetails.profile.url);
+    
   }
 
   initializeForms() {
     this.profileForm = new FormGroup({
-      profilePhoto: new FormControl('', [Validators.required]),
+      profile: new FormControl(this.loginDetails.profile.url, [Validators.required]),
       userName: new FormControl(this.loginDetails.userName, [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       name: new FormControl(this.loginDetails.name, [Validators.required, Validators.pattern(Patterns.name)]),
@@ -60,7 +62,7 @@ export class CirProfileComponent implements OnInit {
         this.file = response?.data;
         console.log(this.file);
 
-        this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
+        this.notificationService.showSuccess(response?.message || 'Profile picture successfully uploaded.')
       } else {
         this.notificationService.showError(response?.message || 'File not uploaded.')
       }
@@ -100,8 +102,6 @@ export class CirProfileComponent implements OnInit {
       return this.notificationService.showError('Please enter postalCode');
     }
 
-
-
     if (this.profileForm.controls['password']?.value || this.profileForm.controls['confirmPassword']?.value) {
       if (this.profileForm.controls['password']?.value !== this.profileForm.controls['confirmPassword']?.value) {
         return this.notificationService.showError('Password and confirm password not matched');
@@ -112,7 +112,7 @@ export class CirProfileComponent implements OnInit {
       "phoneNumber": this.profileForm.controls['phoneNumber']?.value,
       "postalCode": this.profileForm.controls['postalCode']?.value,
       "nationality": this.profileForm.controls['nationality']?.value,
-
+      "profile": this.file
     }
 
     if (this.profileForm.controls['password']?.value) {
