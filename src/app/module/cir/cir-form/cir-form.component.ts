@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Patterns } from '../../../shared/constant/validation-patterns.const';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
@@ -24,6 +24,7 @@ export class CirFormComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private cirservice: CirSericeService,
     private notificationService: NotificationService,
     private localStorageService: LocalStorageService,
@@ -33,6 +34,11 @@ export class CirFormComponent implements OnInit {
     if (localData || localData !== undefined || localData !== 'undefined') {
       this.setFormValues(JSON.parse(localData));
     }
+    this.route.queryParams.pipe().subscribe((params) => {
+      if (params['code']) {
+        localStorage.setItem('referCode' , params['code'])
+      }
+    });
   }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -65,17 +65,18 @@ export class CirOtherdetailsFormComponent implements OnInit {
     private notificationService: NotificationService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private renderer: Renderer2
-
+    private renderer: Renderer2,
+    private route: ActivatedRoute,
   ) {
-    this.initializeForms();
 
     for (let i = 0; i <= 999; i++) {
       this.referredByOptions.push(i);
     }
-  }
 
+  }
+  
   ngOnInit() {
+    this.initializeForms();
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'value',
@@ -124,7 +125,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       workLocation: new FormControl([], [Validators.required]),
       currency: new FormControl('', [Validators.required]),
       expectedDayRate: new FormControl('', [Validators.required]),
-      referredBy: new FormControl('', [Validators.required]),
+      referredBy: new FormControl(Number(localStorage.getItem('referCode') || 0), [Validators.required]),
       callDay: new FormControl([], [Validators.required]),
       callTime: new FormControl([], [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
@@ -270,6 +271,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
         } else {
           this.notificationService.showError(response?.message, 'Select different Username!');
         }
+        localStorage.removeItem('referCode');
       },
       (error) => {
         this.notificationService.showError(error?.error?.message, 'Select different Username!');
