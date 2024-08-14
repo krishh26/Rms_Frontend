@@ -26,6 +26,18 @@
             <form [formGroup]="otherDetailForm" (ngSubmit)="submit()">
               <div class="row mb-3">
                 <div class="col-lg-4">
+                  <label>Upload CV <span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-lg-8">
+                  <div class="form-file">
+                    <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)"
+                      accept=".doc, .docx,.pdf">
+                    <!-- {{file?.name}} -->
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
                   <label>Work Location Preferences <span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-lg-8">
@@ -138,6 +150,8 @@
                       <option value="" disabled selected hidden>Select Type</option>
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
+                      <option value="might_not_be_eligible">I might not be eligible</option>
+                      <option value="dont_know"> don't know</option>
                     </select>
                     <span class="text-danger" *ngIf="
                       otherDetailForm.controls?.['willing_to_undertake']?.touched &&
@@ -148,18 +162,6 @@
                 </div>
               </div>
               <br>
-              <div class="row mb-3">
-                <div class="col-lg-4">
-                  <label>Upload CV <span style="color: red;">*</span> :</label>
-                </div>
-                <div class="col-lg-8">
-                  <div class="form-file">
-                    <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)"
-                      accept=".doc, .docx,.pdf">
-                    <!-- {{file?.name}} -->
-                  </div>
-                </div>
-              </div>
               <div class="row mb-3">
                 <div class="col-lg-4">
                   <label>Preferred contact Time<span style="color: red;">*</span>:</label>

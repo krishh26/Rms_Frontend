@@ -81,7 +81,8 @@
                       <option value="91">+91</option>
                       <option value="44">+44</option>
                     </select> -->
-                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc." formControlName="countrycode">
+                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                      formControlName="countrycode">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['countrycode']?.touched &&
                       personalDetailForm.controls?.['countrycode']?.errors?.['required']">
@@ -179,11 +180,12 @@
               <!-- Postal Code -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>Your Current Location <span style="color: red;">*</span> :</label>
+                  <label>Your Current Location<span style="color: red;">*</span>:</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter your current city or postcode" formControlName="postalCode">
+                    <input type="text" class="form-control" placeholder="Enter your current city or postcode"
+                      formControlName="postalCode">
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['postalCode']?.touched &&
                       personalDetailForm.controls?.['postalCode']?.errors?.['required']">
@@ -198,40 +200,22 @@
                 </div>
               </div>
 
-              <!-- My current notice period (Days) -->
-              <div class="row">
-                <div class="col-md-4">
-                  <label>My current notice period (Days) <span style="color: red;">*</span> :</label>
-                </div>
-                <div class="col-md-8">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter current notice period (Days)"
-                      formControlName="noticePeriodDay">
-                    <span class="text-danger" *ngIf="
-                      personalDetailForm.controls?.['noticePeriodDay']?.touched &&
-                      personalDetailForm.controls?.['noticePeriodDay']?.errors?.['required']">
-                      Please enter your notice period.
-                    </span>
-                  </div>
-                </div>
-              </div>
-
               <!-- Current Work -->
               <div class="row">
                 <div class="col-md-4">
-                  <label>I'm currently <span style="color: red;">*</span> :</label>
+                  <label>I'm currently Working<span style="color: red;">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label>
                       <input type="radio" id="1" name="currentWork" value="full-time"
                         formControlName="currentWork">&nbsp;
-                      <span style="font-weight: normal;"> Working full-time</span>
+                      <span style="font-weight: normal;"> Full-time</span>
                     </label><br>
                     <label>
                       <input type="radio" id="2" name="currentWork" value="part-time"
                         formControlName="currentWork">&nbsp;
-                      <span style="font-weight: normal;"> Working part-time</span>
+                      <span style="font-weight: normal;"> Part-time</span>
                     </label><br>
                     <label>
                       <input type="radio" id="3" name="currentWork" value="not-working"
@@ -273,6 +257,24 @@
                       personalDetailForm.controls?.['lookingFor']?.touched &&
                       personalDetailForm.controls?.['lookingFor']?.errors?.['required']">
                       Please select what you are looking for.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- My current notice period (Days) -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>My current notice period (Days) <span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter current notice period (Days)"
+                      formControlName="noticePeriodDay">
+                    <span class="text-danger" *ngIf="
+                                    personalDetailForm.controls?.['noticePeriodDay']?.touched &&
+                                    personalDetailForm.controls?.['noticePeriodDay']?.errors?.['required']">
+                      Please enter your notice period.
                     </span>
                   </div>
                 </div>
