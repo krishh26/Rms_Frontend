@@ -50,13 +50,13 @@ export class CirOtherdetailsFormComponent implements OnInit {
 
   daysOfWeek = [
     { label: 'Anyday', value: 'Anyday' },
-    { label: 'Monday', value: 'Monday' },
-    { label: 'Tuesday', value: 'Tuesday' },
-    { label: 'Wednesday', value: 'Wednesday' },
-    { label: 'Thursday', value: 'Thursday' },
-    { label: 'Friday', value: 'Friday' },
-    { label: 'Saturday', value: 'Saturday' },
-    { label: 'Sunday', value: 'Sunday' }
+    { label: 'Mon', value: 'Mon' },
+    { label: 'Tue', value: 'Tue' },
+    { label: 'Wed', value: 'Wed' },
+    { label: 'Thu', value: 'Thu' },
+    { label: 'Fri', value: 'Fri' },
+    { label: 'Sat', value: 'Sat' },
+    { label: 'Sun', value: 'Sun' }
   ];
 
   file: any;
@@ -74,7 +74,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
     }
 
   }
-  
+
   ngOnInit() {
     this.initializeForms();
     this.dropdownSettings = {
@@ -209,9 +209,9 @@ export class CirOtherdetailsFormComponent implements OnInit {
         console.log('response?.data', response?.data);
         this.localStorageService.setLogger(response?.data);
         setTimeout(() => {
-            localStorage.removeItem('rmsPersonalDetails');
-            this.submitRoles();
-            this.submitotherDetail();
+          localStorage.removeItem('rmsPersonalDetails');
+          this.submitRoles();
+          this.submitotherDetail();
         }, 300);
       } else {
         this.notificationService.showError(response?.message || 'Fill all the fields of register page to proceed to next Page');
