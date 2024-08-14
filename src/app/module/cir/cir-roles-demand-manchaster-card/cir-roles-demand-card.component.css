@@ -111,7 +111,7 @@ input[type="checkbox"]:checked::after {
   max-width: 80%; /* Adjust this based on your tooltip size */
   padding: 10px !important;
   white-space: pre-line; /* Preserves line breaks and spacing */
-  font-size: 18px;
+  font-size: 13px;
   font-weight: bold;
 }
 

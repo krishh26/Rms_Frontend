@@ -37,26 +37,7 @@ export class CirRolesDemandNothernIrelandDetailsComponent {
       id: 2,
       field: "QA / Test Manager",
       description: `
-        The QA / Test Manager will identify, document and communicate any defects, risks and issues identified during the testing process and escalate as required. They will work closely with QA Architect, QA Analysts, Business Analysts, Enterprise and Solution Architects, and Project Managers. The QA/Test Manager will be responsible for ensuring that plans for all projects are appropriate to the risk associated with the planned changes.
-        - Develop test plans for IT projects using documented business requirements.
-        - Ensure that testing risks are managed and issues associated with the testing process are escalated if necessary.
-        - Co-operate with users and PMO to agree on the testing strategy to be employed for development projects/releases.
-        - Take responsibility for all phases of testing and the management of testing activities within a development project/release.
-        - Understand and analyse Business, Functional, Technical and UI requirements of projects/releases.
-        - Define and manage the scope of testing within the context of each project/release.
-        - Create test strategy and approach documents for projects/releases, get stakeholder buy-in and keep documents updated as and when changes are required.
-        - Provide test estimates for the types of testing carried out.
-        - Create reports and testing metrics as requested by management.
-        - Manage testers' work to ensure testing is completed on time and within budget. Resolve conflicts arising between team members or with external team members.
-        - Ensure entry criteria is met before starting testing. Ensure exit criteria is met and communicated to stakeholders. Create and sign off test closure forms and obtain approval from stakeholders.
-        - Participate in QA reviews and provide required support and clarifications as needed for the reviewers.
-        - Ensure all testing deliverables and reports are version controlled and accessible for the testing team and other users.
-        - Fulfil the role of testing co-ordinator for a development project or programme of projects.
-        - Utilise testing knowledge and experience to assess and advise on the practicality of testing process alternatives. Identify improvements to the process and assist in their implementation.
-        - Provide authoritative advice and guidance to colleagues on any aspect of testing including training for testers throughout subsequent development and testing activities.
-        - Plan, arrange and control meetings, workshops and relations with user staff during test planning and through subsequent development and testing activities.
-        - Take responsibility for the production and approval of all testing deliverables and achievements of testing milestones during a project.
-        - Ability to coordinate teams both internally and externally.
+       The QA / Test Manager will be responsible for overseeing the quality assurance and testing processes within a project or across multiple projects. This role involves developing and implementing test strategies, managing test planning and execution, and coordinating the efforts of the testing team. The QA / Test Manager ensures that all testing activities align with project objectives and quality standards, collaborates with project stakeholders to integrate testing into the project lifecycle, and monitors testing progress through metrics and reports. Additionally, the role includes managing defect tracking and resolution, maintaining and improving testing practices, and ensuring that the final product meets the required quality standards for deployment.
       `,
       selected: false
     },
