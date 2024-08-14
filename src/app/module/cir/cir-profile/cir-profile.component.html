@@ -43,7 +43,7 @@
                 <div class="col-lg-8">
                   <div class="form-file">
                     <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)"
-                    accept="image/*" >
+                      accept="image/*">
                   </div>
                 </div>
               </div>
@@ -109,11 +109,14 @@
 
               <div class="row mt-4 mb-3">
                 <div class="col-12 mb-3">
-                  <h4>Update Password</h4>
+                  <h4 (click)="togglePasswordFields()"> Update Password</h4>
+                  <!-- <h4 type="button" class="btn btn-primary" (click)="togglePasswordFields()">
+                  
+                  </h4> -->
                 </div>
               </div>
 
-              <div>
+              <div *ngIf="showPasswordFields">
                 <div class="row mb-3">
                   <div class="col-md-4">
                     <label for="password">Password:</label>
@@ -121,19 +124,14 @@
                   <div class="col-md-8">
                     <input id="password" type="password" class="form-control" placeholder="Password"
                       formControlName="password">
-
-
-                    <span *ngIf="!showPassword" style="margin-left: 360px !important;" class="fas fa-eye" (click)="showHidePass('password')"></span>
-                    <span *ngIf="showPassword" style="margin-left: 360px !important;" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
-
-                    <span class="text-danger" *ngIf="
-                      profileForm?.controls?.['password']?.touched &&
-                      profileForm?.controls?.['password']?.errors?.['required']">
+                    <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
+                    <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
+                    <span class="text-danger"
+                      *ngIf="profileForm?.controls?.['password']?.touched && profileForm?.controls?.['password']?.errors?.['required']">
                       Please enter a password.
                     </span>
-                    <span class="text-danger" *ngIf="
-                      profileForm?.controls?.['password']?.touched &&
-                      profileForm?.controls?.['password']?.errors?.['pattern']">
+                    <span class="text-danger"
+                      *ngIf="profileForm?.controls?.['password']?.touched && profileForm?.controls?.['password']?.errors?.['pattern']">
                       Password must contain a capital letter, a number, and '@'.
                     </span>
                   </div>
@@ -146,25 +144,22 @@
                   <div class="col-md-8">
                     <input id="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
                       formControlName="confirmPassword">
-
-                    <span style="margin-left: 360px !important;" *ngIf="!confirmShowPassword" class="fas fa-eye"
+                    <span *ngIf="!confirmShowPassword" class="fas fa-eye"
                       (click)="showHidePass('confirmPassword')"></span>
-                    <span style="margin-left: 360px !important; " *ngIf="confirmShowPassword" class="fas fa-eye-slash"
+                    <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
                       (click)="showHidePass('confirmPassword')"></span>
-
-                    <span class="text-danger" *ngIf="
-                      profileForm?.controls?.['confirmPassword']?.touched &&
-                      profileForm?.controls?.['confirmPassword']?.errors?.['required']">
+                    <span class="text-danger"
+                      *ngIf="profileForm?.controls?.['confirmPassword']?.touched && profileForm?.controls?.['confirmPassword']?.errors?.['required']">
                       Please confirm your password.
                     </span>
-                    <span class="text-danger" *ngIf="
-                      profileForm?.controls?.['confirmPassword']?.touched &&
-                      profileForm?.controls?.['confirmPassword']?.errors?.['pattern']">
+                    <span class="text-danger"
+                      *ngIf="profileForm?.controls?.['confirmPassword']?.touched && profileForm?.controls?.['confirmPassword']?.errors?.['pattern']">
                       Password must contain a capital letter, a number, and '@'.
                     </span>
                   </div>
                 </div>
               </div>
+
 
               <div class="row">
                 <div class="col-12 update">
