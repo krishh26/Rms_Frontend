@@ -1,6 +1,6 @@
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 import { Router } from '@angular/router';
@@ -21,37 +21,56 @@ export class CirReferEarnComponent implements OnInit {
     private notificationService: NotificationService,
     private router: Router,
     private localStorageService: LocalStorageService,
+    private fb: FormBuilder,
   ) {
-   // this.loginUser = this.localStorageService.getLogger();
-    this.referForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
-      job_title: new FormControl('', [Validators.required]),
+    this.referForm = this.fb.group({
+      candidates: this.fb.array([
+        this.createCandidateFormGroup()
+      ])
     });
-
   }
+
+  createCandidateFormGroup(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(Patterns.email)]],
+      job_title: ['', Validators.required]
+    });
+  }
+
 
   ngOnInit() {
     this.loginUser = this.localStorageService.getLogger();
     this.referredBy = this.loginUser?.referredBy
   }
+  get candidates(): FormArray {
+    return this.referForm.get('candidates') as FormArray;
+  }
+
+  addCandidate() {
+    this.candidates.push(this.createCandidateFormGroup());
+  }
+
+  removeCandidate(index: number) {
+    this.candidates.removeAt(index);
+  }
 
   submit() {
     this.referForm.markAllAsTouched();
     if (!this.referForm.valid) {
-      return this.notificationService.showError('Add atleast 1 candidate detail to send the referral.');
+      return this.notificationService.showError('Add at least one candidate detail to send the referral.');
     }
 
-    this.cirSericeService.referAndEarn([this.referForm.value]).subscribe((response) => {
+    this.cirSericeService.referAndEarn(this.candidates.value).subscribe((response) => {
       if (response?.status) {
         this.notificationService.showSuccess('Refer and Earn Successful');
         this.router.navigate(['/cir/cir-refer-earn-thank-you']);
         this.referForm.reset();
       } else {
-        return this.notificationService.showError('User not refer');
+        return this.notificationService.showError('User not referred');
       }
     }, (error) => {
-      return this.notificationService.showError(error?.message || 'User not refer');
+      return this.notificationService.showError(error?.message || 'User not referred');
     });
   }
 }
