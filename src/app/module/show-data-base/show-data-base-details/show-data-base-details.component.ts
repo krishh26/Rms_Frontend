@@ -84,6 +84,9 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Are you willing to undertake',
         'Call Day',
         'Call Time',
+        'Client 1 : Machester Only',
+        'Client 2 : Northan Ireland Only',
+        'Client 3 : All Over UK',
         'Any Question',
         'Profile',
       ]
@@ -128,12 +131,12 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     const payload = {
       modelName: this.pageType,
       page: this.page,
-      page_size: this.pagesize 
+      page_size: this.pagesize
     }
     this.databaseService.getModelData(payload, filter).subscribe((response) => {
       if (response?.status) {
         this.tableData = response?.data;
-        this.totalRecords = response?.meta_data?.items; 
+        this.totalRecords = response?.meta_data?.items;
       } else {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
