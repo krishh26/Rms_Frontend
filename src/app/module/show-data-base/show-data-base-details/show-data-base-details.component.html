@@ -180,6 +180,33 @@
                   <td>{{item?.willing_to_undertake}}</td>
                   <td>{{ item?.callDay }}</td>
                   <td>{{ item?.callTime }}</td>
+                  <td>
+                    <ng-container *ngIf="item?.client1?.roles?.length> 0">
+                      <ul>
+                        <li *ngFor="let data of item?.client1?.roles">
+                          <span [innerHTML]="data?.name"></span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </td>
+                  <td>
+                    <ng-container *ngIf="item?.client2?.roles?.length > 0">
+                      <ul>
+                        <li *ngFor="let data of item?.client2?.roles">
+                          <span [innerHTML]="data?.name"></span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </td>
+                  <td>
+                    <ng-container *ngIf="item?.client3?.roles?.length > 0">
+                      <ul>
+                        <li *ngFor="let data of item?.client3?.roles">
+                          <span [innerHTML]="data?.name"></span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </td>
                   <td>{{ item?.anyQuestion }}</td>
                   <td>
                     <button (click)="openDocument(item?.profilePicture)" type="button" class="btn w-100">
