@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
@@ -39,14 +39,29 @@ export class DatabaseService {
   }
 
   getModelData(payload: any, filter: any): Observable<any> {
-    const filteredData : any = Object.fromEntries(
-      Object.entries({...filter, modelName: payload?.modelName }).filter(([key, value]) => value !== undefined && value !== "")
+    const filteredData: any = Object.fromEntries(
+      Object.entries({
+        ...filter,
+        modelName: payload?.modelName,
+        page: payload?.page,
+        limit: payload?.limit,
+        type: payload?.type
+      }).filter(
+        ([key, value]) => value !== undefined && value !== ""
+      )
     );
 
     const params = new URLSearchParams(filteredData);
 
-    return this.httpClient
-      .get<any>(this.baseUrl + CirEndPoint.GET_MODEL + `?${params.toString()}`, { headers: this.getHeader() });
+    const apiUrl = `${this.baseUrl}${CirEndPoint.GET_MODEL}?${params.toString()}`;
+
+    return this.httpClient.get<any>(apiUrl, { headers: this.getHeader() })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error fetching model data:', error);
+          return throwError(error);
+        })
+      );
   }
 
   ExportToExcel(json: any[], excelfileName: string): void {

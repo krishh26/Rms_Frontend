@@ -9,6 +9,7 @@ import { ShowDataBaseLoginComponent } from './show-data-base-login/show-data-bas
 import { ShowDataBaseListComponent } from './show-data-base-list/show-data-base-list.component';
 import { ShowDataBaseDetailsComponent } from './show-data-base-details/show-data-base-details.component';
 import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 const routes: Routes = [
@@ -53,6 +54,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     NgbModule,
+    NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',

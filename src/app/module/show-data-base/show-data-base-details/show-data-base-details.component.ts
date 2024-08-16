@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database-service/database.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { pagination } from 'src/app/shared/constant/pagination.constant';
 
 @Component({
   selector: 'app-show-data-base-details',
@@ -13,6 +14,10 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   tableData: any[] = [];
   pageType!: string;
   showFilter: boolean = false;
+  page: number = pagination.page;
+  pagesize = pagination.itemsPerPage;
+  totalRecords: number = pagination.totalRecords;
+
   userFilter: any = {
     name: '',
     phoneNumber: '',
@@ -121,11 +126,14 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     }
     // Here is call get details API for table
     const payload = {
-      modelName: this.pageType
+      modelName: this.pageType,
+      page: this.page,
+      page_size: this.pagesize 
     }
     this.databaseService.getModelData(payload, filter).subscribe((response) => {
       if (response?.status) {
-        this.tableData = response.data;
+        this.tableData = response?.data;
+        this.totalRecords = response?.meta_data?.items; 
       } else {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
@@ -155,4 +163,12 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     this.userFilter = {};
     this.getTableDetails();
   }
+
+
+  paginate(page: number) {
+    this.page = page;
+    this.getTableDetails();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
 }
