@@ -27,27 +27,27 @@ const routes: Routes = [
 
       {
         path: "acr-card",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: AcrCardComponent
       },
       {
         path: "acr-manchester-details",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: ManchesterDetailsComponent
       },
       {
         path: "acr-northern-ireland-details",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: NorthenIrelandDetailsComponent
       },
       {
         path: "acr-dps21-details",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: Dps21DetailsComponent
       },
       {
         path: "acr-profile",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: AcrProfileComponent
       },
     ]

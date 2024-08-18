@@ -14,7 +14,8 @@
               and people/delivery management.<br><br>
               Our job is to ensure seamless execution for exceptional results, through bringing our industry expertise
               added with right skills at right time - enabling quick and cost-effective resource augmentation, for
-              benefit of our clients.<br><br>Partner with us for exciting contract opportunities and be a part of our success
+              benefit of our clients.<br><br>Partner with us for exciting contract opportunities and be a part of our
+              success
               story</p>
             <p><strong>Saiven Technology Solutions Limited</strong><br>
               1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
@@ -26,9 +27,7 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4><strong>Personal Details</strong></h4><br>
-            <!-- <h5><strong>All fields are mandatory</strong></h5><br/> -->
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
-              <!-- Name -->
               <div class="row">
                 <div class="col-md-4">
                   <label>Your Name <span style="color: red;">*</span> :</label>
@@ -79,11 +78,6 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <!-- <select class="form-control" formControlName="countrycode">
-                      <option value="" disabled selected hidden>Select Country Code</option>
-                      <option value="91">+91</option>
-                      <option value="44">+44</option>
-                    </select> -->
                     <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
                       formControlName="countrycode">
                     <span class="text-danger" *ngIf="

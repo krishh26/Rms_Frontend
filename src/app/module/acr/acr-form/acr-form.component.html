@@ -1,4 +1,4 @@
-<section>
+<section class="section-registration">
   <div class="container">
     <div class="FlatCard shadow border-radius24">
       <div class="row">
@@ -14,7 +14,8 @@
               and people/delivery management.<br><br>
               Our job is to ensure seamless execution for exceptional results, through bringing our industry expertise
               added with right skills at right time - enabling quick and cost-effective resource augmentation, for
-              benefit of our clients.<br><br>Partner with us for exciting contract opportunities and be a part of our success
+              benefit of our clients.<br><br>Partner with us for exciting contract opportunities and be a part of our
+              success
               story</p>
             <p><strong>Saiven Technology Solutions Limited</strong><br>
               1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
@@ -23,53 +24,63 @@
             <p>Email: Info@saivensolutions.co.uk</p>
           </div>
         </div>
-        <!--start Form here-->
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4 class="mb-3"><strong>ACR Form</strong></h4>
             <form [formGroup]="agencyForm" (ngSubmit)="submit()">
+
               <div class="row">
-                <div class="col-12">
+                <div class="col-md-5">
+                  <label>Supplier/Agency Name<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Supplier/Agency Name :</label>
-                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="agencyName">
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['agencyName']?.touched &&
-                      agencyForm.controls?.['agencyName']?.errors?.['required']">
-                      Please enter agency name.
+                    <input type="text" class="form-control" placeholder="Enter Supplier/Agency Name"
+                      formControlName="supplierAgencyName">
+                    <span class="text-danger"
+                      *ngIf="agencyForm.get('supplierAgencyName')?.touched && agencyForm.get('supplierAgencyName')?.errors?.['required']">
+                      Please enter the supplier or agency name.
                     </span>
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['agencyName']?.touched &&
-                      agencyForm.controls?.['agencyName']?.errors?.['pattern']">
-                      Please enter valid agency name.
+                    <span class="text-danger"
+                      *ngIf="agencyForm.get('supplierAgencyName')?.touched && agencyForm.get('supplierAgencyName')?.errors?.['pattern']">
+                      Please enter a valid format for the supplier or agency name.
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Location<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Location :
-                    </label>
-                    <input type="text" class="form-control" placeholder="Current Location" formControlName="location">
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['location']?.touched &&
-                      agencyForm.controls?.['location']?.errors?.['required']">
+                    <input type="text" class="form-control" placeholder="Enter your post-code/address"
+                      formControlName="location">
+                    <span class="text-danger"
+                      *ngIf="agencyForm.get('location')?.touched && agencyForm.get('location')?.errors?.['required']">
                       Please enter location.
                     </span>
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['location']?.touched &&
-                      agencyForm.controls?.['location']?.errors?.['pattern']">
+                    <span class="text-danger"
+                      *ngIf="agencyForm.get('location')?.touched && agencyForm.get('location')?.errors?.['pattern']">
                       Please enter valid location.
                     </span>
                   </div>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Number Of Branches in UK<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Number Of Branches in UK :</label>
-                    <input type="number" class="form-control" formControlName="numberOfBranchesInUK">
+                    <input type="text" class="form-control" (keypress)="NumberOnly($event)"
+                      formControlName="numberOfBranchesInUK" placeholder="Number Of Branches in UK">
                     <span class="text-danger" *ngIf="
                       agencyForm.controls?.['numberOfBranchesInUK']?.touched &&
                       agencyForm.controls?.['numberOfBranchesInUK']?.errors?.['required']">
-                      Please enter no Of branches.
+                      Please enter no of branches.
                     </span>
                     <span class="text-danger" *ngIf="
                       agencyForm.controls?.['numberOfBranchesInUK']?.touched &&
@@ -79,222 +90,248 @@
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-6 pr-1">
+                <div class="col-md-5">
+                  <label>Primary Person Name<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Key Contact Person Name :</label>
-                    <input type="text" class="form-control" placeholder="Key Contact Person Name"
-                      formControlName="personName">
+                    <input type="text" class="form-control" formControlName="personName"
+                      placeholder="Primary Person Name">
                     <span class="text-danger" *ngIf="
                       agencyForm.controls?.['personName']?.touched &&
                       agencyForm.controls?.['personName']?.errors?.['required']">
-                      Please enter key contact person name.
+                      Please enter Primary Person name.
                     </span>
                     <span class="text-danger" *ngIf="
                       agencyForm.controls?.['personName']?.touched &&
                       agencyForm.controls?.['personName']?.errors?.['pattern']">
-                      Please enter valid key contact person name.
+                      Please enter valid Primary Person name.
                     </span>
                   </div>
                 </div>
-                <div class="col-md-6 pl-1">
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Primary Person Designation<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Key Contact Person Designation :</label>
-                    <input type="text" class="form-control" placeholder="Key Contact Person Designation"
+                    <input type="text" class="form-control" placeholder="Primary Person Designation"
                       formControlName="personDesignation">
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['personDesignation']?.touched &&
-                      agencyForm.controls?.['personDesignation']?.errors?.['required']">
-                      Please enter key contact person designation.
+                        agencyForm.controls?.['personDesignation']?.touched &&
+                        agencyForm.controls?.['personDesignation']?.errors?.['required']">
+                      Please enter Primary Person designation.
                     </span>
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['personDesignation']?.touched &&
-                      agencyForm.controls?.['personDesignation']?.errors?.['pattern']">
-                      Please enter valid key contact person designation.
+                        agencyForm.controls?.['personDesignation']?.touched &&
+                        agencyForm.controls?.['personDesignation']?.errors?.['pattern']">
+                      Please enter valid Primary Person designation.
                     </span>
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-5">
+                  <label>Primary Person Email<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Key Contact Person Email :</label>
-                    <input type="email" class="form-control" placeholder="Key Contact Person Email"
+                    <input type="email" class="form-control" placeholder="Primary Person Email"
                       formControlName="personEmail">
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['personEmail']?.touched &&
-                      agencyForm.controls?.['personEmail']?.errors?.['required']">
-                      Please enter key contact person email.
+                    agencyForm.controls?.['personEmail']?.touched &&
+                    agencyForm.controls?.['personEmail']?.errors?.['required']">
+                      Please enter Primary Person email.
                     </span>
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['personEmail']?.touched &&
-                      agencyForm.controls?.['personEmail']?.errors?.['pattern']">
-                      Please enter valid key contact person email.
+                    agencyForm.controls?.['personEmail']?.touched &&
+                    agencyForm.controls?.['personEmail']?.errors?.['pattern']">
+                      Please enter valid Primary Person email.
                     </span>
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Key Contact Person phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Key Contact Person phone number"
-                      [maxlength]="10" (keypress)="NumberOnly($event)" formControlName="phoneNumber">
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['phoneNumber']?.touched &&
-                      agencyForm.controls?.['phoneNumber']?.errors?.['required']">
-                      Please enter key contact person phone number.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['phoneNumber']?.touched &&
-                      agencyForm.controls?.['phoneNumber']?.errors?.['pattern']">
-                      Please enter valid key contact person phone number.
-                    </span>
-                  </div>
+                <div class="col-md-5">
+                  <label>Primary Person phone number<span style="color: red;">*</span>
+                    :</label>
                 </div>
-                <div class="col-md-6 px-1">
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label>Secondary contact details (if, any) :
-                    </label>
-                    <input type="text" class="form-control" placeholder="Candidate details "
-                      formControlName="contactDetails">
+                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                      formControlName="countrycode">
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['contactDetails']?.touched &&
-                      agencyForm.controls?.['contactDetails']?.errors?.['required']">
-                      Please enter secondary contact details.
+                      agencyForm.controls?.['countrycode']?.touched &&
+                      agencyForm.controls?.['countrycode']?.errors?.['required']">
+                      Please enter the country code.
                     </span>
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['contactDetails']?.touched &&
-                      agencyForm.controls?.['contactDetails']?.errors?.['pattern']">
-                      Please enter valid secondary contact details.
-                    </span>
-                  </div>
-                </div>
-                <!-- <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label>Emergency Secondary contact details (if, any) :</label>
-                    <input type="text" class="form-control" placeholder="contact details">
-                  </div>
-                </div> -->
-              </div>
-              <div class="row">
-                <div class="col-md-8 pl-1">
-                  <div class="form-group">
-                    <label>Emergency Secondary contact details (if, any) :</label>
-                    <input type="text" class="form-control" placeholder="contact details"
-                      formControlName="emergencySecondaryContactDetails">
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['emergencySecondaryContactDetails']?.touched &&
-                      agencyForm.controls?.['emergencySecondaryContactDetails']?.errors?.['required']">
-                      Please enter emg secondary contact details.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['emergencySecondaryContactDetails']?.touched &&
-                      agencyForm.controls?.['emergencySecondaryContactDetails']?.errors?.['pattern']">
-                      Please enter valid emg secondary contact details.
+                      agencyForm.controls?.['countrycode']?.touched &&
+                      agencyForm.controls?.['countrycode']?.errors?.['pattern']">
+                      Please enter a valid format for the country code.
                     </span>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label>Referred by : </label>
-                    <select class="form-control" formControlName="referredBy">
-                      <option value="" disabled selected hidden>Select Referred</option>
-                      <option value="delphi">Delphi</option>
-                      <option value="bigdata">Bigdata </option>
-                    </select>
+                    <input type="tel" class="form-control" placeholder="Primary Person phone number" [maxlength]="10"
+                      (keypress)="NumberOnly($event)" formControlName="phoneNumber">
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['referredBy']?.touched &&
-                      agencyForm.controls?.['referredBy']?.errors?.['required']">
-                      Please select referred By
+                    agencyForm.controls?.['phoneNumber']?.touched &&
+                    agencyForm.controls?.['phoneNumber']?.errors?.['required']">
+                      Please enter Primary Person phone number.
                     </span>
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['referredBy']?.touched &&
-                      agencyForm.controls?.['referredBy']?.errors?.['pattern']">
-                      Please select referred By
+                    agencyForm.controls?.['phoneNumber']?.touched &&
+                    agencyForm.controls?.['phoneNumber']?.errors?.['pattern']">
+                      Please enter valid Primary Person phone number.
                     </span>
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-12 pl-1">
-                  <div class="form-group">
-                    <label> Username :</label>
-                    <input type="text" class="form-control" placeholder="Username" formControlName="userName">
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['userName']?.touched &&
-                      agencyForm.controls?.['userName']?.errors?.['required']">
-                      Please enter user name.
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['userName']?.touched &&
-                      agencyForm.controls?.['userName']?.errors?.['pattern']">
-                      Please enter valid user name.
-                    </span>
-                  </div>
+                <div class="col-md-5">
+                  <label>Secondary Contact Name<span style="color: red;">*</span>
+                    :</label>
                 </div>
-                <div class="col-md-6 pl-1">
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Password :</label>
-                    <div class="input-group mb-0">
-                      <input [type]="password" class="form-control" placeholder="Password" formControlName="password"
-                        required>
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
-                          <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
-                        </div>
-                      </div>
-                    </div>
+                    <input type="text" class="form-control" placeholder="Secondary Contact Name"
+                      formControlName="secondaryPersonName">
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['password']?.touched &&
-                      agencyForm.controls?.['password']?.errors?.['required']">
-                      Please enter password.
+                    agencyForm.controls?.['secondaryPersonName']?.touched &&
+                    agencyForm.controls?.['secondaryPersonName']?.errors?.['required']">
+                      Please enter Secondary Contact name.
                     </span>
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['password']?.touched &&
-                      agencyForm.controls?.['password']?.errors?.['pattern']">
-                      Please enter alphabet, capital latter, @ special character and numbers.
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Confirm Password :</label>
-                    <div class="input-group mb-0">
-                      <input [type]="confirmPassword" class="form-control" placeholder="Confirm Password"
-                        formControlName="confirmPassword" required>
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span *ngIf="!confirmShowPassword" class="fas fa-eye"
-                            (click)="showHidePass('confirmPassword')"></span>
-                          <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
-                            (click)="showHidePass('confirmPassword')"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['confirmPassword']?.touched &&
-                      agencyForm.controls?.['confirmPassword']?.errors?.['required']">
-                      Please enter confirm password
-                    </span>
-                    <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['confirmPassword']?.touched &&
-                      agencyForm.controls?.['confirmPassword']?.errors?.['pattern']">
-                      Please enter alphabet, capital latter, @ special character and numbers
+                    agencyForm.controls?.['secondaryPersonName']?.touched &&
+                    agencyForm.controls?.['secondaryPersonName']?.errors?.['pattern']">
+                      Please enter valid Secondary Contact name.
                     </span>
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="update ml-auto mr-auto">
-                  <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                <div class="col-md-5">
+                  <label>Secondary Contact Designation<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Secondary Contact Designation"
+                      formControlName="secondaryPersonDesignation">
+                    <span class="text-danger" *ngIf="
+                    agencyForm.controls?.['secondaryPersonDesignation']?.touched &&
+                    agencyForm.controls?.['secondaryPersonDesignation']?.errors?.['required']">
+                      Please enter Secondary Contact designation.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                    agencyForm.controls?.['secondaryPersonDesignation']?.touched &&
+                    agencyForm.controls?.['secondaryPersonDesignation']?.errors?.['pattern']">
+                      Please enter valid Secondary Contact designation.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Secondary Contact Email<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Secondary Contact Email"
+                      formControlName="secondaryPersonEmail">
+                    <span class="text-danger" *ngIf="
+                    agencyForm.controls?.['secondaryPersonEmail']?.touched &&
+                    agencyForm.controls?.['secondaryPersonEmail']?.errors?.['required']">
+                      Please enter Secondary Contact email.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                    agencyForm.controls?.['secondaryPersonEmail']?.touched &&
+                    agencyForm.controls?.['secondaryPersonEmail']?.errors?.['pattern']">
+                      Please enter valid Secondary Contact email.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Secondary Contact Phone Number<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                      formControlName="countrycode">
+                    <span class="text-danger" *ngIf="
+                      agencyForm.controls?.['countrycode']?.touched &&
+                      agencyForm.controls?.['countrycode']?.errors?.['required']">
+                      Please enter the country code.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                      agencyForm.controls?.['countrycode']?.touched &&
+                      agencyForm.controls?.['countrycode']?.errors?.['pattern']">
+                      Please enter a valid format for the country code.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Secondary Contact Phone Number" [maxlength]="10"
+                      (keypress)="NumberOnly($event)" formControlName="secondaryPersonPhone">
+                    <span class="text-danger" *ngIf="
+                    agencyForm.controls?.['secondaryPersonPhone']?.touched &&
+                    agencyForm.controls?.['secondaryPersonPhone']?.errors?.['required']">
+                      Please enter Secondary Contact phone number.
+                    </span>
+                    <span class="text-danger" *ngIf="
+                    agencyForm.controls?.['secondaryPersonPhone']?.touched &&
+                    agencyForm.controls?.['secondaryPersonPhone']?.errors?.['pattern']">
+                      Please enter valid Secondary Contact phone number.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Preferred Contact Time<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <ng-multiselect-dropdown [placeholder]="'Contact Time'" [settings]="dropdownSettings"
+                      [data]="timeSlots" formControlName="callTime" (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                    <span class="text-danger"
+                      *ngIf="agencyForm.controls?.['callTime']?.touched && agencyForm.controls?.['callTime']?.errors?.['required']">
+                      Please enter contact time.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="update ml-auto mr-auto"><br>
+                  <button style="float: right !important;" type="submit" class="btn btn-primary btn-round">Submit</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-        <!--/colse Form-->
       </div>
     </div>
   </div>
