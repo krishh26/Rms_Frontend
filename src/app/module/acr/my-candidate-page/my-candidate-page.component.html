@@ -1,5 +1,27 @@
 <section class="section-accordian-card">
   <div class="container">
-    
+    <h4 style="text-align: center;"><strong>My Candidate List</strong></h4>
+    <div class="table-responsive">
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th scope="col">Candidate Name</th>
+            <th scope="col">Candidate Email</th>
+            <th scope="col">Joining Date</th>
+            <th scope="col">Status (Active/Inactive)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let candidate of candidates; let i = index">
+            <td>{{i +1}}</td>
+            <td>{{candidate.name}}</td>
+            <td>{{candidate.email}}</td>
+            <td>{{candidate.joiningDate}}</td>
+            <td>{{candidate.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
