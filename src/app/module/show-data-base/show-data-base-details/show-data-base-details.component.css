@@ -27,3 +27,24 @@
   color: #FFF;
   border-radius: 6px 6px 0 0;
 }
+
+::ng-deep .tooltip.show {
+  display: block;
+  opacity: 1;
+}
+
+::ng-deep .tooltip-inner {
+  text-align: left !important;
+  background-color: #ADD8E6 !important;
+  color: black !important;
+  width: 100% !important;
+  max-width: 80%;
+  padding: 10px !important;
+  white-space: pre-line;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+::ng-deep .tooltip-arrow::before {
+  border-top-color: white !important;
+}

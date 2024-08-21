@@ -154,7 +154,7 @@
                   <td>{{ item?.countrycode }}</td>
                   <td>{{ item?.phoneNumber }}</td>
                   <td>{{ item?.nationality }}</td>
-                  <td>{{ item?.UKDrivinglicense }}</td>
+                  <td>{{ item?.UKDrivinglicense ? 'Yes' : 'No'  }}</td>
                   <td>{{ item?.UKVisaType }}</td>
                   <td>{{ item?.postalCode }}</td>
                   <td>{{ item?.noticePeriodDay }}</td>
@@ -171,7 +171,7 @@
                   <td>{{ item?.workLocation }}</td>
                   <td>{{ item?.expectedDayRate }}</td>
                   <td>{{ item?.referredBy }}</td>
-                  <td>{{item?.sc_dv_clearance_hold}}</td>
+                  <td>{{ item?.sc_dv_clearance_hold ? 'Yes' : 'No' }}</td>
                   <td>
                     <button (click)="openDocument(item?.cv)" type="button" class="btn w-100">
                       <i class="fa fa-eye"></i>
@@ -183,9 +183,13 @@
                   <td>
                     <ng-container *ngIf="item?.client1?.roles?.length> 0">
                       <ul>
+
                         <li *ngFor="let data of item?.client1?.roles">
-                          <span [innerHTML]="data?.name"></span>
+                          <a ngbTooltip="{{ data?.name }}">
+                            <span [innerHTML]="data?.name  | slice:0:30 "></span>
+                          </a>
                         </li>
+
                       </ul>
                     </ng-container>
                   </td>
@@ -193,7 +197,9 @@
                     <ng-container *ngIf="item?.client2?.roles?.length > 0">
                       <ul>
                         <li *ngFor="let data of item?.client2?.roles">
-                          <span [innerHTML]="data?.name"></span>
+                          <a ngbTooltip="{{ data?.name }}">
+                            <span [innerHTML]="data?.name  | slice:0:30 "></span>
+                          </a>
                         </li>
                       </ul>
                     </ng-container>
@@ -202,7 +208,9 @@
                     <ng-container *ngIf="item?.client3?.roles?.length > 0">
                       <ul>
                         <li *ngFor="let data of item?.client3?.roles">
-                          <span [innerHTML]="data?.name"></span>
+                          <a ngbTooltip="{{ data?.name }}">
+                            <span [innerHTML]="data?.name  | slice:0:30 "></span>
+                          </a>
                         </li>
                       </ul>
                     </ng-container>
