@@ -2,6 +2,7 @@
   <div class="container">
     <div class="FlatCard shadow border-radius24">
       <div class="row">
+        <!-- Left Panel -->
         <div class="col-lg-5 col-xl-5 col-12">
           <div class="FormLeft-panel">
             <div class="text-center">
@@ -24,119 +25,229 @@
             <p>Email: Info@saivensolutions.co.uk</p>
           </div>
         </div>
-        <!--start Form here-->
+
+        <!-- Right Panel (Personal Details Form) -->
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
-            <h4 class="mb-3"><strong>ACR Profile</strong></h4>
+            <h4 class="mb-5"><strong>Profile</strong></h4>
             <form [formGroup]="agencyForm" (ngSubmit)="submit()">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Supplier/Agency Name :</label>
-                    <input type="text" class="form-control" placeholder="Candidate Name" formControlName="agencyName"
-                      readonly>
-                  </div>
+
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Profile Picture :</label>
                 </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Location :
-                    </label>
-                    <input type="text" class="form-control" placeholder="Current Location" formControlName="location"
-                      readonly>
-                  </div>
-                </div>
-                <div class="col-lg-6 colxl-6 col-md-6 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Number Of Branches in UK :</label>
-                    <input type="number" class="form-control" formControlName="numberOfBranchesInUK" readonly>
+                <div class="profile-avtar mt-4 mb-4">
+                  <!-- <img *ngIf="file?.url || loginDetails.profile.url"
+                    [src]="file?.url || loginDetails.profile.url || 'assets/img/default-avatar.png'" /> -->
+
+                  <div class="input--file">
+                    <i class="bi bi-camera-fill">+</i>
+                    <input name="Select File" type="file" (change)="fileUpload($event)"
+                      accept="image/png, image/gif, image/jpeg">
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-6 pr-1">
+                <div class="col-md-5">
+                  <label>Supplier/Agency Name<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Key Contact Person Name :</label>
-                    <input type="text" class="form-control" placeholder="Key Contact Person Name"
-                      formControlName="personName" readonly>
+                    <input type="text" class="form-control" placeholder="Enter Supplier/Agency Name"
+                      formControlName="agencyName" readonly>
                   </div>
                 </div>
-                <div class="col-md-6 pl-1">
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Location<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Key Contact Person Designation :</label>
-                    <input type="text" class="form-control" placeholder="Key Contact Person Designation"
+                    <input type="text" class="form-control" placeholder="Enter your post-code/address"
+                      formControlName="location" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Primary Person Name<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" formControlName="personName"
+                      placeholder="Primary Person Name" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Primary Person Designation<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Primary Person Designation"
                       formControlName="personDesignation" readonly>
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-5">
+                  <label>Primary Person Email<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label>Key Contact Person Email :</label>
-                    <input type="email" class="form-control" placeholder="Key Contact Person Email"
+                    <input type="email" class="form-control" placeholder="Primary Person Email"
                       formControlName="personEmail" readonly>
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Key Contact Person phone number :</label>
-                    <input type="tel" class="form-control" placeholder="Key Contact Person phone number"
-                      [maxlength]="10" readonly (keypress)="NumberOnly($event)" formControlName="phoneNumber">
-                  </div>
+                <div class="col-md-5">
+                  <label>Primary Person phone number<span style="color: red;">*</span>
+                    :</label>
                 </div>
-                <div class="col-md-6 px-1">
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label>Secondary contact details (if, any) :
-                    </label>
-                    <input type="text" class="form-control" placeholder="Candidate details "
-                      formControlName="contactDetails" readonly>
-                  </div>
-                </div>
-                <!-- <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label>Emergency Secondary contact details (if, any) :</label>
-                    <input type="text" class="form-control" placeholder="contact details">
-                  </div>
-                </div> -->
-              </div>
-              <div class="row">
-                <div class="col-md-8 pl-1">
-                  <div class="form-group">
-                    <label>Emergency Secondary contact details (if, any) :</label>
-                    <input type="text" class="form-control" placeholder="contact details"
-                      formControlName="emergencySecondaryContactDetails" readonly>
+                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                      formControlName="phoneNumber" readonly>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label>Referred by : </label>
-                    <!-- <select class="form-control" formControlName="referredBy" readonly>
-                      <option value="" disabled selected hidden>Select Referred</option>
-                      <option value="delphi">Delphi</option>
-                      <option value="bigdata">Bigdata </option>
-                    </select> -->
-                    <input type="text" class="form-control" placeholder="contact details" formControlName="referredBy"
-                      readonly>
+                    <input type="tel" class="form-control" placeholder="Primary Person phone number" [maxlength]="10"
+                      (keypress)="NumberOnly($event)" formControlName="phoneNumber" readonly>
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-md-12 pl-1">
+                <div class="col-md-5">
+                  <label>Secondary Contact Person Name<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
-                    <label> Username :</label>
-                    <input type="text" class="form-control" placeholder="Username" formControlName="userName" readonly>
+                    <input type="text" class="form-control" placeholder="Secondary Contact Name"
+                      formControlName="secondaryContectName" readonly>
                   </div>
                 </div>
               </div>
-              <!-- <div class="row">
-                <div class="update ml-auto mr-auto">
-                  <button type="submit" class="btn btn-primary btn-round">Submit</button>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Secondary Contact Person Designation<span style="color: red;">*</span>
+                    :</label>
                 </div>
-              </div> -->
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Secondary Contact Designation"
+                      formControlName="secondaryDesignation" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Secondary Contact Person Email<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Secondary Contact Email"
+                      formControlName="secondaryEmail" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Secondary Contact Person Phone Number<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                      formControlName="secondaryPhoneNumberCountryCode" readonly>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Secondary Contact Phone Number" [maxlength]="10"
+                      (keypress)="NumberOnly($event)" formControlName="secondaryPhoneNumber" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-4 mb-3">
+                <div class="col-12 mb-3">
+                  <h4 type="button" class="btn btn-primary" (click)="togglePasswordFields()"> Update Password</h4>
+                </div>
+              </div>
+
+              <div *ngIf="showPasswordFields">
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <label for="password">Password:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input id="password" type="password" class="form-control" placeholder="Password"
+                      formControlName="password">
+                    <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
+                    <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
+                    <span class="text-danger"
+                      *ngIf="agencyForm?.controls?.['password']?.touched && agencyForm?.controls?.['password']?.errors?.['required']">
+                      Please enter a password.
+                    </span>
+                    <span class="text-danger"
+                      *ngIf="agencyForm?.controls?.['password']?.touched && agencyForm?.controls?.['password']?.errors?.['pattern']">
+                      Password must contain a capital letter, a number, and '@'.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <label for="confirmPassword">Confirm Password:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input id="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
+                      formControlName="confirmPassword">
+                    <span *ngIf="!confirmShowPassword" class="fas fa-eye"
+                      (click)="showHidePass('confirmPassword')"></span>
+                    <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
+                      (click)="showHidePass('confirmPassword')"></span>
+                    <span class="text-danger"
+                      *ngIf="agencyForm?.controls?.['confirmPassword']?.touched && agencyForm?.controls?.['confirmPassword']?.errors?.['required']">
+                      Please confirm your password.
+                    </span>
+                    <span class="text-danger"
+                      *ngIf="agencyForm?.controls?.['confirmPassword']?.touched && agencyForm?.controls?.['confirmPassword']?.errors?.['pattern']">
+                      Password must contain a capital letter, a number, and '@'.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="update ml-auto mr-auto"><br>
+                  <button style="float: right !important;" type="submit"
+                    class="btn btn-primary btn-round">Submit</button>
+                </div>
+              </div>
+
             </form>
           </div>
         </div>
+        <!-- End Form -->
       </div>
     </div>
   </div>

@@ -14,7 +14,12 @@ export class AcrProfileComponent implements OnInit {
 
   agencyForm!: FormGroup;
   loginDetails!: any;
-
+  password = 'password';
+  showPassword = false;
+  confirmPassword = 'password';
+  confirmShowPassword = false;
+  showPasswordFields = false;
+  file: any;
   constructor(
     private localStorageService: LocalStorageService,
     private notificationService: NotificationService,
@@ -28,26 +33,48 @@ export class AcrProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.loginDetails.agencyName);
+    // console.log(this.loginDetails.profile.url);
+  }
+
+  fileUpload(event: any): void {
+    const file = event.target.files[0];
+    const data = new FormData();
+    data.append('files', file || '');
+
+    this.acrSericeService.fileUpload(data).subscribe((response) => {
+      if (response?.status) {
+        this.file = response?.data;
+        console.log(this.file);
+
+        this.notificationService.showSuccess(response?.message || 'Profile picture successfully uploaded.')
+      } else {
+        this.notificationService.showError(response?.message || 'File not uploaded.')
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message || 'File not uploaded.')
+    })
   }
 
   initializeForms() {
     console.log(this.loginDetails);
-    
+
     this.agencyForm = new FormGroup({
+      // profile: new FormControl(this.loginDetails.profile.url, [Validators.required]),
       agencyName: new FormControl(this.loginDetails.agencyName, [Validators.required, Validators.pattern(Patterns.name)]),
       location: new FormControl(this.loginDetails.location, [Validators.required]),
       numberOfBranchesInUK: new FormControl(this.loginDetails.numberOfBranchesInUK, [Validators.required]),
       personName: new FormControl(this.loginDetails.personName, [Validators.required, Validators.pattern(Patterns.name)]),
       personDesignation: new FormControl(this.loginDetails.personDesignation, [Validators.required]),
       personEmail: new FormControl(this.loginDetails.personEmail, [Validators.required, Validators.pattern(Patterns.email)]),
+      phoneNumberCountryCode: new FormControl(this.loginDetails.phoneNumberCountryCode, [Validators.required]),
       phoneNumber: new FormControl(this.loginDetails.phoneNumber, [Validators.required, Validators.pattern(Patterns.mobile)]),
-      contactDetails: new FormControl(this.loginDetails.contactDetails, []),
-      emergencySecondaryContactDetails: new FormControl(this.loginDetails.emergencySecondaryContactDetails, []),
-      referredBy: new FormControl(this.loginDetails.referredBy, [Validators.required]),
-      userName: new FormControl(this.loginDetails.userName, [Validators.required, Validators.pattern(Patterns.email)]),
-      // password: new FormControl(this.loginDetails.agencyName, [Validators.required, Validators.pattern(Patterns.password)]),
-      // confirmPassword: new FormControl(this.loginDetails.agencyName, [Validators.required, Validators.pattern(Patterns.password)])
+      secondaryContectName: new FormControl(this.loginDetails.secondaryContectName),
+      secondaryDesignation: new FormControl(this.loginDetails.secondaryDesignation),
+      secondaryEmail: new FormControl(this.loginDetails.secondaryEmail, [Validators.required]),
+      secondaryPhoneNumber: new FormControl(this.loginDetails.secondaryPhoneNumber, [Validators.required]),
+      secondaryPhoneNumberCountryCode: new FormControl(this.loginDetails.secondaryPhoneNumberCountryCode, [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)])
     });
   }
 
@@ -58,6 +85,25 @@ export class AcrProfileComponent implements OnInit {
     }
     return true;
   }
+
+  public showHidePass(type: string): void {
+    if (type == 'password' && this.password === 'password') {
+      this.password = 'text';
+      this.showPassword = true;
+    } else {
+      this.password = 'password';
+      this.showPassword = false;
+    }
+
+    if (type !== 'password' && this.confirmPassword === 'password') {
+      this.confirmPassword = 'text';
+      this.confirmShowPassword = true;
+    } else {
+      this.confirmPassword = 'password';
+      this.confirmShowPassword = false;
+    }
+  }
+
 
   submit() {
     if (!this.agencyForm.controls['name']?.value) {
@@ -94,6 +140,10 @@ export class AcrProfileComponent implements OnInit {
     }, (error) => {
       this.notificationService.showError(error?.message || 'Detailed Not Updated.');
     });
+  }
+
+  togglePasswordFields() {
+    this.showPasswordFields = !this.showPasswordFields;
   }
 
 }

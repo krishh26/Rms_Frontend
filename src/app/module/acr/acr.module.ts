@@ -8,7 +8,7 @@ import { AcrCardComponent } from './acr-card/acr-card.component';
 import { AcrLoginComponent } from './acr-login/acr-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { AcrProfileComponent } from './acr-profile/acr-profile.component';
 import { Dps21DetailsComponent } from './dps21-details/dps21-details.component';
 import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northen-Ireland-details.component';
@@ -27,9 +27,10 @@ import { CirAllJobsComponent } from './cir-all-jobs/cir-all-jobs.component';
     NgbModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-right',
       preventDuplicates: false,
     }),
+    ToastNoAnimationModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot()
   ],
   declarations: [
