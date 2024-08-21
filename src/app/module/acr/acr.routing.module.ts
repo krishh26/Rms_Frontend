@@ -10,6 +10,9 @@ import { ManchesterDetailsComponent } from './manchester-details/manchester-deta
 import { AcrCardComponent } from './acr-card/acr-card.component';
 import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
 import { AcrProfileComponent } from './acr-profile/acr-profile.component';
+import { AcrAccordianCardComponent } from './acr-accordian-card/acr-accordian-card.component';
+import { MyCandidatePageComponent } from './my-candidate-page/my-candidate-page.component';
+import { CirAllJobsComponent } from './cir-all-jobs/cir-all-jobs.component';
 
 const routes: Routes = [
   {
@@ -49,6 +52,21 @@ const routes: Routes = [
         path: "acr-profile",
         // canActivate: [AuthGuard],
         component: AcrProfileComponent
+      },
+      {
+        path: "acr-accordian-card",
+        // canActivate: [AuthGuard],
+        component: AcrAccordianCardComponent
+      },
+      {
+        path: "acr-candidate-page",
+        // canActivate: [AuthGuard],
+        component: MyCandidatePageComponent
+      },
+      {
+        path: "acr-all-jobs",
+        // canActivate: [AuthGuard],
+        component: CirAllJobsComponent
       },
     ]
   },

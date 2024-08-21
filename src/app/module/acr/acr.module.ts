@@ -14,6 +14,9 @@ import { Dps21DetailsComponent } from './dps21-details/dps21-details.component';
 import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northen-Ireland-details.component';
 import { ManchesterDetailsComponent } from './manchester-details/manchester-details.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AcrAccordianCardComponent } from './acr-accordian-card/acr-accordian-card.component';
+import { MyCandidatePageComponent } from './my-candidate-page/my-candidate-page.component';
+import { CirAllJobsComponent } from './cir-all-jobs/cir-all-jobs.component';
 
 @NgModule({
   imports: [
@@ -38,7 +41,10 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AcrProfileComponent,
     Dps21DetailsComponent,
     NorthenIrelandDetailsComponent,
-    ManchesterDetailsComponent
+    ManchesterDetailsComponent,
+    AcrAccordianCardComponent,
+    MyCandidatePageComponent,
+    CirAllJobsComponent
   ]
 })
 export class AcrModule { }
