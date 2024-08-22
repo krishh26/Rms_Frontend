@@ -52,7 +52,7 @@
                     <td class="text-center">
                       <label>
                         <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(role)"
-                          data-bs-toggle="modal" data-bs-target="#ViewScreenshot">
+                          data-bs-toggle="modal" data-bs-target="#loginDetailModal">
                         Yes
                       </label>&nbsp;
                       <label>
@@ -181,53 +181,57 @@
 </section>
 
 
-<!-- Modal Popup -->
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Supply Role Details For {{ selectedJobTitle }}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+<div class="modal fade" id="loginDetailModal" tabindex="-1" aria-labelledby="ViewLogin" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ViewLogin">Supply Role Details For {{ selectedJobTitle }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No. of Resources Can Be Sourced Within*</th>
+                <th scope="col">Day Rate*</th>
+                <th scope="col">Upload Sample CV*</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <label>48 Hours:</label>
+                  <input type="number" class="form-control" [(ngModel)]="resources48Hours" name="resources48Hours"
+                    required>
+                </td>
+                <td>
+                  <input type="number" class="form-control" [(ngModel)]="dayRate48Hours" name="dayRate48Hours" required>
+                </td>
+                <td>
+                  <input type="file" class="form-control" (change)="onFileSelected($event, 'cv48Hours')" required>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>7 Days:</label>
+                  <input type="number" class="form-control" [(ngModel)]="resources7Days" name="resources7Days" required>
+                </td>
+                <td>
+                  <input type="number" class="form-control" [(ngModel)]="dayRate7Days" name="dayRate7Days" required>
+                </td>
+                <td>
+                  <input type="file" class="form-control" (change)="onFileSelected($event, 'cv7Days')" required>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <!-- <button type="button" class="btn btn-primary">Cancel</button> -->
+      </div>
+    </div>
   </div>
-  <div class="modal-body">
-    <form>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">No. of Resources Can Be Sourced Within*</th>
-            <th scope="col">Day Rate*</th>
-            <th scope="col">Upload Sample CV*</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <label>48 Hours:</label>
-              <input type="number" class="form-control" [(ngModel)]="resources48Hours" name="resources48Hours" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" [(ngModel)]="dayRate48Hours" name="dayRate48Hours" required>
-            </td>
-            <td>
-              <input type="file" class="form-control" (change)="onFileSelected($event, 'cv48Hours')" required>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>7 Days:</label>
-              <input type="number" class="form-control" [(ngModel)]="resources7Days" name="resources7Days" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" [(ngModel)]="dayRate7Days" name="dayRate7Days" required>
-            </td>
-            <td>
-              <input type="file" class="form-control" (change)="onFileSelected($event, 'cv7Days')" required>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Save</button>
-    <button type="button" class="btn btn-primary" (click)="modal.dismiss('Cancel click')">Cancel</button>
-  </div>
-</ng-template>
+</div>
