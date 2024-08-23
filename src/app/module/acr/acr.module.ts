@@ -15,6 +15,7 @@ import { AcrAccordianCardComponent } from './acr-accordian-card/acr-accordian-ca
 import { MyCandidatePageComponent } from './my-candidate-page/my-candidate-page.component';
 import { CirAllJobsComponent } from './cir-all-jobs/cir-all-jobs.component';
 import { AcrAdminComponent } from './acr-admin/acr-admin.component';
+import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-details.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { AcrAdminComponent } from './acr-admin/acr-admin.component';
     AcrAccordianCardComponent,
     MyCandidatePageComponent,
     CirAllJobsComponent,
-    AcrAdminComponent
+    AcrAdminComponent,
+    AcrUploadDetailsComponent
   ]
 })
 export class AcrModule { }

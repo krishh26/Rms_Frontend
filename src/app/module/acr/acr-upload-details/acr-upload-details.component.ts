@@ -9,14 +9,14 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 
 @Component({
-  selector: 'app-cir-all-jobs',
-  templateUrl: './cir-all-jobs.component.html',
-  styleUrls: ['./cir-all-jobs.component.css']
+  selector: 'app-acr-upload-details',
+  templateUrl: './acr-upload-details.component.html',
+  styleUrls: ['./acr-upload-details.component.css']
 })
-export class CirAllJobsComponent implements OnInit {
+export class AcrUploadDetailsComponent implements OnInit {
   agencyForm!: FormGroup;
   file: any;
-  resourcesForm!: FormGroup;
+  resourcesForm: FormGroup;
   candidateForm!: FormGroup
   @ViewChild('content', { static: true }) content: TemplateRef<any> | undefined;
 
@@ -30,6 +30,7 @@ export class CirAllJobsComponent implements OnInit {
     { name: 'DevOps Engineer', noofroles: '4', startdate: '05-09-2024 ', publisheddate: '19-08-2024 ', clientname: 'GHI Innovations', location: 'Bristol, UK', dayrate: '£350/day', timer: '00:54:00', status: 'Expired', },
     { name: 'QA Tester', noofroles: '2', startdate: '15-09-2024 ', publisheddate: '20-08-2024 ', clientname: 'JKL Enterprises', location: 'Leeds, UK', dayrate: '£550/day', timer: '1:23:37', status: 'Inactive', },
   ];
+
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -44,15 +45,6 @@ export class CirAllJobsComponent implements OnInit {
       candidates: this.fb.array([this.createCandidateFormGroup()])
     });
 
-    this.agencyForm = new FormGroup({
-      jobtitle: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
-      Noofroles: new FormControl('', [Validators.required]),
-      positionstartdate: new FormControl('', [Validators.required]),
-      publishdate: new FormControl(moment(new Date()).format('dd-MM-YYYY'), [Validators.required, Validators.pattern(Patterns.name)]),
-      clientname: new FormControl('', [Validators.required]),
-      location: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
-      dayrate: new FormControl('', [Validators.required]),
-    });
   }
 
   ngOnInit() {
@@ -79,23 +71,10 @@ export class CirAllJobsComponent implements OnInit {
   addCandidate() {
     this.candidates.push(this.createCandidateFormGroup());
   }
-  
-  removeCandidate(index: number) {
-    this.candidates.removeAt(index);
-  }
-
-  openModal(role: any) {
-    this.router.navigate(['/acr/acr-upload-details']);
-  }
 
 
-  // Number only validation
-  NumberOnly(event: any): boolean {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
+  removeCandidate() {
+   // this.candidates.removeAt(index);
   }
 
   fileUpload(event: any): void {
