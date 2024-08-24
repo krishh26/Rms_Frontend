@@ -31,11 +31,11 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Supplier/Agency Name<span style="color: red;">*</span>:</label>
+                  <label>Agency Name<span style="color: red;">*</span>:</label>
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter Supplier/Agency Name"
+                    <input type="text" class="form-control" placeholder="Enter Agency Name"
                       formControlName="supplierAgencyName">
                     <span class="text-danger"
                       *ngIf="agencyForm.get('supplierAgencyName')?.touched && agencyForm.get('supplierAgencyName')?.errors?.['required']">
@@ -166,8 +166,7 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
-                      formControlName="countrycode">
+                    <input type="text" class="form-control" placeholder="Code like +44" formControlName="countrycode">
                     <span class="text-danger" *ngIf="
                       agencyForm.controls?.['countrycode']?.touched &&
                       agencyForm.controls?.['countrycode']?.errors?.['required']">
@@ -200,7 +199,7 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Secondary Contact Name<span style="color: red;">*</span>
+                  <label>Secondary Contact Name
                     :</label>
                 </div>
                 <div class="col-md-7">
@@ -223,8 +222,7 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Secondary Contact Designation<span style="color: red;">*</span>
-                    :</label>
+                  <label>Secondary Contact Designation:</label>
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
@@ -246,7 +244,7 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Secondary Contact Email<span style="color: red;">*</span>
+                  <label>Secondary Contact Email
                     :</label>
                 </div>
                 <div class="col-md-7">
@@ -269,8 +267,7 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Secondary Contact Phone Number<span style="color: red;">*</span>
-                    :</label>
+                  <label>Secondary Contact Phone Number:</label>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
@@ -326,7 +323,8 @@
 
               <div class="row">
                 <div class="update ml-auto mr-auto"><br>
-                  <button style="float: right !important;" type="submit" class="btn btn-primary btn-round">Submit</button>
+                  <button style="float: right !important;" type="submit"
+                    class="btn btn-primary btn-round">Submit</button>
                 </div>
               </div>
             </form>
