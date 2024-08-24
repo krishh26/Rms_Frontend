@@ -50,11 +50,11 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Supplier/Agency Name:</label>
+                  <label>Agency Name:</label>
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter Supplier/Agency Name"
+                    <input type="text" class="form-control" placeholder="Enter Agency Name"
                       formControlName="agencyName" readonly>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter your post-code/address"
-                      formControlName="location" readonly>
+                      formControlName="location" >
                   </div>
                 </div>
               </div>
@@ -79,7 +79,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" formControlName="personName"
-                      placeholder="Primary Person Name" readonly>
+                      placeholder="Primary Person Name" >
                   </div>
                 </div>
               </div>
@@ -92,7 +92,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Primary Person Designation"
-                      formControlName="personDesignation" readonly>
+                      formControlName="personDesignation" >
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="email" class="form-control" placeholder="Primary Person Email"
-                      formControlName="personEmail" readonly>
+                      formControlName="personEmail" >
                   </div>
                 </div>
               </div>
@@ -118,13 +118,13 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
-                      formControlName="phoneNumber" readonly>
+                      formControlName="phoneNumber" >
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <input type="tel" class="form-control" placeholder="Primary Person phone number" [maxlength]="10"
-                      (keypress)="NumberOnly($event)" formControlName="phoneNumber" readonly>
+                      (keypress)="NumberOnly($event)" formControlName="phoneNumber" >
                   </div>
                 </div>
               </div>
@@ -137,7 +137,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Secondary Contact Name"
-                      formControlName="secondaryContectName" readonly>
+                      formControlName="secondaryContectName" >
                   </div>
                 </div>
               </div>
@@ -150,7 +150,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Secondary Contact Designation"
-                      formControlName="secondaryDesignation" readonly>
+                      formControlName="secondaryDesignation" >
                   </div>
                 </div>
               </div>
@@ -163,7 +163,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="email" class="form-control" placeholder="Secondary Contact Email"
-                      formControlName="secondaryEmail" readonly>
+                      formControlName="secondaryEmail" >
                   </div>
                 </div>
               </div>
@@ -176,13 +176,13 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
-                      formControlName="secondaryPhoneNumberCountryCode" readonly>
+                      formControlName="secondaryPhoneNumberCountryCode" >
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <input type="tel" class="form-control" placeholder="Secondary Contact Phone Number" [maxlength]="10"
-                      (keypress)="NumberOnly($event)" formControlName="secondaryPhoneNumber" readonly>
+                      (keypress)="NumberOnly($event)" formControlName="secondaryPhoneNumber" >
                   </div>
                 </div>
               </div>
@@ -240,7 +240,7 @@
               <div class="row">
                 <div class="update ml-auto mr-auto"><br>
                   <button style="float: right !important;" type="submit"
-                    class="btn btn-primary btn-round">Submit</button>
+                    class="btn btn-primary btn-round">Update</button>
                 </div>
               </div>
 

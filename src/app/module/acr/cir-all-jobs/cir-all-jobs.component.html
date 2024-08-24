@@ -5,31 +5,33 @@
       <table class="table table-bordered mt-3">
         <thead>
           <tr>
-            <th>Sr. No.</th>
+            <th>Job ID</th>
             <th scope="col">JOb Title</th>
             <th scope="col">No. of Roles</th>
-            <th scope="col">Position Start Date</th>
             <th scope="col">Publish Date</th>
+            <th scope="col">Position Start Date</th>
             <th scope="col">Client Name</th>
-            <th scope="col">Location</th>
+            <th [width]="150" scope="col">Location</th>
             <th scope="col">Day Rate</th>
+            <th [width]="100" scope="col">Additonal Details</th>
             <th scope="col">Timer</th>
-            <th scope="col">Status</th>
             <th [width]="200" scope="col">Take ACtion</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let candidate of candidate; let i = index">
+            <!-- auto generate unique id  -->
             <td>{{i +1}}</td>
             <td>{{candidate.name}}</td>
             <td>{{candidate.noofroles}}</td>
-            <td>{{candidate.startdate}}</td>
             <td>{{candidate.publisheddate}}</td>
+            <td>{{candidate.startdate}}</td>
             <td>{{candidate.clientname}}</td>
             <td>{{candidate.location}}</td>
             <td>{{candidate.dayrate}}</td>
+            <td>Read me</td>
             <td style="color: red;">{{candidate?.timer}}</td>
-            <td>{{candidate.status}}</td>
             <td class="text-center">
               <label>
                 <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(candidate)">
@@ -40,6 +42,7 @@
                 No
               </label>
             </td>
+            <td>{{candidate.status}}</td>
           </tr>
         </tbody>
       </table>
@@ -57,18 +60,19 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
-      
+
           <div class="row">
             <div class="col-md-4">
               <label>How many resources ? <span style="color: red;"> *</span> :</label>
             </div>
             <div class="col-md-8">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter resources" formControlName="howmanyresources">
+                <input type="text" class="form-control" placeholder="Enter resources"
+                  formControlName="howmanyresources">
               </div>
             </div>
           </div>
-      
+
           <table class="table table-bordered">
             <thead class="card-header">
               <tr>
@@ -86,19 +90,22 @@
                   <input type="file" class="form-control" (change)="fileUpload($event)" required>
                 </td>
                 <td>
-                  <input type="text" placeholder="Enter nationality" class="form-control" formControlName="nationality" />
+                  <input type="text" placeholder="Enter nationality" class="form-control"
+                    formControlName="nationality" />
                 </td>
                 <td>
                   <input type="text" placeholder="Enter job title" class="form-control" formControlName="location" />
                 </td>
                 <td>
-                  <button type="button" class="btn btn-danger" (click)="removeCandidate(i)" *ngIf="candidates.length > 1">-</button>&nbsp;
-                  <button type="button" class="btn btn-primary" (click)="addCandidate()" *ngIf="i === candidates.length - 1">+</button>
+                  <button type="button" class="btn btn-danger" (click)="removeCandidate(i)"
+                    *ngIf="candidates.length > 1">-</button>&nbsp;
+                  <button type="button" class="btn btn-primary" (click)="addCandidate()"
+                    *ngIf="i === candidates.length - 1">+</button>
                 </td>
               </tr>
             </tbody>
           </table>
-      
+
           <div class="row">
             <div class="col-md-5">
               <label>Timer:</label>
@@ -107,7 +114,7 @@
               <div class="timer" id="timer"><strong>24:00:00</strong></div>
             </div>
           </div>
-      
+
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
               <button type="button" (click)="submit()" class="btn btn-primary w-50">Submit</button>
@@ -115,7 +122,7 @@
           </div>
         </form>
       </div>
-      
+
     </div>
   </div>
 </div>
