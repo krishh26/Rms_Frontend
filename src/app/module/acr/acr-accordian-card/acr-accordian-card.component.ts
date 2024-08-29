@@ -11,7 +11,6 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./acr-accordian-card.component.css']
 })
 export class AcrAccordianCardComponent implements OnInit {
-  @ViewChild('content', { static: true }) content: TemplateRef<any> | undefined;
   selectedData: any[] = [];
   selectedJobTitle: string = '';
 
@@ -312,12 +311,12 @@ export class AcrAccordianCardComponent implements OnInit {
 
   openModal(role: any) {
     this.selectedJobTitle = role.role;  // Set the selected job title
-    const modalRef = this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' , size : 'xl' ,  backdrop: 'static' });
-    modalRef.result.then((result) => {
-      console.log('Modal closed with:', result);
-    }, (reason) => {
-      console.log('Modal dismissed with:', reason);
-    });
+    // const modalRef = this.modalService.open(this.content, {  size : 'xl' , backdrop: 'static'  });
+    // modalRef.result.then((result) => {
+    //   console.log('Modal closed with:', result);
+    // }, (reason) => {
+    //   console.log('Modal dismissed with:', reason);
+    // });
   }
   
   onFileSelected(event: any, type: string) {
