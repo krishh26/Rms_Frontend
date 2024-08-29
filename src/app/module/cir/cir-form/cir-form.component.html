@@ -249,6 +249,11 @@
                       <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)"
                         [checked]="selectedLookingFor('part-time-role')">&nbsp;
                       <span style="font-weight: normal;"> Part-time role</span>
+                    </label><br>
+                    <label>
+                      <input type="checkbox" name="roles" value="freelance-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('freelance-role')">&nbsp;
+                      <span style="font-weight: normal;"> Freelancing Role</span>
                     </label>
                     <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['lookingFor']?.touched &&
