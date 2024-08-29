@@ -12,7 +12,7 @@ import { AcrServiceService } from 'src/app/services/acr-service/acr-service.serv
   styleUrls: ['./acr-admin.component.css']
 })
 export class AcrAdminComponent implements OnInit {
-  agencyForm!: FormGroup;
+  jobForm!: FormGroup;
 
   constructor(
     private router: Router,
@@ -20,14 +20,14 @@ export class AcrAdminComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private acrservice: AcrServiceService,
   ) {
-    this.agencyForm = new FormGroup({
-      jobtitle: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
-      Noofroles: new FormControl('', [Validators.required]),
-      positionstartdate: new FormControl('', [Validators.required]),
-      publishdate: new FormControl(moment(new Date()).format('dd-MM-YYYY'), [Validators.required, Validators.pattern(Patterns.name)]),
-      clientname: new FormControl('', [Validators.required]),
+    this.jobForm = new FormGroup({
+      job_title: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
+      no_of_roles: new FormControl('', [Validators.required]),
+      start_date: new FormControl('', [Validators.required]),
+      publish_date: new FormControl(moment(new Date()).format('dd-MM-YYYY'), [Validators.required]),
+      client_name: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
-      dayrate: new FormControl('', [Validators.required]),
+      day_rate: new FormControl('', [Validators.required]),
     });
   }
 
@@ -35,7 +35,15 @@ export class AcrAdminComponent implements OnInit {
   }
 
   submit() {
-
+    this.acrservice.createjob(this.jobForm.value).subscribe((response) => {
+      if (response?.status == true) {
+        this.notificationService.showSuccess(response?.message, 'Success !');
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.error?.message);
+    })
   }
 
   // Number only validation

@@ -27,16 +27,18 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <h4 class="mb-3 text-center"><strong>Create Job Post</strong></h4><br>
-            <form [formGroup]="agencyForm" (ngSubmit)="submit()">
-
+            <form [formGroup]="jobForm" (ngSubmit)="submit()">
               <div class="row">
                 <div class="col-md-5">
                   <label>Job Title<span style="color: red;">*</span>:</label>
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter Job Title"
-                      formControlName="jobtitle">
+                    <input type="text" class="form-control" placeholder="Enter Job Title" formControlName="job_title">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('job_title')?.touched && jobForm.get('job_title')?.errors?.['required']">
+                      Please enter the job title.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -47,12 +49,16 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <select class="form-control" formControlName="Noofroles">
-                      <option value="roles1">roles1</option>
-                      <option value="roles2">roles2</option>
-                      <option value="roles3">roles3</option>
-                      <option value="roles4">roles4</option>
+                    <select class="form-control" formControlName="no_of_roles">
+                      <option value="1">roles1</option>
+                      <option value="2">roles2</option>
+                      <option value="3">roles3</option>
+                      <option value="4">roles4</option>
                     </select>
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('no_of_roles')?.touched && jobForm.get('no_of_roles')?.errors?.['required']">
+                      Please select no of roles.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -63,8 +69,12 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="date" class="form-control" formControlName="positionstartdate"
+                    <input type="date" class="form-control" formControlName="start_date"
                       placeholder="Position Start Date">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('start_date')?.touched && jobForm.get('start_date')?.errors?.['required']">
+                      Please select position start date.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -75,8 +85,12 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" formControlName="publishdate"
+                    <input type="text" class="form-control" formControlName="publish_date"
                       placeholder="Auto Detect System Calendar">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('publish_date')?.touched && jobForm.get('publish_date')?.errors?.['required']">
+                      Please select published date.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -88,8 +102,11 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Client Name"
-                      formControlName="clientname">
+                    <input type="text" class="form-control" placeholder="Client Name" formControlName="client_name">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('client_name')?.touched && jobForm.get('client_name')?.errors?.['required']">
+                      Please enter the client name.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -100,11 +117,15 @@
                     :</label>
                 </div>
                 <div class="col-md-7">
-                  <select class="form-control" formControlName="Noofroles">
+                  <select class="form-control" formControlName="location">
                     <option value="client_locations">Client Locations</option>
                     <option value="work_from_home">Work From Home</option>
                     <option value="swindon_office">Swindon Office</option>
                   </select>
+                  <span class="text-danger"
+                    *ngIf="jobForm.get('location')?.touched && jobForm.get('location')?.errors?.['required']">
+                    Please select the location.
+                  </span>
                 </div>
               </div>
               <br />
@@ -114,8 +135,12 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Day Rate" formControlName="dayrate"
+                    <input type="text" class="form-control" placeholder="Day Rate" formControlName="day_rate"
                       (keypress)="NumberOnly($event)">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
+                      Please enter the day rate.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -130,8 +155,8 @@
               </div>
               <div class="row">
                 <div class="update ml-auto mr-auto"><br>
-                  <button style="float: right !important;" type="submit"
-                    class="btn btn-primary btn-round">Upload Job Post</button>
+                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round">Upload Job
+                    Post</button>
                 </div>
               </div>
             </form>
