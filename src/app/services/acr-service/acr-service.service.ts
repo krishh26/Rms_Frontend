@@ -9,7 +9,8 @@ export enum AcrEndPoint {
   SEND_DATA = '/card/create',
   FILE_UPLOAD = "/upload",
   UPDATE_REGISTER = '/user/update/',
-  CREATE_JOB = '/acr/jobs'
+  CREATE_JOB = '/acr/jobs',
+  GET_JOB_LIST = '/acr/jobs'
 }
 
 @Injectable({
@@ -40,6 +41,11 @@ export class AcrServiceService {
   register(payload: any): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + AcrEndPoint.REGISTER, payload);
+  }
+
+  getJobList(): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + AcrEndPoint.GET_JOB_LIST);
   }
 
   createjob(payload: any): Observable<any> {

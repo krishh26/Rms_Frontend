@@ -10,8 +10,6 @@
             <th scope="col">No. of Roles</th>
             <th scope="col">Publish Date</th>
             <th scope="col">Position Start Date</th>
-            <!-- <th scope="col">Client Name</th>
-            <th [width]="150" scope="col">Location</th> -->
             <th scope="col">Day Rate</th>
             <th [width]="100" scope="col">Additonal Details</th>
             <th scope="col">Timer</th>
@@ -20,22 +18,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let candidate of candidate; let i = index">
-            <!-- auto generate unique id  -->
-            <td>{{i +1}}</td>
-            <td>{{candidate.name}}</td>
-            <td>{{candidate.noofroles}}</td>
-            <td>{{candidate.publisheddate}}</td>
-            <td>{{candidate.startdate}}</td>
-            <td>{{candidate.clientname}}</td>
-            <!-- <td>{{candidate.location}}</td>
-            <td>{{candidate.dayrate}}</td> -->
+          <tr *ngFor="let job of joblist; let i = index">
+            <td>{{job.job_id}}</td>
+            <td>{{job.job_title}}</td>
+            <td>{{job.no_of_roles}}</td>
+            <td>{{job.publish_date | date:'dd/MM/yyyy'}}</td>
+            <td>{{job.start_date | date:'dd/MM/yyyy'}}</td>
+            <td>{{job.client_name}}</td>
             <td>Read me</td>
-            <td style="color: red;">{{candidate?.timer}}</td>
+            <td style="color: red;">{{job?.timerEnd}}</td>
             <td class="text-center">
               <label>
-                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(candidate)"
-                  data-bs-toggle="modal" data-bs-target="#loginDetailModal">
+                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)" data-bs-toggle="modal"
+                  data-bs-target="#loginDetailModal">
                 Yes
               </label>&nbsp;
               <label>
@@ -43,7 +38,7 @@
                 No
               </label>
             </td>
-            <td>{{candidate.status}}</td>
+            <td>{{job.status}}</td>
           </tr>
         </tbody>
       </table>

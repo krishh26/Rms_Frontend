@@ -17,19 +17,10 @@ export class CirAllJobsComponent implements OnInit {
   agencyForm!: FormGroup;
   file: any;
   resourcesForm!: FormGroup;
-  candidateForm!: FormGroup
+  candidateForm!: FormGroup;
+  joblist: any = [];
   @ViewChild('content', { static: true }) content: TemplateRef<any> | undefined;
 
-  candidate = [
-    { name: 'Software Engineer', noofroles: '3', startdate: '01-09-2024 ', publisheddate: '15-08-2024', clientname: 'ABC Tech', location: 'London, UK', dayrate: '£450/day', timer: '1:58:45', status: 'Actioned', },
-    { name: 'Data Analyst', noofroles: '2', startdate: ' 10-09-2024', publisheddate: ' 17-08-2024', clientname: 'XYZ Corp', location: 'Manchester, UK', dayrate: '£400/day', timer: '12:58:45', status: 'Actioned', },
-    { name: 'Project Manager', noofroles: '1', startdate: '25-08-2024 ', publisheddate: ' 18-08-2024', clientname: 'DEF Solutions', location: 'Birmingham, UK', dayrate: '£500/day', timer: 'N/A', status: 'Active', },
-    { name: 'QA Tester', noofroles: '4', startdate: '05-09-2024 ', publisheddate: '19-08-2024 ', clientname: 'GHI Innovations', location: 'Bristol, UK', dayrate: '£350/day', timer: '23:00:00', status: 'Inactive', },
-    { name: 'DevOps Engineer', noofroles: '2', startdate: '15-09-2024 ', publisheddate: '20-08-2024 ', clientname: 'JKL Enterprises', location: 'Leeds, UK', dayrate: '£350/day', timer: '05:12:39', status: 'Not Submitted', },
-    { name: 'Project Manager', noofroles: '1', startdate: ' 25-08-2024', publisheddate: ' 18-08-2024', clientname: 'DEF Solutions', location: 'Birmingham, UK', dayrate: '£500/day', timer: '17:52:07', status: 'Submitted', },
-    { name: 'DevOps Engineer', noofroles: '4', startdate: '05-09-2024 ', publisheddate: '19-08-2024 ', clientname: 'GHI Innovations', location: 'Bristol, UK', dayrate: '£350/day', timer: '00:54:00', status: 'Expired', },
-    { name: 'QA Tester', noofroles: '2', startdate: '15-09-2024 ', publisheddate: '20-08-2024 ', clientname: 'JKL Enterprises', location: 'Leeds, UK', dayrate: '£550/day', timer: '1:23:37', status: 'Inactive', },
-  ];
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -56,7 +47,7 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getProjectList();
   }
 
   submit() {
@@ -79,13 +70,13 @@ export class CirAllJobsComponent implements OnInit {
   addCandidate() {
     this.candidates.push(this.createCandidateFormGroup());
   }
-  
+
   removeCandidate(index: number) {
     this.candidates.removeAt(index);
   }
 
   openModal(role: any) {
-   // this.router.navigate(['/acr/acr-upload-details']);
+    // this.router.navigate(['/acr/acr-upload-details']);
   }
 
 
@@ -115,6 +106,23 @@ export class CirAllJobsComponent implements OnInit {
     }, (error) => {
       this.notificationService.showError(error?.message || 'File not uploaded.')
     })
+  }
+
+
+  getProjectList() {
+
+    this.acrservice.getJobList().subscribe((response) => {
+      this.joblist = [];
+      if (response?.status == true) {
+        this.joblist = response?.data;
+        console.log('this.joblist', this.joblist);
+
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message);
+    });
   }
 
 }
