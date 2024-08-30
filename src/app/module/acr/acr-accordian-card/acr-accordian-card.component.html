@@ -2,8 +2,7 @@
   <div class="container">
     <h4 style="text-align: center;"><strong>Future Roles</strong></h4>
     <p class=" mb-4 text-center text-bold">
-      Please select a contract from the options below to view available Positions.<br>
-      Mandatory : Select atleast 1 option in each Contract to move to next page
+      Please select a contract from the options below to view available Positions.
     </p>
     <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
@@ -24,7 +23,6 @@
               <table class="table table-bordered mt-3">
                 <thead>
                   <tr>
-                    <th scope="col">Select</th>
                     <th [width]="200" scope="col">Job Title</th>
                     <th scope="col">Job Description</th>
                     <th [width]="250" scope="col">Can you Supply for this Role?</th>
@@ -32,10 +30,6 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let role of manchesterrolesTableData; let i = index">
-                    <td>
-                      <input type="checkbox" [checked]="selected(role.role)" class="form-check-input chckbox ms-3"
-                        [(ngModel)]="role.selected" id="checkbox{{ i + 1 }}">
-                    </td>
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
                     </td>
@@ -86,17 +80,13 @@
               <table class="table table-bordered mt-3">
                 <thead>
                   <tr>
-                    <th scope="col">Select</th>
-                    <th scope="col">Job Title</th>
+                    <th [width]="200" scope="col">Job Title</th>
                     <th scope="col">Job Description</th>
+                    <th [width]="250" scope="col">Can you Supply for this Role?</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let role of northanRolesTableData; let i = index">
-                    <td>
-                      <input type="checkbox" [checked]="selected(role.role)" class="form-check-input ms-3 chckbox"
-                        [(ngModel)]="role.selected" id="checkbox{{ i + 1 }}">
-                    </td>
+                  <tr *ngFor="let role of manchesterrolesTableData; let i = index">
                     <td>
                       <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
                     </td>
@@ -109,6 +99,17 @@
                           <span *ngIf="(role?.description ?? '').length > 200" style="color: #34b5b8 ;">Read more</span>
                         </span>
                       </a>
+                    </td>
+                    <td class="text-center">
+                      <label>
+                        <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(role)"
+                          data-bs-toggle="modal" data-bs-target="#loginDetailModal">
+                        Yes
+                      </label>&nbsp;
+                      <label>
+                        <input type="radio" name="choice{{ i }}" value="no">
+                        No
+                      </label>
                     </td>
                   </tr>
                 </tbody>
@@ -136,30 +137,36 @@
               <table class="table table-bordered mt-3">
                 <thead>
                   <tr>
-                    <th scope="col">Select</th>
-                    <th scope="col">Job Title</th>
+                    <th [width]="200" scope="col">Job Title</th>
                     <th scope="col">Job Description</th>
+                    <th [width]="250" scope="col">Can you Supply for this Role?</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let service of qaSpecialistServices; let i = index">
+                  <tr *ngFor="let role of manchesterrolesTableData; let i = index">
                     <td>
-                      <input type="checkbox" [checked]="selected(service.role)" class="form-check-input ms-3 chckbox"
-                        [(ngModel)]="service.selected" id="checkbox{{ i + 1 }}">
+                      <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
                     </td>
                     <td>
-                      <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="service.role"></label>
-                    </td>
-                    <td>
-                      <a ngbTooltip="{{ service?.description }}">
+                      <a ngbTooltip="{{ role?.description }}">
                         <span>
-                          {{ (service?.description ?? '').length > 200
-                          ? (service?.description | slice: 0:200) + '... '
-                          : service?.description }}
-                          <span *ngIf="(service?.description ?? '').length > 200" style="color: #34b5b8 ;">Read
-                            more</span>
+                          {{ (role?.description ?? '').length > 200
+                          ? (role?.description | slice: 0:200) + '... '
+                          : role?.description }}
+                          <span *ngIf="(role?.description ?? '').length > 200" style="color: #34b5b8 ;">Read more</span>
                         </span>
                       </a>
+                    </td>
+                    <td class="text-center">
+                      <label>
+                        <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(role)"
+                          data-bs-toggle="modal" data-bs-target="#loginDetailModal">
+                        Yes
+                      </label>&nbsp;
+                      <label>
+                        <input type="radio" name="choice{{ i }}" value="no">
+                        No
+                      </label>
                     </td>
                   </tr>
                 </tbody>
@@ -194,7 +201,7 @@
             <thead>
               <tr>
                 <th scope="col">No. of Resources Can Be Sourced Within <span style="color: red;">*</span></th>
-                <th scope="col">Day Rate <span style="color: red;">*</span></th>
+                <th scope="col">Expected Day Rate <span style="color: red;">*</span></th>
                 <th scope="col">Upload Sample CV <span style="color: red;">*</span></th>
               </tr>
             </thead>
