@@ -34,7 +34,7 @@
             <td style="color: red;">{{candidate?.timer}}</td>
             <td class="text-center">
               <label>
-                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(candidate)">
+                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(candidate)"  data-bs-toggle="modal" data-bs-target="#loginDetailModal">
                 Yes
               </label>&nbsp;
               <label>

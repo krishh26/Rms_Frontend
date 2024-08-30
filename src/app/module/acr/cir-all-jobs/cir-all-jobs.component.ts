@@ -85,7 +85,7 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   openModal(role: any) {
-    this.router.navigate(['/acr/acr-upload-details']);
+   // this.router.navigate(['/acr/acr-upload-details']);
   }
 
 
