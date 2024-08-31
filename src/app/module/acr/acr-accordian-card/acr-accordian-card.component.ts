@@ -358,24 +358,39 @@ export class AcrAccordianCardComponent implements OnInit {
 
   supplyonSubmit(): void {
     if (this.supplyform.invalid) {
-      this.notificationService.showError('Fill all the fields');
-      return;
+      return this.notificationService.showError('Fill all the fields');
     }
 
-    const formData: FormData = new FormData();
-    formData.append('four_hour', this.supplyform.get('four_hour')?.value);
-    formData.append('seven_hour', this.supplyform.get('seven_hour')?.value);
-    formData.append('day_rate', this.supplyform.get('day_rate')?.value);
-
-    // Check if files are selected
-    if (this.selectedFiles['cv48Hours']) {
-      formData.append('cv48Hours', this.selectedFiles['cv48Hours'], this.selectedFiles['cv48Hours'].name);
+    if(!this.file) {
+      return this.notificationService.showError('Please submit after upload file.');
     }
-    if (this.selectedFiles['cv7Days']) {
-      formData.append('cv7Days', this.selectedFiles['cv7Days'], this.selectedFiles['cv7Days'].name);
+    // const formData: FormData = new FormData();
+    // formData.append('four_hour', this.supplyform.get('four_hour')?.value);
+    // formData.append('seven_hour', this.supplyform.get('seven_hour')?.value);
+    // formData.append('day_rate', this.supplyform.get('day_rate')?.value);
+
+    // // Check if files are selected
+    // if (this.selectedFiles['cv48Hours']) {
+    //   formData.append('cv48Hours', this.selectedFiles['cv48Hours'], this.selectedFiles['cv48Hours'].name);
+    // }
+    // if (this.selectedFiles['cv7Days']) {
+    //   formData.append('cv7Days', this.selectedFiles['cv7Days'], this.selectedFiles['cv7Days'].name);
+    // }
+    let payloadData: any = {
+      appliedRole: []
     }
 
-    this.acrservice.supplyjob(formData).subscribe((response) => {
+    const data: any = {
+      title: this.selectedJobTitle,
+      four_hour: this.supplyform.get('four_hour')?.value,
+      seven_hour: this.supplyform.get('seven_hour')?.value,
+      day_rate: this.supplyform.get('day_rate')?.value,
+      cv: [{ ...this.file }]
+    }
+
+    payloadData.appliedRole.push(data);
+
+    this.acrservice.supplyjob(payloadData).subscribe((response) => {
       if (response?.status) {
         this.localStorageService.setLogger(response?.data);
         window.location.reload();

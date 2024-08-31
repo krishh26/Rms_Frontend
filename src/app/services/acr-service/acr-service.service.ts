@@ -47,7 +47,7 @@ export class AcrServiceService {
 
   supplyjob(payload: any): Observable<any> {
     return this.httpClient
-      .post<any>(this.baseUrl + AcrEndPoint.SUPPLY_JOB, payload);
+      .patch<any>(this.baseUrl + AcrEndPoint.SUPPLY_JOB, payload);
   }
 
   getJobList(): Observable<any> {
