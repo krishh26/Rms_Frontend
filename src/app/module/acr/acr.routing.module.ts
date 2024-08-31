@@ -12,6 +12,7 @@ import { AcrAdminComponent } from './acr-admin/acr-admin.component';
 import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-details.component';
 import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
 import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-password.component';
+import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
     component: AcrThankyouComponent
   },
   {
-    path: "acr-admin",
+    path: "acr-create-job",
     component: AcrAdminComponent
   },
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: "acr-accordian-card",
     component: AcrAccordianCardComponent
+  },
+  {
+    path: "acr-create-candidate",
+    component: AcrAddCandidateComponent
   },
   {
     path: '',

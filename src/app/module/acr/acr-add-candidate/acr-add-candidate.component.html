@@ -1,0 +1,131 @@
+<section class="section-registration">
+  <div class="container">
+    <div class="FlatCard shadow border-radius24">
+      <div class="row">
+        <div class="col-lg-5 col-xl-5 col-12">
+          <div class="FormLeft-panel">
+            <div class="text-center">
+              <img src="../../../../assets/img/Picture1.png" width="200" class="mb-5" />
+            </div>
+            <h1 class="HeadingLarge">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h1>
+            <p class="mb-5 textfont">SaiVen, is an emerging IT QA lead business with 40+ business collaborations
+              across UK and India. We are a dedicated business to lead the governance of all public sector QA projects
+              signed by the group and we are the driving force for client relationship management, project governance,
+              and people/delivery management.<br><br>
+              Our job is to ensure seamless execution for exceptional results, through bringing our industry expertise
+              added with right skills at right time - enabling quick and cost-effective resource augmentation, for
+              benefit of our clients.<br><br>Partner with us for exciting contract opportunities and be a part of our
+              success
+              story</p>
+            <p><strong>Saiven Technology Solutions Limited</strong><br>
+              1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
+            </p>
+            <p>Company Registration Number: 8856876</p>
+            <p>Email: Info@saivensolutions.co.uk</p>
+          </div>
+        </div>
+        <div class="col-lg-7 col-xl-7 col-12">
+          <div class="FormRight-panel">
+            <h4 class="mb-3 text-center"><strong>Create Candidate</strong></h4><br>
+            <form [formGroup]="jobForm" (ngSubmit)="submit()">
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Agency<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="agencyId">
+                      <option value="66c5f85e47df545bdae995be">roles1</option>
+                      <option value="66c5f85e47df545bdae995be">roles2</option>
+                      <option value="66c5f85e47df545bdae995be">roles3</option>
+                      <option value="66c5f85e47df545bdae995be">roles4</option>
+                    </select>
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('agencyId')?.touched && jobForm.get('agencyId')?.errors?.['required']">
+                      Please select the Agency.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Candidate Name<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Client Name" formControlName="name">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('name')?.touched && jobForm.get('name')?.errors?.['required']">
+                      Please enter the candidate name.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Candidate Email<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" placeholder="Day Rate" formControlName="email">
+                  <span class="text-danger"
+                    *ngIf="jobForm.get('email')?.touched && jobForm.get('email')?.errors?.['required']">
+                    Please enter the email.
+                  </span>
+                </div>
+              </div>
+
+              <br />
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Joining Date<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="date" class="form-control" formControlName="joiningDate"
+                      placeholder="Position Start Date">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('joiningDate')?.touched && jobForm.get('joiningDate')?.errors?.['required']">
+                      Please select joining date.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Status<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="status">
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                    <!-- <span class="text-danger"
+                      *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('status')?.errors?.['required']">
+                      Please enter the day rate.
+                    </span> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="update ml-auto mr-auto"><br>
+                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round">Add
+                    Candidate</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
