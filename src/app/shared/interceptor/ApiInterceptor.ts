@@ -12,7 +12,16 @@ export class APIInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const jwt = this.localStorageService.getLoggerToken();
+    let jwt : string = '';
+    if(this.localStorageService.getLoggerToken()) {
+      jwt = this.localStorageService.getLoggerToken();
+    } else {
+      const data = localStorage.getItem('rmsPersonalDetails');
+      if(data) {
+        const personalDetails = JSON.parse(data);
+        jwt = personalDetails?.data?.token;
+      }
+    }
     const authReq = httpRequest.clone({ setHeaders: { authorization: `Bearer ${jwt}` } });
 
     return next.handle(authReq).pipe(

@@ -382,6 +382,9 @@ export class AcrAccordianCardComponent implements OnInit {
       if (response?.status) {
         this.localStorageService.setLogger(response?.data);
         this.router.navigate(['/acr/acr-thankyou']);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
         this.notificationService.showSuccess('Success!');
       } else {
         this.notificationService.showError('Submission failed, try again.');
