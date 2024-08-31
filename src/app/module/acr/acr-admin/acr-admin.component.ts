@@ -24,7 +24,7 @@ export class AcrAdminComponent implements OnInit {
       job_title: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
       no_of_roles: new FormControl('', [Validators.required]),
       start_date: new FormControl('', [Validators.required]),
-      publish_date: new FormControl(moment(new Date()).format('dd-MM-YYYY'), [Validators.required]),
+      publish_date: new FormControl('', [Validators.required]),
       client_name: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       day_rate: new FormControl('', [Validators.required]),
