@@ -111,19 +111,19 @@
               <tr *ngFor="let candidate of candidates.controls; let i = index" [formGroupName]="i">
                 <td class="text-center">{{ i + 1 }}.</td>
                 <td>
-                  <input type="file" class="form-control" (change)="fileUpload($event)" required>
+                  <input type="file" class="form-control" (change)="fileUpload($event, i)" required>
                 </td>
                 <td>
                   <input type="text" placeholder="Enter nationality" class="form-control"
-                    formControlName="nationality" />
+                    formControlName="candidate_nationality" />
                 </td>
                 <td>
-                  <input type="text" placeholder="Enter job title" class="form-control" formControlName="location" />
+                  <input type="text" placeholder="Enter job title" class="form-control" formControlName="candidate_location" />
                 </td>
                 <td>
                   <button type="button" class="btn btn-danger" (click)="removeCandidate(i)"
                     *ngIf="candidates.length > 1">-</button>&nbsp;
-                  <button type="button" class="btn btn-primary" (click)="addCandidate()"
+                  <button type="button" class="btn btn-primary" (click)="addCandidate(i)"
                     *ngIf="i === candidates.length - 1">+</button>
                 </td>
               </tr>

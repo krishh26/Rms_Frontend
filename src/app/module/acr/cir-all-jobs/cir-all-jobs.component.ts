@@ -20,8 +20,9 @@ export class CirAllJobsComponent implements OnInit {
   candidateForm!: FormGroup;
   joblist: any = [];
   jobDetails: any;
+  cvDetails: any;
   @ViewChild('loginDetailModal') loginDetailModal: any;
-  @ViewChild('uploadcvModal') uploadcvModal: any ;
+  @ViewChild('uploadcvModal') uploadcvModal: any;
 
   constructor(
     private router: Router,
@@ -43,31 +44,46 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   submit(modalType: string) {
-    if(modalType == 'cv'){
-      this.modalService.dismissAll()
-    }else{
     const loginData = this.localStorageService.getLogger();
-    console.log('loginData :', loginData);
-      console.log('this.jobDetails :', this.jobDetails);
+
+    if (modalType == 'cv') {
+      this.modalService.dismissAll();
       let payload = {
         user_id: loginData._id,
         job_id: this.jobDetails.job_id,
         applied: true,
-        resources: this.resourcesForm.controls['howmanyresources'].value, // optional 
-    }
+        resources: this.resourcesForm.controls['howmanyresources'].value, // optional,
+        cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
+      }
+
       this.acrservice.applyJob(payload).subscribe((response) => {
         if (response?.status) {
-        this.modalService.open(this.uploadcvModal,{  size : 'xl' })      
-        this.getProjectList();
-        console.log('response :', response);
-        } 
+          this.getProjectList();
+        }
       }, (error) => {
-        this.notificationService.showError(error?.message || 'Something went wrong.')
+        this.notificationService.showError(error?.error?.message || 'Something went wrong.')
+      })
+
+    } else {
+      let payload = {
+        user_id: loginData._id,
+        job_id: this.jobDetails.job_id,
+        applied: false,
+        resources: this.resourcesForm.controls['howmanyresources'].value, // optional
+      }
+      this.acrservice.applyJob(payload).subscribe((response) => {
+        if (response?.status) {
+          this.modalService.open(this.uploadcvModal, { size: 'xl' })
+          this.getProjectList();
+        }
+      }, (error) => {
+        console.log('error', error)
+        this.notificationService.showError(error?.error?.message || 'Something went wrong.')
       })
     }
   }
 
-  get candidates(): FormArray {
+  get candidates(): FormArray | any {
     return this.resourcesForm.get('candidates') as FormArray;
   }
 
@@ -75,12 +91,26 @@ export class CirAllJobsComponent implements OnInit {
     return this.fb.group({
       howmanyresources: ['', Validators.required],
       cv: ['', [Validators.required]],
-      nationality: ['', Validators.required],
-      location: ['', Validators.required]
+      candidate_nationality: ['', Validators.required],
+      candidate_location: ['', Validators.required]
     });
   }
 
-  addCandidate() {
+  addCandidate(index: number) {
+    if (!this.file) {
+      return this.notificationService.showError('Please upload file');
+    }
+
+    if (!this.resourcesForm.value?.candidates[index]?.candidate_nationality) {
+      return this.notificationService.showError('Please enter candidate nationality');
+    }
+
+    if (!this.resourcesForm.value?.candidates[index]?.candidate_location) {
+      return this.notificationService.showError('Please enter candidate location');
+    }
+
+    this.file = "";
+
     this.candidates.push(this.createCandidateFormGroup());
   }
 
@@ -92,9 +122,10 @@ export class CirAllJobsComponent implements OnInit {
     this.jobDetails = ''
     this.jobDetails = role
     this.modalService.dismissAll()
-    this.modalService.open(this.loginDetailModal,{  size : 'xl' ,backdrop : 'static'})
+    this.modalService.open(this.loginDetailModal, { size: 'xl', backdrop: 'static' })
   }
-  closeModal(){
+
+  closeModal() {
     this.modalService.dismissAll()
   }
 
@@ -107,7 +138,7 @@ export class CirAllJobsComponent implements OnInit {
     return true;
   }
 
-  fileUpload(event: any): void {
+  fileUpload(event: any, index: number): void {
     const file = event.target.files[0];
     const data = new FormData();
     data.append('files', file || '');
@@ -116,6 +147,9 @@ export class CirAllJobsComponent implements OnInit {
       if (response?.status) {
         this.file = response?.data;
         console.log(this.file);
+
+        // this.resourcesForm.value.candidates[index].cv = this.file;
+        this.candidates.at(index).get('cv').setValue(this.file)
 
         this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
       } else {
