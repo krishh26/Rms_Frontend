@@ -10,7 +10,8 @@ export enum AcrEndPoint {
   FILE_UPLOAD = "/upload",
   UPDATE_REGISTER = '/user/update/',
   CREATE_JOB = '/acr/jobs',
-  GET_JOB_LIST = '/acr/jobs'
+  GET_JOB_LIST = '/acr/jobs',
+  APPLY_JOBS = '/acr/apply-job'
 }
 
 @Injectable({
@@ -66,5 +67,10 @@ export class AcrServiceService {
   fileUpload(payload: any) {
     return this.httpClient
       .post<any>(this.baseUrl + AcrEndPoint.FILE_UPLOAD, payload);
+  }
+
+  applyJob(payload: any) {
+    return this.httpClient
+    .post<any>(this.baseUrl + AcrEndPoint.APPLY_JOBS, payload);
   }
 }
