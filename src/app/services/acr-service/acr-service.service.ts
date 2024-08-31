@@ -12,7 +12,8 @@ export enum AcrEndPoint {
   CREATE_JOB = '/acr/jobs',
   GET_JOB_LIST = '/acr/jobs',
   APPLY_JOBS = '/acr/apply-job',
-  SUPPLY_JOB = '/user/acr/update'
+  SUPPLY_JOB = '/user/acr/update',
+  RESET_PASSWORD = '/user/reset',
 }
 
 @Injectable({
@@ -38,6 +39,11 @@ export class AcrServiceService {
   loginUser(payload: any): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + AcrEndPoint.LOGIN_USER, payload, { headers: this.getHeader() });
+  }
+
+  resetpassword(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + AcrEndPoint.RESET_PASSWORD, payload);
   }
 
   register(payload: any): Observable<any> {

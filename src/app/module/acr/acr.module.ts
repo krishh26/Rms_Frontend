@@ -17,6 +17,7 @@ import { CirAllJobsComponent } from './cir-all-jobs/cir-all-jobs.component';
 import { AcrAdminComponent } from './acr-admin/acr-admin.component';
 import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-details.component';
 import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
+import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-password.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
     CirAllJobsComponent,
     AcrAdminComponent,
     AcrUploadDetailsComponent,
-    AcrThankyouComponent
+    AcrThankyouComponent,
+    AcrResetPasswordComponent
   ]
 })
 export class AcrModule { }

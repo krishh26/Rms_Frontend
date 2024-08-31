@@ -35,10 +35,17 @@ export class AcrLoginComponent implements OnInit {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
       this.acrservice.loginUser(this.loginForm.value).subscribe((response) => {
+        debugger
         if (response?.status == true) {
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
-          this.router.navigate(['/acr/acr-all-jobs']);
+
+          if (response?.data?.user?.password_reset == false) {
+            this.router.navigate(['/acr/acr-reset-password']);
+          } else {
+            this.router.navigate(['/acr/acr-all-jobs']);
+          }
+
         } else {
           this.notificationService.showError(response?.message);
         }
