@@ -11,7 +11,8 @@ export enum AcrEndPoint {
   UPDATE_REGISTER = '/user/update/',
   CREATE_JOB = '/acr/jobs',
   GET_JOB_LIST = '/acr/jobs',
-  APPLY_JOBS = '/acr/apply-job'
+  APPLY_JOBS = '/acr/apply-job',
+  SUPPLY_JOB = '/user/acr/update'
 }
 
 @Injectable({
@@ -44,6 +45,11 @@ export class AcrServiceService {
       .post<any>(this.baseUrl + AcrEndPoint.REGISTER, payload);
   }
 
+  supplyjob(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + AcrEndPoint.SUPPLY_JOB, payload);
+  }
+
   getJobList(): Observable<any> {
     return this.httpClient
       .get<any>(this.baseUrl + AcrEndPoint.GET_JOB_LIST);
@@ -71,6 +77,6 @@ export class AcrServiceService {
 
   applyJob(payload: any) {
     return this.httpClient
-    .post<any>(this.baseUrl + AcrEndPoint.APPLY_JOBS, payload);
+      .post<any>(this.baseUrl + AcrEndPoint.APPLY_JOBS, payload);
   }
 }

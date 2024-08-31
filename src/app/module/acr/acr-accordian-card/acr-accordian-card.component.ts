@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -286,6 +288,9 @@ export class AcrAccordianCardComponent implements OnInit {
       selected: false
     }
   ];
+  file: any;
+  supplyform!: FormGroup;
+  selectedFiles: { [key: string]: File } = {};
 
   inputField1: string = '';
   inputField2: string = '';
@@ -298,34 +303,89 @@ export class AcrAccordianCardComponent implements OnInit {
   cv7Days: File | undefined;
 
   constructor(
-    private cirSericeService: CirSericeService,
+    private acrservice: AcrServiceService,
+    private cirservice: CirSericeService,
     private notificationService: NotificationService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
     this.getDetails();
+
+    this.supplyform = this.fb.group({
+      four_hour: ['', Validators.required],
+      seven_hour: ['', Validators.required],
+      day_rate: ['', Validators.required],
+      // cv48Hours: [null, Validators.required],
+      // cv7Days: [null, Validators.required]
+    });
   }
 
   openModal(role: any) {
     this.selectedJobTitle = role.role;  // Set the selected job title
-    // const modalRef = this.modalService.open(this.content, {  size : 'xl' , backdrop: 'static'  });
-    // modalRef.result.then((result) => {
-    //   console.log('Modal closed with:', result);
-    // }, (reason) => {
-    //   console.log('Modal dismissed with:', reason);
-    // });
   }
-  
-  onFileSelected(event: any, type: string) {
-    const file: File = event.target.files[0];
-    if (type === 'cv48Hours') {
-      this.cv48Hours = file;
-    } else if (type === 'cv7Days') {
-      this.cv7Days = file;
+
+
+  NumberOnly(event: any): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
     }
+    return true;
+  }
+
+  fileUpload(event: any): void {
+    const file = event.target.files[0];
+    const data = new FormData();
+    data.append('files', file || '');
+
+    this.cirservice.fileUpload(data).subscribe((response) => {
+      if (response?.status) {
+        this.file = response?.data;
+        console.log(this.file);
+
+        this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
+      } else {
+        this.notificationService.showError(response?.message || 'File not uploaded.')
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message || 'File not uploaded.')
+    })
+  }
+
+  supplyonSubmit(): void {
+    if (this.supplyform.invalid) {
+      this.notificationService.showError('Fill all the fields');
+      return;
+    }
+
+    const formData: FormData = new FormData();
+    formData.append('four_hour', this.supplyform.get('four_hour')?.value);
+    formData.append('seven_hour', this.supplyform.get('seven_hour')?.value);
+    formData.append('day_rate', this.supplyform.get('day_rate')?.value);
+
+    // Check if files are selected
+    if (this.selectedFiles['cv48Hours']) {
+      formData.append('cv48Hours', this.selectedFiles['cv48Hours'], this.selectedFiles['cv48Hours'].name);
+    }
+    if (this.selectedFiles['cv7Days']) {
+      formData.append('cv7Days', this.selectedFiles['cv7Days'], this.selectedFiles['cv7Days'].name);
+    }
+
+    this.acrservice.supplyjob(formData).subscribe((response) => {
+      if (response?.status) {
+        this.localStorageService.setLogger(response?.data);
+        window.location.reload();
+        this.notificationService.showSuccess('Success!');
+      } else {
+        this.notificationService.showError('Submission failed, try again.');
+      }
+    }, (error) => {
+      this.notificationService.showError('An error occurred.');
+    });
   }
 
   getDetails() {
