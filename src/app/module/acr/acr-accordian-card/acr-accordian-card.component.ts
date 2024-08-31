@@ -361,21 +361,9 @@ export class AcrAccordianCardComponent implements OnInit {
       return this.notificationService.showError('Fill all the fields');
     }
 
-    if(!this.file) {
+    if (!this.file) {
       return this.notificationService.showError('Please submit after upload file.');
     }
-    // const formData: FormData = new FormData();
-    // formData.append('four_hour', this.supplyform.get('four_hour')?.value);
-    // formData.append('seven_hour', this.supplyform.get('seven_hour')?.value);
-    // formData.append('day_rate', this.supplyform.get('day_rate')?.value);
-
-    // // Check if files are selected
-    // if (this.selectedFiles['cv48Hours']) {
-    //   formData.append('cv48Hours', this.selectedFiles['cv48Hours'], this.selectedFiles['cv48Hours'].name);
-    // }
-    // if (this.selectedFiles['cv7Days']) {
-    //   formData.append('cv7Days', this.selectedFiles['cv7Days'], this.selectedFiles['cv7Days'].name);
-    // }
     let payloadData: any = {
       appliedRole: []
     }
@@ -393,7 +381,7 @@ export class AcrAccordianCardComponent implements OnInit {
     this.acrservice.supplyjob(payloadData).subscribe((response) => {
       if (response?.status) {
         this.localStorageService.setLogger(response?.data);
-        window.location.reload();
+        this.router.navigate(['/acr/acr-thankyou']);
         this.notificationService.showSuccess('Success!');
       } else {
         this.notificationService.showError('Submission failed, try again.');

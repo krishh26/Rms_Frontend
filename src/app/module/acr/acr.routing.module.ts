@@ -10,6 +10,7 @@ import { MyCandidatePageComponent } from './my-candidate-page/my-candidate-page.
 import { CirAllJobsComponent } from './cir-all-jobs/cir-all-jobs.component';
 import { AcrAdminComponent } from './acr-admin/acr-admin.component';
 import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-details.component';
+import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
 
 const routes: Routes = [
   {
@@ -21,13 +22,15 @@ const routes: Routes = [
     component: AcrLoginComponent
   },
   {
+    path: "acr-thankyou",
+    component: AcrThankyouComponent
+  },
+  {
     path: "acr-admin",
-    // canActivate: [AuthGuard],
     component: AcrAdminComponent
   },
   {
     path: "acr-accordian-card",
-    // canActivate: [AuthGuard],
     component: AcrAccordianCardComponent
   },
   {

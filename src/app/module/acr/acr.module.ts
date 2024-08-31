@@ -16,6 +16,7 @@ import { MyCandidatePageComponent } from './my-candidate-page/my-candidate-page.
 import { CirAllJobsComponent } from './cir-all-jobs/cir-all-jobs.component';
 import { AcrAdminComponent } from './acr-admin/acr-admin.component';
 import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-details.component';
+import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-detai
     MyCandidatePageComponent,
     CirAllJobsComponent,
     AcrAdminComponent,
-    AcrUploadDetailsComponent
+    AcrUploadDetailsComponent,
+    AcrThankyouComponent
   ]
 })
 export class AcrModule { }
