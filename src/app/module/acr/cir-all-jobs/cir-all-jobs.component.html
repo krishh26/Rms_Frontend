@@ -29,8 +29,7 @@
             <td style="color: red;">{{job?.timerEnd}}</td>
             <td class="text-center">
               <label>
-                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)" data-bs-toggle="modal"
-                  data-bs-target="#loginDetailModal">
+                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)" >
                 Yes
               </label>&nbsp;
               <label>
@@ -47,12 +46,12 @@
 </section>
 
 
-<div class="modal fade" id="loginDetailModal" tabindex="-1" aria-labelledby="ViewLogin" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
+<ng-template class="modal" #loginDetailModal id="loginDetailModal" tabindex="-1" aria-labelledby="ViewLogin" aria-hidden="true">
+  <div class="">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="ViewLogin">Upload Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close"(click)="closeModal()"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
@@ -80,7 +79,7 @@
 
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" data-bs-toggle="modal" data-bs-target="#uploadcvModal" (click)="submit()"
+              <button type="button" [disabled]="!resourcesForm.controls['howmanyresources'].value" (click)="submit('resources')"
                 class="btn btn-primary w-50">Submit</button>
             </div>
           </div>
@@ -88,15 +87,13 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<div class="modal fade" id="uploadcvModal" tabindex="-1" aria-labelledby="ViewCv" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
+</ng-template>
+<ng-template class="modal fade" #uploadcvModal id="uploadcvModal" tabindex="-1" aria-labelledby="ViewCv" aria-hidden="true">
+  <div class="">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="ViewCv">Upload CV</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
@@ -144,11 +141,11 @@
 
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" (click)="submit()" class="btn btn-primary w-50">Submit</button>
+              <button type="button" (click)="submit('cv')" class="btn btn-primary w-50">Submit</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-</div>
+</ng-template>

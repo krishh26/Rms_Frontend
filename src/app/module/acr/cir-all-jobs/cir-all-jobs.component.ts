@@ -19,7 +19,9 @@ export class CirAllJobsComponent implements OnInit {
   resourcesForm!: FormGroup;
   candidateForm!: FormGroup;
   joblist: any = [];
-  @ViewChild('content', { static: true }) content: TemplateRef<any> | undefined;
+  jobDetails: any;
+  @ViewChild('loginDetailModal') loginDetailModal: any;
+  @ViewChild('uploadcvModal') uploadcvModal: any ;
 
   constructor(
     private router: Router,
@@ -40,8 +42,29 @@ export class CirAllJobsComponent implements OnInit {
     this.getProjectList();
   }
 
-  submit() {
-
+  submit(modalType: string) {
+    if(modalType == 'cv'){
+      this.modalService.dismissAll()
+    }else{
+    const loginData = this.localStorageService.getLogger();
+    console.log('loginData :', loginData);
+      console.log('this.jobDetails :', this.jobDetails);
+      let payload = {
+        user_id: loginData._id,
+        job_id: this.jobDetails.job_id,
+        applied: true,
+        resources: this.resourcesForm.controls['howmanyresources'].value, // optional 
+    }
+      this.acrservice.applyJob(payload).subscribe((response) => {
+        if (response?.status) {
+        this.modalService.open(this.uploadcvModal,{  size : 'xl' })      
+        this.getProjectList();
+        console.log('response :', response);
+        } 
+      }, (error) => {
+        this.notificationService.showError(error?.message || 'Something went wrong.')
+      })
+    }
   }
 
   get candidates(): FormArray {
@@ -66,9 +89,14 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   openModal(role: any) {
-    // this.router.navigate(['/acr/acr-upload-details']);
+    this.jobDetails = ''
+    this.jobDetails = role
+    this.modalService.dismissAll()
+    this.modalService.open(this.loginDetailModal,{  size : 'xl' ,backdrop : 'static'})
   }
-
+  closeModal(){
+    this.modalService.dismissAll()
+  }
 
   // Number only validation
   NumberOnly(event: any): boolean {
