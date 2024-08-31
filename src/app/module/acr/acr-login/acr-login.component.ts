@@ -24,7 +24,7 @@ export class AcrLoginComponent implements OnInit {
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
-      password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)])
+      password: new FormControl('', [Validators.required])
     });
   }
 
