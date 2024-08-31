@@ -332,7 +332,6 @@ export class AcrAccordianCardComponent implements OnInit {
     const rolesData: any = localStorage.getItem('rmsRolesDetails');
     if (rolesData || rolesData !== undefined || rolesData !== 'undefined') {
       const roles = JSON.parse(rolesData);
-      console.log(roles)
       if (roles?.client1?.roles?.length > 0) {
         roles?.client1?.roles?.map((el: any) => {
           this.selectedData.push(el);
@@ -426,8 +425,8 @@ export class AcrAccordianCardComponent implements OnInit {
     //   this.notificationService.showError('User not register');
     //   return;
     // }
-    localStorage.setItem('rmsRolesDetails', JSON.stringify(payloadData));
-    this.router.navigate(['/cir/cir-otherdetails-form']);
+
+
     // this.cirSericeService.updateUserClient(payloadData, loginData?.user?._id || loginData?._id).subscribe((response) => {
     //   if (response?.status) {
     //     this.notificationService.showSuccess('Client update Successful');

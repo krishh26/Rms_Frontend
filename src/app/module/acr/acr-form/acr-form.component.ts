@@ -151,6 +151,7 @@ export class AcrFormComponent implements OnInit {
 
     this.acrservice.register(this.agencyForm.value).subscribe((response) => {
       if (response?.status == true) {
+        localStorage.setItem('rmsPersonalDetails', JSON.stringify(response));
         this.router.navigate(['/acr/acr-accordian-card']);
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
