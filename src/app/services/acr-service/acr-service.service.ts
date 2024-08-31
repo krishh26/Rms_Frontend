@@ -14,6 +14,7 @@ export enum AcrEndPoint {
   APPLY_JOBS = '/acr/apply-job',
   SUPPLY_JOB = '/user/acr/update',
   RESET_PASSWORD = '/user/acr/reset',
+  CREATE_CANDIDATE = '/candidate/create'
 }
 
 @Injectable({
@@ -64,6 +65,11 @@ export class AcrServiceService {
   createjob(payload: any): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + AcrEndPoint.CREATE_JOB, payload);
+  }
+
+  createCandidate(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + AcrEndPoint.CREATE_CANDIDATE, payload);
   }
 
   updateregister(user_id: string, payload: any): Observable<any> {
