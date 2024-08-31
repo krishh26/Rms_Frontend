@@ -38,7 +38,7 @@ export class AcrLoginComponent implements OnInit {
         if (response?.status == true) {
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
-          this.router.navigate(['/acr/acr-accordian-card']);
+          this.router.navigate(['/acr/acr-all-jobs']);
         } else {
           this.notificationService.showError(response?.message);
         }

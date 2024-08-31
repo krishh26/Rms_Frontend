@@ -151,7 +151,7 @@ export class AcrFormComponent implements OnInit {
 
     this.acrservice.register(this.agencyForm.value).subscribe((response) => {
       if (response?.status == true) {
-        this.router.navigate(['/acr/acr-card']);
+        this.router.navigate(['/acr/acr-accordian-card']);
         this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
         this.notificationService.showError(response?.message, 'Select different Username!');
