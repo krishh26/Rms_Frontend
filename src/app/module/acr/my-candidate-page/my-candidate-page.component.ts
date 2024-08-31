@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-my-candidate-page',
@@ -7,21 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyCandidatePageComponent implements OnInit {
 
-  candidates = [
-    { name: 'kishan', email: 'kishan@gmail.com', joiningDate: '21-aug-2024', status: 'Active' ,contractenddate : '21-sep-2024'},
-    { name: 'ayush', email: 'ayush@gmail.com', joiningDate: '21-aug-2024', status: 'Active' ,contractenddate : '21-sep-2024'},
-    { name: 'gaurang', email: 'gaurang@gmail.com', joiningDate: '21-aug-2024', status: 'Inactive' ,contractenddate : '21-sep-2024'},
-    { name: 'mihir', email: 'mihir@gmail.com', joiningDate: '21-aug-2024', status: 'Terminated' ,contractenddate : '21-sep-2024'},
-    { name: 'raj', email: 'raj@gmail.com', joiningDate: '21-aug-2024', status: 'Inactive' ,contractenddate : '21-sep-2024'},
-    { name: 'mihir', email: 'mihir@gmail.com', joiningDate: '21-aug-2024', status: 'Active' ,contractenddate : '21-sep-2024'},
-    { name: 'raj', email: 'raj@gmail.com', joiningDate: '21-aug-2024', status: 'Terminated' ,contractenddate : '21-sep-2024'},
-    { name: 'mihir', email: 'mihir@gmail.com', joiningDate: '21-aug-2024', status: 'Active' ,contractenddate : '21-sep-2024'},
-    { name: 'raj', email: 'raj@gmail.com', joiningDate: '21-aug-2024', status: 'Terminated' ,contractenddate : '21-sep-2024'},
-  ];
+  candidatelist: any = [];
+  userID!: string;
+  userdata: any = [];
 
-  constructor() { }
+  constructor(
+    private acrservice: AcrServiceService,
+    private notificationService: NotificationService,
+    private localStorageService: LocalStorageService,
+  ) { }
 
   ngOnInit() {
+    this.getCandidateList();
+  }
+
+  getCandidateList() {
+    this.userdata = this.localStorageService.getLogger();
+    this.userID = this.userdata?._id
+    this.acrservice.getCandidateList(this.userID).subscribe((response) => {
+      this.candidatelist = [];
+      if (response?.status == true) {
+        this.candidatelist = response?.data;
+        console.log('this.candidatelist', this.candidatelist);
+
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message);
+    });
   }
 
 }

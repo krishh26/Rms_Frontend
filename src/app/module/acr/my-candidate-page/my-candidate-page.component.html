@@ -15,11 +15,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let candidate of candidates; let i = index">
+
+          <!-- <tr *ngIf="candidatelist.length > 0">
+            <div class="row">
+              <p>No Record Found.</p>
+            </div>
+          </tr> -->
+
+          <tr *ngFor="let candidate of candidatelist; let i = index">
             <td>{{i +1}}</td>
             <td>{{candidate.name}}</td>
             <td>{{candidate.email}}</td>
-            <td>{{candidate.joiningDate}}</td>
+            <td>{{candidate.joiningDate | date:'dd/MM/yyyy'}}</td>
             <td>{{candidate.contractenddate}}</td>
             <td>{{candidate.status}}</td>
             <td></td>
