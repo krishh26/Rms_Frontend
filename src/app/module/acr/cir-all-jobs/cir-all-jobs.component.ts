@@ -34,16 +34,6 @@ export class CirAllJobsComponent implements OnInit {
       howmanyresources: ['', Validators.required],
       candidates: this.fb.array([this.createCandidateFormGroup()])
     });
-
-    this.agencyForm = new FormGroup({
-      jobtitle: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
-      Noofroles: new FormControl('', [Validators.required]),
-      positionstartdate: new FormControl('', [Validators.required]),
-      publishdate: new FormControl(moment(new Date()).format('dd-MM-YYYY'), [Validators.required, Validators.pattern(Patterns.name)]),
-      clientname: new FormControl('', [Validators.required]),
-      location: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
-      dayrate: new FormControl('', [Validators.required]),
-    });
   }
 
   ngOnInit() {

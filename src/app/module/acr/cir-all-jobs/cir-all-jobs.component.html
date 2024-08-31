@@ -69,6 +69,37 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-md-5">
+              <label>Timer:</label>
+            </div>
+            <div class="col-md-7" style="color: red;">
+              <div class="timer" id="timer"><strong>24:00:00</strong></div>
+            </div>
+          </div>
+
+          <div class="col-3" style="float: right;">
+            <div class="d-flex align-items-center justify-content-between">
+              <button type="button" data-bs-toggle="modal" data-bs-target="#uploadcvModal" (click)="submit()"
+                class="btn btn-primary w-50">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="uploadcvModal" tabindex="-1" aria-labelledby="ViewCv" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ViewCv">Upload CV</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="resourcesForm">
           <table class="table table-bordered">
             <thead class="card-header">
               <tr>
@@ -118,7 +149,6 @@
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>
