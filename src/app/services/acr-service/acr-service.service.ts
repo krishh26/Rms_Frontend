@@ -13,7 +13,7 @@ export enum AcrEndPoint {
   GET_JOB_LIST = '/acr/jobs',
   APPLY_JOBS = '/acr/apply-job',
   SUPPLY_JOB = '/user/acr/update',
-  RESET_PASSWORD = '/user/reset',
+  RESET_PASSWORD = '/user/acr/reset',
 }
 
 @Injectable({
