@@ -16,11 +16,11 @@
         </thead>
         <tbody>
 
-          <!-- <tr *ngIf="candidatelist.length > 0">
-            <div class="row">
-              <p>No Record Found.</p>
-            </div>
-          </tr> -->
+          <tr>
+            <td *ngIf="candidatelist.length == 0" class="text-center" colspan="7">
+              No Record Found.
+            </td>
+          </tr>
 
           <tr *ngFor="let candidate of candidatelist; let i = index">
             <td>{{i +1}}</td>

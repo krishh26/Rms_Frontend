@@ -18,6 +18,15 @@
           </tr>
         </thead>
         <tbody>
+
+
+          <tr>
+            <td *ngIf="joblist.length == 0" class="text-center" colspan="10">
+              No Record Found.
+            </td>
+          </tr>
+
+
           <tr *ngFor="let job of joblist; let i = index">
             <td>{{job.job_id}}</td>
             <td>{{job.job_title}}</td>
