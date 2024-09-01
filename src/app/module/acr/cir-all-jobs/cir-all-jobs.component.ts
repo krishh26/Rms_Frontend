@@ -56,7 +56,7 @@ export class CirAllJobsComponent implements OnInit {
         cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
       }
 
-      this.acrservice.applyJob(payload).subscribe((response) => {
+      this.acrservice.updateApplication(payload).subscribe((response) => {
         if (response?.status) {
           this.getProjectList();
         }

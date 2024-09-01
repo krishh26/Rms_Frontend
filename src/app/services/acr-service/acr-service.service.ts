@@ -44,7 +44,7 @@ export class AcrServiceService {
     return this.httpClient
       .post<any>(this.baseUrl + AcrEndPoint.LOGIN_USER, payload, { headers: this.getHeader() });
   }
-  
+
   adminloginUser(payload: any): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + AcrEndPoint.ADMIN_LOGIN, payload, { headers: this.getHeader() });
@@ -110,5 +110,10 @@ export class AcrServiceService {
   applyJob(payload: any) {
     return this.httpClient
       .post<any>(this.baseUrl + AcrEndPoint.APPLY_JOBS, payload);
+  }
+
+  updateApplication(payload: any) {
+    return this.httpClient
+      .put<any>(this.baseUrl + AcrEndPoint.APPLY_JOBS, payload);
   }
 }
