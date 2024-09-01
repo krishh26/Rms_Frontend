@@ -30,27 +30,11 @@
           <div class="FormRight-panel">
             <h4 class="mb-5"><strong>Profile</strong></h4>
             <form [formGroup]="profileForm" (ngSubmit)="submit()">
-              <!-- <div class="row">
-                <div class="col-md-12">
-                  <div class="form-file">
-                    <label>Profile Picture</label>
-                    <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)"
-                    accept="image/*" >
-                  </div>
-                </div>
-              </div> -->
               <div class="row mb-3">
                 <div class="col-lg-4">
                   <label>Profile Picture :</label>
                 </div>
-                <!-- <div class="col-lg-8">
-                  <div class="form-file">
-                    <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)"
-                      accept="image/*">
-                  </div>
-                </div> -->
                 <div class="profile-avtar mt-4 mb-4">
-                  <!-- <img *ngIf="!file?.url" src="assets/img/default-avatar.png" /> -->
                   <img *ngIf="file?.url || loginDetails.profile.url" [src]="file?.url || loginDetails.profile.url || 'assets/img/default-avatar.png'" />
                   
                   <div class="input--file">

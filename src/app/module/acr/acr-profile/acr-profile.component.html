@@ -37,8 +37,8 @@
                   <label>Profile Picture :</label>
                 </div>
                 <div class="profile-avtar mt-4 mb-4">
-                  <!-- <img *ngIf="file?.url || loginDetails.profile.url"
-                    [src]="file?.url || loginDetails.profile.url || 'assets/img/default-avatar.png'" /> -->
+                  <img *ngIf="file?.url || loginDetails.profile.url"
+                    [src]="file?.url || loginDetails.profile.url || 'assets/img/default-avatar.png'" />
 
                   <div class="input--file">
                     <i class="bi bi-camera-fill">+</i>
@@ -112,18 +112,18 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Primary Person phone number
+                  <label>Primary Person Phone No.
                     :</label>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                    <input type="text" class="form-control" placeholder="Code like +44"
                       formControlName="phoneNumber" >
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <input type="tel" class="form-control" placeholder="Primary Person phone number" [maxlength]="10"
+                    <input type="tel" class="form-control" placeholder="Primary Person phone no." [maxlength]="10"
                       (keypress)="NumberOnly($event)" formControlName="phoneNumber" >
                   </div>
                 </div>
@@ -170,18 +170,18 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <label>Secondary Contact Person Phone Number
+                  <label>Secondary Contact Person Phone No.
                     :</label>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                    <input type="text" class="form-control" placeholder="Code like +44"
                       formControlName="secondaryPhoneNumberCountryCode" >
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <input type="tel" class="form-control" placeholder="Secondary Contact Phone Number" [maxlength]="10"
+                    <input type="tel" class="form-control" placeholder="Secondary Contact Phone No" [maxlength]="10"
                       (keypress)="NumberOnly($event)" formControlName="secondaryPhoneNumber" >
                   </div>
                 </div>

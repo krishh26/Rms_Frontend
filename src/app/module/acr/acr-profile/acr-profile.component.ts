@@ -59,7 +59,7 @@ export class AcrProfileComponent implements OnInit {
     console.log(this.loginDetails);
 
     this.agencyForm = new FormGroup({
-      // profile: new FormControl(this.loginDetails.profile.url, [Validators.required]),
+       profile: new FormControl(this.loginDetails.profile.url, [Validators.required]),
       agencyName: new FormControl(this.loginDetails.agencyName, [Validators.required, Validators.pattern(Patterns.name)]),
       location: new FormControl(this.loginDetails.location, [Validators.required]),
       numberOfBranchesInUK: new FormControl(this.loginDetails.numberOfBranchesInUK, [Validators.required]),
