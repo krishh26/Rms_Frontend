@@ -14,7 +14,7 @@ import { AcrServiceService } from 'src/app/services/acr-service/acr-service.serv
 })
 export class AcrAddCandidateComponent implements OnInit {
   jobForm!: FormGroup;
-
+  agencylist: any = [];
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -26,11 +26,12 @@ export class AcrAddCandidateComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       joiningDate: new FormControl('', [Validators.required]),
       status: new FormControl(moment(new Date()).format('dd-MM-YYYY'), [Validators.required]),
-      agencyId: new FormControl('66c5f85e47df545bdae995be', [Validators.required]),
+      agencyId: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit() {
+    this.getAgencyList();
   }
 
   submit() {
@@ -54,5 +55,19 @@ export class AcrAddCandidateComponent implements OnInit {
     return true;
   }
 
+  getAgencyList() {
+    this.acrservice.getAgencyList().subscribe((response) => {
+      this.agencylist = [];
+      if (response?.status == true) {
+        this.agencylist = response?.data || [];
+        console.log('this.agencylist', this.agencylist);
+
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message);
+    });
+  }
 
 }

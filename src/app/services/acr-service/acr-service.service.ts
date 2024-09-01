@@ -16,7 +16,8 @@ export enum AcrEndPoint {
   RESET_PASSWORD = '/user/acr/reset',
   CREATE_CANDIDATE = '/candidate/create',
   GET_CANDIDATE_LIST = '/candidate/list/',
-  ADMIN_LOGIN = '/user/admin/login'
+  ADMIN_LOGIN = '/user/admin/login',
+  GET_AGENCY_LIST ='/user/acr/list'
 }
 
 @Injectable({
@@ -68,6 +69,13 @@ export class AcrServiceService {
     return this.httpClient
       .get<any>(this.baseUrl + AcrEndPoint.GET_JOB_LIST);
   }
+
+
+  getAgencyList(): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + AcrEndPoint.GET_AGENCY_LIST);
+  }
+
 
   getCandidateList(id: any): Observable<any> {
     return this.httpClient

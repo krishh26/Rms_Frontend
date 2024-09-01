@@ -36,11 +36,12 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <select class="form-control" formControlName="agencyId">
-                      <option value="66c5f85e47df545bdae995be">roles1</option>
-                      <option value="66c5f85e47df545bdae995be">roles2</option>
-                      <option value="66c5f85e47df545bdae995be">roles3</option>
-                      <option value="66c5f85e47df545bdae995be">roles4</option>
+                      <option value="" disabled selected hidden>Select Agency</option>
+                      <option *ngFor="let agency of agencylist" [value]="agency._id">
+                        {{ agency.agencyName }}
+                      </option>
                     </select>
+
                     <span class="text-danger"
                       *ngIf="jobForm.get('agencyId')?.touched && jobForm.get('agencyId')?.errors?.['required']">
                       Please select the Agency.
