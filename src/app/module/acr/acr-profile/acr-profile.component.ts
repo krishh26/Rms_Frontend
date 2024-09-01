@@ -59,8 +59,8 @@ export class AcrProfileComponent implements OnInit {
     console.log(this.loginDetails);
 
     this.agencyForm = new FormGroup({
-       profile: new FormControl(this.loginDetails.profile.url, [Validators.required]),
-      agencyName: new FormControl(this.loginDetails.agencyName, [Validators.required, Validators.pattern(Patterns.name)]),
+      profile: new FormControl(this.loginDetails.profile.url, [Validators.required]),
+      agencyName: new FormControl(this.loginDetails.agencyName),
       location: new FormControl(this.loginDetails.location, [Validators.required]),
       numberOfBranchesInUK: new FormControl(this.loginDetails.numberOfBranchesInUK, [Validators.required]),
       personName: new FormControl(this.loginDetails.personName, [Validators.required, Validators.pattern(Patterns.name)]),
@@ -106,9 +106,9 @@ export class AcrProfileComponent implements OnInit {
 
 
   submit() {
-    if (!this.agencyForm.controls['name']?.value) {
-      return this.notificationService.showError('Please enter name');
-    }
+    // if (!this.agencyForm.controls['name']?.value) {
+    //   return this.notificationService.showError('Please enter name');
+    // }
 
     if (!this.agencyForm.controls['currentLocation']?.value) {
       return this.notificationService.showError('Please enter currentLocation');
@@ -121,7 +121,7 @@ export class AcrProfileComponent implements OnInit {
     }
 
     const data: any = {
-      "name": this.agencyForm.controls['name']?.value,
+      //"name": this.agencyForm.controls['name']?.value,
       "currentLocation": this.agencyForm.controls['currentLocation']?.value
     }
 

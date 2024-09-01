@@ -8,7 +8,7 @@ export enum AcrEndPoint {
   REGISTER = '/user/acr/register',
   SEND_DATA = '/card/create',
   FILE_UPLOAD = "/upload",
-  UPDATE_REGISTER = '/user/update/',
+  UPDATE_REGISTER = '/user/acr/update',
   CREATE_JOB = '/acr/jobs',
   GET_JOB_LIST = '/acr/jobs',
   APPLY_JOBS = '/acr/apply-job',
