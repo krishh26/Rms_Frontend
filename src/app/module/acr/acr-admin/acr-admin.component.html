@@ -28,6 +28,26 @@
           <div class="FormRight-panel">
             <h4 class="mb-3 text-center"><strong>Create Job Post</strong></h4><br>
             <form [formGroup]="jobForm" (ngSubmit)="submit()">
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Status<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="status">
+                      <option value="" disabled selected hidden>Select Status</option>
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('status')?.touched && jobForm.get('status')?.errors?.['required']">
+                      Please select no of roles.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col-md-5">
                   <label>Job Title<span style="color: red;">*</span>:</label>
@@ -49,12 +69,8 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <select class="form-control" formControlName="no_of_roles">
-                      <option value="1">roles1</option>
-                      <option value="2">roles2</option>
-                      <option value="3">roles3</option>
-                      <option value="4">roles4</option>
-                    </select>
+                    <input type="text" class="form-control" placeholder="Enter no of roles"
+                      formControlName="no_of_roles" (keypress)="NumberOnly($event)">
                     <span class="text-danger"
                       *ngIf="jobForm.get('no_of_roles')?.touched && jobForm.get('no_of_roles')?.errors?.['required']">
                       Please select no of roles.
@@ -118,6 +134,7 @@
                 </div>
                 <div class="col-md-7">
                   <select class="form-control" formControlName="location">
+                    <option value="" disabled selected hidden>Select Location</option>
                     <option value="client_locations">Client Locations</option>
                     <option value="work_from_home">Work From Home</option>
                     <option value="swindon_office">Swindon Office</option>
@@ -145,14 +162,14 @@
                 </div>
               </div>
 
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-5">
                   <label>Timer:</label>
                 </div>
                 <div class="col-md-7">
                   <div class="timer" id="timer">02:00:00</div>
                 </div>
-              </div>
+              </div> -->
               <div class="row">
                 <div class="update ml-auto mr-auto"><br>
                   <button type="submit" style="float: right !important;" class="btn btn-primary btn-round">Upload Job
@@ -160,7 +177,8 @@
                 </div>
               </div>
             </form>
-          </div>
+          </div><br><br><br>
+          <h4 class="p-14 text-center" routerLink="/acr/acr-create-candidate">Create Candidate Page</h4>
         </div>
       </div>
     </div>

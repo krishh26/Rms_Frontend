@@ -28,6 +28,7 @@ export class AcrAdminComponent implements OnInit {
       client_name: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       day_rate: new FormControl('', [Validators.required]),
+      status: new FormControl('', [Validators.required]),
     });
   }
 

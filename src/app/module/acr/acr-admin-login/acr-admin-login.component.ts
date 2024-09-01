@@ -6,12 +6,13 @@ import { AcrServiceService } from 'src/app/services/acr-service/acr-service.serv
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 
+
 @Component({
-  selector: 'app-acr-login',
-  templateUrl: './acr-login.component.html',
-  styleUrls: ['./acr-login.component.css']
+  selector: 'app-acr-admin-login',
+  templateUrl: './acr-admin-login.component.html',
+  styleUrls: ['./acr-admin-login.component.css']
 })
-export class AcrLoginComponent implements OnInit {
+export class AcrAdminLoginComponent implements OnInit {
   loginForm!: FormGroup;
   password = 'password';
   showPassword = false;
@@ -34,17 +35,11 @@ export class AcrLoginComponent implements OnInit {
   login(): void {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
-      this.acrservice.loginUser(this.loginForm.value).subscribe((response) => {
+      this.acrservice.adminloginUser(this.loginForm.value).subscribe((response) => {
         if (response?.status == true) {
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
-
-          if (response?.data?.user?.password_reset == false) {
-            this.router.navigate(['/acr/acr-reset-password']);
-          } else {
-            this.router.navigate(['/acr/acr-all-jobs']);
-          }
-
+          this.router.navigate(['/acr/acr-create-job']);
         } else {
           this.notificationService.showError(response?.message);
         }

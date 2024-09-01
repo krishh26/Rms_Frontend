@@ -19,6 +19,7 @@ import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-detai
 import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
 import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-password.component';
 import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.component';
+import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.component';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.
     AcrUploadDetailsComponent,
     AcrThankyouComponent,
     AcrResetPasswordComponent,
-    AcrAddCandidateComponent
+    AcrAddCandidateComponent,
+    AcrAdminLoginComponent
   ]
 })
 export class AcrModule { }

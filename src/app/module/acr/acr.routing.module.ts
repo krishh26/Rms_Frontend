@@ -13,6 +13,7 @@ import { AcrUploadDetailsComponent } from './acr-upload-details/acr-upload-detai
 import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
 import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-password.component';
 import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.component';
+import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: "acr-login",
     component: AcrLoginComponent
+  },
+
+  {
+    path: "acr-admin-login",
+    component: AcrAdminLoginComponent
   },
   {
     path: "acr-thankyou",
