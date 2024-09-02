@@ -55,22 +55,22 @@ const routes: Routes = [
     children: [
       {
         path: "acr-profile",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: AcrProfileComponent
       },
       {
         path: "acr-candidate-page",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: MyCandidatePageComponent
       },
       {
         path: "acr-all-jobs",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirAllJobsComponent
       },
       {
         path: "acr-upload-details",
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: AcrUploadDetailsComponent
       },
     ]
