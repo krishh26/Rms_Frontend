@@ -93,8 +93,14 @@ export class AcrServiceService {
   }
 
   updateregister(user_id: string, payload: any): Observable<any> {
+    let url = ''
+    if(user_id) {
+      url =  this.baseUrl + AcrEndPoint.UPDATE_REGISTER + '/'+ user_id
+    } else {
+      url =  this.baseUrl + AcrEndPoint.UPDATE_REGISTER
+    }
     return this.httpClient
-      .patch<any>(this.baseUrl + AcrEndPoint.UPDATE_REGISTER + user_id, payload, { headers: this.getHeader() });
+      .patch<any>(url, payload, { headers: this.getHeader() });
   }
 
   sendResume(payload: any) {

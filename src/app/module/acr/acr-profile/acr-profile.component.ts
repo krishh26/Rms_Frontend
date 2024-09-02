@@ -110,9 +110,9 @@ export class AcrProfileComponent implements OnInit {
     //   return this.notificationService.showError('Please enter name');
     // }
 
-    if (!this.agencyForm.controls['currentLocation']?.value) {
-      return this.notificationService.showError('Please enter currentLocation');
-    }
+    // if (!this.agencyForm.controls['currentLocation']?.value) {
+    //   return this.notificationService.showError('Please enter currentLocation');
+    // }
 
     if (this.agencyForm.controls['password']?.value || this.agencyForm.controls['confirmPassword']?.value) {
       if (this.agencyForm.controls['password']?.value !== this.agencyForm.controls['confirmPassword']?.value) {
@@ -129,11 +129,12 @@ export class AcrProfileComponent implements OnInit {
       data['password'] = this.agencyForm.controls['password']?.value;
     }
 
-    this.acrSericeService.updateregister(this.loginDetails?._id, data).subscribe((response) => {
+    this.acrSericeService.updateregister('', data).subscribe((response) => {
       if (response?.status) {
-        this.localStorageService.setLogger(response?.data);
+        console.log('response', response)
+        // this.localStorageService.setLogger(response?.data);
         this.notificationService.showSuccess(response?.message || 'Detailed Updated successfully');
-        window.location.reload();
+        // window.location.reload();
       } else {
         this.notificationService.showError(response?.message || 'Detailed Not Updated.');
       }
