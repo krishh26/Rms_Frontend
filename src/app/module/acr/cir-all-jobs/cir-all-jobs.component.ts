@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { pagination } from 'src/app/shared/constant/pagination.constant';
 import { Payload } from 'src/app/shared/constant/payload.const';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cir-all-jobs',
@@ -25,6 +26,7 @@ export class CirAllJobsComponent implements OnInit {
   cvDetails: any;
   @ViewChild('loginDetailModal') loginDetailModal: any;
   @ViewChild('uploadcvModal') uploadcvModal: any;
+  public timerSubscription: Subscription = new Subscription()
 
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
@@ -36,7 +38,8 @@ export class CirAllJobsComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private acrservice: AcrServiceService,
     private fb: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+   
   ) {
 
     this.resourcesForm = this.fb.group({
@@ -46,6 +49,7 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.startTimers();
     this.getProjectList();
   }
 
@@ -192,4 +196,37 @@ export class CirAllJobsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  ngOnDestroy() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+  }
+
+  startTimers() {
+    this.timerSubscription = interval(1000).subscribe(() => {
+      this.joblist.forEach((job: any) => {
+        if (job.job_time_left > 0) {
+          job.job_time_left -= 1000;
+        }
+      });
+    });
+  }
+
+  formatTimeLeft(milliseconds: number): string {
+    if (milliseconds <= 0) {
+      return '00:00:00';
+    }
+    
+    let seconds = Math.floor((milliseconds / 1000) % 60);
+    let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+    let hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
+    let days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
+
+    let daysDisplay = days > 0 ? days + 'd ' : '';
+    let hoursDisplay = hours > 0 ? hours + 'h ' : '';
+    let minutesDisplay = minutes > 0 ? minutes + 'm ' : '';
+    let secondsDisplay = seconds + 's';
+
+    return daysDisplay + hoursDisplay + minutesDisplay + secondsDisplay;
+  }
 }

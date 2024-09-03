@@ -19,15 +19,14 @@
         </thead>
         <tbody>
 
-
           <tr>
             <td *ngIf="joblist.length == 0" class="text-center" colspan="10">
               No Record Found.
             </td>
           </tr>
 
-
-          <tr *ngFor="let job of joblist  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
+          <tr
+            *ngFor="let job of joblist  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
             <td>{{job.job_id}}</td>
             <td>{{job.job_title}}</td>
             <td>{{job.no_of_roles}}</td>
@@ -39,7 +38,7 @@
                 Read me
               </a>
             </td>
-            <td style="color: red;">{{job?.timerEnd}}</td>
+            <td style="color: red;">{{ formatTimeLeft(job.job_time_left) }}</td>
             <td class="text-center">
               <!-- <label>
                 <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
@@ -67,7 +66,7 @@
 
               <!-- Display email message if status is "Under Review" -->
               <ng-template #emailMessage>
-               <strong> If you have got more CV's email to : (ayush@westgateithub.com)</strong>
+                <strong> If you have got more CV's email to : (ayush@westgateithub.com)</strong>
               </ng-template>
             </td>
             <td>{{job.status}}</td>
@@ -77,11 +76,11 @@
     </div>
     <div class="row mt-3 align-items-center">
       <div class="row">
-          <div class="pagination">
-              <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
-          </div>
+        <div class="pagination">
+          <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+        </div>
       </div>
-  </div>
+    </div>
   </div>
 </section>
 
