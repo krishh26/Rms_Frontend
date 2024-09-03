@@ -20,6 +20,7 @@ import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
 import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-password.component';
 import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.component';
 import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.compon
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',

@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { pagination } from 'src/app/shared/constant/pagination.constant';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 
 @Component({
@@ -23,6 +24,10 @@ export class CirAllJobsComponent implements OnInit {
   cvDetails: any;
   @ViewChild('loginDetailModal') loginDetailModal: any;
   @ViewChild('uploadcvModal') uploadcvModal: any;
+
+  page: number = pagination.page;
+  pagesize = pagination.itemsPerPage;
+  totalRecords: number = pagination.totalRecords;
 
   constructor(
     private router: Router,
@@ -165,8 +170,10 @@ export class CirAllJobsComponent implements OnInit {
 
     this.acrservice.getJobList().subscribe((response) => {
       this.joblist = [];
+      this.totalRecords = 0;
       if (response?.status == true) {
         this.joblist = response?.data;
+        this.totalRecords = response?.meta_data?.items;
         console.log('this.joblist', this.joblist);
 
       } else {
@@ -175,6 +182,12 @@ export class CirAllJobsComponent implements OnInit {
     }, (error) => {
       this.notificationService.showError(error?.message);
     });
+  }
+
+  paginate(page: number) {
+    this.page = page;
+    this.getProjectList();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

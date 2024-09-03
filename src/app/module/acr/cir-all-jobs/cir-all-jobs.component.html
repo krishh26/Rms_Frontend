@@ -27,7 +27,7 @@
           </tr>
 
 
-          <tr *ngFor="let job of joblist; let i = index">
+          <tr *ngFor="let job of joblist  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
             <td>{{job.job_id}}</td>
             <td>{{job.job_title}}</td>
             <td>{{job.no_of_roles}}</td>
@@ -75,6 +75,13 @@
         </tbody>
       </table>
     </div>
+    <div class="row mt-3 align-items-center">
+      <div class="row">
+          <div class="pagination">
+              <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+          </div>
+      </div>
+  </div>
   </div>
 </section>
 
