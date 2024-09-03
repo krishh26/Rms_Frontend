@@ -289,6 +289,8 @@ export class AcrAccordianCardComponent implements OnInit {
     }
   ];
   file: any;
+
+  files: File[] = []; 
   supplyform!: FormGroup;
   selectedFiles: { [key: string]: File } = {};
 
@@ -337,62 +339,81 @@ export class AcrAccordianCardComponent implements OnInit {
     return true;
   }
 
-  fileUpload(event: any): void {
+  fileUpload(event: any, inputId: string): void {
     const file = event.target.files[0];
-    const data = new FormData();
-    data.append('files', file || '');
-
-    this.cirservice.fileUpload(data).subscribe((response) => {
-      if (response?.status) {
-        this.file = response?.data;
-        console.log(this.file);
-
-        this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
-      } else {
-        this.notificationService.showError(response?.message || 'File not uploaded.')
-      }
-    }, (error) => {
-      this.notificationService.showError(error?.message || 'File not uploaded.')
-    })
+    const formData = new FormData();
+    formData.append('files', file || '');
+  
+    if (file) {
+      this.cirservice.fileUpload(formData).subscribe(
+        (response) => {
+          if (response?.status) {
+            if (inputId === 'fileInput1') {
+              this.files[0] = response.data; // Store response data at index 0
+            } else if (inputId === 'fileInput2') {
+              this.files[1] = response.data; // Store response data at index 1
+            }
+            console.log(this.files); // Debugging: Check the stored data
+  
+            this.notificationService.showSuccess(response?.message || 'File successfully uploaded.');
+          } else {
+            this.notificationService.showError(response?.message || 'File not uploaded.');
+          }
+        },
+        (error) => {
+          this.notificationService.showError(error?.message || 'File not uploaded.');
+        }
+      );
+    }
   }
+  
 
   supplyonSubmit(): void {
     if (this.supplyform.invalid) {
       return this.notificationService.showError('Fill all the fields');
     }
-
-    if (!this.file) {
-      return this.notificationService.showError('Please submit after upload file.');
+  
+    // Filter out undefined entries to ensure only uploaded files are included
+    const uploadedFiles = this.files.filter(file => file !== undefined);
+    
+    if (uploadedFiles.length === 0) {
+      return this.notificationService.showError('Please upload at least one file before submitting.');
     }
+  
     let payloadData: any = {
       appliedRole: []
-    }
-
+    };
+  
     const data: any = {
       title: this.selectedJobTitle,
       four_hour: this.supplyform.get('four_hour')?.value,
       seven_hour: this.supplyform.get('seven_hour')?.value,
       day_rate: this.supplyform.get('day_rate')?.value,
-      cv: [{ ...this.file }]
-    }
-
+      cv: uploadedFiles // Use the data received from the server, not the raw file
+    };
+  
     payloadData.appliedRole.push(data);
-
-    this.acrservice.supplyjob(payloadData).subscribe((response) => {
-      if (response?.status) {
-        this.localStorageService.setLogger(response?.data);
-        this.router.navigate(['/acr/acr-thankyou']);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-        this.notificationService.showSuccess('Success!');
-      } else {
-        this.notificationService.showError('Submission failed, try again.');
+  
+    this.acrservice.supplyjob(payloadData).subscribe(
+      (response) => {
+        if (response?.status) {
+          this.localStorageService.setLogger(response?.data);
+          this.router.navigate(['/acr/acr-thankyou']);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          this.notificationService.showSuccess('Success!');
+        } else {
+          this.notificationService.showError('Submission failed, try again.');
+        }
+      },
+      (error) => {
+        this.notificationService.showError('An error occurred.');
       }
-    }, (error) => {
-      this.notificationService.showError('An error occurred.');
-    });
+    );
   }
+  
+  
 
   getDetails() {
     const rolesData: any = localStorage.getItem('rmsRolesDetails');

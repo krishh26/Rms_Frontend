@@ -192,7 +192,7 @@
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ViewLogin">Supply Role Details For {{ selectedJobTitle }}</h5>
+        <h5 class="modal-title" id="ViewLogin">Capacity For {{ selectedJobTitle }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -200,37 +200,37 @@
         <form [formGroup]="supplyform" (ngSubmit)="supplyonSubmit()">
           <div class="row">
             <div class="col-md-4">
-              <label>No. of Resources Can Be Sourced Within <span style="color: red;"> *</span> :</label>
+              <label>No. of Resources Can Be Sourced <span style="color: red;"> *</span> :</label>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <input type="text" (keypress)="NumberOnly($event)" formControlName="four_hour" class="form-control"
-                  placeholder="48 Hours">
-                  <span class="text-danger" *ngIf="
+                  placeholder="Within 48 Hours">
+                <span class="text-danger" *ngIf="
                     supplyform.controls?.['four_hour']?.touched &&
                     supplyform.controls?.['four_hour']?.errors?.['required']">
-                      Please enter hours
-                    </span>
-                    <span class="text-danger" *ngIf="
+                  Please enter hours
+                </span>
+                <span class="text-danger" *ngIf="
                     supplyform.controls?.['four_hour']?.touched &&
                     supplyform.controls?.['four_hour']?.errors?.['pattern']">
-                      Please enter valid format
+                  Please enter valid format
                 </span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <input type="text" (keypress)="NumberOnly($event)" formControlName="seven_hour" class="form-control"
-                  placeholder="7 Days">
-                  <span class="text-danger" *ngIf="
+                  placeholder="Within 7 Days">
+                <span class="text-danger" *ngIf="
                     supplyform.controls?.['seven_hour']?.touched &&
                     supplyform.controls?.['seven_hour']?.errors?.['required']">
-                      Please enter days
-                    </span>
-                    <span class="text-danger" *ngIf="
+                  Please enter days
+                </span>
+                <span class="text-danger" *ngIf="
                     supplyform.controls?.['seven_hour']?.touched &&
                     supplyform.controls?.['seven_hour']?.errors?.['pattern']">
-                      Please enter valid format
+                  Please enter valid format
                 </span>
               </div>
             </div>
@@ -244,15 +244,15 @@
               <div class="form-group">
                 <input type="text" (keypress)="NumberOnly($event)" formControlName="day_rate" class="form-control"
                   placeholder="Enter Expected Day Rate">
-                  <span class="text-danger" *ngIf="
+                <span class="text-danger" *ngIf="
                     supplyform.controls?.['day_rate']?.touched &&
                     supplyform.controls?.['day_rate']?.errors?.['required']">
-                      Please enter day rate
-                    </span>
-                    <span class="text-danger" *ngIf="
+                  Please enter day rate
+                </span>
+                <span class="text-danger" *ngIf="
                     supplyform.controls?.['day_rate']?.touched &&
                     supplyform.controls?.['day_rate']?.errors?.['pattern']">
-                      Please enter valid format
+                  Please enter valid format
                 </span>
               </div>
             </div>
@@ -262,15 +262,23 @@
             <div class="col-md-4">
               <label>Upload Sample CV <span style="color: red;"> *</span> :</label>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
               <div class="form-group">
-                <input type="file" (change)="fileUpload($event)" class="form-control" style="height: 45px !important; opacity: 1;">
-                <!-- <input type="file" (change)="fileUpload($event)" class="form-control"> -->
+                <input type="file" (change)="fileUpload($event, 'fileInput1')" class="form-control"
+                  style="height: 45px !important; opacity: 1;">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <input type="file" (change)="fileUpload($event, 'fileInput2')" class="form-control"
+                  style="height: 45px !important; opacity: 1;">
               </div>
             </div>
           </div>
+          
           <div class="mt-3 row d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary" style="width: 100px !important;" [disabled]="supplyform.invalid">Save</button>
+            <button type="submit" class="btn btn-primary" style="width: 100px !important;"
+              [disabled]="supplyform.invalid">Save</button>
           </div>
         </form>
       </div>

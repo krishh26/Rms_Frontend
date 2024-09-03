@@ -76,7 +76,7 @@ input[type="checkbox"]:checked::after {
     color: black !important;
     width: 100% !important;
     max-width: 80%;
-    padding: 10px !important;
+    padding: 45px !important;
     white-space: pre-line;
     font-size: 13px;
     font-weight: bold;

@@ -102,7 +102,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" formControlName="publish_date"
-                      placeholder="Auto Detect System Calendar">
+                      placeholder="Auto Detect System Calendar" readonly>
                     <span class="text-danger"
                       *ngIf="jobForm.get('publish_date')?.touched && jobForm.get('publish_date')?.errors?.['required']">
                       Please select published date.
@@ -133,12 +133,13 @@
                     :</label>
                 </div>
                 <div class="col-md-7">
-                  <select class="form-control" formControlName="location">
+                  <input type="text" class="form-control" placeholder="Enter Location" formControlName="location">
+                  <!-- <select class="form-control" formControlName="location">
                     <option value="" disabled selected hidden>Select Location</option>
                     <option value="client_locations">Client Locations</option>
                     <option value="work_from_home">Work From Home</option>
                     <option value="swindon_office">Swindon Office</option>
-                  </select>
+                  </select> -->
                   <span class="text-danger"
                     *ngIf="jobForm.get('location')?.touched && jobForm.get('location')?.errors?.['required']">
                     Please select the location.
@@ -162,6 +163,22 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Upload Read me Doc<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="file" (change)="fileUpload($event)" class="form-control"
+                      style="height: 45px !important; opacity: 1;">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
+                      Please enter the day rate.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <!-- <div class="row">
                 <div class="col-md-5">
                   <label>Timer:</label>
@@ -172,8 +189,8 @@
               </div> -->
               <div class="row">
                 <div class="update ml-auto mr-auto"><br>
-                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round">Upload Job
-                    Post</button>
+                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round"> Post Job
+                  </button>
                 </div>
               </div>
             </form>
