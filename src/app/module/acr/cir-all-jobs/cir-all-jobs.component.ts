@@ -7,6 +7,7 @@ import { AcrServiceService } from 'src/app/services/acr-service/acr-service.serv
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { pagination } from 'src/app/shared/constant/pagination.constant';
+import { Payload } from 'src/app/shared/constant/payload.const';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 
 @Component({
@@ -167,8 +168,9 @@ export class CirAllJobsComponent implements OnInit {
 
 
   getProjectList() {
-
-    this.acrservice.getJobList().subscribe((response) => {
+    Payload.projectList.page = String(this.page);
+    Payload.projectList.limit = String(this.pagesize);
+    this.acrservice.getJobList(Payload.projectList).subscribe((response) => {
       this.joblist = [];
       this.totalRecords = 0;
       if (response?.status == true) {

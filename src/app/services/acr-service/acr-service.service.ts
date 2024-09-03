@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,7 +17,7 @@ export enum AcrEndPoint {
   CREATE_CANDIDATE = '/candidate/create',
   GET_CANDIDATE_LIST = '/candidate/list/',
   ADMIN_LOGIN = '/user/admin/login',
-  GET_AGENCY_LIST ='/user/acr/list'
+  GET_AGENCY_LIST = '/user/acr/list'
 }
 
 @Injectable({
@@ -65,9 +65,13 @@ export class AcrServiceService {
       .patch<any>(this.baseUrl + AcrEndPoint.SUPPLY_JOB, payload);
   }
 
-  getJobList(): Observable<any> {
-    return this.httpClient
-      .get<any>(this.baseUrl + AcrEndPoint.GET_JOB_LIST);
+  getJobList(params: { page: string, limit: string }): Observable<any> {
+
+    const url = `${this.baseUrl}${AcrEndPoint.GET_JOB_LIST}`;
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('page', params?.page);
+    queryParams = queryParams.set('limit', params?.limit);
+    return this.httpClient.get<any>(url, { params: queryParams });
   }
 
 
@@ -94,10 +98,10 @@ export class AcrServiceService {
 
   updateregister(user_id: string, payload: any): Observable<any> {
     let url = ''
-    if(user_id) {
-      url =  this.baseUrl + AcrEndPoint.UPDATE_REGISTER + '/'+ user_id
+    if (user_id) {
+      url = this.baseUrl + AcrEndPoint.UPDATE_REGISTER + '/' + user_id
     } else {
-      url =  this.baseUrl + AcrEndPoint.UPDATE_REGISTER
+      url = this.baseUrl + AcrEndPoint.UPDATE_REGISTER
     }
     return this.httpClient
       .patch<any>(url, payload, { headers: this.getHeader() });
