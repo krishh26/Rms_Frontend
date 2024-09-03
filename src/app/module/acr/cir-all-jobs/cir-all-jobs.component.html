@@ -33,7 +33,7 @@
             <td>{{job.no_of_roles}}</td>
             <td>{{job.publish_date | date:'dd/MM/yyyy'}}</td>
             <td>{{job.start_date | date:'dd/MM/yyyy'}}</td>
-            <td>{{job.client_name}}</td>
+            <td>{{job.day_rate}}</td>
             <td>
               <a href="https://f005.backblazeb2.com/file/whyqtech1/files/1725192312622_READ ME.docx" target="_blank">
                 Read me
@@ -42,7 +42,7 @@
             <td style="color: red;">{{job?.timerEnd}}</td>
             <td class="text-center">
               <label>
-                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)" >
+                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)">
                 Yes
               </label>&nbsp;
               <label>
@@ -59,12 +59,13 @@
 </section>
 
 
-<ng-template class="modal" #loginDetailModal id="loginDetailModal" tabindex="-1" aria-labelledby="ViewLogin" aria-hidden="true">
+<ng-template class="modal" #loginDetailModal id="loginDetailModal" tabindex="-1" aria-labelledby="ViewLogin"
+  aria-hidden="true">
   <div class="">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="ViewLogin">Upload Details</h5>
-        <button type="button" class="btn-close"(click)="closeModal()"></button>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
@@ -92,8 +93,8 @@
 
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" [disabled]="!resourcesForm.controls['howmanyresources'].value" (click)="submit('resources')"
-                class="btn btn-primary w-50">Submit</button>
+              <button type="button" [disabled]="!resourcesForm.controls['howmanyresources'].value"
+                (click)="submit('resources')" class="btn btn-primary w-50">Submit</button>
             </div>
           </div>
         </form>
@@ -101,7 +102,8 @@
     </div>
   </div>
 </ng-template>
-<ng-template class="modal fade" #uploadcvModal id="uploadcvModal" tabindex="-1" aria-labelledby="ViewCv" aria-hidden="true">
+<ng-template class="modal fade" #uploadcvModal id="uploadcvModal" tabindex="-1" aria-labelledby="ViewCv"
+  aria-hidden="true">
   <div class="">
     <div class="modal-content">
       <div class="modal-header">
@@ -131,7 +133,8 @@
                     formControlName="candidate_nationality" />
                 </td>
                 <td>
-                  <input type="text" placeholder="Enter job title" class="form-control" formControlName="candidate_location" />
+                  <input type="text" placeholder="Enter job title" class="form-control"
+                    formControlName="candidate_location" />
                 </td>
                 <td>
                   <button type="button" class="btn btn-danger" (click)="removeCandidate(i)"
