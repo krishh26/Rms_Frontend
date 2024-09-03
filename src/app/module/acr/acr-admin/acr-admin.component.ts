@@ -36,6 +36,7 @@ export class AcrAdminComponent implements OnInit {
       location: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       day_rate: new FormControl('', [Validators.required]),
       status: new FormControl('', [Validators.required]),
+      upload: new FormControl(''),
     });
   }
 
@@ -70,7 +71,24 @@ export class AcrAdminComponent implements OnInit {
   }
 
   submit() {
-    this.acrservice.createjob(this.jobForm.value).subscribe((response) => {
+
+    const uploadFile = this.file;
+    console.log(uploadFile.key);
+
+
+    const cvObject = {
+      key: uploadFile.key,
+      url: uploadFile.url,
+    };
+
+    const formData = {
+      ...this.jobForm.value,
+      upload: cvObject
+    };
+
+    this.jobForm.controls['upload'].patchValue(this.file);
+
+    this.acrservice.createjob(formData).subscribe((response) => {
       if (response?.status == true) {
         this.notificationService.showSuccess(response?.message, 'Success !');
         window.location.reload();
