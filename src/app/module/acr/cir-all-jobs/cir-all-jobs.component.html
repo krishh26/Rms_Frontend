@@ -51,17 +51,27 @@
                 No
               </label> -->
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
-                <label>
-                  <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
-                    [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
-                  Yes
-                </label>
-                &nbsp;
-                <label>
-                  <input type="radio" name="choice{{ i }}" value="no"
-                    [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
-                  No
-                </label>
+                <div *ngIf="!job.applicants.length" >
+                  <label>
+                    <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
+                      [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
+                    Yes
+                  </label>
+                  &nbsp;
+                  <label>
+                    <input type="radio" name="choice{{ i }}" value="no"
+                      [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
+                    No
+                  </label>
+                </div>
+                <div *ngIf="job.applicants.length">
+                  <div class="row">
+                    <div class="ml-auto mr-auto">
+                    <button (click)="openCVModal(job)" type="submit"
+                      class="btn btn-primary btn-round">Upload CV</button>
+                    </div>
+                  </div>
+                </div>
               </ng-container>
 
               <!-- Display email message if status is "Under Review" -->
@@ -120,7 +130,7 @@
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
               <button type="button" [disabled]="!resourcesForm.controls['howmanyresources'].value"
-                (click)="submit('resources')" class="btn btn-primary w-50">Submit</button>
+                (click)="submitResources()" class="btn btn-primary w-50">Submit</button>
             </div>
           </div>
         </form>
@@ -183,7 +193,7 @@
 
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" (click)="submit('cv')" class="btn btn-primary w-50">Submit</button>
+              <button type="button" (click)="submitCV()" class="btn btn-primary w-50">Submit</button>
             </div>
           </div>
         </form>

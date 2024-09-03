@@ -53,11 +53,14 @@ export class CirAllJobsComponent implements OnInit {
     this.getProjectList();
   }
 
-  submit(modalType: string) {
-    const loginData = this.localStorageService.getLogger();
+  openCVModal(job:any){
+    this.jobDetails = job
+    this.modalService.dismissAll();
+    this.modalService.open(this.uploadcvModal, { size: 'xl' })
+  }
 
-    if (modalType == 'cv') {
-      this.modalService.dismissAll();
+  submitCV(){
+    const loginData = this.localStorageService.getLogger();
       let payload = {
         user_id: loginData._id,
         job_id: this.jobDetails.job_id,
@@ -65,32 +68,36 @@ export class CirAllJobsComponent implements OnInit {
         resources: this.resourcesForm.controls['howmanyresources'].value, // optional,
         cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
       }
-
       this.acrservice.updateApplication(payload).subscribe((response) => {
         if (response?.status) {
           this.getProjectList();
+          this.modalService.dismissAll();
         }
       }, (error) => {
+        this.modalService.dismissAll();
         this.notificationService.showError(error?.error?.message || 'Something went wrong.')
       })
 
-    } else {
-      let payload = {
-        user_id: loginData._id,
-        job_id: this.jobDetails.job_id,
-        applied: false,
-        resources: this.resourcesForm.controls['howmanyresources'].value, // optional
-      }
-      this.acrservice.applyJob(payload).subscribe((response) => {
-        if (response?.status) {
-          this.modalService.open(this.uploadcvModal, { size: 'xl' })
-          this.getProjectList();
-        }
-      }, (error) => {
-        console.log('error', error)
-        this.notificationService.showError(error?.error?.message || 'Something went wrong.')
-      })
+  }
+
+  submitResources() {
+    const loginData = this.localStorageService.getLogger();
+    let payload = {
+      user_id: loginData._id,
+      job_id: this.jobDetails.job_id,
+      applied: false,
+      resources: this.resourcesForm.controls['howmanyresources'].value, // optional
     }
+    this.acrservice.applyJob(payload).subscribe((response) => {
+      if (response?.status) {
+        this.getProjectList();
+        this.modalService.dismissAll();
+      }
+    }, (error) => {
+      console.log('error', error)
+      this.modalService.dismissAll();
+      this.notificationService.showError(error?.error?.message || 'Something went wrong.')
+    })
   }
 
   get candidates(): FormArray | any {
@@ -180,8 +187,6 @@ export class CirAllJobsComponent implements OnInit {
       if (response?.status == true) {
         this.joblist = response?.data;
         this.totalRecords = response?.meta_data?.items;
-        console.log('this.joblist', this.joblist);
-
       } else {
         this.notificationService.showError(response?.message);
       }
