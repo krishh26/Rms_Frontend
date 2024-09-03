@@ -41,14 +41,34 @@
             </td>
             <td style="color: red;">{{job?.timerEnd}}</td>
             <td class="text-center">
-              <label>
-                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)">
+              <!-- <label>
+                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
+                  [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Under Review' || job.status === 'Inactive' ">
                 Yes
               </label>&nbsp;
               <label>
-                <input type="radio" name="choice{{ i }}" value="no">
+                <input type="radio" name="choice{{ i }}" value="no"
+                  [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Under Review' || job.status === 'Inactive' ">
                 No
-              </label>
+              </label> -->
+              <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
+                <label>
+                  <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
+                    [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
+                  Yes
+                </label>
+                &nbsp;
+                <label>
+                  <input type="radio" name="choice{{ i }}" value="no"
+                    [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
+                  No
+                </label>
+              </ng-container>
+
+              <!-- Display email message if status is "Under Review" -->
+              <ng-template #emailMessage>
+               <strong> If you have got more CV's email to : (ayush@westgateithub.com)</strong>
+              </ng-template>
             </td>
             <td>{{job.status}}</td>
           </tr>
