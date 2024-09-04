@@ -5,17 +5,18 @@
       <table class="table table-bordered mt-3">
         <thead>
           <tr>
-            <th>Job ID</th>
-            <th scope="col">JOb Title</th>
-            <th scope="col">No. of Roles</th>
-            <th scope="col">Publish Date</th>
-            <th scope="col">Position Start Date</th>
-            <th scope="col">Day Rate</th>
-            <th [width]="100" scope="col">Additonal Details</th>
-            <th scope="col">Timer</th>
-            <th [width]="200" scope="col">Take ACtion</th>
-            <th scope="col">Status</th>
-          </tr>
+            <th style="text-transform: none; text-align: center;">Job ID</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Job Title</th>
+            <th style="text-transform: none; text-align: center;" scope="col">No. of Roles</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Position Start Date</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Day Rate</th>
+            <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Additional Details</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Timer</th>
+            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Take Action</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Status</th>
+        </tr>
+        
         </thead>
         <tbody>
 
@@ -51,24 +52,24 @@
                 No
               </label> -->
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
-                <div *ngIf="!job.applicants.length" >
+                <div *ngIf="!job.applicants.length">
                   <label>
                     <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
-                      [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
+                      [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
                     Yes
                   </label>
                   &nbsp;
                   <label>
                     <input type="radio" name="choice{{ i }}" value="no"
-                      [disabled]="job.status === 'Actioned' || job.status === 'Expired'" />
+                      [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
                     No
                   </label>
                 </div>
                 <div *ngIf="job.applicants.length">
                   <div class="row">
                     <div class="ml-auto mr-auto">
-                    <button (click)="openCVModal(job)" type="submit"
-                      class="btn btn-primary btn-round">Upload CV</button>
+                      <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round">Upload
+                        CV</button>
                     </div>
                   </div>
                 </div>
@@ -108,7 +109,8 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label>How many resources ? <span style="color: red;"> *</span> :</label>
+              <label>How many resources will you be able to provide within 24 hours? <span style="color: red;"> *</span>
+                :</label>
             </div>
             <div class="col-md-8">
               <div class="form-group">

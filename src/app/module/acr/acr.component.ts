@@ -54,7 +54,7 @@ export class AcrComponent implements OnInit {
   }
 
   getTitle() {
-    return 'SAIVEN TECHNOLOGY SOLUTIONS';
+    return 'SaiVen Technology Solutions';
   }
 
   logout() {
