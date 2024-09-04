@@ -85,7 +85,7 @@ export class CirAllJobsComponent implements OnInit {
     let payload = {
       user_id: loginData._id,
       job_id: this.jobDetails.job_id,
-      applied: false,
+      applied: true,
       resources: this.resourcesForm.controls['howmanyresources'].value, // optional
     }
     this.acrservice.applyJob(payload).subscribe((response) => {
