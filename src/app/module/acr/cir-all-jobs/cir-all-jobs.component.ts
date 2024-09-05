@@ -39,7 +39,7 @@ export class CirAllJobsComponent implements OnInit {
     private acrservice: AcrServiceService,
     private fb: FormBuilder,
     private modalService: NgbModal,
-   
+
   ) {
 
     this.resourcesForm = this.fb.group({
@@ -53,30 +53,30 @@ export class CirAllJobsComponent implements OnInit {
     this.getProjectList();
   }
 
-  openCVModal(job:any){
+  openCVModal(job: any) {
     this.jobDetails = job
     this.modalService.dismissAll();
     this.modalService.open(this.uploadcvModal, { size: 'xl' })
   }
 
-  submitCV(){
+  submitCV() {
     const loginData = this.localStorageService.getLogger();
-      let payload = {
-        user_id: loginData._id,
-        job_id: this.jobDetails.job_id,
-        applied: true,
-        resources: this.resourcesForm.controls['howmanyresources'].value, // optional,
-        cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
-      }
-      this.acrservice.updateApplication(payload).subscribe((response) => {
-        if (response?.status) {
-          this.getProjectList();
-          this.modalService.dismissAll();
-        }
-      }, (error) => {
+    let payload = {
+      user_id: loginData._id,
+      job_id: this.jobDetails.job_id,
+      applied: true,
+      resources: this.resourcesForm.controls['howmanyresources'].value, // optional,
+      cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
+    }
+    this.acrservice.updateApplication(payload).subscribe((response) => {
+      if (response?.status) {
+        this.getProjectList();
         this.modalService.dismissAll();
-        this.notificationService.showError(error?.error?.message || 'Something went wrong.')
-      })
+      }
+    }, (error) => {
+      this.modalService.dismissAll();
+      this.notificationService.showError(error?.error?.message || 'Something went wrong.')
+    })
 
   }
 
@@ -221,7 +221,7 @@ export class CirAllJobsComponent implements OnInit {
     if (milliseconds <= 0) {
       return '00:00:00';
     }
-    
+
     let seconds = Math.floor((milliseconds / 1000) % 60);
     let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
     let hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
