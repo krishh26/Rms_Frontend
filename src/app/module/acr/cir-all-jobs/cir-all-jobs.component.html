@@ -9,14 +9,12 @@
             <th style="text-transform: none; text-align: center;" scope="col">Job Title</th>
             <th style="text-transform: none; text-align: center;" scope="col">No. of Roles</th>
             <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Position Start Date</th>
             <th style="text-transform: none; text-align: center;" scope="col">Day Rate</th>
-            <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Additional Details</th>
+            <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Role Details</th>
             <th style="text-transform: none; text-align: center;" scope="col">Timer</th>
             <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Take Action</th>
             <th style="text-transform: none; text-align: center;" scope="col">Status</th>
         </tr>
-        
         </thead>
         <tbody>
 
@@ -32,7 +30,6 @@
             <td>{{job.job_title}}</td>
             <td>{{job.no_of_roles}}</td>
             <td>{{job.publish_date | date:'dd/MM/yyyy'}}</td>
-            <td>{{job.start_date | date:'dd/MM/yyyy'}}</td>
             <td>{{job.day_rate}}</td>
             <td>
               <a href="https://f005.backblazeb2.com/file/whyqtech1/files/1725192312622_READ ME.docx" target="_blank">
@@ -41,16 +38,6 @@
             </td>
             <td style="color: red;">{{ formatTimeLeft(job.job_time_left) }}</td>
             <td class="text-center">
-              <!-- <label>
-                <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
-                  [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Under Review' || job.status === 'Inactive' ">
-                Yes
-              </label>&nbsp;
-              <label>
-                <input type="radio" name="choice{{ i }}" value="no"
-                  [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Under Review' || job.status === 'Inactive' ">
-                No
-              </label> -->
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
                 <div *ngIf="!job.applicants.length">
                   <label>

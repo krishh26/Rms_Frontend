@@ -178,7 +178,7 @@
     </div>
     <div class="row">
       <div class="update ml-auto mr-auto">
-        <button type="button" style="float: left;" routerLink="/cir/cir-register"
+        <button type="button" style="float: left;" routerLink="/acr/acr-register"
           class="btn btn-primary btn-round">Back</button>
         <button type="button" style="float: right;" class="btn btn-primary btn-round" (click)="submit()">Next
           Step</button>
@@ -200,7 +200,13 @@
         <form [formGroup]="supplyform" (ngSubmit)="supplyonSubmit()">
           <div class="row">
             <div class="col-md-4">
-              <label>No. of Resources Can Be Sourced <span style="color: red;"> *</span> :</label>
+              <label>No. of Resources Can Be Sourced</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label>within 48 hours <span style="color: red;"> *</span> :</label>
             </div>
             <div class="col-md-4">
               <div class="form-group">
@@ -209,7 +215,7 @@
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['four_hour']?.touched &&
                     supplyform.controls?.['four_hour']?.errors?.['required']">
-                  Please enter hours
+                  Please enter resources
                 </span>
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['four_hour']?.touched &&
@@ -218,6 +224,12 @@
                 </span>
               </div>
             </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label>within 7 days <span style="color: red;"> *</span> :</label>
+            </div>
             <div class="col-md-4">
               <div class="form-group">
                 <input type="text" (keypress)="NumberOnly($event)" formControlName="seven_hour" class="form-control"
@@ -225,7 +237,7 @@
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['seven_hour']?.touched &&
                     supplyform.controls?.['seven_hour']?.errors?.['required']">
-                  Please enter days
+                  Please enter resources
                 </span>
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['seven_hour']?.touched &&
@@ -275,7 +287,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="mt-3 row d-flex justify-content-end">
             <button type="submit" class="btn btn-primary" style="width: 100px !important;"
               [disabled]="supplyform.invalid">Save</button>
