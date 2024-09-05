@@ -40,13 +40,13 @@
             <td class="text-center">
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
                 <div *ngIf="!job.applicants.length">
-                  <label>
+                  <label [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
                     <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
                       [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
                     Yes
                   </label>
                   &nbsp;
-                  <label>
+                  <label [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
                     <input type="radio" name="choice{{ i }}" value="no"
                       [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
                     No
@@ -62,7 +62,6 @@
                 </div>
               </ng-container>
 
-              <!-- Display email message if status is "Under Review" -->
               <ng-template #emailMessage>
                 <strong> If you have got more CV's email to : (ayush@westgateithub.com)</strong>
               </ng-template>

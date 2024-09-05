@@ -184,6 +184,14 @@ input[type="checkbox"]:checked::after {
     color: black;
 }
 
+.enabled-text {
+    font-weight: bolder !important;
+  }
+  
+  .disabled-text {
+    font-weight: normal !important;
+  }
+
 @media only screen and (min-width: 320px) and (max-width: 767px) {
     .FormLeft-panel{
         display: none;
