@@ -38,10 +38,8 @@
                 <label>Password</label>
                 <input [type]="password" class="form-control" placeholder="Enter password" formControlName="password"
                   required>
-                <span class="showicon" *ngIf="!showPassword" (click)="showHidePass()"><i
-                    class="bi bi-eye-fill"></i></span>
-                <span class="showicon" *ngIf="showPassword" (click)="showHidePass()"><i
-                    class="bi bi-eye-slash-fill"></i></span>
+                  <span *ngIf="!showPassword" class="fas fa-eye showicon" (click)="showHidePass('password')"></span>
+                  <span *ngIf="showPassword" class="fas fa-eye-slash showicon" (click)="showHidePass('password')"></span>
                 <span class="text-danger" *ngIf="
                     loginForm.controls?.['password']?.touched &&
                     loginForm.controls?.['password']?.errors?.['required']">

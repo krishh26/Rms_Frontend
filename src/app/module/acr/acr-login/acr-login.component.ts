@@ -54,8 +54,8 @@ export class AcrLoginComponent implements OnInit {
     }
   }
 
-  public showHidePass(): void {
-    if (this.password === 'password') {
+  public showHidePass(type: string): void {
+    if (type == 'password' && this.password === 'password') {
       this.password = 'text';
       this.showPassword = true;
     } else {
