@@ -174,7 +174,9 @@ input[type="checkbox"]::before {
     background-color: white;
 }
 
-table tbody tr:nth-child(even) td {background-color: #d6d6d6 !important;}
+table tbody tr:nth-child(even) td {
+    background-color: #d6d6d6 !important;
+}
 
 input[type="checkbox"]:checked::after {
     content: '✓';
@@ -188,21 +190,23 @@ input[type="checkbox"]:checked::after {
 
 .enabled-text {
     font-weight: bolder !important;
-  }
+}
 
-  .disabled-text {
+.disabled-text {
     font-weight: normal !important;
-  }
+}
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-    .FormLeft-panel{
+    .FormLeft-panel {
         display: none;
     }
-    .mobile-registration-card{
+
+    .mobile-registration-card {
         background-color: transparent !important;
         box-shadow: none !important;
     }
-    .FormRight-panel{
+
+    .FormRight-panel {
         padding: 15px;
     }
 }

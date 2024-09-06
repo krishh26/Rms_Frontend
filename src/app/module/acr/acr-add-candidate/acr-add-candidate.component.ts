@@ -38,6 +38,7 @@ export class AcrAddCandidateComponent implements OnInit {
     this.acrservice.createCandidate(this.jobForm.value).subscribe((response) => {
       if (response?.status == true) {
         this.notificationService.showSuccess(response?.message, 'Success !');
+        this.jobForm.reset();
       } else {
         this.notificationService.showError(response?.message);
       }
