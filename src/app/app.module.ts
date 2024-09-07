@@ -7,11 +7,12 @@ import { AcrModule } from './module/acr/acr.module';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule, } from '@angular/common/http';
 import { provideToastr, ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
-import {  provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { APIInterceptor } from './shared/interceptor/ApiInterceptor';
 import { ShowDataBaseModule } from './module/show-data-base/show-data-base.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     AcrModule,
     ShowDataBaseModule,
     HttpClientModule,
+    SweetAlert2Module.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',

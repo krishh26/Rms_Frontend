@@ -10,6 +10,7 @@ import { pagination } from 'src/app/shared/constant/pagination.constant';
 import { Payload } from 'src/app/shared/constant/payload.const';
 import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 import { interval, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cir-all-jobs',
@@ -98,6 +99,31 @@ export class CirAllJobsComponent implements OnInit {
       this.modalService.dismissAll();
       this.notificationService.showError(error?.error?.message || 'Something went wrong.')
     })
+  }
+
+  noApplyjob(job: any) {
+    const loginData = this.localStorageService.getLogger();
+    let params = {
+      user_id: loginData._id,
+      job_id: job.job_id,
+      "applied": false,
+    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Do you want to Action `,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00B96F',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes !'
+    }).then((result) => {
+      if (result.value) {
+        this.acrservice.applyJob(params).subscribe((res: any) => {
+          this.notificationService.showSuccess('', 'Notification successfully deleted');
+          window.location.reload();
+        });
+      }
+    });
   }
 
   get candidates(): FormArray | any {
@@ -234,4 +260,5 @@ export class CirAllJobsComponent implements OnInit {
 
     return daysDisplay + hoursDisplay + minutesDisplay + secondsDisplay;
   }
+
 }
