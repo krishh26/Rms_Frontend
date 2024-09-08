@@ -17,7 +17,8 @@ export enum AcrEndPoint {
   CREATE_CANDIDATE = '/candidate/create',
   GET_CANDIDATE_LIST = '/candidate/list/',
   ADMIN_LOGIN = '/user/admin/login',
-  GET_AGENCY_LIST = '/user/acr/list'
+  GET_AGENCY_LIST = '/user/acr/list',
+  FORGOT_PASSWORD = '/user/acr/forgot',
 }
 
 @Injectable({
@@ -38,6 +39,11 @@ export class AcrServiceService {
       'Content-Type': 'application/json',
     });
     return headers;
+  }
+
+  forgotpassword(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + AcrEndPoint.FORGOT_PASSWORD, payload);
   }
 
   loginUser(payload: any): Observable<any> {

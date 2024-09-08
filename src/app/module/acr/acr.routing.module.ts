@@ -14,6 +14,7 @@ import { AcrThankyouComponent } from './acr-thankyou/acr-thankyou.component';
 import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-password.component';
 import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.component';
 import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.component';
+import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-password.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: "acr-reset-password",
     component: AcrResetPasswordComponent
+  },
+  {
+    path: "acr-forgot-password",
+    component: AcrForgotPasswordComponent
   },
   {
     path: "acr-accordian-card",

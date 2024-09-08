@@ -21,6 +21,7 @@ import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-passwo
 import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.component';
 import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-password.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AcrThankyouComponent,
     AcrResetPasswordComponent,
     AcrAddCandidateComponent,
-    AcrAdminLoginComponent
+    AcrAdminLoginComponent,
+    AcrForgotPasswordComponent
   ]
 })
 export class AcrModule { }
