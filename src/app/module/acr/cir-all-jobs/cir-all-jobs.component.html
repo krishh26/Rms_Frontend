@@ -39,7 +39,7 @@
             <td style="color: red;">{{ formatTimeLeft(job.job_time_left) }}</td>
             <td class="text-center">
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
-                <div *ngIf="!job.applicants.length">
+                <div *ngIf="!job.applied">
                   <label
                     [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
                     <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
@@ -54,7 +54,7 @@
                     No
                   </label>
                 </div>
-                <div *ngIf="job.applicants.length">
+                <div *ngIf="job.applied == true">
                   <div class="row">
                     <div class="ml-auto mr-auto">
                       <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round">Upload
