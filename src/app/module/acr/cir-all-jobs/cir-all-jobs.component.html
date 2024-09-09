@@ -134,9 +134,9 @@
             <thead class="card-header">
               <tr>
                 <th scope="col">Sr. No</th>
-                <th scope="col">Upload CV </th>
-                <th scope="col">Candidate Nationality</th>
-                <th scope="col">Candidate Location</th>
+                <th scope="col">Upload CV <span style="color: red;">*</span></th>
+                <th scope="col">Candidate Nationality <span style="color: red;">*</span></th>
+                <th scope="col">Candidate Location <span style="color: red;">*</span></th>
               </tr>
             </thead>
             <tbody formArrayName="candidates">
@@ -144,29 +144,29 @@
               <tr *ngFor="let candidate of candidates.controls; let i = index" [formGroupName]="i">
                 <td class="text-center">{{ i + 1 }}.</td>
                 <td>
-                  <input type="file" class="form-control" (change)="fileUpload($event, i)" required>
+                  <input type="file" class="form-control" (change)="fileUpload($event, i); onChangeInput()" required>
                 </td>
                 <td>
                   <input type="text" placeholder="Enter nationality" class="form-control"
-                    formControlName="candidate_nationality" />
+                    formControlName="candidate_nationality" (keypress)="onChangeInput()"/>
                 </td>
                 <td>
                   <input type="text" placeholder="Enter job title" class="form-control"
-                    formControlName="candidate_location" />
+                    formControlName="candidate_location" (keypress)="onChangeInput()"/>
                 </td>
-                <td>
+                <!-- <td>
                   <button type="button" class="btn btn-danger" (click)="removeCandidate(i)"
                     *ngIf="candidates.length > 1">-</button>&nbsp;
                   <button type="button" class="btn btn-primary" (click)="addCandidate(i)"
                     *ngIf="i === candidates.length - 1">+</button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
 
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" (click)="submitCV()" class="btn btn-primary w-50">Submit</button>
+              <button type="button" [disabled]="errorData" (click)="submitCV()" class="btn btn-primary w-50" [ngClass]="">Submit</button>
             </div>
           </div>
         </form>

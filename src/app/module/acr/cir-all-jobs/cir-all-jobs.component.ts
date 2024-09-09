@@ -33,6 +33,8 @@ export class CirAllJobsComponent implements OnInit {
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
 
+  errorData : boolean = true;
+
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -54,8 +56,26 @@ export class CirAllJobsComponent implements OnInit {
     this.getProjectList();
   }
 
+  onChangeInput() {
+    this.resourcesForm.value?.candidates?.map((element: any) => {
+      if (!element?.cv || !element?.candidate_location || !element?.candidate_nationality) {
+        this.errorData = true;
+      } else {
+        this.errorData = false;
+      }
+    });
+  }
+
+  removeAll() {
+    (this.resourcesForm.controls['candidates'] as FormArray).clear();
+  }
+
   openCVModal(job: any) {
-    this.jobDetails = job
+    this.jobDetails = job;
+    this.removeAll();
+    for (let i = 0; i < Number(job?.no_of_resouces); i++) {
+      this.addCandidate(i)
+    }
     this.modalService.dismissAll();
     this.modalService.open(this.uploadcvModal, { size: 'xl' })
   }
@@ -69,6 +89,18 @@ export class CirAllJobsComponent implements OnInit {
       resources: this.resourcesForm.controls['howmanyresources'].value, // optional,
       cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
     }
+    let errorCounter: number = 0;
+
+    payload?.cvDetails?.map((element: any) => {
+      if (!element?.cv || !element?.candidate_location || !element?.candidate_nationality) {
+        errorCounter++;
+      }
+    });
+
+    if (errorCounter > 0) {
+      return this.notificationService.showError('Please fill details');
+    }
+
     this.acrservice.updateApplication(payload).subscribe((response) => {
       if (response?.status) {
         this.getProjectList();
@@ -140,19 +172,19 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   addCandidate(index: number) {
-    if (!this.file) {
-      return this.notificationService.showError('Please upload file');
-    }
+    // if (!this.file) {
+    //   return this.notificationService.showError('Please upload file');
+    // }
 
-    if (!this.resourcesForm.value?.candidates[index]?.candidate_nationality) {
-      return this.notificationService.showError('Please enter candidate nationality');
-    }
+    // if (!this.resourcesForm.value?.candidates[index]?.candidate_nationality) {
+    //   return this.notificationService.showError('Please enter candidate nationality');
+    // }
 
-    if (!this.resourcesForm.value?.candidates[index]?.candidate_location) {
-      return this.notificationService.showError('Please enter candidate location');
-    }
+    // if (!this.resourcesForm.value?.candidates[index]?.candidate_location) {
+    //   return this.notificationService.showError('Please enter candidate location');
+    // }
 
-    this.file = "";
+    // this.file = "";
 
     this.candidates.push(this.createCandidateFormGroup());
   }
