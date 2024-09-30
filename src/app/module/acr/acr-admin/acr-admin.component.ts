@@ -15,7 +15,10 @@ import { CirSericeService } from 'src/app/services/cir-service/cir-serice.servic
 })
 export class AcrAdminComponent implements OnInit {
   jobForm!: FormGroup;
-  file: any
+  file: any;
+  showLoader: boolean = false;
+  jobID: string = '';
+
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -23,7 +26,6 @@ export class AcrAdminComponent implements OnInit {
     private acrservice: AcrServiceService,
     private cirservice: CirSericeService,
   ) {
-
     const currentDate = new Date(); // Get the current date
     const formattedDate = this.formatDate(currentDate);
 
@@ -37,10 +39,45 @@ export class AcrAdminComponent implements OnInit {
       day_rate: new FormControl('', [Validators.required]),
       status: new FormControl('', [Validators.required]),
       upload: new FormControl(''),
+      job_id: new FormControl({ value: null, disabled: true })  // Initially disabled
+    });
+
+    // Subscribe to changes in the 'status' form control
+    this.jobForm.get('status')?.valueChanges.subscribe(status => {
+      const jobIDControl = this.jobForm.get('job_id');
+
+      if (status === 'Active') {
+        // Set the jobID and enable the field when status is 'Active'
+        jobIDControl?.enable();
+        jobIDControl?.setValue(this.jobID); // Set the jobID fetched from the API
+      } else {
+        // Clear and disable job_id when status is not 'Active'
+        jobIDControl?.disable();
+        jobIDControl?.setValue(null);  // Clear the value
+      }
     });
   }
 
+
   ngOnInit() {
+    this.getJobIDList();
+  }
+
+  getJobIDList() {
+    this.showLoader = true;
+    this.acrservice.getjobidList().subscribe((response) => {
+      if (response?.status == true) {
+        this.showLoader = false;
+        this.jobID = response?.data?.job_id;
+        console.log(this.jobID);
+      } else {
+        this.notificationService.showError(response?.message);
+        this.showLoader = false;
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message);
+      this.showLoader = false;
+    });
   }
 
   formatDate(date: Date): string {
@@ -71,34 +108,40 @@ export class AcrAdminComponent implements OnInit {
   }
 
   submit() {
-
     const uploadFile = this.file;
-    console.log(uploadFile.key);
-
 
     const cvObject = {
-      key: uploadFile.key,
-      url: uploadFile.url,
+      key: uploadFile?.key,
+      url: uploadFile?.url,
     };
 
-    const formData = {
+    // Prepare form data object
+    let formData = {
       ...this.jobForm.value,
       upload: cvObject
     };
 
-    this.jobForm.controls['upload'].patchValue(this.file);
+    // Ensure that job_id is only included if status is 'Active'
+    if (this.jobForm.get('status')?.value !== 'Active') {
+      delete formData['job_id']; // Remove job_id if not Active
+    }
 
-    this.acrservice.createjob(formData).subscribe((response) => {
-      if (response?.status == true) {
-        this.notificationService.showSuccess(response?.message, 'Success !');
-        window.location.reload();
-      } else {
-        this.notificationService.showError(response?.message);
+    // Send form data to backend using the service
+    this.acrservice.createjob(formData).subscribe(
+      (response) => {
+        if (response?.status === true) {
+          this.notificationService.showSuccess(response?.message, 'Success!');
+          window.location.reload();
+        } else {
+          this.notificationService.showError(response?.message);
+        }
+      },
+      (error) => {
+        this.notificationService.showError(error?.error?.message);
       }
-    }, (error) => {
-      this.notificationService.showError(error?.error?.message);
-    })
+    );
   }
+
 
   // Number only validation
   NumberOnly(event: any): boolean {

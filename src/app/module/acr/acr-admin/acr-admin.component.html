@@ -42,11 +42,25 @@
                     </select>
                     <span class="text-danger"
                       *ngIf="jobForm.get('status')?.touched && jobForm.get('status')?.errors?.['required']">
-                      Please select no of roles.
+                      Please select a status.
                     </span>
                   </div>
                 </div>
               </div>
+
+              <!-- Conditionally display Job ID when status is 'Active' -->
+              <div class="row" *ngIf="jobForm.get('status')?.value === 'Active'">
+                <div class="col-md-5">
+                  <label>Job ID :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Job ID" formControlName="job_id" readonly
+                      value="{{jobID}}">
+                  </div>
+                </div>
+              </div>
+
 
               <div class="row">
                 <div class="col-md-5">
