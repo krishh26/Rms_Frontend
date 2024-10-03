@@ -2,7 +2,8 @@
   <div class="container">
     <h4 style="text-align: center;"><strong>All Jobs</strong></h4><br>
     <div class="alert alert-warning" style="text-align: center; font-size: 19px  !important;" role="alert">
-      <i class="bi bi-exclamation-triangle"></i><strong> It is important for you to read <span style="color: #34b5b8 !important;">Read me</span> document before you take action.</strong>
+      <i class="bi bi-exclamation-triangle"></i><strong> It is important for you to read <span
+          style="color: #34b5b8 !important;">Read me</span> document before you take action.</strong>
     </div>
     <div class="table-responsive">
       <table class="table table-bordered mt-3">
@@ -131,6 +132,7 @@
         <h5 class="modal-title" id="ViewCv">Upload CV</h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
+      <p class="text-bold text-center" style="color: #218838;">Uplaod all the CVs at once to Submit.</p>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
           <table class="table table-bordered">
@@ -151,11 +153,11 @@
                 </td>
                 <td>
                   <input type="text" placeholder="Enter nationality" class="form-control"
-                    formControlName="candidate_nationality" (keypress)="onChangeInput()"/>
+                    formControlName="candidate_nationality" (keypress)="onChangeInput()" />
                 </td>
                 <td>
                   <input type="text" placeholder="Enter job title" class="form-control"
-                    formControlName="candidate_location" (keypress)="onChangeInput()"/>
+                    formControlName="candidate_location" (keypress)="onChangeInput()" />
                 </td>
                 <!-- <td>
                   <button type="button" class="btn btn-danger" (click)="removeCandidate(i)"
@@ -169,7 +171,8 @@
 
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" [disabled]="errorData" (click)="submitCV()" class="btn btn-primary w-50" [ngClass]="">Submit</button>
+              <button type="button" [disabled]="errorData" (click)="submitCV()" class="btn btn-primary w-50"
+                [ngClass]="">Submit</button>
             </div>
           </div>
         </form>
