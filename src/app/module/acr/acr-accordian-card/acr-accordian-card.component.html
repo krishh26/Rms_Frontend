@@ -206,7 +206,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label>within 48 hours <span style="color: red;"> *</span> :</label>
+              <label>Within 48 hours <span style="color: red;"> *</span> :</label>
             </div>
             <div class="col-md-4">
               <div class="form-group">
@@ -215,7 +215,7 @@
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['four_hour']?.touched &&
                     supplyform.controls?.['four_hour']?.errors?.['required']">
-                  Please enter resources
+                  Please enter no. of resources.
                 </span>
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['four_hour']?.touched &&
@@ -228,7 +228,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label>within 7 days <span style="color: red;"> *</span> :</label>
+              <label>Within 7 days <span style="color: red;"> *</span> :</label>
             </div>
             <div class="col-md-4">
               <div class="form-group">
@@ -237,7 +237,7 @@
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['seven_hour']?.touched &&
                     supplyform.controls?.['seven_hour']?.errors?.['required']">
-                  Please enter resources
+                 Please enter no. of resources.
                 </span>
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['seven_hour']?.touched &&
@@ -259,12 +259,12 @@
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['day_rate']?.touched &&
                     supplyform.controls?.['day_rate']?.errors?.['required']">
-                  Please enter day rate
+                 Please enter your expected Day Rate.
                 </span>
                 <span class="text-danger" *ngIf="
                     supplyform.controls?.['day_rate']?.touched &&
                     supplyform.controls?.['day_rate']?.errors?.['pattern']">
-                  Please enter valid format
+                  Please enter your valid expected Day Rate.
                 </span>
               </div>
             </div>

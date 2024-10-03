@@ -398,7 +398,7 @@ export class AcrAccordianCardComponent implements OnInit {
       (response) => {
         if (response?.status) {
           this.localStorageService.setLogger(response?.data);
-          this.router.navigate(['/acr/acr-thankyou']);
+         // this.router.navigate(['/acr/acr-thankyou']);
           setTimeout(() => {
             window.location.reload();
           }, 1000);
