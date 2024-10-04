@@ -36,13 +36,13 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter Agency Name"
-                      formControlName="supplierAgencyName">
+                      formControlName="agencyName">
                     <span class="text-danger"
-                      *ngIf="agencyForm.get('supplierAgencyName')?.touched && agencyForm.get('supplierAgencyName')?.errors?.['required']">
+                      *ngIf="agencyForm.get('agencyName')?.touched && agencyForm.get('agencyName')?.errors?.['required']">
                       Please enter the supplier or agency name.
                     </span>
                     <span class="text-danger"
-                      *ngIf="agencyForm.get('supplierAgencyName')?.touched && agencyForm.get('supplierAgencyName')?.errors?.['pattern']">
+                      *ngIf="agencyForm.get('agencyName')?.touched && agencyForm.get('agencyName')?.errors?.['pattern']">
                       Please enter a valid format for the supplier or agency name.
                     </span>
                   </div>
@@ -166,15 +166,15 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Code like +44" formControlName="countrycode">
+                    <input type="text" class="form-control" placeholder="Code like +44" formControlName="phoneNumberCountryCode">
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['countrycode']?.touched &&
-                      agencyForm.controls?.['countrycode']?.errors?.['required']">
+                      agencyForm.controls?.['phoneNumberCountryCode']?.touched &&
+                      agencyForm.controls?.['phoneNumberCountryCode']?.errors?.['required']">
                       Please enter the country code.
                     </span>
                     <span class="text-danger" *ngIf="
-                      agencyForm.controls?.['countrycode']?.touched &&
-                      agencyForm.controls?.['countrycode']?.errors?.['pattern']">
+                      agencyForm.controls?.['phoneNumberCountryCode']?.touched &&
+                      agencyForm.controls?.['phoneNumberCountryCode']?.errors?.['pattern']">
                       Please enter a valid format for the country code.
                     </span>
                   </div>
@@ -245,7 +245,7 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Code like +44"
-                      formControlName="countrycode">
+                      formControlName="secondaryPhoneNumberCountryCode">
 
                   </div>
                 </div>
