@@ -455,6 +455,7 @@ export class AcrAccordianCardComponent implements OnInit {
           setTimeout(() => {
             window.location.reload();
           }, 1000);
+          this.router.navigate(['/acr/acr-thankyou']);
           this.notificationService.showSuccess('Data submitted successfully!');
         } else {
           this.notificationService.showError('Submission failed, try again.');
