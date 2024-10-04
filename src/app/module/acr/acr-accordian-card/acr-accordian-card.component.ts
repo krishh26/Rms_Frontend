@@ -289,7 +289,7 @@ export class AcrAccordianCardComponent implements OnInit {
     }
   ];
   file: any;
-
+  appliedRolesArray: any[] = [];
   files: File[] = [];
   supplyform!: FormGroup;
   selectedFiles: { [key: string]: File } = {};
@@ -328,6 +328,8 @@ export class AcrAccordianCardComponent implements OnInit {
 
   openModal(role: any) {
     this.selectedJobTitle = role.role;  // Set the selected job title
+    this.supplyform.reset();
+    this.files = [];
   }
 
 
@@ -367,54 +369,6 @@ export class AcrAccordianCardComponent implements OnInit {
     }
   }
 
-
-  supplyonSubmit(): void {
-    if (this.supplyform.invalid) {
-      return this.notificationService.showError('Fill all the fields');
-    }
-
-    // Filter out undefined entries to ensure only uploaded files are included
-    const uploadedFiles = this.files.filter(file => file !== undefined);
-
-    if (uploadedFiles.length === 0) {
-      return this.notificationService.showError('Please upload at least one file before submitting.');
-    }
-
-    let payloadData: any = {
-      appliedRole: []
-    };
-
-    const data: any = {
-      title: this.selectedJobTitle,
-      four_hour: this.supplyform.get('four_hour')?.value,
-      seven_hour: this.supplyform.get('seven_hour')?.value,
-      day_rate: this.supplyform.get('day_rate')?.value,
-      cv: uploadedFiles // Use the data received from the server, not the raw file
-    };
-
-    payloadData.appliedRole.push(data);
-
-    this.acrservice.supplyjob(payloadData).subscribe(
-      (response) => {
-        if (response?.status) {
-          this.localStorageService.setLogger(response?.data);
-          // this.router.navigate(['/acr/acr-thankyou']);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-          this.notificationService.showSuccess('Success!');
-        } else {
-          this.notificationService.showError('Submission failed, try again.');
-        }
-      },
-      (error) => {
-        this.notificationService.showError('An error occurred.');
-      }
-    );
-  }
-
-
-
   getDetails() {
     const rolesData: any = localStorage.getItem('rmsRolesDetails');
     if (rolesData || rolesData !== undefined || rolesData !== 'undefined') {
@@ -453,45 +407,63 @@ export class AcrAccordianCardComponent implements OnInit {
     return false;
   }
 
-  submit() {
-    const UKSelected = this.qaSpecialistServices
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
-    const UKSelectedPayload = {
-      name: "Client 3",
-      location: "All Over UK",
-      roles: UKSelected
+  supplyonSubmit(): void {
+    if (this.supplyform.invalid) {
+      return this.notificationService.showError('Fill all the fields');
+    }
+
+    // Filter out undefined entries to ensure only uploaded files are included
+    const uploadedFiles = this.files.filter(file => file !== undefined);
+
+    if (uploadedFiles.length === 0) {
+      return this.notificationService.showError('Please upload at least one file before submitting.');
+    }
+
+    const data: any = {
+      title: this.selectedJobTitle,
+      four_hour: this.supplyform.get('four_hour')?.value,
+      seven_hour: this.supplyform.get('seven_hour')?.value,
+      day_rate: this.supplyform.get('day_rate')?.value,
+      cv: uploadedFiles
     };
 
-    const northanRolesTableData = this.northanRolesTableData
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
+    // Add form submission to the array
+    this.appliedRolesArray.push(data);
 
-    const northanRolesPayload = {
-      name: "Client 2",
-      location: "Northan Ireland Only",
-      roles: northanRolesTableData
-    };
+    // Reset form and modal fields for next entry
+    this.supplyform.reset();
+    this.selectedJobTitle = '';
+    this.files = [];
 
-    const manchesterrolesTableData = this.manchesterrolesTableData
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
+    this.notificationService.showSuccess('Data added successfully! You can add more or click Next.');
+  }
 
-    const manchesterrolesPayload = {
-      name: "Client 1",
-      location: "Machester Only",
-      roles: manchesterrolesTableData
-    };
-
-    if (UKSelected?.length === 0 && northanRolesTableData?.length === 0 && manchesterrolesTableData?.length === 0) {
-      this.notificationService.showError('Please select atleast 1 option in each Contract to move to next page');
+  submit(): void {
+    if (this.appliedRolesArray.length === 0) {
+      this.notificationService.showError('Please add at least one role before proceeding.');
       return;
     }
 
     const payloadData = {
-      client1: manchesterrolesPayload,
-      client2: northanRolesPayload,
-      client3: UKSelectedPayload
-    }
+      appliedRoles: this.appliedRolesArray
+    };
+
+    this.acrservice.supplyjob(payloadData).subscribe(
+      (response) => {
+        if (response?.status) {
+          this.localStorageService.setLogger(response?.data);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          this.notificationService.showSuccess('Data submitted successfully!');
+        } else {
+          this.notificationService.showError('Submission failed, try again.');
+        }
+      },
+      (error) => {
+        this.notificationService.showError('An error occurred.');
+      }
+    );
   }
+
 }
