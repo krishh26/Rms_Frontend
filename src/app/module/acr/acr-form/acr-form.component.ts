@@ -93,20 +93,20 @@ export class AcrFormComponent implements OnInit {
     console.log(data?.data?.user);
 
     this.agencyForm.patchValue({
-      agencyName: data?.agencyName || '',
-      location: data?.location || '',
-      numberOfBranchesInUK: data?.numberOfBranchesInUK || '',
-      personName: data?.personName || '',
-      personDesignation: data?.personDesignation || '',
-      personEmail: data?.personEmail || '',
-      phoneNumber: data?.phoneNumber || '',
-      secondaryPersonName: data?.secondaryPersonName || '',
-      secondaryPersonDesignation: data?.secondaryPersonDesignation || '',
-      secondaryPersonEmail: data?.secondaryPersonEmail || '',
-      secondaryPersonPhone: data?.secondaryPersonPhone || '',
-      callTime: data?.callTime || '',
-      phoneNumberCountryCode: data?.phoneNumberCountryCode || '',
-      secondaryPhoneNumberCountryCode: data?.secondaryPhoneNumberCountryCode || '',
+      agencyName: data?.data?.user?.agencyName || '',
+      location: data?.data?.user?.location || '',
+      numberOfBranchesInUK: data?.data?.user?.numberOfBranchesInUK || '',
+      personName: data?.data?.user?.personName || '',
+      personDesignation: data?.data?.user?.personDesignation || '',
+      personEmail: data?.data?.user?.personEmail || '',
+      phoneNumber: data?.data?.user?.phoneNumber || '',
+      secondaryPersonName: data?.data?.user?.secondaryPersonName || '',
+      secondaryPersonDesignation: data?.data?.user?.secondaryPersonDesignation || '',
+      secondaryPersonEmail: data?.data?.user?.secondaryPersonEmail || '',
+      secondaryPersonPhone: data?.data?.user?.secondaryPersonPhone || '',
+      callTime: data?.data?.user?.callTime || '',
+      phoneNumberCountryCode: data?.data?.user?.phoneNumberCountryCode || '',
+      secondaryPhoneNumberCountryCode: data?.data?.user?.secondaryPhoneNumberCountryCode || '',
     });
   }
 
@@ -151,43 +151,20 @@ export class AcrFormComponent implements OnInit {
 
   // Function to be used for submit details
   submit() {
-
-    // const selectedTimes = this.agencyForm.controls['callTime'].value;
-    // const selectedTimesArray = Array.isArray(selectedTimes)
-    //   ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
-    //   : [];
-
-    const data = {
-      agencyName: this.agencyForm.controls['agencyName'].value || '',
-      location: this.agencyForm.controls['location'].value || '',
-      numberOfBranchesInUK: this.agencyForm.controls['numberOfBranchesInUK'].value || '',
-      personName: this.agencyForm.controls['personName'].value || '',
-      personDesignation: this.agencyForm.controls['personDesignation'].value || '',
-      personEmail: this.agencyForm.controls['personEmail'].value || '',
-      phoneNumber: this.agencyForm.controls['phoneNumber'].value || '',
-      secondaryPersonName: this.agencyForm.controls['secondaryPersonName'].value || '',
-      secondaryPersonDesignation: this.agencyForm.controls['secondaryPersonDesignation'].value || '',
-      secondaryPersonEmail: this.agencyForm.controls['secondaryPersonEmail'].value || '',
-
-      secondaryPersonPhone: this.agencyForm.controls['secondaryPersonPhone'].value || '',
-      callTime: this.agencyForm.controls['callTime'].value || '',
-      phoneNumberCountryCode: this.agencyForm.controls['phoneNumberCountryCode'].value || '',
-      secondaryPhoneNumberCountryCode: this.agencyForm.controls['secondaryPhoneNumberCountryCode'].value || '',
-    }
-
-    localStorage.setItem('rmsPersonalDetails', JSON.stringify(data));
-    this.router.navigate(['/acr/acr-accordian-card']);
-    // return
-    // this.acrservice.register(this.agencyForm.value).subscribe((response) => {
-    //   if (response?.status == true) {
-    //     localStorage.setItem('rmsPersonalDetails', JSON.stringify(response));
-    //     this.router.navigate(['/acr/acr-accordian-card']);
-    //     this.notificationService.showSuccess(response?.message, 'Success !');
-    //   } else {
-    //     this.notificationService.showError(response?.message, 'Select different Username!');
-    //   }
-    // }, (error) => {
-    //   this.notificationService.showError(error?.error?.message, 'Select different Username!');
-    // })
+    const selectedTimes = this.agencyForm.controls['callTime'].value;
+    const selectedTimesArray = Array.isArray(selectedTimes)
+      ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
+      : [];
+    this.acrservice.register(this.agencyForm.value).subscribe((response) => {
+      if (response?.status == true) {
+        localStorage.setItem('rmsPersonalDetails', JSON.stringify(response));
+        this.router.navigate(['/acr/acr-accordian-card']);
+        this.notificationService.showSuccess(response?.message, 'Success !');
+      } else {
+        this.notificationService.showError(response?.message, 'Select different Username!');
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.error?.message, 'Select different Username!');
+    })
   }
 }
