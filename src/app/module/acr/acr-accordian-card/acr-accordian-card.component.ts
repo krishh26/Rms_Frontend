@@ -290,7 +290,7 @@ export class AcrAccordianCardComponent implements OnInit {
   ];
   file: any;
 
-  files: File[] = []; 
+  files: File[] = [];
   supplyform!: FormGroup;
   selectedFiles: { [key: string]: File } = {};
 
@@ -343,7 +343,7 @@ export class AcrAccordianCardComponent implements OnInit {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('files', file || '');
-  
+
     if (file) {
       this.cirservice.fileUpload(formData).subscribe(
         (response) => {
@@ -354,7 +354,7 @@ export class AcrAccordianCardComponent implements OnInit {
               this.files[1] = response.data; // Store response data at index 1
             }
             console.log(this.files); // Debugging: Check the stored data
-  
+
             this.notificationService.showSuccess(response?.message || 'File successfully uploaded.');
           } else {
             this.notificationService.showError(response?.message || 'File not uploaded.');
@@ -366,24 +366,24 @@ export class AcrAccordianCardComponent implements OnInit {
       );
     }
   }
-  
+
 
   supplyonSubmit(): void {
     if (this.supplyform.invalid) {
       return this.notificationService.showError('Fill all the fields');
     }
-  
+
     // Filter out undefined entries to ensure only uploaded files are included
     const uploadedFiles = this.files.filter(file => file !== undefined);
-    
+
     if (uploadedFiles.length === 0) {
       return this.notificationService.showError('Please upload at least one file before submitting.');
     }
-  
+
     let payloadData: any = {
       appliedRole: []
     };
-  
+
     const data: any = {
       title: this.selectedJobTitle,
       four_hour: this.supplyform.get('four_hour')?.value,
@@ -391,14 +391,14 @@ export class AcrAccordianCardComponent implements OnInit {
       day_rate: this.supplyform.get('day_rate')?.value,
       cv: uploadedFiles // Use the data received from the server, not the raw file
     };
-  
+
     payloadData.appliedRole.push(data);
-  
+
     this.acrservice.supplyjob(payloadData).subscribe(
       (response) => {
         if (response?.status) {
           this.localStorageService.setLogger(response?.data);
-         // this.router.navigate(['/acr/acr-thankyou']);
+          // this.router.navigate(['/acr/acr-thankyou']);
           setTimeout(() => {
             window.location.reload();
           }, 1000);
@@ -412,8 +412,8 @@ export class AcrAccordianCardComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
 
   getDetails() {
     const rolesData: any = localStorage.getItem('rmsRolesDetails');
@@ -442,20 +442,6 @@ export class AcrAccordianCardComponent implements OnInit {
           data['selected'] = true;
         })
       }
-      // this.cirSericeService.getClientRoles().subscribe((response) => {
-      //   if (response?.status) {
-      //     if (response?.data?.length > 0) {
-      //       const tempData: any[] = response?.data?.filter((item: any) => item.name == 'Client 2' || 'Client 1' || 'Client 3');
-      //       tempData?.map((element: any) => {
-      //         if (element?.roles?.length > 0) {
-      //           element?.roles?.map((el: any) => {
-      //             this.selectedData.push(el);
-      //           })
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
     }
   }
 
@@ -507,23 +493,5 @@ export class AcrAccordianCardComponent implements OnInit {
       client2: northanRolesPayload,
       client3: UKSelectedPayload
     }
-    // const loginData = this.localStorageService.getLogger();
-    // if (!loginData) {
-    //   this.notificationService.showError('User not register');
-    //   return;
-    // }
-
-
-    // this.cirSericeService.updateUserClient(payloadData, loginData?.user?._id || loginData?._id).subscribe((response) => {
-    //   if (response?.status) {
-    //     this.notificationService.showSuccess('Client update Successful');
-    //     this.router.navigate(['/cir/cir-otherdetails-form']);
-    //   } else {
-    //     this.notificationService.showError('User not referred');
-    //   }
-    // }, (error) => {
-    //   this.notificationService.showError(error?.message || 'User not referred');
-    // }
-    // );
   }
 }
