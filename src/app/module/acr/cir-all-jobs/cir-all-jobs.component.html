@@ -36,7 +36,10 @@
             <td>{{job.publish_date | date:'dd/MM/yyyy'}}</td>
             <td>{{job.day_rate}}</td>
             <td>
-              <a href="https://f005.backblazeb2.com/file/whyqtech1/files/1725192312622_READ ME.docx" target="_blank">
+              <!-- <a href="https://f005.backblazeb2.com/file/whyqtech1/files/1725192312622_READ ME.docx" target="_blank">
+                Read me
+              </a> -->
+              <a href="{{job?.upload?.url}}" target="_blank">
                 Read me
               </a>
             </td>
