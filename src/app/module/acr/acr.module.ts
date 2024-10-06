@@ -7,7 +7,7 @@ import { AcrTableComponent } from './acr-table/acr-table.component';
 import { AcrCardComponent } from './acr-card/acr-card.component';
 import { AcrLoginComponent } from './acr-login/acr-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { AcrProfileComponent } from './acr-profile/acr-profile.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -56,6 +56,9 @@ import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-pas
     AcrAddCandidateComponent,
     AcrAdminLoginComponent,
     AcrForgotPasswordComponent
-  ]
+  ],
+  providers: [
+    NgbActiveModal // Add this line
+  ],
 })
 export class AcrModule { }

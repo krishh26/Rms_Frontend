@@ -13,6 +13,7 @@ import { ShowDataBaseModule } from './module/show-data-base/show-data-base.modul
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     },
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
+    NgbActiveModal
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
@@ -312,6 +312,7 @@ export class AcrAccordianCardComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private modalService: NgbModal,
     private fb: FormBuilder,
+    public activeModal: NgbActiveModal,
   ) { }
 
   ngOnInit() {
@@ -411,14 +412,10 @@ export class AcrAccordianCardComponent implements OnInit {
     if (this.supplyform.invalid) {
       return this.notificationService.showError('Fill all the fields');
     }
-
-    // Filter out undefined entries to ensure only uploaded files are included
     const uploadedFiles = this.files.filter(file => file !== undefined);
-
     if (uploadedFiles.length === 0) {
       return this.notificationService.showError('Please upload at least one file before submitting.');
     }
-
     const data: any = {
       title: this.selectedJobTitle,
       four_hour: this.supplyform.get('four_hour')?.value,
@@ -426,16 +423,12 @@ export class AcrAccordianCardComponent implements OnInit {
       day_rate: this.supplyform.get('day_rate')?.value,
       cv: uploadedFiles
     };
-
-    // Add form submission to the array
     this.appliedRolesArray.push(data);
-
-    // Reset form and modal fields for next entry
     this.supplyform.reset();
     this.selectedJobTitle = '';
     this.files = [];
-
     this.notificationService.showSuccess('Data added successfully! You can add more or click Next.');
+    this.activeModal.close();
   }
 
   submit(): void {
