@@ -141,8 +141,8 @@ export class CirAllJobsComponent implements OnInit {
       "applied": false,
     }
     Swal.fire({
-      title: 'Are you sure?',
-      text: `Do you want to Action `,
+      title: 'You have selected No !',
+      text: `Are you sure?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#00B96F',
