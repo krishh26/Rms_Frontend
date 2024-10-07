@@ -328,12 +328,27 @@ export class AcrAccordianCardComponent implements OnInit {
     });
   }
 
-  openModal(role: any, modal?: string) {
-    this.selectedJobTitle = role.role;  // Set the selected job title
-    this.supplyform.reset();
-    this.files = [];
-    // this.modalService.open(this.loginDetailModal, { size: 'xl' });
+  openModal(role: any): void {
+    this.selectedJobTitle = role.role;
+  
+    // Check if the role already exists in the appliedRolesArray
+    const existingRole = this.appliedRolesArray.find((r: any) => r.title === role.role);
+    
+    if (existingRole) {
+      // Populate the form with existing values
+      this.supplyform.patchValue({
+        four_hour: existingRole.four_hour,
+        seven_hour: existingRole.seven_hour,
+        day_rate: existingRole.day_rate,
+      });
+      this.files = existingRole.cv || [];
+    } else {
+      // Clear the form for a new entry
+      this.supplyform.reset();
+      this.files = [];
+    }
   }
+  
   test() {
     console.log("this.supplyform.value");
   }
@@ -420,10 +435,12 @@ export class AcrAccordianCardComponent implements OnInit {
     if (this.supplyform.invalid) {
       return this.notificationService.showError('Fill all the fields');
     }
+  
     const uploadedFiles = this.files.filter(file => file !== undefined);
     if (uploadedFiles.length === 0) {
       return this.notificationService.showError('Please upload at least one file before submitting.');
     }
+  
     const data: any = {
       title: this.selectedJobTitle,
       four_hour: this.supplyform.get('four_hour')?.value,
@@ -431,13 +448,25 @@ export class AcrAccordianCardComponent implements OnInit {
       day_rate: this.supplyform.get('day_rate')?.value,
       cv: uploadedFiles
     };
-    this.appliedRolesArray.push(data);
+  
+    // Check if the role is already in appliedRolesArray
+    const existingIndex = this.appliedRolesArray.findIndex((r: any) => r.title === this.selectedJobTitle);
+    
+    if (existingIndex !== -1) {
+      // Update the existing entry
+      this.appliedRolesArray[existingIndex] = data;
+    } else {
+      // Add new entry
+      this.appliedRolesArray.push(data);
+    }
+  
     this.supplyform.reset();
     this.selectedJobTitle = '';
     this.files = [];
     this.notificationService.showSuccess('Data added successfully! You can add more or click Next.');
     this.activeModal.close();
   }
+  
 
   submit(): void {
     if (this.appliedRolesArray.length === 0) {
