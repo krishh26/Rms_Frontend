@@ -159,7 +159,7 @@ export class AcrFormComponent implements OnInit {
       if (response?.status == true) {
         localStorage.setItem('rmsPersonalDetails', JSON.stringify(response));
         this.router.navigate(['/acr/acr-accordian-card']);
-        this.notificationService.showSuccess(response?.message, 'Success !');
+        // this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
         this.notificationService.showError(response?.message, 'Select different Username!');
       }

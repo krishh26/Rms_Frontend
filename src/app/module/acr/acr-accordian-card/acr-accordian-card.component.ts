@@ -303,6 +303,7 @@ export class AcrAccordianCardComponent implements OnInit {
   resources7Days: number | undefined;
   dayRate7Days: number | undefined;
   cv7Days: File | undefined;
+  @ViewChild('loginDetailModal') loginDetailModal: any;
 
   constructor(
     private acrservice: AcrServiceService,
@@ -327,12 +328,19 @@ export class AcrAccordianCardComponent implements OnInit {
     });
   }
 
-  openModal(role: any) {
+  openModal(role: any, modal?: string) {
     this.selectedJobTitle = role.role;  // Set the selected job title
     this.supplyform.reset();
     this.files = [];
+    // this.modalService.open(this.loginDetailModal, { size: 'xl' });
   }
-
+  test() {
+    console.log("this.supplyform.value");
+  }
+  closeModal() {
+    console.log('gdsgdfjgsdf')
+    this.modalService.dismissAll()
+  }
 
   NumberOnly(event: any): boolean {
     const charCode = event.which ? event.which : event.keyCode;
