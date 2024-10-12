@@ -2,8 +2,8 @@
   <div class="container">
     <h4 style="text-align: center;"><strong>All Jobs</strong></h4><br>
     <div class="alert alert-warning" style="text-align: center; font-size: 19px  !important;" role="alert">
-      <i class="bi bi-exclamation-triangle"></i><strong> It is important for you to read <span
-          style="color: #34b5b8 !important;">Read me</span> document before you take action.</strong>
+      <i class="bi bi-exclamation-triangle"></i><strong>⁠It is important for you read the <span
+          style="color: #34b5b8 !important;">Read me </span>document for each job title before you take action.</strong>
     </div>
     <div class="table-responsive">
       <table class="table table-bordered mt-3">
@@ -13,7 +13,7 @@
             <th style="text-transform: none; text-align: center;" scope="col">Job Title</th>
             <th style="text-transform: none; text-align: center;" scope="col">No. of Roles</th>
             <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Day Rate</th>
+            <!-- <th style="text-transform: none; text-align: center;" scope="col">Day Rate</th> -->
             <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Role Details</th>
             <th style="text-transform: none; text-align: center;" scope="col">Timer</th>
             <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Take Action</th>
@@ -34,7 +34,7 @@
             <td>{{job.job_title}}</td>
             <td>{{job.no_of_roles}}</td>
             <td>{{job.publish_date | date:'dd/MM/yyyy'}}</td>
-            <td>{{job.day_rate}}</td>
+            <!-- <td>{{job.day_rate}}</td> -->
             <td>
               <!-- <a href="https://f005.backblazeb2.com/file/whyqtech1/files/1725192312622_READ ME.docx" target="_blank">
                 Read me
@@ -64,7 +64,8 @@
                 <div *ngIf="job.applied == true">
                   <div class="row">
                     <div class="ml-auto mr-auto">
-                      <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round">Upload
+                      <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round"
+                        [disabled]="job.status === 'Not Submitted'">Upload
                         CV</button>
                     </div>
                   </div>
@@ -135,7 +136,7 @@
         <h5 class="modal-title" id="ViewCv">Upload CV</h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
-      <p class="text-bold text-center" style="color: #218838;">Uplaod all the CVs at once to Submit.</p>
+      <p class="text-bold text-center" style="color: #218838;">Upload all the CVs at once to Submit.</p>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
           <table class="table table-bordered">
