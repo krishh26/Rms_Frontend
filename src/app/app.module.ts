@@ -14,6 +14,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AcrDatabaseModule } from './module/acr-database/acr-database.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     CirModule,
     AcrModule,
     ShowDataBaseModule,
+    AcrDatabaseModule,
     HttpClientModule,
     SweetAlert2Module.forRoot(),
     ToastrModule.forRoot({
