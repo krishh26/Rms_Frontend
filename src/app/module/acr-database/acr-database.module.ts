@@ -24,12 +24,12 @@ const routes: Routes = [
     children: [
       {
         path: "acr-database-list",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: AcrDatabaseListComponent
       },
       {
         path: "acr-details/:type",
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: AcrDatabaseDetailsComponent
       },
     ]
