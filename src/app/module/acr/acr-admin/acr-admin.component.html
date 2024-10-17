@@ -84,7 +84,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter no of roles"
-                      formControlName="no_of_roles" (keypress)="NumberOnly($event)">
+                      formControlName="no_of_roles">
                     <span class="text-danger"
                       *ngIf="jobForm.get('no_of_roles')?.touched && jobForm.get('no_of_roles')?.errors?.['required']">
                       Please select no of roles.
@@ -167,8 +167,7 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Day Rate" formControlName="day_rate"
-                      (keypress)="NumberOnly($event)">
+                    <input type="text" class="form-control" placeholder="Day Rate" formControlName="day_rate">
                     <span class="text-danger"
                       *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
                       Please enter the day rate.
@@ -184,7 +183,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="file" (change)="fileUpload($event)" class="form-control"
-                      style="height: 45px !important; opacity: 1;"  accept=".doc,.docx,.pdf">
+                      style="height: 45px !important; opacity: 1;" accept=".doc,.docx,.pdf">
                     <!-- <span class="text-danger"
                       *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
                       Please enter the day rate.
