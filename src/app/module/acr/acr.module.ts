@@ -22,6 +22,7 @@ import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.
 import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-password.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-pas
     ReactiveFormsModule,
     NgbModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
