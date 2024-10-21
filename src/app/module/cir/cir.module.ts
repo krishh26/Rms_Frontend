@@ -24,6 +24,8 @@ import { ThankYouReferComponent } from './thank-you-refer/thank-you-refer.compon
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CirActiveRolesComponent } from './cir-active-roles/cir-active-roles.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,7 +40,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     }),
     ToastNoAnimationModule.forRoot(),
     NgSelectModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxPaginationModule,
+    NgxSpinnerModule
 
   ],
   declarations: [
