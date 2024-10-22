@@ -34,6 +34,9 @@ export class AcrDatabaseListComponent implements OnInit {
   }
 
   redirectToDetailPage(type: string) {
-    this.router.navigateByUrl('/acr-database/details/' + type);
+    const route = `/acr-database/acr-details/details/${type}`;
+  
+  // Use the router to navigate to the constructed route
+  this.router.navigate([route]);
   }
 }

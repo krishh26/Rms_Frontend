@@ -27,9 +27,7 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     nationality: '',
     currentWork: ''
   }
-  ACRFilter: any = {
-
-  }
+  
   cardFilter: any = {
     rolesInDemand: '',
     roleDescription: '',
@@ -59,88 +57,71 @@ export class AcrDatabaseDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getTableDetails();
   }
-
   getTableDetails() {
     let filter: any = {}
     if (this.pageType == 'User') {
       this.tableHeader = [
-        'Sr No.',
-        'Name',
-        'Email',
-        'Country Code',
-        'Phone Number',
-        'Nationality',
-        'UK Driving License',
-        'UK Visa Type',
-        'Current Location',
-        'notice period (Days)',
-        'Current Work',
-        'Looking For',
-        'Work Location',
-        'Expected Day Rate',
-        'Referred By',
-        'Any SC_DV ?',
-        'Resume',
-        'Are you willing to undertake',
-        'Call Day',
-        'Call Time',
-        'Client 1 : Machester Only',
-        'Client 2 : Northan Ireland Only',
-        'Client 3 : All Over UK',
-        'Any Question',
-        'Profile',
+        "Sr No",
+        "Agency Name",
+        "Location",
+        "Number of Branches in UK",
+        "Person Name",
+        "Person Designation",
+        "Person Email",
+        "Phone Number Country Code",
+        "Phone Number",
+        "Secondary Contact Name",
+        "Secondary Designation",
+        "Secondary Email",
+        "Secondary Phone Number Country Code",
+        "Secondary Phone Number",
+        "Contact Time",
+        "Password Reset",
+        "Applied Role",
+        "Profile",
+        "Created At",
+        "Updated At"
       ]
       filter = this.userFilter;
+      this.databaseService.getUserList(this.page).subscribe((response) => {
+        if (response?.status) {
+          this.tableData = response?.data;
+          this.totalRecords = response?.meta_data?.items;
+        } else {
+          this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        }
+      });
 
-    } else if (this.pageType == 'ACRUser') {
+    } else if (this.pageType == 'Job') {
       this.tableHeader = [
-        'Agency Name',
-        'Location',
-        'Number Of Branches In UK',
-        'Person Name',
-        'Person Designation',
-        'User Name',
-        'person Email',
-        'phone Number',
-        'Contact Details',
-        'Emergency Secondary Contact Details',
-
-        'Created At',
-        'Updated At'
+        "Sr no",
+        "Job Title",
+        "Number of Roles",
+        "Start Date",
+        "Publish Date",
+        "Client Name",
+        "Location",
+        "Day Rate",
+        "Applicants",
+        "Upload Key",
+        "Upload URL",
+        "Timer End",
+        "Job Time Left",
+        "Status"
       ]
 
-      filter = this.ACRFilter;
-    } else if (this.pageType == 'card') {
-      this.tableHeader = [
-        'Role Demand',
-        'Role Description',
-        'Type',
-        'Qualifications Certificate',
-        'Value A',
-        'Value B',
-        'Value C',
-        'Document',
-        'Created At',
-        'Updated At'
-      ]
-      filter = this.cardFilter;
-    } else if (this.pageType == 'client') {
-      this.tableHeader = ['Name', 'Gender', 'UserType', 'Location', 'JobType', 'Rate']
-    }
-    // Here is call get details API for table
-    const payload = {
-      modelName: this.pageType,
-      page: this.page,
-      page_size: this.pagesize
-    }
-    this.databaseService.getModelData(payload, filter).subscribe((response) => {
+      // filter = this.ACRFilter;
+     
+    // Here is call get details API for job
+    this.databaseService.getJobList().subscribe((response) => {
       if (response?.status) {
         this.tableData = response?.data;
         this.totalRecords = response?.meta_data?.items;
       } else {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
-    })
+    });
+  }
   }
 
   openDocument(document: any) {
@@ -161,7 +142,6 @@ export class AcrDatabaseDetailsComponent implements OnInit {
   }
 
   resetFilter() {
-    this.ACRFilter = {};
     this.cardFilter = {};
     this.userFilter = {};
     this.getTableDetails();

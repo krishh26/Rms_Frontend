@@ -28,7 +28,7 @@ const routes: Routes = [
         component: AcrDatabaseListComponent
       },
       {
-        path: "acr-details/:type",
+        path: "acr-details/details/:type",
         // canActivate: [AuthGuard],
         component: AcrDatabaseDetailsComponent
       },

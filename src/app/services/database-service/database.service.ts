@@ -10,7 +10,9 @@ const EXCEL_EXTENSION = '.xlsx';
 
 export enum CirEndPoint {
   DATABASE_LOGIN = '/user/login/db',
-  GET_MODEL = '/model/list'
+  GET_MODEL = '/model/list',
+  GET_ACR_USER= '/user/acr',
+  GET_ACR_JOB='/acr/jobs'
 }
 
 @Injectable({
@@ -74,5 +76,27 @@ export class DatabaseService {
   saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  getUserList(page:number): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + CirEndPoint.GET_ACR_USER+'/list?page='+page+'&limit=10',{ headers: this.getHeader() })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error fetching model data:', error);
+          return throwError(error);
+        })
+      );
+  }
+
+  getJobList(): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + CirEndPoint.GET_ACR_JOB+'?page=1&limit=10',{ headers: this.getHeader() })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error fetching model data:', error);
+          return throwError(error);
+        })
+      );
   }
 }
