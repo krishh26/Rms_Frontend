@@ -20,7 +20,7 @@ export enum AcrEndPoint {
   GET_AGENCY_LIST = '/user/acr/list',
   FORGOT_PASSWORD = '/user/acr/forgot',
   GET_JOBID_LIST = '/acr/job/fetch/id',
-  
+
 }
 
 @Injectable({
@@ -73,13 +73,14 @@ export class AcrServiceService {
       .patch<any>(this.baseUrl + AcrEndPoint.SUPPLY_JOB, payload);
   }
 
-  getJobList(params: { page: string, limit: string ,keyword: string}): Observable<any> {
+  getJobList(params: { page: string, limit: string, keyword: string, status: string }): Observable<any> {
 
     const url = `${this.baseUrl}${AcrEndPoint.GET_JOB_LIST}`;
     let queryParams = new HttpParams();
     queryParams = queryParams.set('page', params?.page);
     queryParams = queryParams.set('limit', params?.limit);
     queryParams = queryParams.set('keyword', params?.keyword);
+    queryParams = queryParams.set('status', params?.status);
     return this.httpClient.get<any>(url, { params: queryParams });
   }
 
@@ -89,7 +90,7 @@ export class AcrServiceService {
       .get<any>(this.baseUrl + AcrEndPoint.GET_AGENCY_LIST);
   }
 
- 
+
 
 
   getjobidList(): Observable<any> {

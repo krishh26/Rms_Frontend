@@ -29,7 +29,8 @@ export class CirAllJobsComponent implements OnInit {
   @ViewChild('loginDetailModal') loginDetailModal: any;
   @ViewChild('uploadcvModal') uploadcvModal: any;
   public timerSubscription: Subscription = new Subscription()
-
+  selectedStatus: string = '';
+  statusList: string[] = ['Inactive', 'Actioned', 'Under Review', 'Expired', 'Accepted', 'Not Submitted'];
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
@@ -74,7 +75,8 @@ export class CirAllJobsComponent implements OnInit {
   searchtext() {
     Payload.projectList.page = String(this.page);
     Payload.projectList.limit = String(this.pagesize);
-    Payload.projectList.keyword = this.searchText;
+    Payload.projectList.keyword = this.searchText || '';
+    Payload.projectList.status = this.selectedStatus;
     this.acrservice.getJobList(Payload.projectList).subscribe((response) => {
       this.joblist = [];
       this.totalRecords = 0;
