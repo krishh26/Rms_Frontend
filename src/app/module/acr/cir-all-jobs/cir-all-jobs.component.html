@@ -5,6 +5,13 @@
       <i class="bi bi-exclamation-triangle"></i><strong>⁠It is important for you read the <span
           style="color: #34b5b8 !important;">Read me </span>document for each job title before you take action.</strong>
     </div>
+    <div class="col-lg-6 col-xl-6 col-12 mob-mb1">
+      <div class="form-group mb-0">
+        <span class="input-icon"><i class="bi bi-search"></i></span>
+        <input class="form-control control-search" placeholder="Search by Job Title" type="text" [(ngModel)]="searchText"
+          (input)="searchtext()">
+      </div>
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered mt-3">
         <thead>
@@ -137,7 +144,8 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <p class="text-bold text-center" style="color: #218838;">Upload all the CVs at once to Submit.</p>
-      <p class="text-bold text-center" style="color: #218838;">Please reach out to jamie.thompson@saivensolutions.co.uk in case you face any issue with uploading the CVs.</p>
+      <p class="text-bold text-center" style="color: #218838;">Please reach out to jamie.thompson@saivensolutions.co.uk
+        in case you face any issue with uploading the CVs.</p>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
           <table class="table table-bordered">

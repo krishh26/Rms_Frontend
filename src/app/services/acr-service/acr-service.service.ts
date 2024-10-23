@@ -73,12 +73,13 @@ export class AcrServiceService {
       .patch<any>(this.baseUrl + AcrEndPoint.SUPPLY_JOB, payload);
   }
 
-  getJobList(params: { page: string, limit: string }): Observable<any> {
+  getJobList(params: { page: string, limit: string ,keyword: string}): Observable<any> {
 
     const url = `${this.baseUrl}${AcrEndPoint.GET_JOB_LIST}`;
     let queryParams = new HttpParams();
     queryParams = queryParams.set('page', params?.page);
     queryParams = queryParams.set('limit', params?.limit);
+    queryParams = queryParams.set('keyword', params?.keyword);
     return this.httpClient.get<any>(url, { params: queryParams });
   }
 

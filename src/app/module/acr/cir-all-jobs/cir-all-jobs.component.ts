@@ -25,6 +25,7 @@ export class CirAllJobsComponent implements OnInit {
   joblist: any = [];
   jobDetails: any;
   cvDetails: any;
+  searchText: any;
   @ViewChild('loginDetailModal') loginDetailModal: any;
   @ViewChild('uploadcvModal') uploadcvModal: any;
   public timerSubscription: Subscription = new Subscription()
@@ -32,8 +33,8 @@ export class CirAllJobsComponent implements OnInit {
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
-
-  errorData : boolean = true;
+  myControl = new FormControl();
+  errorData: boolean = true;
 
   constructor(
     private router: Router,
@@ -52,6 +53,10 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.myControl.valueChanges.subscribe((res: any) => {
+      let storeTest = res;
+      this.searchText = res.toLowerCase();
+    });
     this.startTimers();
     this.getProjectList();
   }
@@ -63,6 +68,24 @@ export class CirAllJobsComponent implements OnInit {
       } else {
         this.errorData = false;
       }
+    });
+  }
+
+  searchtext() {
+    Payload.projectList.page = String(this.page);
+    Payload.projectList.limit = String(this.pagesize);
+    Payload.projectList.keyword = this.searchText;
+    this.acrservice.getJobList(Payload.projectList).subscribe((response) => {
+      this.joblist = [];
+      this.totalRecords = 0;
+      if (response?.status == true) {
+        this.joblist = response?.data;
+        this.totalRecords = response?.meta_data?.items;
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message);
     });
   }
 
