@@ -11,7 +11,7 @@ const EXCEL_EXTENSION = '.xlsx';
 export enum CirEndPoint {
   DATABASE_LOGIN = '/user/login/db',
   GET_MODEL = '/model/list',
-  GET_ACR_USER= '/user/acr',
+  GET_ACR_USER= '/user/acr/list',
   GET_ACR_JOB='/acr/jobs'
 }
 
@@ -78,9 +78,34 @@ export class DatabaseService {
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 
-  getUserList(page:number): Observable<any> {
-    return this.httpClient
-      .get<any>(this.baseUrl + CirEndPoint.GET_ACR_USER+'/list?page='+page+'&limit=10',{ headers: this.getHeader() })
+  // getUserList(page:number): Observable<any> {
+  //   return this.httpClient
+  //     .get<any>(this.baseUrl + CirEndPoint.GET_ACR_USER+'?page='+page+'&limit=10',{ headers: this.getHeader() })
+  //     .pipe(
+  //       catchError((error: any) => {
+  //         console.error('Error fetching model data:', error);
+  //         return throwError(error);
+  //       })
+  //     );
+  // }
+
+  getUserList(payload: any, filter: any): Observable<any> {
+    const filteredData: any = Object.fromEntries(
+      Object.entries({
+        ...filter,
+        page: payload?.page,
+        limit: payload?.limit,
+        type: payload?.type
+      }).filter(
+        ([key, value]) => value !== undefined && value !== ""
+      )
+    );
+
+    const params = new URLSearchParams(filteredData);
+
+    const apiUrl = `${this.baseUrl}${CirEndPoint.GET_ACR_USER}?${params.toString()}`;
+
+    return this.httpClient.get<any>(apiUrl, { headers: this.getHeader() })
       .pipe(
         catchError((error: any) => {
           console.error('Error fetching model data:', error);
@@ -89,9 +114,23 @@ export class DatabaseService {
       );
   }
 
-  getJobList(): Observable<any> {
-    return this.httpClient
-      .get<any>(this.baseUrl + CirEndPoint.GET_ACR_JOB+'?page=1&limit=10',{ headers: this.getHeader() })
+  getJobList(payload: any, filter: any): Observable<any> {
+    const filteredData: any = Object.fromEntries(
+      Object.entries({
+        ...filter,
+        page: payload?.page,
+        limit: payload?.limit,
+        type: payload?.type
+      }).filter(
+        ([key, value]) => value !== undefined && value !== ""
+      )
+    );
+
+    const params = new URLSearchParams(filteredData);
+
+    const apiUrl = `${this.baseUrl}${CirEndPoint.GET_ACR_JOB}?${params.toString()}`;
+
+    return this.httpClient.get<any>(apiUrl, { headers: this.getHeader() })
       .pipe(
         catchError((error: any) => {
           console.error('Error fetching model data:', error);

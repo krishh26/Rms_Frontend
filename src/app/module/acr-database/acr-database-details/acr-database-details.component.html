@@ -32,10 +32,15 @@
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Country" [(ngModel)]="userFilter.country" />
+          <input type="text" class="form-control" placeholder="Agency Name" [(ngModel)]="userFilter.agencyName" />
         </div>
       </div>
       <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Country" [(ngModel)]="userFilter.country" />
+        </div>
+      </div>
+      <!-- <div class="col-4">
         <div class="form-group">
           <select class="form-control" [(ngModel)]="userFilter.UKDrivinglicense">
             <option value="" disabled selected hidden>Uk Driving License</option>
@@ -43,8 +48,8 @@
             <option value="no">No</option>
           </select>
         </div>
-      </div>
-      <div class="col-4">
+      </div> -->
+      <!-- <div class="col-4">
         <div class="form-group">
           <select class="form-control" [(ngModel)]="userFilter.nationality">
             <option value="" disabled selected hidden>Select Nationality</option>
@@ -52,8 +57,8 @@
             <option value="other">Others</option>
           </select>
         </div>
-      </div>
-      <div class="col-4">
+      </div> -->
+      <!-- <div class="col-4">
         <div class="form-group">
           <select class="form-control" [(ngModel)]="userFilter.currentWork">
             <option value="" disabled selected hidden>Current Working As</option>
@@ -62,7 +67,7 @@
             <option value="not-working">Not working</option>
           </select>
         </div>
-      </div>
+      </div> -->
       <div class="col-4">
         <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
         <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
@@ -75,48 +80,48 @@
     <div class="row m-3" *ngIf="showFilter">
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Role Demand" [(ngModel)]="cardFilter.rolesInDemand" />
+          <input type="text" class="form-control" placeholder="Job Title" [(ngModel)]="JobFilter.jobTitle" />
         </div>
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Role Description"
-            [(ngModel)]="cardFilter.roleDescription" />
+          <input type="text" class="form-control" placeholder="Client Name"
+            [(ngModel)]="JobFilter.clientName" />
         </div>
       </div>
       <div class="col-4">
         <div class="form-group">
-          <select class="form-control" [(ngModel)]="cardFilter.type">
-            <option value="" disabled selected hidden>Type</option>
-            <option value="ACR">ACR</option>
-            <option value="CIR">CIR</option>
+          <select class="form-control" [(ngModel)]="JobFilter.status">
+            <option value="" disabled selected hidden>Status</option>
+            <option value="inactive">Inactive</option>
+            <option value="activr">Active</option>
           </select>
         </div>
       </div>
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Qualifications Certificate"
-            [(ngModel)]="cardFilter.certifications_qualifications" />
+          <input type="text" class="form-control" placeholder="location"
+            [(ngModel)]="JobFilter.location" />
+        </div>
+      </div>
+
+      <!-- <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Value A" [(ngModel)]="JobFilter.valueA" />
         </div>
       </div>
 
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value A" [(ngModel)]="cardFilter.valueA" />
+          <input type="text" class="form-control" placeholder="Value B" [(ngModel)]="JobFilter.valueB" />
         </div>
       </div>
 
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value B" [(ngModel)]="cardFilter.valueB" />
+          <input type="text" class="form-control" placeholder="Value C" [(ngModel)]="JobFilter.valueC" />
         </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value C" [(ngModel)]="cardFilter.valueC" />
-        </div>
-      </div>
+      </div> -->
 
       <div class="col-4">
         <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
@@ -193,7 +198,7 @@
               <th *ngFor="let header of tableHeader">{{ header }}</th>
             </thead>
             <tbody>
-              <ng-container *ngFor="let item of tableData; let index = index">
+              <ng-container *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
                 <tr>
                   <td>{{ index + 1 }}</td>
                   <td>{{ item?.job_title }}</td>

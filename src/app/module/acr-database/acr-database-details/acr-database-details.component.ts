@@ -23,19 +23,14 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     phoneNumber: '',
     email: '',
     country: '',
-    UKDrivinglicense: '',
-    nationality: '',
-    currentWork: ''
+    agencyName: ''
   }
   
-  cardFilter: any = {
-    rolesInDemand: '',
-    roleDescription: '',
-    type: '',
-    certifications_qualifications: '',
-    valueA: '',
-    valueB: '',
-    valueC: ''
+  JobFilter: any = {
+    jobTitle: '',
+    clientName: '',
+    status: '',
+    location: '',
   }
 
 
@@ -83,7 +78,11 @@ export class AcrDatabaseDetailsComponent implements OnInit {
         "Updated At"
       ]
       filter = this.userFilter;
-      this.databaseService.getUserList(this.page).subscribe((response) => {
+      const payload = {
+        page: this.page,
+        page_size: this.pagesize
+      }
+      this.databaseService.getUserList(payload, filter).subscribe((response) => {
         if (response?.status) {
           this.tableData = response?.data;
           this.totalRecords = response?.meta_data?.items;
@@ -110,10 +109,13 @@ export class AcrDatabaseDetailsComponent implements OnInit {
         "Status"
       ]
 
-      // filter = this.ACRFilter;
-     
+      filter = this.JobFilter;
+      const payload = {
+        page: this.page,
+        page_size: this.pagesize
+      }
     // Here is call get details API for job
-    this.databaseService.getJobList().subscribe((response) => {
+    this.databaseService.getJobList(payload,filter).subscribe((response) => {
       if (response?.status) {
         this.tableData = response?.data;
         this.totalRecords = response?.meta_data?.items;
@@ -142,7 +144,7 @@ export class AcrDatabaseDetailsComponent implements OnInit {
   }
 
   resetFilter() {
-    this.cardFilter = {};
+    this.JobFilter = {};
     this.userFilter = {};
     this.getTableDetails();
   }
