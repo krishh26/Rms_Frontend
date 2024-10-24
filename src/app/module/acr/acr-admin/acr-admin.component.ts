@@ -26,7 +26,7 @@ export class AcrAdminComponent implements OnInit {
     private acrservice: AcrServiceService,
     private cirservice: CirSericeService,
   ) {
-    const currentDate = new Date(); // Get the current date
+    const currentDate = new Date();
     const formattedDate = this.formatDate(currentDate);
 
     this.jobForm = new FormGroup({
@@ -38,22 +38,18 @@ export class AcrAdminComponent implements OnInit {
       location: new FormControl('', [Validators.required, Validators.pattern(Patterns.email)]),
       day_rate: new FormControl('', [Validators.required]),
       status: new FormControl('', [Validators.required]),
-      upload: new FormControl(''),
-      job_id: new FormControl({ value: null, disabled: true })  // Initially disabled
+      upload: new FormControl('', [Validators.required]),
+      job_id: new FormControl({ value: null, disabled: true })
     });
 
-    // Subscribe to changes in the 'status' form control
     this.jobForm.get('status')?.valueChanges.subscribe(status => {
       const jobIDControl = this.jobForm.get('job_id');
-
       if (status === 'Active') {
-        // Set the jobID and enable the field when status is 'Active'
         jobIDControl?.enable();
-        jobIDControl?.setValue(this.jobID); // Set the jobID fetched from the API
+        jobIDControl?.setValue(this.jobID);
       } else {
-        // Clear and disable job_id when status is not 'Active'
         jobIDControl?.disable();
-        jobIDControl?.setValue(null);  // Clear the value
+        jobIDControl?.setValue(null);
       }
     });
   }
@@ -83,7 +79,7 @@ export class AcrAdminComponent implements OnInit {
   formatDate(date: Date): string {
     const day = String(date.getDate()).padStart(2, '0');
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const month = monthNames[date.getMonth()]; // Get the month name in short format
+    const month = monthNames[date.getMonth()];
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   }
@@ -92,7 +88,6 @@ export class AcrAdminComponent implements OnInit {
     const file = event.target.files[0];
     const data = new FormData();
     data.append('files', file || '');
-
     this.cirservice.fileUpload(data).subscribe((response) => {
       if (response?.status) {
         this.file = response?.data;
@@ -109,24 +104,17 @@ export class AcrAdminComponent implements OnInit {
 
   submit() {
     const uploadFile = this.file;
-
     const cvObject = {
       key: uploadFile?.key,
       url: uploadFile?.url,
     };
-
-    // Prepare form data object
     let formData = {
       ...this.jobForm.value,
       upload: cvObject
     };
-
-    // Ensure that job_id is only included if status is 'Active'
     if (this.jobForm.get('status')?.value !== 'Active') {
       delete formData['job_id']; // Remove job_id if not Active
     }
-
-    // Send form data to backend using the service
     this.acrservice.createjob(formData).subscribe(
       (response) => {
         if (response?.status === true) {
@@ -142,8 +130,6 @@ export class AcrAdminComponent implements OnInit {
     );
   }
 
-
-  // Number only validation
   NumberOnly(event: any): boolean {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -151,6 +137,4 @@ export class AcrAdminComponent implements OnInit {
     }
     return true;
   }
-
-
 }

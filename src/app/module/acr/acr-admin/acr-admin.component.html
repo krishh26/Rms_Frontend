@@ -148,12 +148,6 @@
                 </div>
                 <div class="col-md-7">
                   <input type="text" class="form-control" placeholder="Enter Location" formControlName="location">
-                  <!-- <select class="form-control" formControlName="location">
-                    <option value="" disabled selected hidden>Select Location</option>
-                    <option value="client_locations">Client Locations</option>
-                    <option value="work_from_home">Work From Home</option>
-                    <option value="swindon_office">Swindon Office</option>
-                  </select> -->
                   <span class="text-danger"
                     *ngIf="jobForm.get('location')?.touched && jobForm.get('location')?.errors?.['required']">
                     Please select the location.
