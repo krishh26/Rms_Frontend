@@ -179,8 +179,8 @@
                     <input type="file" (change)="fileUpload($event)" class="form-control"
                       style="height: 45px !important; opacity: 1;" accept=".doc,.docx,.pdf">
                     <span class="text-danger"
-                      *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
-                      Please enter the day rate.
+                      *ngIf="jobForm.get('upload')?.touched && jobForm.get('upload')?.errors?.['required']">
+                      Please upload the document.
                     </span>
                   </div>
                 </div>
@@ -188,7 +188,7 @@
 
               <div class="row">
                 <div class="update ml-auto mr-auto"><br>
-                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round" > Post Job
+                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round"> Post Job
                   </button>
                 </div>
               </div>
