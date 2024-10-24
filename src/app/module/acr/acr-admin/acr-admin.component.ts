@@ -108,12 +108,6 @@ export class AcrAdminComponent implements OnInit {
   }
 
   submit() {
-    // Ensure the form is valid before proceeding
-    if (!this.jobForm.valid) {
-      this.jobForm.markAllAsTouched(); // Mark all fields as touched to show validation errors
-      return; // Exit if the form is invalid
-    }
-
     const uploadFile = this.file;
 
     const cvObject = {
@@ -135,20 +129,19 @@ export class AcrAdminComponent implements OnInit {
     // Send form data to backend using the service
     this.acrservice.createjob(formData).subscribe(
       (response) => {
-        if (response?.status) {
+        if (response?.status === true) {
           this.notificationService.showSuccess(response?.message, 'Success!');
-          this.jobForm.reset(); // Reset form after successful submission
+          window.location.reload();
         } else {
           this.notificationService.showError(response?.message);
         }
       },
       (error) => {
-        // Improved error handling
-        const errorMessage = error?.error?.message || 'An unexpected error occurred.';
-        this.notificationService.showError(errorMessage);
+        this.notificationService.showError(error?.error?.message);
       }
     );
   }
+
 
   // Number only validation
   NumberOnly(event: any): boolean {
