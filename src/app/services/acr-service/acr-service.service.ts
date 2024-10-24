@@ -20,7 +20,7 @@ export enum AcrEndPoint {
   GET_AGENCY_LIST = '/user/acr/list',
   FORGOT_PASSWORD = '/user/acr/forgot',
   GET_JOBID_LIST = '/acr/job/fetch/id',
-
+  ACR_APPLY_JOBS = '/user/apply-job'
 }
 
 @Injectable({
@@ -145,4 +145,9 @@ export class AcrServiceService {
     return this.httpClient
       .put<any>(this.baseUrl + AcrEndPoint.APPLY_JOBS, payload);
   }
+
+  acrapplyJob(payload: any, jobId: string) {
+    return this.httpClient.post<any>(this.baseUrl + AcrEndPoint.ACR_APPLY_JOBS + '/' + jobId, payload);
+  }
+ 
 }

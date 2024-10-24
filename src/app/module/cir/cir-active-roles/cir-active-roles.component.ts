@@ -127,22 +127,37 @@ export class CirActiveRolesComponent implements OnInit {
 
   submitResources() {
     const loginData = this.localStorageService.getLogger();
-    let payload = {
-      user_id: loginData._id,
-      job_id: this.jobDetails.job_id,
-      applied: true,
-      resources: this.resourcesForm.controls['howmanyresources'].value,
+
+    // Initialize CV object
+    let cvData = {
+      key: '',
+      url: '',
+      name: ''
+    };
+
+    if (this.selectedCV) {
+      cvData = {
+        key: this.selectedCV.key,
+        url: this.selectedCV.url,
+        name: this.selectedCV.name
+      };
     }
-    this.acrservice.applyJob(payload).subscribe((response) => {
+
+    let payload = {
+      cv: cvData
+    };
+
+    this.acrservice.acrapplyJob(payload, this.jobDetails.job_id).subscribe((response) => {
       if (response?.status) {
         this.getProjectList();
         this.modalService.dismissAll();
+        this.notificationService.showSuccess(response?.message);
       }
     }, (error) => {
-      console.log('error', error)
+      console.log('error', error);
       this.modalService.dismissAll();
-      this.notificationService.showError(error?.error?.message || 'Something went wrong.')
-    })
+      this.notificationService.showError(error?.error?.message || 'Something went wrong.');
+    });
   }
 
   noApplyjob(job: any) {
