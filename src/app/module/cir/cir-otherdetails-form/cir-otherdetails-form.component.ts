@@ -226,8 +226,6 @@ export class CirOtherdetailsFormComponent implements OnInit {
     if (!this.file) {
       return this.notificationService.showError('Please upload file');
     }
-
-    // Extract labels from selected callDays and callTimes and keep them as arrays of strings
     const selectedDays = this.otherDetailForm.controls['callDay'].value;
     const selectedDaysArray = Array.isArray(selectedDays)
       ? selectedDays.map((day: any) => day.label).filter((label: string) => label)
@@ -238,30 +236,20 @@ export class CirOtherdetailsFormComponent implements OnInit {
       ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
       : [];
 
-    // Prepare the CV object
-    const cvFile = this.file;
-    console.log(cvFile.key);
-
     const cvObject = {
-      key: cvFile.key,
-      url: cvFile.url,
-      name: cvFile.name
+      key: this.file?.key,
+      url: this.file?.url,
+      name: this.file?.name
     };
-
-    // Prepare the form data for submission
     const formData = {
       ...this.otherDetailForm.value,
       callDay: selectedDaysArray,
       callTime: selectedTimesArray,
       cv: cvObject
     };
-
     this.userdata = this.localStorageService.getLogger();
-    this.userID = this.userdata?.user?._id
-
-    // Attach the file to the form data
-    this.otherDetailForm.controls['cv'].patchValue(this.file);
-
+    this.userID = this.userdata?.user?._id;
+    this.otherDetailForm.controls['cv'].patchValue(cvObject);
     this.cirSericeService.updateregister(this.userID, formData).subscribe(
       (response) => {
         if (response?.status == true) {
@@ -278,6 +266,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       }
     );
   }
+
 
   submitRoles() {
     const rolesData: any = localStorage.getItem('rmsRolesDetails');
