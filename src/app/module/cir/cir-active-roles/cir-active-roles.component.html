@@ -14,8 +14,8 @@
             <th style="text-transform: none; text-align: center;" scope="col">No. of Roles</th>
             <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
             <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Role Details</th>
-            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Status</th>
             <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply Job</th>
+            <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -37,23 +37,15 @@
                 Read me
               </a>
             </td>
-            <td>{{job?.status}}</td>
             <td class="text-center">
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
                 <div *ngIf="!job.applied">
-                  <label
-                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
-                    <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
-                      [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
-                    Yes
-                  </label>
-                  &nbsp;
-                  <label
-                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
-                    <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)"
-                      [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
-                    No
-                  </label>
+                  <button  class="btn btn-primary w-50"
+                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}" 
+                    [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'"
+                    (click)="openModal(job)">
+                    apply
+                  </button>
                 </div>
                 <div *ngIf="job.applied == true">
                   <div class="row">
@@ -71,6 +63,8 @@
                 <span> If you have got more CV's email to : (jamie.thompson@saivensolutions.co.uk)</span>
               </ng-template>
             </td>
+            <td>{{job?.status}}</td>
+
           </tr>
         </tbody>
       </table>
@@ -113,7 +107,7 @@
 
                   <label>
                     <input type="radio" id="2" name="currentWork" value="upload-cv" formControlName="currentWork"
-                      (change)="onSelectExistingCV()">&nbsp;
+                      (change)="newselectedCv()">&nbsp;
                     <span style="font-weight: normal;">UPLOAD NEW CV</span>
                   </label>
                 </div>
@@ -123,11 +117,17 @@
                   <p><strong>CV Name:</strong> {{selectedCV?.name}}</p>
                   <a [href]="selectedCV?.url" target="_blank" class="btn btn-info">Download CV</a>
                 </div>
+                <div *ngIf="newCV" class="form-file" >
+                  <h5>Upload new CV :</h5>
+                  <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)"
+                    accept=".doc, .docx,.pdf">
+                </div>
+                <br>
               </div>
             </div>
           </div>
           <div class="col-3" style="float: right;">
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-between" *ngIf="!submitRes">
               <button type="button" (click)="submitResources()" class="btn btn-primary w-50">Submit</button>
             </div>
           </div>

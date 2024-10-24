@@ -29,10 +29,12 @@ export class CirActiveRolesComponent implements OnInit {
   @ViewChild('uploadcvModal') uploadcvModal: any;
   public timerSubscription: Subscription = new Subscription()
   selectedCV: any = null;
+  newCVData:any=null;
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
-
+  newCV:boolean=false;
+  submitRes:boolean=false;
   errorData: boolean = true;
   loginData: any;
   constructor(
@@ -59,7 +61,7 @@ export class CirActiveRolesComponent implements OnInit {
   onSelectExistingCV() {
     const storedCV = this.loginData?.cv;
     console.log(storedCV);
-
+    this.newCV=false;
     if (storedCV) {
       this.selectedCV = storedCV;
       console.log(this.selectedCV);
@@ -90,6 +92,12 @@ export class CirActiveRolesComponent implements OnInit {
     }
     this.modalService.dismissAll();
     this.modalService.open(this.uploadcvModal, { size: 'xl' })
+  }
+
+  newselectedCv()
+  {
+    this.newCV=true;
+    this.selectedCV = null;
   }
 
   submitCV() {
@@ -127,7 +135,7 @@ export class CirActiveRolesComponent implements OnInit {
 
   submitResources() {
     const loginData = this.localStorageService.getLogger();
-
+    this.submitRes=false;
     // Initialize CV object
     let cvData = {
       key: '',
@@ -142,19 +150,32 @@ export class CirActiveRolesComponent implements OnInit {
         name: this.selectedCV.name
       };
     }
+    if(this.newCV)
+    {
+      console.log("this called in inner");
+      cvData = {
+        key: this.newCVData.key,
+        url: this.newCVData.url,
+        name: this.newCVData.name
+      };
+    }
 
     let payload = {
       cv: cvData
     };
 
+    console.log("this is valuye",payload);
+
     this.acrservice.acrapplyJob(payload, this.jobDetails.job_id).subscribe((response) => {
       if (response?.status) {
         this.getProjectList();
+        this.newCV=false;
         this.modalService.dismissAll();
         this.notificationService.showSuccess(response?.message);
       }
     }, (error) => {
       console.log('error', error);
+      this.newCV=false;
       this.modalService.dismissAll();
       this.notificationService.showError(error?.error?.message || 'Something went wrong.');
     });
@@ -206,6 +227,9 @@ export class CirActiveRolesComponent implements OnInit {
 
   closeModal() {
     this.modalService.dismissAll()
+    this.newCV=false;
+    this.selectedCV=null;
+    this.submitRes=false;
   }
 
   NumberOnly(event: any): boolean {
@@ -216,24 +240,30 @@ export class CirActiveRolesComponent implements OnInit {
     return true;
   }
 
-  fileUpload(event: any, index: number): void {
+  fileUpload(event: any): void {
+    this.submitRes=true;
     const file = event.target.files[0];
     const data = new FormData();
     data.append('files', file || '');
 
     this.acrservice.fileUpload(data).subscribe((response) => {
       if (response?.status) {
-        this.file = response?.data;
+        this.newCVData = response?.data;
         console.log(this.file);
-        this.candidates.at(index).get('cv').setValue(this.file)
+        this.submitRes=false;
+        // this.candidates.at(index).get('cv').setValue(this.file)
 
         this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
       } else {
+        this.submitRes=false;
         this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
+      this.submitRes=false;
       this.notificationService.showError(error?.message || 'File not uploaded.')
     })
+    
+
   }
 
 
