@@ -28,13 +28,13 @@ export class CirActiveRolesComponent implements OnInit {
   @ViewChild('loginDetailModal') loginDetailModal: any;
   @ViewChild('uploadcvModal') uploadcvModal: any;
   public timerSubscription: Subscription = new Subscription()
-
+  selectedCV: any = null;
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
 
-  errorData : boolean = true;
-
+  errorData: boolean = true;
+  loginData: any;
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -44,7 +44,7 @@ export class CirActiveRolesComponent implements OnInit {
     private modalService: NgbModal,
 
   ) {
-
+    this.loginData = localStorage.getItem('loginUser');
     this.resourcesForm = this.fb.group({
       howmanyresources: ['', Validators.required],
       candidates: this.fb.array([this.createCandidateFormGroup()])
@@ -52,8 +52,21 @@ export class CirActiveRolesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.startTimers();
+    this.loginData = JSON.parse(localStorage.getItem('loginUser') || '{}');
     this.getProjectList();
+  }
+
+  onSelectExistingCV() {
+    const storedCV = this.loginData?.cv;
+    console.log(storedCV);
+
+    if (storedCV) {
+      this.selectedCV = storedCV;
+      console.log(this.selectedCV);
+    } else {
+      this.selectedCV = null;
+      this.notificationService.showError('No CV data found in local storage.');
+    }
   }
 
   onChangeInput() {
@@ -74,7 +87,6 @@ export class CirActiveRolesComponent implements OnInit {
     this.jobDetails = job;
     this.removeAll();
     for (let i = 0; i < Number(job?.no_of_resouces); i++) {
-      this.addCandidate(i)
     }
     this.modalService.dismissAll();
     this.modalService.open(this.uploadcvModal, { size: 'xl' })
@@ -119,7 +131,7 @@ export class CirActiveRolesComponent implements OnInit {
       user_id: loginData._id,
       job_id: this.jobDetails.job_id,
       applied: true,
-      resources: this.resourcesForm.controls['howmanyresources'].value, // optional
+      resources: this.resourcesForm.controls['howmanyresources'].value,
     }
     this.acrservice.applyJob(payload).subscribe((response) => {
       if (response?.status) {
@@ -170,29 +182,6 @@ export class CirActiveRolesComponent implements OnInit {
       candidate_location: ['', Validators.required]
     });
   }
-
-  addCandidate(index: number) {
-    // if (!this.file) {
-    //   return this.notificationService.showError('Please upload file');
-    // }
-
-    // if (!this.resourcesForm.value?.candidates[index]?.candidate_nationality) {
-    //   return this.notificationService.showError('Please enter candidate nationality');
-    // }
-
-    // if (!this.resourcesForm.value?.candidates[index]?.candidate_location) {
-    //   return this.notificationService.showError('Please enter candidate location');
-    // }
-
-    // this.file = "";
-
-    this.candidates.push(this.createCandidateFormGroup());
-  }
-
-  removeCandidate(index: number) {
-    this.candidates.removeAt(index);
-  }
-
   openModal(role: any) {
     this.jobDetails = ''
     this.jobDetails = role
@@ -204,7 +193,6 @@ export class CirActiveRolesComponent implements OnInit {
     this.modalService.dismissAll()
   }
 
-  // Number only validation
   NumberOnly(event: any): boolean {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -222,8 +210,6 @@ export class CirActiveRolesComponent implements OnInit {
       if (response?.status) {
         this.file = response?.data;
         console.log(this.file);
-
-        // this.resourcesForm.value.candidates[index].cv = this.file;
         this.candidates.at(index).get('cv').setValue(this.file)
 
         this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
@@ -263,34 +249,6 @@ export class CirActiveRolesComponent implements OnInit {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
-  }
-
-  startTimers() {
-    this.timerSubscription = interval(1000).subscribe(() => {
-      this.joblist.forEach((job: any) => {
-        if (job.job_time_left > 0) {
-          job.job_time_left -= 1000;
-        }
-      });
-    });
-  }
-
-  formatTimeLeft(milliseconds: number): string {
-    if (milliseconds <= 0) {
-      return '00:00:00';
-    }
-
-    let seconds = Math.floor((milliseconds / 1000) % 60);
-    let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
-    let hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
-    let days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
-
-    let daysDisplay = days > 0 ? days + 'd ' : '';
-    let hoursDisplay = hours > 0 ? hours + 'h ' : '';
-    let minutesDisplay = minutes > 0 ? minutes + 'm ' : '';
-    let secondsDisplay = seconds + 's';
-
-    return daysDisplay + hoursDisplay + minutesDisplay + secondsDisplay;
   }
 
 }
