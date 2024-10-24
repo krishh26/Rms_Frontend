@@ -14,7 +14,8 @@
             <th style="text-transform: none; text-align: center;" scope="col">No. of Roles</th>
             <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
             <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Role Details</th>
-            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Take Action</th>
+            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Status</th>
+            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply Job</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@
                 Read me
               </a>
             </td>
+            <td>{{job?.status}}</td>
             <td class="text-center">
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
                 <div *ngIf="!job.applied">
@@ -126,8 +128,7 @@
           </div>
           <div class="col-3" style="float: right;">
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" (click)="submitResources()"
-                class="btn btn-primary w-50">Submit</button>
+              <button type="button" (click)="submitResources()" class="btn btn-primary w-50">Submit</button>
             </div>
           </div>
         </form>

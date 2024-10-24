@@ -184,25 +184,17 @@
                   <div class="form-group">
                     <input type="file" (change)="fileUpload($event)" class="form-control"
                       style="height: 45px !important; opacity: 1;" accept=".doc,.docx,.pdf">
-                    <!-- <span class="text-danger"
+                    <span class="text-danger"
                       *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
                       Please enter the day rate.
-                    </span> -->
+                    </span>
                   </div>
                 </div>
               </div>
 
-              <!-- <div class="row">
-                <div class="col-md-5">
-                  <label>Timer:</label>
-                </div>
-                <div class="col-md-7">
-                  <div class="timer" id="timer">02:00:00</div>
-                </div>
-              </div> -->
               <div class="row">
                 <div class="update ml-auto mr-auto"><br>
-                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round"> Post Job
+                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round" [disabled]="jobForm.invalid"> Post Job
                   </button>
                 </div>
               </div>
