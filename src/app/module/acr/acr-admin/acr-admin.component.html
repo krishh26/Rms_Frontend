@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <select class="form-control" formControlName="status">
+                    <select class="form-control" formControlName="status" required>
                       <option value="" disabled selected hidden>Select Status</option>
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
@@ -68,7 +68,8 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter Job Title" formControlName="job_title">
+                    <input type="text" class="form-control" placeholder="Enter Job Title" formControlName="job_title"
+                      required>
                     <span class="text-danger"
                       *ngIf="jobForm.get('job_title')?.touched && jobForm.get('job_title')?.errors?.['required']">
                       Please enter the job title.
@@ -84,7 +85,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter no of roles"
-                      formControlName="no_of_roles">
+                      formControlName="no_of_roles" required>
                     <span class="text-danger"
                       *ngIf="jobForm.get('no_of_roles')?.touched && jobForm.get('no_of_roles')?.errors?.['required']">
                       Please select no of roles.
@@ -100,7 +101,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="date" class="form-control" formControlName="start_date"
-                      placeholder="Position Start Date">
+                      placeholder="Position Start Date" required>
                     <span class="text-danger"
                       *ngIf="jobForm.get('start_date')?.touched && jobForm.get('start_date')?.errors?.['required']">
                       Please select position start date.
@@ -132,7 +133,8 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Client Name" formControlName="client_name">
+                    <input type="text" class="form-control" placeholder="Client Name" formControlName="client_name"
+                      required>
                     <span class="text-danger"
                       *ngIf="jobForm.get('client_name')?.touched && jobForm.get('client_name')?.errors?.['required']">
                       Please enter the client name.
@@ -147,7 +149,8 @@
                     :</label>
                 </div>
                 <div class="col-md-7">
-                  <input type="text" class="form-control" placeholder="Enter Location" formControlName="location">
+                  <input type="text" class="form-control" placeholder="Enter Location" formControlName="location"
+                    required>
                   <span class="text-danger"
                     *ngIf="jobForm.get('location')?.touched && jobForm.get('location')?.errors?.['required']">
                     Please select the location.
@@ -161,7 +164,7 @@
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Day Rate" formControlName="day_rate">
+                    <input type="text" class="form-control" placeholder="Day Rate" formControlName="day_rate" required>
                     <span class="text-danger"
                       *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
                       Please enter the day rate.
@@ -177,7 +180,7 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <input type="file" (change)="fileUpload($event)" class="form-control"
-                      style="height: 45px !important; opacity: 1;" accept=".doc,.docx,.pdf">
+                      style="height: 45px !important; opacity: 1;" accept=".doc,.docx,.pdf" required>
                     <span class="text-danger"
                       *ngIf="jobForm.get('upload')?.touched && jobForm.get('upload')?.errors?.['required']">
                       Please upload the document.
@@ -200,3 +203,6 @@
     </div>
   </div>
 </section>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
