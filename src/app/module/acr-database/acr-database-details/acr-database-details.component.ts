@@ -21,11 +21,7 @@ export class AcrDatabaseDetailsComponent implements OnInit {
   totalRecords: number = pagination.totalRecords;
   showLoader: boolean = false;
   userFilter: any = {
-    name: '',
-    phoneNumber: '',
-    email: '',
-    country: '',
-    agencyName: ''
+    keyword: ''
   }
 
   JobFilter: any = {
@@ -83,9 +79,10 @@ export class AcrDatabaseDetailsComponent implements OnInit {
       filter = this.userFilter;
       const payload = {
         page: this.page,
-        page_size: this.pagesize
+        limit: this.pagesize,
+        keyword: this.userFilter?.keyword
       }
-      this.databaseService.getUserList(payload, filter).subscribe((response) => {
+      this.databaseService.getUserList(payload, this.userFilter).subscribe((response) => {
         if (response?.status) {
           this.tableData = response?.data;
           this.totalRecords = response?.meta_data?.items;
@@ -116,10 +113,11 @@ export class AcrDatabaseDetailsComponent implements OnInit {
       filter = this.JobFilter;
       const payload = {
         page: this.page,
-        page_size: this.pagesize
+        limit: this.pagesize,
+        keyword: this.JobFilter?.keyword
       }
       // Here is call get details API for job
-      this.databaseService.getJobList(payload, filter).subscribe((response) => {
+      this.databaseService.getJobList(payload, this.userFilter).subscribe((response) => {
         if (response?.status) {
           this.tableData = response?.data;
           this.totalRecords = response?.meta_data?.items;

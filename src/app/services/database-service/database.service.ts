@@ -95,7 +95,8 @@ export class DatabaseService {
         ...filter,
         page: payload?.page,
         limit: payload?.limit,
-        type: payload?.type
+        type: payload?.type,
+        keyword: payload?.keyword
       }).filter(
         ([key, value]) => value !== undefined && value !== ""
       )
@@ -120,7 +121,8 @@ export class DatabaseService {
         ...filter,
         page: payload?.page,
         limit: payload?.limit,
-        type: payload?.type
+        type: payload?.type,
+        keyword: payload?.keyword
       }).filter(
         ([key, value]) => value !== undefined && value !== ""
       )

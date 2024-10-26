@@ -16,28 +16,7 @@
     <div class="row m-3" *ngIf="showFilter">
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Name" [(ngModel)]="userFilter.name" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Phone Number" (keypress)="NumberOnly($event)"
-            [(ngModel)]="userFilter.phoneNumber" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userFilter.email" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Agency Name" [(ngModel)]="userFilter.agencyName" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Country" [(ngModel)]="userFilter.country" />
+          <input type="text" class="form-control" placeholder="Search All" [(ngModel)]="userFilter.keyword" />
         </div>
       </div>
       <!-- <div class="col-4">
@@ -80,15 +59,10 @@
     <div class="row m-3" *ngIf="showFilter">
       <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Job Title" [(ngModel)]="JobFilter.jobTitle" />
+          <input type="text" class="form-control" placeholder="Search All" [(ngModel)]="JobFilter.keyword" />
         </div>
       </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Client Name" [(ngModel)]="JobFilter.clientName" />
-        </div>
-      </div>
-      <div class="col-4">
+      <!-- <div class="col-4">
         <div class="form-group">
           <select class="form-control" [(ngModel)]="JobFilter.status">
             <option value="" disabled selected hidden>Status</option>
@@ -96,28 +70,10 @@
             <option value="activr">Active</option>
           </select>
         </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="location" [(ngModel)]="JobFilter.location" />
-        </div>
-      </div>
-
+      </div> -->
       <!-- <div class="col-4">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value A" [(ngModel)]="JobFilter.valueA" />
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value B" [(ngModel)]="JobFilter.valueB" />
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value C" [(ngModel)]="JobFilter.valueC" />
+          <input type="text" class="form-control" placeholder="location" [(ngModel)]="JobFilter.location" />
         </div>
       </div> -->
 
