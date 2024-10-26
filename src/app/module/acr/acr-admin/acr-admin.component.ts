@@ -8,6 +8,7 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
 import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
 import { formatDate } from '@angular/common';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-acr-admin',
   templateUrl: './acr-admin.component.html',
@@ -25,6 +26,7 @@ export class AcrAdminComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private acrservice: AcrServiceService,
     private cirservice: CirSericeService,
+    private spinner: NgxSpinnerService
   ) {
     const currentDate = new Date();
     const formattedDate = this.formatDate(currentDate);
@@ -88,18 +90,27 @@ export class AcrAdminComponent implements OnInit {
     const file = event.target.files[0];
     const data = new FormData();
     data.append('files', file || '');
-    this.cirservice.fileUpload(data).subscribe((response) => {
-      if (response?.status) {
-        this.file = response?.data;
-        console.log(this.file);
-
-        this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
-      } else {
-        this.notificationService.showError(response?.message || 'File not uploaded.')
-      }
-    }, (error) => {
-      this.notificationService.showError(error?.message || 'File not uploaded.')
-    })
+    this.spinner.show();
+    if (file) {
+      this.cirservice.fileUpload(data).subscribe(
+        (response) => {
+          if (response?.status) {
+            this.spinner.hide();
+            this.file = response?.data;
+            console.log(this.file);
+            // Set the form control value to indicate the file has been uploaded
+            this.jobForm.get('upload')?.setValue(this.file);
+            this.notificationService.showSuccess(response?.message || 'File successfully uploaded.');
+          } else {
+            this.notificationService.showError(response?.message || 'File not uploaded.');
+          }
+        },
+        (error) => {
+          this.spinner.hide();
+          this.notificationService.showError(error?.message || 'File not uploaded.');
+        }
+      );
+    }
   }
 
   submit() {
