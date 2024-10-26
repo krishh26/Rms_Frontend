@@ -223,6 +223,7 @@
                   <td>{{ item?.timerEnd | date: 'short' }}</td>
                   <td>{{ item?.job_time_left }}</td>
                   <td>{{ item?.status }}</td>
+                  <td><button (click)="deleteJob(item?._id)" class="btn btn-sm btn-secondary">Remove</button></td>
                 </tr>
               </ng-container>
             </tbody>

@@ -20,7 +20,8 @@ export enum AcrEndPoint {
   GET_AGENCY_LIST = '/user/acr/list',
   FORGOT_PASSWORD = '/user/acr/forgot',
   GET_JOBID_LIST = '/acr/job/fetch/id',
-  ACR_APPLY_JOBS = '/user/apply-job'
+  ACR_APPLY_JOBS = '/user/apply-job',
+  DELETE_JOB = '/acr/jobs/'
 }
 
 @Injectable({
@@ -90,15 +91,10 @@ export class AcrServiceService {
       .get<any>(this.baseUrl + AcrEndPoint.GET_AGENCY_LIST);
   }
 
-
-
-
   getjobidList(): Observable<any> {
     return this.httpClient
       .get<any>(this.baseUrl + AcrEndPoint.GET_JOBID_LIST);
   }
-
-
 
   getCandidateList(id: any): Observable<any> {
     return this.httpClient
@@ -149,5 +145,10 @@ export class AcrServiceService {
   acrapplyJob(payload: any, jobId: string) {
     return this.httpClient.post<any>(this.baseUrl + AcrEndPoint.ACR_APPLY_JOBS + '/' + jobId, payload);
   }
- 
+
+  deleteJob(id: any): Observable<any> {
+    return this.httpClient
+      .delete<any>(this.baseUrl + AcrEndPoint.DELETE_JOB + id);
+  }
+
 }

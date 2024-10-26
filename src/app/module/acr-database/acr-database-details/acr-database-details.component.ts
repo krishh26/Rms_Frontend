@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
 import { DatabaseService } from 'src/app/services/database-service/database.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { pagination } from 'src/app/shared/constant/pagination.constant';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-acr-database-details',
@@ -17,7 +19,7 @@ export class AcrDatabaseDetailsComponent implements OnInit {
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
-
+  showLoader: boolean = false;
   userFilter: any = {
     name: '',
     phoneNumber: '',
@@ -25,7 +27,7 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     country: '',
     agencyName: ''
   }
-  
+
   JobFilter: any = {
     jobTitle: '',
     clientName: '',
@@ -38,7 +40,8 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private databaseService: DatabaseService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private acrService: AcrServiceService
   ) {
     this.route.params.pipe().subscribe((params) => {
       if (params['type']) {
@@ -106,7 +109,8 @@ export class AcrDatabaseDetailsComponent implements OnInit {
         "Upload URL",
         "Timer End",
         "Job Time Left",
-        "Status"
+        "Status",
+        "Action"
       ]
 
       filter = this.JobFilter;
@@ -114,16 +118,16 @@ export class AcrDatabaseDetailsComponent implements OnInit {
         page: this.page,
         page_size: this.pagesize
       }
-    // Here is call get details API for job
-    this.databaseService.getJobList(payload,filter).subscribe((response) => {
-      if (response?.status) {
-        this.tableData = response?.data;
-        this.totalRecords = response?.meta_data?.items;
-      } else {
-        this.notificationService.showError(response?.message || 'Resume not uploaded.')
-      }
-    });
-  }
+      // Here is call get details API for job
+      this.databaseService.getJobList(payload, filter).subscribe((response) => {
+        if (response?.status) {
+          this.tableData = response?.data;
+          this.totalRecords = response?.meta_data?.items;
+        } else {
+          this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        }
+      });
+    }
   }
 
   openDocument(document: any) {
@@ -149,11 +153,40 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     this.getTableDetails();
   }
 
-
   paginate(page: number) {
     this.page = page;
     this.getTableDetails();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  deleteJob(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Do you want to delete `,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00B96F',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete!'
+    }).then((result: any) => {
+      if (result?.value) {
+        this.showLoader = true;
+        this.acrService.deleteJob(id).subscribe((response: any) => {
+          if (response?.status == true) {
+            this.showLoader = false;
+            this.notificationService.showSuccess('Job successfully deleted');
+            this.getTableDetails();
+          } else {
+            this.showLoader = false;
+            this.notificationService.showError(response?.message);
+          }
+        }, (error) => {
+          this.showLoader = false;
+          this.notificationService.showError(error?.message);
+        });
+      }
+    });
+  }
+
 
 }
