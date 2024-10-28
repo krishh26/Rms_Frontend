@@ -36,7 +36,10 @@ export class CirActiveRolesComponent implements OnInit {
   newCV:boolean=false;
   submitRes:boolean=false;
   errorData: boolean = true;
+  selectedStatus: string = '';
   loginData: any;
+  statusList: string[] = ['Active', "Applied"];
+  myControl = new FormControl(); searchText: any;
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -54,6 +57,10 @@ export class CirActiveRolesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.myControl.valueChanges.subscribe((res: any) => {
+      let storeTest = res;
+      this.searchText = res.toLowerCase();
+    });
     this.loginData = JSON.parse(localStorage.getItem('loginUser') || '{}');
     this.getProjectList();
   }
@@ -270,6 +277,25 @@ export class CirActiveRolesComponent implements OnInit {
   getProjectList() {
     Payload.projectList.page = String(this.page);
     Payload.projectList.limit = String(this.pagesize);
+    this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {
+      this.joblist = [];
+      this.totalRecords = 0;
+      if (response?.status == true) {
+        this.joblist = response?.data;
+        this.totalRecords = response?.meta_data?.items;
+      } else {
+        this.notificationService.showError(response?.message);
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message);
+    });
+  }
+
+  searchtext() {
+    Payload.projectList.page = String(this.page);
+    Payload.projectList.limit = String(this.pagesize);
+    Payload.projectList.keyword = this.searchText || '';
+    Payload.projectList.status = this.selectedStatus;
     this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {
       this.joblist = [];
       this.totalRecords = 0;
