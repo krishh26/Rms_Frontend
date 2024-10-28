@@ -42,7 +42,7 @@
                 <div *ngIf="!job.applied">
                   <button  class="btn btn-primary w-50"
                     [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}" 
-                    [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'"
+                    [disabled]="job.status === 'Applied' || job.status === 'Expired' || job.status === 'Inactive'"
                     (click)="openModal(job)">
                     apply
                   </button>

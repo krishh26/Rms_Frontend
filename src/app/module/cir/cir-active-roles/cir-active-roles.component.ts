@@ -270,7 +270,7 @@ export class CirActiveRolesComponent implements OnInit {
   getProjectList() {
     Payload.projectList.page = String(this.page);
     Payload.projectList.limit = String(this.pagesize);
-    this.acrservice.getJobList(Payload.projectList).subscribe((response) => {
+    this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {
       this.joblist = [];
       this.totalRecords = 0;
       if (response?.status == true) {
