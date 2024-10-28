@@ -30,7 +30,7 @@ export class CirAllJobsComponent implements OnInit {
   @ViewChild('uploadcvModal') uploadcvModal: any;
   public timerSubscription: Subscription = new Subscription()
   selectedStatus: string = '';
-  statusList: string[] = ['Inactive', 'Actioned', 'Under Review', 'Expired', 'Accepted', 'Not Submitted'];
+  statusList: string[] = ['Active','Inactive', 'Actioned', 'Under Review', 'Expired', 'Accepted', 'Not Submitted'];
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
