@@ -20,6 +20,11 @@ import { CirRolesDemandAllOverUkDetailsComponent } from './cir-roles-demand-all-
 import { ThankyouPageComponent } from './thankyou-page/thankyou-page.component';
 import { ThankYouReferComponent } from './thank-you-refer/thank-you-refer.component';
 import { CirActiveRolesComponent } from './cir-active-roles/cir-active-roles.component';
+import { CirRolesBirminghamSwindonComponent } from './cir-roles-birmingham-swindon/cir-roles-birmingham-swindon.component';
+import { CirRolesCoventryComponent } from './cir-roles-coventry/cir-roles-coventry.component';
+import { CirRolesIrelandSwidonComponent } from './cir-roles-ireland-swidon/cir-roles-ireland-swidon.component';
+import { CirRolesGlasgowComponent } from './cir-roles-glasgow/cir-roles-glasgow.component';
+import { CirRoleseSevenIrelandSwindonComponent } from './cir-rolese-seven-ireland-swindon/cir-rolese-seven-ireland-swindon.component';
 
 const routes: Routes = [
   {
@@ -56,6 +61,43 @@ const routes: Routes = [
         //canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
       },
+
+
+
+
+
+
+      {
+        path: "cir-roles-glasgow-card",
+        //canActivate: [AuthGuard],
+        component: CirRolesGlasgowComponent
+      },
+      {
+        path: "cir-roles-ireland-swindon-card",
+        //canActivate: [AuthGuard],
+        component: CirRolesIrelandSwidonComponent
+      },
+      {
+        path: "cir-roles-coventry-swindon-card",
+        //canActivate: [AuthGuard],
+        component: CirRolesCoventryComponent
+      },
+      {
+        path: "cir-roles-birmingham-swindon-card",
+        //canActivate: [AuthGuard],
+        component: CirRolesBirminghamSwindonComponent
+      },
+      {
+        path: "cir-roles-contract-ireland-swindon-card",
+        //canActivate: [AuthGuard],
+        component: CirRoleseSevenIrelandSwindonComponent
+      },
+
+
+
+
+
+
       {
         path: "cir-roles-demand-northern-ireland-card",
         //canActivate: [AuthGuard],

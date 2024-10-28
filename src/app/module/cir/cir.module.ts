@@ -26,6 +26,11 @@ import { CirActiveRolesComponent } from './cir-active-roles/cir-active-roles.com
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CirRolesGlasgowComponent } from './cir-roles-glasgow/cir-roles-glasgow.component';
+import { CirRolesIrelandSwidonComponent } from './cir-roles-ireland-swidon/cir-roles-ireland-swidon.component';
+import { CirRolesBirminghamSwindonComponent } from './cir-roles-birmingham-swindon/cir-roles-birmingham-swindon.component';
+import { CirRolesCoventryComponent } from './cir-roles-coventry/cir-roles-coventry.component';
+import { CirRoleseSevenIrelandSwindonComponent } from './cir-rolese-seven-ireland-swindon/cir-rolese-seven-ireland-swindon.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -63,7 +68,12 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CirReferEarnComponent,
     ThankYouReferComponent,
     CirAccordianCardComponent,
-    CirActiveRolesComponent
+    CirActiveRolesComponent,
+    CirRolesGlasgowComponent,
+    CirRolesIrelandSwidonComponent,
+    CirRoleseSevenIrelandSwindonComponent,
+    CirRolesBirminghamSwindonComponent,
+    CirRolesCoventryComponent
   ]
 })
 export class CirModule { }
