@@ -13,14 +13,14 @@
             [(ngModel)]="searchText" (input)="searchtext()">
         </div>
       </div>
-      <div class="col-lg-4 col-xl-4 col-12 mob-mb1">
+      <!-- <div class="col-lg-4 col-xl-4 col-12 mob-mb1">
         <div class="form-group mb-0">
           <select class="form-control" [(ngModel)]="selectedStatus" (change)="searchtext()">
             <option value="" disabled>Select Status</option>
             <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
           </select>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="table-responsive">
       <table class="table table-bordered mt-3">
