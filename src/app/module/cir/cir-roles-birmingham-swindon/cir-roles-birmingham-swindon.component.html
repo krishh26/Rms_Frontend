@@ -1,3 +1,56 @@
-<p>
-  cir-roles-birmingham-swindon works!
-</p>
+<section class="section-card">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12 mb-4">
+        <p class="text-center mb-4 text-bold">
+          Please select the roles you're interested in from the options below. You may choose multiple roles if
+          applicable. <br>
+          Disabled Roles : These are the roles you have already selected during Registration.
+        </p>
+        <div class="FlatCard shadow border-radius6">
+          <div class="card-header text-center">
+            <h4>Contract 5 - Location Birmingham / Swindon / India</h4>
+          </div>
+          <div class="card-body text-center p-3">
+            <table class="table">
+              <thead class="text-black">
+                <th class="w-10">Select</th>
+                <th class="text-left w-40">Job Title</th>
+                <th class="text-left w-50">Job Description (High Level)</th>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of birminghamDetails; let i = index">
+                  <tr>
+                    <td>
+                      <input [checked]="selected(item.field)" type="checkbox" class="check-box"
+                        [(ngModel)]="item.selected" [disabled]="selected(item.field) ? true : false">
+                    </td>
+                    <td class="text-left" [innerHTML]="item?.field"></td>
+                    <td class="text-left">
+                      <a ngbTooltip="{{ item?.description }}">
+                        <span>
+                          {{ (item?.description ?? '').length > 200
+                          ? (item?.description | slice: 0:200) + '... '
+                          : item?.description }}
+                          <span *ngIf="(item?.description ?? '').length > 200" style="color: #34b5b8 ;">Read more</span>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+                </ng-container>
+                <tr>
+                  <td colspan="3" style="float: left;">
+                    <button type="button" routerLink="/cir/cir-card" class="btn btn-primary btn-login">Back</button>
+                  </td>
+                  <td colspan="3" style="text-align: end;">
+                    <button type="button" class="btn btn-primary btn-login" (click)="submit()">Submit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
