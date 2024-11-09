@@ -14,7 +14,8 @@ export enum CirEndPoint {
   REFER_EARN = '/user/refer',
   ADD_CLIENT_ROLES='/client/',
   GET_CLIENT_ROLES='/client/',
-  USER_CLIENT_UPDATE='/user/update/'
+  USER_CLIENT_UPDATE='/user/update/',
+  CREATE_CIR_JOB= '/acr/jobs/cir'
 }
 
 @Injectable({
@@ -55,6 +56,11 @@ export class CirSericeService {
   sendResume(payload: any) {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.SEND_DATA, payload);
+  }
+
+  Circreatejob(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.CREATE_CIR_JOB, payload);
   }
 
   fileUpload(payload: any) {

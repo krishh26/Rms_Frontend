@@ -32,7 +32,7 @@ export class AcrComponent implements OnInit {
   constructor(
     location: Location,
     private router: Router,
-    private element : ElementRef,
+    private element: ElementRef,
     private localStorageService: LocalStorageService
   ) {
     this.location = location;
@@ -41,15 +41,15 @@ export class AcrComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = this.ROUTES.filter(listTitle => listTitle);
-    var navbar : HTMLElement = this.element.nativeElement;
+    var navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
     this.router.events.subscribe((event) => {
       this.sidebarClose();
-   });
+    });
 
     const loginData = this.localStorageService.getLogger()
-    if(loginData) {
-      this.loginUser =  loginData;
+    if (loginData) {
+      this.loginUser = loginData;
     }
   }
 

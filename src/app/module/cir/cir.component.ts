@@ -9,15 +9,15 @@ import { Location } from '@angular/common';
 })
 export class CirComponent implements OnInit {
   ROUTES: any[] = [
-    { path: '/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
-    { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
-    { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
-    { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
-    { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
-    { path: '/table',         title: 'Table List',        icon:'nc-tile-56',    class: '' },
-    { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
-    { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
-];
+    { path: '/dashboard', title: 'Dashboard', icon: 'nc-bank', class: '' },
+    { path: '/icons', title: 'Icons', icon: 'nc-diamond', class: '' },
+    { path: '/maps', title: 'Maps', icon: 'nc-pin-3', class: '' },
+    { path: '/notifications', title: 'Notifications', icon: 'nc-bell-55', class: '' },
+    { path: '/user', title: 'User Profile', icon: 'nc-single-02', class: '' },
+    { path: '/table', title: 'Table List', icon: 'nc-tile-56', class: '' },
+    { path: '/typography', title: 'Typography', icon: 'nc-caps-small', class: '' },
+    { path: '/upgrade', title: 'Upgrade to PRO', icon: 'nc-spaceship', class: 'active-pro' },
+  ];
 
   location: Location;
   private listTitles!: any[];
@@ -30,7 +30,7 @@ export class CirComponent implements OnInit {
   constructor(
     location: Location,
     private router: Router,
-    private element : ElementRef,
+    private element: ElementRef,
     private localStorageService: LocalStorageService
   ) {
     this.location = location;
@@ -39,15 +39,15 @@ export class CirComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = this.ROUTES.filter(listTitle => listTitle);
-    var navbar : HTMLElement = this.element.nativeElement;
+    var navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
     this.router.events.subscribe((event) => {
       this.sidebarClose();
-   });
+    });
 
     const loginData = this.localStorageService.getLogger()
-    if(loginData) {
-      this.loginUser =  loginData;
+    if (loginData) {
+      this.loginUser = loginData;
     }
   }
 

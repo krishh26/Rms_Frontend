@@ -31,6 +31,8 @@ import { CirRolesIrelandSwidonComponent } from './cir-roles-ireland-swidon/cir-r
 import { CirRolesBirminghamSwindonComponent } from './cir-roles-birmingham-swindon/cir-roles-birmingham-swindon.component';
 import { CirRolesCoventryComponent } from './cir-roles-coventry/cir-roles-coventry.component';
 import { CirRoleseSevenIrelandSwindonComponent } from './cir-rolese-seven-ireland-swindon/cir-rolese-seven-ireland-swindon.component';
+import { CirAdminComponent } from './cir-admin/cir-admin.component';
+import { CirAdminLoginComponent } from './cir-admin-login/cir-admin-login.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -73,7 +75,9 @@ import { CirRoleseSevenIrelandSwindonComponent } from './cir-rolese-seven-irelan
     CirRolesIrelandSwidonComponent,
     CirRoleseSevenIrelandSwindonComponent,
     CirRolesBirminghamSwindonComponent,
-    CirRolesCoventryComponent
+    CirRolesCoventryComponent,
+    CirAdminComponent,
+    CirAdminLoginComponent
   ]
 })
 export class CirModule { }

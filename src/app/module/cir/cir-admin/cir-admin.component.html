@@ -1,0 +1,209 @@
+<section class="section-registration">
+  <div class="container">
+    <div class="FlatCard shadow border-radius24">
+      <div class="row">
+        <div class="col-lg-5 col-xl-5 col-12">
+          <div class="FormLeft-panel">
+            <div class="text-center">
+              <img src="../../../../assets/img/Saivenlogo.png" width="200" class="mb-5" />
+            </div>
+            <h1 class="HeadingLarge">“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</h1>
+            <p class="mb-5 textfont">SaiVen, is an emerging IT QA lead business with 40+ business collaborations
+              across UK and India. We are a dedicated business to lead the governance of all public sector QA projects
+              signed by the group and we are the driving force for client relationship management, project governance,
+              and people/delivery management.<br><br>
+              Our job is to ensure seamless execution for exceptional results, through bringing our industry expertise
+              added with right skills at right time - enabling quick and cost-effective resource augmentation, for
+              benefit of our clients.<br><br>Partner with us for exciting contract opportunities and be a part of our
+              success
+              story</p>
+            <p><strong>SaiVen Technology Solutions Limited</strong><br>
+              1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
+            </p>
+            <p>Company Registration Number: 8856876</p>
+            <p>Email: Info@saivensolutions.co.uk</p>
+          </div>
+        </div>
+        <div class="col-lg-7 col-xl-7 col-12">
+          <div class="FormRight-panel">
+            <h4 class="mb-3 text-center"><strong>Create Job Post</strong></h4><br>
+            <form [formGroup]="jobForm" (ngSubmit)="submit()">
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Status<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="status">
+                      <option value="" disabled selected hidden>Select Status</option>
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('status')?.touched && jobForm.get('status')?.errors?.['required']">
+                      Please select a status.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Conditionally display Job ID when status is 'Active' -->
+              <div class="row" *ngIf="jobForm.get('status')?.value === 'Active'">
+                <div class="col-md-5">
+                  <label>Job ID :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Job ID" formControlName="job_id" readonly
+                      value="{{jobID}}">
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Job Title<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Job Title" formControlName="job_title">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('job_title')?.touched && jobForm.get('job_title')?.errors?.['required']">
+                      Please enter the job title.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>No. of Roles<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter no of roles"
+                      formControlName="no_of_roles">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('no_of_roles')?.touched && jobForm.get('no_of_roles')?.errors?.['required']">
+                      Please select no of roles.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Position Start Date<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="date" class="form-control" formControlName="start_date"
+                      placeholder="Position Start Date">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('start_date')?.touched && jobForm.get('start_date')?.errors?.['required']">
+                      Please select position start date.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Published Date<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" formControlName="publish_date"
+                      placeholder="Auto Detect System Calendar" readonly>
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('publish_date')?.touched && jobForm.get('publish_date')?.errors?.['required']">
+                      Please select published date.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Client Name<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Client Name" formControlName="client_name">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('client_name')?.touched && jobForm.get('client_name')?.errors?.['required']">
+                      Please enter the client name.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Location<span style="color: red;">*</span>
+                    :</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" placeholder="Enter Location" formControlName="location">
+                  <!-- <select class="form-control" formControlName="location">
+                    <option value="" disabled selected hidden>Select Location</option>
+                    <option value="client_locations">Client Locations</option>
+                    <option value="work_from_home">Work From Home</option>
+                    <option value="swindon_office">Swindon Office</option>
+                  </select> -->
+                  <span class="text-danger"
+                    *ngIf="jobForm.get('location')?.touched && jobForm.get('location')?.errors?.['required']">
+                    Please select the location.
+                  </span>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Day Rate<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Day Rate" formControlName="day_rate">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('day_rate')?.touched && jobForm.get('day_rate')?.errors?.['required']">
+                      Please enter the day rate.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Upload Read me Doc<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="file" (change)="fileUpload($event)" class="form-control"
+                      style="height: 45px !important; opacity: 1;" accept=".doc,.docx,.pdf" formControlName="upload">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('upload')?.touched && jobForm.get('upload')?.errors?.['required']">
+                      Please Upload file.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="update ml-auto mr-auto"><br>
+                  <button type="submit" style="float: right !important;" class="btn btn-primary btn-round"
+                    [disabled]="jobForm.invalid || !fileUploadProcess "> Post Job
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div><br><br><br>
+          <!-- <h4 class="p-14 text-center" routerLink="/acr/acr-create-candidate">Create Candidate Page</h4> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

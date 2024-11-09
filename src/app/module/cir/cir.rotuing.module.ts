@@ -25,6 +25,8 @@ import { CirRolesCoventryComponent } from './cir-roles-coventry/cir-roles-covent
 import { CirRolesIrelandSwidonComponent } from './cir-roles-ireland-swidon/cir-roles-ireland-swidon.component';
 import { CirRolesGlasgowComponent } from './cir-roles-glasgow/cir-roles-glasgow.component';
 import { CirRoleseSevenIrelandSwindonComponent } from './cir-rolese-seven-ireland-swindon/cir-rolese-seven-ireland-swindon.component';
+import { CirAdminLoginComponent } from './cir-admin-login/cir-admin-login.component';
+import { CirAdminComponent } from './cir-admin/cir-admin.component';
 
 const routes: Routes = [
   {
@@ -61,11 +63,16 @@ const routes: Routes = [
         //canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
       },
-
-
-
-
-
+      {
+        path: "cir-admin-login",
+        //canActivate: [AuthGuard],
+        component: CirAdminLoginComponent
+      },
+      {
+        path: "cir-create-job",
+        //canActivate: [AuthGuard],
+        component: CirAdminComponent
+      },
 
       {
         path: "cir-roles-glasgow-card",
@@ -92,11 +99,6 @@ const routes: Routes = [
         //canActivate: [AuthGuard],
         component: CirRoleseSevenIrelandSwindonComponent
       },
-
-
-
-
-
 
       {
         path: "cir-roles-demand-northern-ireland-card",
