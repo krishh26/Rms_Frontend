@@ -22,7 +22,7 @@ export enum AcrEndPoint {
   GET_JOBID_LIST = '/acr/job/fetch/id',
   ACR_APPLY_JOBS = '/user/apply-job',
   DELETE_JOB = '/acr/jobs/',
-  GET_CIR_JOB_LIST = '/user/jobs',
+  GET_CIR_JOB_LIST = '/acr/jobs/cir',
 }
 
 @Injectable({
