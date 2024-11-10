@@ -35,94 +35,89 @@ const routes: Routes = [
     children: [
       {
         path: "cir-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirCardComponent
       },
       {
         path: "manchester-details",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: ManchesterDetailsComponent
       },
       {
         path: "northern-ireland-details",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: NorthenIrelandDetailsComponent
       },
       {
         path: "dps21-details",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: Dps21DetailsComponent
       },
       {
         path: "cir-profile",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirProfileComponent
       },
       {
         path: "cir-roles-demand-manchester-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesDemandCardComponent
       },
       {
-        path: "cir-admin-login",
-        //canActivate: [AuthGuard],
-        component: CirAdminLoginComponent
-      },
-      {
         path: "cir-create-job",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirAdminComponent
       },
 
       {
         path: "cir-roles-glasgow-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesGlasgowComponent
       },
       {
         path: "cir-roles-ireland-swindon-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesIrelandSwidonComponent
       },
       {
         path: "cir-roles-coventry-swindon-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesCoventryComponent
       },
       {
         path: "cir-roles-birmingham-swindon-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesBirminghamSwindonComponent
       },
       {
         path: "cir-roles-contract-ireland-swindon-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRoleseSevenIrelandSwindonComponent
       },
 
       {
         path: "cir-roles-demand-northern-ireland-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesDemandNothernIrelandDetailsComponent
       },
       {
         path: "cir-roles-demand-all-over-uk-card",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirRolesDemandAllOverUkDetailsComponent
       },
       {
         path: "cir-refer-earn",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirReferEarnComponent
       },
       {
         path: "cir-refer-earn-thank-you",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: ThankYouReferComponent
       },
       {
         path: "cir-active-roles",
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: CirActiveRolesComponent
       }
     ]
@@ -130,6 +125,10 @@ const routes: Routes = [
   {
     path: "cir-thankyou",
     component: ThankyouPageComponent
+  },
+  {
+    path: "cir-admin-login",
+    component: CirAdminLoginComponent
   },
   {
     path: "cir-login",

@@ -10,15 +10,17 @@
               <span class="navbar-toggler-bar bar3"></span>
             </button>
           </div>
-          <a class="navbar-brand" style="color: white;" href="javascript:void(0)" routerLink="/cir/cir-card">{{getTitle()}}</a>
+          <a class="navbar-brand" style="color: white;" href="javascript:void(0)"
+            routerLink="/cir/cir-card">{{getTitle()}}</a>
         </div>
-        <button class="navbar-toggler" type="button" (click)="collapse()"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+        <button class="navbar-toggler" type="button" (click)="collapse()" [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample">
           <span class="navbar-toggler-bar navbar-kebab"></span>
           <span class="navbar-toggler-bar navbar-kebab"></span>
           <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed"
+          *ngIf="loginUser?.role != 'CIR'">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link btn-magnify" routerLink="/cir/cir-card">
@@ -44,9 +46,8 @@
               </a>
             </li>
 
-            <!-- Setting button -->
             <li class="nav-item btn-rotate" ngbDropdown placement="bottom-left">
-              <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink" >
+              <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink">
                 <i class="nc-icon nc-settings-gear-65"></i>
                 <p>
                   <span class="d-lg-none d-md-block">Account</span>
@@ -57,13 +58,12 @@
                 <a ngbDropdownItem href="javascript:void(0)" (click)="logout()"> LogOut </a>
               </div>
             </li>
-
           </ul>
         </div>
       </div>
     </nav>
-      <div class="content">
-          <router-outlet></router-outlet>
-      </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
