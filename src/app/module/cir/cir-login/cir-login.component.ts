@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
-
+import { jwtDecode } from "jwt-decode";
 @Component({
   selector: 'app-cir-login',
   templateUrl: './cir-login.component.html',
@@ -15,7 +15,7 @@ export class CirLoginComponent implements OnInit {
   loginForm: FormGroup;
   password = 'password';
   showPassword = false;
-
+  DecodedToken : any = [];
   constructor(
     private router: Router,
     private cirservice: CirSericeService,
@@ -36,6 +36,10 @@ export class CirLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.cirservice.loginUser(this.loginForm.value).subscribe((response) => {
         if (response?.status == true) {
+          const token = response?.data?.token;
+          this.DecodedToken = jwtDecode(token);
+          console.log('Decoded Token:', this.DecodedToken);
+          localStorage.setItem("DecodedToken" , JSON.stringify(this.DecodedToken));
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
           this.router.navigate(['/cir/cir-card']);

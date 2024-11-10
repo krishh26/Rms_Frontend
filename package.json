@@ -24,6 +24,7 @@
     "@sweetalert2/ngx-sweetalert2": "^12.4.0",
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
+    "jwt-decode": "^4.0.0",
     "moment": "^2.30.1",
     "ng-multiselect-dropdown": "^1.0.0",
     "ng-select": "^1.0.2",

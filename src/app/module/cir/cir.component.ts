@@ -25,6 +25,7 @@ export class CirComponent implements OnInit {
   private sidebarVisible: boolean;
   loginUser: any;
   public isCollapsed = true;
+  TokenData: any
   @ViewChild("navbar-cmp", { static: false }) button: any;
 
   constructor(
@@ -45,11 +46,22 @@ export class CirComponent implements OnInit {
       this.sidebarClose();
     });
 
-    const loginData = this.localStorageService.getLogger()
+    const loginData = this.localStorageService.getLogger();
     if (loginData) {
       this.loginUser = loginData;
     }
+
+    const tokenData = localStorage.getItem("DecodedToken");
+    if (tokenData) {
+      try {
+        this.TokenData = JSON.parse(tokenData);
+        console.log(this.TokenData);
+      } catch (error) {
+        console.error("Error parsing token data as JSON", error);
+      }
+    }
   }
+
 
   getTitle() {
     return 'SaiVen Technology Solutions';
