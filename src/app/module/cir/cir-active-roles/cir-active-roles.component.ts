@@ -38,7 +38,7 @@ export class CirActiveRolesComponent implements OnInit {
   errorData: boolean = true;
   selectedStatus: string = '';
   loginData: any;
-  statusList: string[] = ['QA', "Non-QA"];
+  statusList: string[] = ['QA', "Non-QA" , "All"];
   myControl = new FormControl(); searchText: any;
   constructor(
     private router: Router,
