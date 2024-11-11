@@ -38,7 +38,7 @@ export class CirActiveRolesComponent implements OnInit {
   errorData: boolean = true;
   selectedStatus: string = '';
   loginData: any;
-  statusList: string[] = ['Active', "Applied"];
+  statusList: string[] = ['QA', "Non-QA"];
   myControl = new FormControl(); searchText: any;
   constructor(
     private router: Router,
@@ -295,7 +295,7 @@ export class CirActiveRolesComponent implements OnInit {
     Payload.projectList.page = String(this.page);
     Payload.projectList.limit = String(this.pagesize);
     Payload.projectList.keyword = this.searchText || '';
-    Payload.projectList.status = this.selectedStatus;
+    Payload.projectList.job_type = this.selectedStatus;
     this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {
       this.joblist = [];
       this.totalRecords = 0;

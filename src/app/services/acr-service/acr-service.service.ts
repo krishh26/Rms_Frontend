@@ -86,14 +86,14 @@ export class AcrServiceService {
     return this.httpClient.get<any>(url, { params: queryParams });
   }
 
-  getCirJobList(params: { page: string, limit: string, keyword: string, status: string }): Observable<any> {
+  getCirJobList(params: { page: string, limit: string, keyword: string, status: string, job_type: string }): Observable<any> {
 
     const url = `${this.baseUrl}${AcrEndPoint.GET_CIR_JOB_LIST}`;
     let queryParams = new HttpParams();
     queryParams = queryParams.set('page', params?.page);
     queryParams = queryParams.set('limit', params?.limit);
     queryParams = queryParams.set('keyword', params?.keyword);
-    queryParams = queryParams.set('status', params?.status);
+    queryParams = queryParams.set('job_type', params?.job_type);
     return this.httpClient.get<any>(url, { params: queryParams });
   }
 
