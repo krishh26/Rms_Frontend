@@ -61,6 +61,25 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Job Type<span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="job_type">
+                      <option value="" disabled selected hidden>Select Job type</option>
+                      <option value="qa">QA</option>
+                      <option value="nonqa">Non-QA</option>
+                    </select>
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('job_type')?.touched && jobForm.get('job_type')?.errors?.['required']">
+                      Please select a job type.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
 
               <div class="row">
                 <div class="col-md-5">

@@ -34,6 +34,7 @@ export class CirAdminComponent implements OnInit {
     this.jobForm = new FormGroup({
       job_title: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
       no_of_roles: new FormControl('', [Validators.required]),
+      job_type: new FormControl('', [Validators.required]),
       start_date: new FormControl('', [Validators.required]),
       publish_date: new FormControl(formattedDate, [Validators.required]),
       client_name: new FormControl('', [Validators.required]),
