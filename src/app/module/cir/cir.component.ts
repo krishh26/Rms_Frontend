@@ -72,6 +72,11 @@ export class CirComponent implements OnInit {
     this.router.navigate(['/cir/cir-login']);
   }
 
+  logoutAdmin() {
+    this.localStorageService.clearStorage();
+    this.router.navigate(['/cir/cir-admin-login']);
+  }
+
   sidebarToggle() {
     if (this.sidebarVisible === false) {
       this.sidebarOpen();

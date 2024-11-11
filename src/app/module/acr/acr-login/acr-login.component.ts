@@ -5,7 +5,7 @@ import { Patterns } from '../../../shared/constant/validation-patterns.const';
 import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
-
+import { jwtDecode } from "jwt-decode";
 @Component({
   selector: 'app-acr-login',
   templateUrl: './acr-login.component.html',
@@ -15,7 +15,7 @@ export class AcrLoginComponent implements OnInit {
   loginForm!: FormGroup;
   password = 'password';
   showPassword = false;
-
+  DecodedToken: any = [];
   constructor(
     private router: Router,
     private acrservice: AcrServiceService,
@@ -36,6 +36,10 @@ export class AcrLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.acrservice.loginUser(this.loginForm.value).subscribe((response) => {
         if (response?.status == true) {
+          const token = response?.data?.token;
+          this.DecodedToken = jwtDecode(token);
+          console.log('Decoded Token:', this.DecodedToken);
+          localStorage.setItem("DecodedToken", JSON.stringify(this.DecodedToken));
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
 

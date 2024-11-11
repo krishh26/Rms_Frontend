@@ -27,6 +27,7 @@ export class AcrComponent implements OnInit {
   private sidebarVisible: boolean;
   loginUser: any;
   public isCollapsed = true;
+  TokenData: any
   @ViewChild("navbar-cmp", { static: false }) button: any;
 
   constructor(
@@ -51,6 +52,16 @@ export class AcrComponent implements OnInit {
     if (loginData) {
       this.loginUser = loginData;
     }
+
+    const tokenData = localStorage.getItem("DecodedToken");
+    if (tokenData) {
+      try {
+        this.TokenData = JSON.parse(tokenData);
+        console.log(this.TokenData);
+      } catch (error) {
+        console.error("Error parsing token data as JSON", error);
+      }
+    }
   }
 
   getTitle() {
@@ -60,6 +71,11 @@ export class AcrComponent implements OnInit {
   logout() {
     this.localStorageService.clearStorage();
     this.router.navigate(['/acr/acr-login']);
+  }
+
+  logoutAdmin() {
+    this.localStorageService.clearStorage();
+    this.router.navigate(['/acr/acr-admin-login']);
   }
 
   sidebarToggle() {
