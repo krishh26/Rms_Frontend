@@ -33,6 +33,7 @@ import { CirRolesCoventryComponent } from './cir-roles-coventry/cir-roles-covent
 import { CirRoleseSevenIrelandSwindonComponent } from './cir-rolese-seven-ireland-swindon/cir-rolese-seven-ireland-swindon.component';
 import { CirAdminComponent } from './cir-admin/cir-admin.component';
 import { CirAdminLoginComponent } from './cir-admin-login/cir-admin-login.component';
+import { CreateFutureCardComponent } from './create-future-card/create-future-card.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -77,7 +78,8 @@ import { CirAdminLoginComponent } from './cir-admin-login/cir-admin-login.compon
     CirRolesBirminghamSwindonComponent,
     CirRolesCoventryComponent,
     CirAdminComponent,
-    CirAdminLoginComponent
+    CirAdminLoginComponent,
+    CreateFutureCardComponent
   ]
 })
 export class CirModule { }
