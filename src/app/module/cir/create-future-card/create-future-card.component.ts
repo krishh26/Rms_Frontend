@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-future-card',
@@ -7,17 +9,24 @@ import { CirSericeService } from 'src/app/services/cir-service/cir-serice.servic
   styleUrls: ['./create-future-card.component.css']
 })
 export class CreateFutureCardComponent {
-  constructor( private cirservice: CirSericeService){}
+
   futureCards: any[] = [];
   showModal: boolean = true;
-  inputValue: string = ''; 
-  ngOnInit()
-  {
+  inputValue: string = '';
+  showLoader: boolean = false;
+
+
+  constructor(
+    private cirservice: CirSericeService,
+    private notificationService: NotificationService,
+  ) { }
+
+  ngOnInit() {
     this.getFuturecard();
   }
 
 
-  getFuturecard(){
+  getFuturecard() {
     this.cirservice.getFutureCard().subscribe((response) => {
       if (response && response.data) { // Check if response and response.data exist
         this.futureCards = response.data;
@@ -25,41 +34,64 @@ export class CreateFutureCardComponent {
         console.error('Invalid response structure:', response);
       }
     }, (error) => {
-      console.log('error',error);
+      console.log('error', error);
     });
   }
 
-  createCard()
-  {
-    if(this.inputValue)
-    {
-    
-        this.cirservice.createFutureCard({name:this.inputValue}).subscribe((response) => {
-          if (response && response.data) 
-          {
-            this.inputValue='';
-            this.getFuturecard();
-          }
-           
-        }, (error) => {
-          console.log('error',error);
-        });
-      
+  createCard() {
+    if (this.inputValue) {
+
+      this.cirservice.createFutureCard({ name: this.inputValue }).subscribe((response) => {
+        if (response && response.data) {
+          this.inputValue = '';
+          this.getFuturecard();
+        }
+      }, (error) => {
+        console.log('error', error);
+      });
+
     }
   }
 
-  deleteCard(event: MouseEvent,id:string)
-  {
+  // deleteCard(event: MouseEvent, id: string) {
+  //   event.stopPropagation();
+  //   this.cirservice.deleteFutureCard(id).subscribe((response) => {
+  //     if (response && response.data) {
+  //       this.getFuturecard();
+  //     }
+  //   }, (error) => {
+  //     console.log('error', error);
+  //   });
+  // }
+
+  deleteCard(event: MouseEvent, id: string) {
     event.stopPropagation();
-    this.cirservice.deleteFutureCard(id).subscribe((response) => {
-      if (response && response.data) 
-      {
-        this.getFuturecard();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Do you want to delete `,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00B96F',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete!'
+    }).then((result: any) => {
+      if (result?.value) {
+        this.showLoader = true;
+        this.cirservice.deleteFutureCard(id).subscribe((response: any) => {
+          if (response?.status == true) {
+            this.showLoader = false;
+            this.notificationService.showSuccess('Card successfully deleted');
+            this.getFuturecard();
+          } else {
+            this.showLoader = false;
+            this.notificationService.showError(response?.message);
+          }
+        }, (error) => {
+          this.showLoader = false;
+          this.notificationService.showError(error?.message);
+        });
       }
-       
-    }, (error) => {
-      console.log('error',error);
     });
   }
-  
+
 }

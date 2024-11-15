@@ -3,36 +3,18 @@
     <h2 class="text-center mb-4">Create Future Card</h2>
     <div class="d-flex align-items-center p-3 p-sm-2">
       <h5 class="me-3 mb-0">Name :-</h5>
-      <input
-        type="text"
-        [(ngModel)]="inputValue"
-        placeholder="Enter Name "
-        class="form-control me-2"
-        style="width: 150px"
-      />
+      <input type="text" [(ngModel)]="inputValue" placeholder="Enter Name " class="form-control me-2"
+        style="width: 150px" />
       <button class="btn btn-success btn-sm" (click)="createCard()">
         + Add Card
       </button>
     </div>
     <div class="row">
-      <div
-        class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12 mb-4"
-        *ngFor="let card of futureCards"
-      >
-        <div
-          class="FlatCard shadow border-radius6"
-          [routerLink]="'/cir/create-job-role/' + card._id"
-        >
-          <i
-            class="fas fa-trash delete-icon"
-            (click)="deleteCard($event,card._id)"
-          ></i>
+      <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12 mb-4" *ngFor="let card of futureCards">
+        <div class="FlatCard shadow border-radius6" [routerLink]="'/cir/create-job-role/' + card._id">
+          <i class="fas fa-trash delete-icon" (click)="deleteCard($event,card._id)"></i>
           <div class="card-body text-center p-3">
-            <img
-              src="../../../../assets/img/location.png"
-              width="64"
-              class="mb-3"
-            />
+            <img src="../../../../assets/img/location.png" width="64" class="mb-3" />
             <p class="text-bold">{{ card.name || "No Name Available" }}</p>
             <!-- <p>Location: Manchester</p> -->
           </div>
