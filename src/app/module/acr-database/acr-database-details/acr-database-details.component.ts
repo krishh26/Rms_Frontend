@@ -72,9 +72,9 @@ export class AcrDatabaseDetailsComponent implements OnInit {
         "Contact Time",
         "Password Reset",
         "Applied Role",
-        "Profile",
         "Created At",
-        "Updated At"
+        "Updated At",
+        "Profile",
       ]
       filter = this.userFilter;
       const payload = {
