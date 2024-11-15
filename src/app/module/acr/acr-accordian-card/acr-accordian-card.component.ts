@@ -472,7 +472,7 @@ export class AcrAccordianCardComponent implements OnInit {
     }
 
     const payloadData = {
-      appliedRoles: this.appliedRolesArray
+      appliedRole: this.appliedRolesArray
     };
 
     this.acrservice.supplyjob(payloadData).subscribe(
