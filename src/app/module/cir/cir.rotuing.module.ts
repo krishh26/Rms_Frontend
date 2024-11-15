@@ -27,6 +27,7 @@ import { CirRolesGlasgowComponent } from './cir-roles-glasgow/cir-roles-glasgow.
 import { CirRoleseSevenIrelandSwindonComponent } from './cir-rolese-seven-ireland-swindon/cir-rolese-seven-ireland-swindon.component';
 import { CirAdminLoginComponent } from './cir-admin-login/cir-admin-login.component';
 import { CirAdminComponent } from './cir-admin/cir-admin.component';
+import { CreateFutureCardComponent } from './create-future-card/create-future-card.component';
 
 const routes: Routes = [
   {
@@ -68,7 +69,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: CirAdminComponent
       },
-
+      {
+        path: "create-future-card",
+        canActivate: [AuthGuard],
+        component: CreateFutureCardComponent
+      },
       {
         path: "cir-roles-glasgow-card",
         canActivate: [AuthGuard],

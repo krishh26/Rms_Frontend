@@ -15,7 +15,8 @@ export enum CirEndPoint {
   ADD_CLIENT_ROLES='/client/',
   GET_CLIENT_ROLES='/client/',
   USER_CLIENT_UPDATE='/user/update/',
-  CREATE_CIR_JOB= '/acr/jobs/cir'
+  CREATE_CIR_JOB= '/acr/jobs/cir',
+  FUTURE_CARD='/futures/card',
 }
 
 @Injectable({
@@ -96,5 +97,15 @@ export class CirSericeService {
   getClientRoles(): Observable<any> {
     return this.httpClient
       .get<any>(this.baseUrl + CirEndPoint.GET_CLIENT_ROLES);
+  }
+
+  getFutureCard(): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + CirEndPoint.FUTURE_CARD);
+  }
+
+  createFutureCard(payload:any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + CirEndPoint.FUTURE_CARD, payload);
   }
 }
