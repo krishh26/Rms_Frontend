@@ -1,31 +1,56 @@
 <section class="section-card">
   <div class="container">
     <h2 class="text-center mb-4">Create Job Role</h2>
-    <form
-      [formGroup]="nameForm"
-      (ngSubmit)="onSubmit()"
-      class="d-flex align-items-center p-3 p-sm-2"
-    >
+    <form [formGroup]="nameForm" (ngSubmit)="onSubmit()" class="d-flex align-items-center p-3 p-sm-2">
       <label for="firstName" class="me-3 mb-0">
         <h5>Title </h5>
       </label>
-      <input
-        id="firstName"
-        type="text"
-        formControlName="title"
-        placeholder="Enter title"
-        class="form-control me-2"
-      />
+      <input id="firstName" type="text" formControlName="title" placeholder="Enter title" class="form-control me-2" />
       <h5>Description </h5>
-      <input
-        id="lastName"
-        type="text"
-        formControlName="description"
-        placeholder="Enter description"
-        class="form-control me-2"
-      />
+      <input id="lastName" type="text" formControlName="description" placeholder="Enter description"
+        class="form-control me-2" />
 
       <button type="submit" class="btn btn-success btn-sm">Create</button>
     </form>
   </div>
+
+  <section class="section-accordian-card">
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th style="text-transform: none; text-align: center;">Sr. No.</th>
+              <th style="text-transform: none; text-align: center;" scope="col">Job Role</th>
+              <th style="text-transform: none; text-align: center;" scope="col">Job Description</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td *ngIf="jobRoleList.length == 0" class="text-center" colspan="10">
+                No Record Found.
+              </td>
+            </tr>
+
+            <tr
+              *ngFor="let job of jobRoleList  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
+              <td style="text-align: center;">{{ i + 1}}</td>
+              <td>{{job.title}}</td>
+              <td>{{job.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row mt-3 align-items-center">
+        <div class="row">
+          <div class="pagination">
+            <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 </section>

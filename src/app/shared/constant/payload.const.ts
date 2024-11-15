@@ -14,6 +14,13 @@ export const Payload = {
         limit: '10',
     },
 
+    jobROleList: {
+        keyword: '',
+        page: '1',
+        limit: '10',
+    },
+
+
      Project : {
         _id: "",
         projectName: "",

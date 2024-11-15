@@ -12,12 +12,13 @@ export enum CirEndPoint {
   FORGOT_PASSWORD = '/user/forgot',
   RESET_PASSWORD = '/user/reset',
   REFER_EARN = '/user/refer',
-  ADD_CLIENT_ROLES='/client/',
-  GET_CLIENT_ROLES='/client/',
-  USER_CLIENT_UPDATE='/user/update/',
-  CREATE_CIR_JOB= '/acr/jobs/cir',
-  FUTURE_CARD='/futures/card/',
-  JOB_ROLE='futures/card/'
+  ADD_CLIENT_ROLES = '/client/',
+  GET_CLIENT_ROLES = '/client/',
+  USER_CLIENT_UPDATE = '/user/update/',
+  CREATE_CIR_JOB = '/acr/jobs/cir',
+  FUTURE_CARD = '/futures/card/',
+  JOB_ROLE = 'futures/card/',
+  JOB_ROLE_LIST = '/futures/card/'
 }
 
 @Injectable({
@@ -105,18 +106,26 @@ export class CirSericeService {
       .get<any>(this.baseUrl + CirEndPoint.FUTURE_CARD);
   }
 
-  createFutureCard(payload:any): Observable<any> {
+  createFutureCard(payload: any): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.FUTURE_CARD, payload);
   }
 
-  deleteFutureCard(id:string): Observable<any> {
+  deleteFutureCard(id: string): Observable<any> {
     return this.httpClient
       .delete<any>(this.baseUrl + CirEndPoint.FUTURE_CARD + id);
   }
 
-  createJobRole(payload:any,id:string): Observable<any> {
+  createJobRole(payload: any, id: string): Observable<any> {
     return this.httpClient
-      .post<any>(this.baseUrl + CirEndPoint.JOB_ROLE+id, payload);
+      .post<any>(this.baseUrl + CirEndPoint.JOB_ROLE + id, payload);
   }
+
+
+  getJobRoleList(payload:any , id : any): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + CirEndPoint.JOB_ROLE_LIST + id);
+  }
+
+
 }
