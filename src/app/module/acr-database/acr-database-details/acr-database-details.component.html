@@ -125,9 +125,10 @@
                   <td>{{ item?.password_reset ? 'Yes' : 'No' }}</td>
                   <td>
                     <ng-container *ngIf="item?.appliedRole?.length > 0; else noRoles">
-                      <ul>
+                      <!-- <ul>
                         <li *ngFor="let role of item?.appliedRole">{{ role }}</li>
-                      </ul>
+                      </ul> -->
+                      <button class="btn btn-sm btn-primary" (click)="viewRoleData(item)">View Role</button>
                     </ng-container>
                     <ng-template #noRoles>No Roles Applied</ng-template>
                   </td>

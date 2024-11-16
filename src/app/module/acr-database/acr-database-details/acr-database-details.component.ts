@@ -128,6 +128,11 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     }
   }
 
+  viewRoleData(data: any) {
+    localStorage.setItem('roleDetailData', JSON.stringify(data));
+    this.router.navigate(['/acr-database/acr-details/role-details']);
+  }
+
   openDocument(document: any) {
     window.open(document?.url, '_blank', 'noopener, noreferrer');
   }

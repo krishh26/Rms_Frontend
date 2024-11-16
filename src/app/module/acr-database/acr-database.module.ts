@@ -11,6 +11,7 @@ import { AcrDatabaseLoginComponent } from './acr-database-login/acr-database-log
 import { AcrDatabaseComponent } from './acr-database.component';
 import { AcrDatabaseListComponent } from './acr-database-list/acr-database-list.component';
 import { AcrDatabaseDetailsComponent } from './acr-database-details/acr-database-details.component';
+import { UserRolesDetailsComponent } from './user-roles-details/user-roles-details.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,11 @@ const routes: Routes = [
         // canActivate: [AuthGuard],
         component: AcrDatabaseDetailsComponent
       },
+      {
+        path: "acr-details/role-details",
+        // canActivate: [AuthGuard],
+        component: UserRolesDetailsComponent
+      },
     ]
   },
   {
@@ -46,7 +52,8 @@ const routes: Routes = [
     AcrDatabaseLoginComponent,
     AcrDatabaseDetailsComponent,
     AcrDatabaseListComponent,
-    AcrDatabaseComponent
+    AcrDatabaseComponent,
+    UserRolesDetailsComponent
   ],
   imports: [
     CommonModule,
