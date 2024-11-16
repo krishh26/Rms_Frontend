@@ -47,5 +47,19 @@ export class CreateFutureCardComponent {
       
     }
   }
+
+  deleteCard(event: MouseEvent,id:string)
+  {
+    event.stopPropagation();
+    this.cirservice.deleteFutureCard(id).subscribe((response) => {
+      if (response && response.data) 
+      {
+        this.getFuturecard();
+      }
+       
+    }, (error) => {
+      console.log('error',error);
+    });
+  }
   
 }

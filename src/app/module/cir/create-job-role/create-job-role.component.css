@@ -74,11 +74,9 @@ strong{
     font-weight: bolder;
 }
 
-.delete-icon {
-    position: absolute;
-    top:5px; /* Adjust for spacing from the top */
-    right: 5px; /* Adjust for spacing from the right */
-    font-size: 16px; /* Adjust size as needed */
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+
+  form {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust spacing between fields */
   }

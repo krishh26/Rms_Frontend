@@ -1,0 +1,31 @@
+<section class="section-card">
+  <div class="container">
+    <h2 class="text-center mb-4">Create Job Role</h2>
+    <form
+      [formGroup]="nameForm"
+      (ngSubmit)="onSubmit()"
+      class="d-flex align-items-center p-3 p-sm-2"
+    >
+      <label for="firstName" class="me-3 mb-0">
+        <h5>Title </h5>
+      </label>
+      <input
+        id="firstName"
+        type="text"
+        formControlName="title"
+        placeholder="Enter title"
+        class="form-control me-2"
+      />
+      <h5>Description </h5>
+      <input
+        id="lastName"
+        type="text"
+        formControlName="description"
+        placeholder="Enter description"
+        class="form-control me-2"
+      />
+
+      <button type="submit" class="btn btn-success btn-sm">Create</button>
+    </form>
+  </div>
+</section>
