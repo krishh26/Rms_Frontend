@@ -31,7 +31,6 @@ export class AcrResetPasswordComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.token = params['token'];
     });
-
     this.resetpasswordForm = new FormGroup({
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required])
@@ -44,6 +43,7 @@ export class AcrResetPasswordComponent implements OnInit {
 
   submit() {
     this.resetpasswordForm.markAllAsTouched();
+    localStorage.setItem('resetToken', JSON.stringify(this.token));
     if (this.resetpasswordForm.valid) {
       const payload = {
         password: this.resetpasswordForm.get('password')?.value,
@@ -52,6 +52,7 @@ export class AcrResetPasswordComponent implements OnInit {
       this.acrservice.resetpassword(payload, this.token).subscribe((response) => {
         if (response?.status == true) {
           this.router.navigate(['/acr/acr-login']);
+          localStorage.removeItem('resetToken');
         } else {
           this.notificationService.showError(response?.message);
         }
