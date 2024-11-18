@@ -60,9 +60,16 @@ export class AcrServiceService {
       .post<any>(this.baseUrl + AcrEndPoint.ADMIN_LOGIN, payload, { headers: this.getHeader() });
   }
 
-  resetpassword(payload: any): Observable<any> {
-    return this.httpClient
-      .post<any>(this.baseUrl + AcrEndPoint.RESET_PASSWORD, payload);
+  resetpassword(payload: any, token: any): Observable<any> {
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.post<any>(
+      this.baseUrl + AcrEndPoint.RESET_PASSWORD,
+      payload,
+      { headers: headers }
+    );
   }
 
   register(payload: any): Observable<any> {

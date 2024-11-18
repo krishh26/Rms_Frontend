@@ -47,13 +47,11 @@ export class AcrResetPasswordComponent implements OnInit {
     if (this.resetpasswordForm.valid) {
       const payload = {
         password: this.resetpasswordForm.get('password')?.value,
-        token: this.token
+        // token: this.token
       }
-      this.acrservice.resetpassword(payload).subscribe((response) => {
+      this.acrservice.resetpassword(payload, this.token).subscribe((response) => {
         if (response?.status == true) {
           this.router.navigate(['/acr/acr-login']);
-          // this.localStorageService.setLoginToken(response?.data);
-          // this.localStorageService.setLogger(response?.data?.user);
         } else {
           this.notificationService.showError(response?.message);
         }
