@@ -168,7 +168,7 @@
                   <td>
                     <ng-container *ngIf="item?.applicants?.length > 0; else noApplicants">
                       <ul>
-                        <li *ngFor="let applicant of item?.applicants">{{ applicant }}</li>
+                        <li *ngFor="let applicant of item?.applicants">{{ applicant?.userInfo?.agencyName }}</li>
                       </ul>
                     </ng-container>
                     <ng-template #noApplicants>No Applicants</ng-template>
