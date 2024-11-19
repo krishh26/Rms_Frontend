@@ -13,6 +13,12 @@ export class APIInterceptor implements HttpInterceptor {
 
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let jwt : string = '';
+    let resetToken = localStorage.getItem('resetToken');
+
+    if(resetToken) {
+      resetToken = JSON.parse(resetToken);
+    }
+
     if(this.localStorageService.getLoggerToken()) {
       jwt = this.localStorageService.getLoggerToken();
     } else {
@@ -22,7 +28,8 @@ export class APIInterceptor implements HttpInterceptor {
         jwt = personalDetails?.data?.token;
       }
     }
-    const authReq = httpRequest.clone({ setHeaders: { authorization: `Bearer ${jwt}` } });
+
+    const authReq = httpRequest.clone({ setHeaders: { authorization: `Bearer ${jwt ? jwt : resetToken}` } });
 
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
