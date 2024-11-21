@@ -40,9 +40,9 @@ export class AcrResetPasswordComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loginToken = this.token ? this.token :JSON.stringify(localStorage.getItem("loginToken"));
+    this.loginToken = this.token ? this.token : this.localStorageService.getLoggerToken();
     console.log(this.loginToken);
-    
+
   }
 
   submit() {
