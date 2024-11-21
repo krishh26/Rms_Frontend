@@ -20,6 +20,7 @@ export class AcrResetPasswordComponent implements OnInit {
   confirmPassword = 'password';
   confirmShowPassword = false;
   token: string = '';
+  loginToken: String = '';
 
   constructor(
     private router: Router,
@@ -39,17 +40,19 @@ export class AcrResetPasswordComponent implements OnInit {
 
 
   ngOnInit() {
+    this.loginToken = JSON.stringify(localStorage.getItem("loginToken"));
+    console.log(this.loginToken);
+    
   }
 
   submit() {
-    this.resetpasswordForm.markAllAsTouched();
-    localStorage.setItem('resetToken', JSON.stringify(this.token));
+    debugger
     if (this.resetpasswordForm.valid) {
       const payload = {
         password: this.resetpasswordForm.get('password')?.value,
         // token: this.token
       }
-      this.acrservice.resetpassword(payload, this.token).subscribe((response) => {
+      this.acrservice.resetpassword(payload, this.loginToken).subscribe((response) => {
         if (response?.status == true) {
           this.router.navigate(['/acr/acr-login']);
           localStorage.removeItem('resetToken');
