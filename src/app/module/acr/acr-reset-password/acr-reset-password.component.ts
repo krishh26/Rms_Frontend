@@ -40,13 +40,12 @@ export class AcrResetPasswordComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loginToken = JSON.stringify(localStorage.getItem("loginToken"));
+    this.loginToken = this.token ? this.token :JSON.stringify(localStorage.getItem("loginToken"));
     console.log(this.loginToken);
     
   }
 
   submit() {
-    debugger
     if (this.resetpasswordForm.valid) {
       const payload = {
         password: this.resetpasswordForm.get('password')?.value,

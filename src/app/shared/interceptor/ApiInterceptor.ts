@@ -12,6 +12,11 @@ export class APIInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    const isResetPasswordAPI = httpRequest.url.includes('acr/reset'); 
+    if (isResetPasswordAPI) {
+      return next.handle(httpRequest);
+    }
     let jwt : string = '';
     let resetToken = localStorage.getItem('resetToken');
 
