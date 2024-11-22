@@ -59,7 +59,8 @@ const routes: Routes = [
     AcrDatabaseDetailsComponent,
     AcrDatabaseListComponent,
     AcrDatabaseComponent,
-    UserRolesDetailsComponent
+    UserRolesDetailsComponent,
+    AppliedApplicantsDetailsComponent
   ],
   imports: [
     CommonModule,
