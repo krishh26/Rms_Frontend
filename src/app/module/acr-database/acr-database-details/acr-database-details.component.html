@@ -125,9 +125,6 @@
                   <td>{{ item?.password_reset ? 'Yes' : 'No' }}</td>
                   <td>
                     <ng-container *ngIf="item?.appliedRole?.length > 0; else noRoles">
-                      <!-- <ul>
-                        <li *ngFor="let role of item?.appliedRole">{{ role }}</li>
-                      </ul> -->
                       <button class="btn btn-sm btn-primary" (click)="viewRoleData(item)">View Role</button>
                     </ng-container>
                     <ng-template #noRoles>No Roles Applied</ng-template>
@@ -168,12 +165,17 @@
                   <td>
                     <ng-container *ngIf="item?.applicants?.length > 0; else noApplicants">
                       <ul>
-                        <li *ngFor="let applicant of item?.applicants">{{ applicant?.userInfo?.agencyName }}</li>
+                        <li *ngFor="let applicant of item?.applicants">
+                          {{ applicant?.userInfo?.agencyName }}
+                        </li>
                       </ul>
+                      <button class="btn btn-sm btn-primary" (click)="appliedRoleData(item)">
+                        View applicants
+                      </button>
                     </ng-container>
                     <ng-template #noApplicants>No Applicants</ng-template>
                   </td>
-                  <td>{{ item?.upload?.key }}</td>
+                  <!-- <td>{{ item?.upload?.key }}</td> -->
                   <td>
                     <a [href]="item?.upload?.url" target="_blank">Download</a>
                   </td>

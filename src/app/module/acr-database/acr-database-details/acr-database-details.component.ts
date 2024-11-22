@@ -102,8 +102,8 @@ export class AcrDatabaseDetailsComponent implements OnInit {
         "Location",
         "Day Rate",
         "Applicants",
-        "Upload Key",
-        "Upload URL",
+        // "Upload Key",
+        "Uploaded Document",
         "Timer End",
         "Job Time Left",
         "Status",
@@ -131,6 +131,11 @@ export class AcrDatabaseDetailsComponent implements OnInit {
   viewRoleData(data: any) {
     localStorage.setItem('roleDetailData', JSON.stringify(data));
     this.router.navigate(['/acr-database/acr-details/role-details']);
+  }
+
+  appliedRoleData(data: any) {
+    localStorage.setItem('applicantsData', JSON.stringify(data));
+    this.router.navigate(['/acr-database/acr-details/applied-aplicants-details']);
   }
 
   openDocument(document: any) {
