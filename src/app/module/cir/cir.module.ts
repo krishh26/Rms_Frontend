@@ -11,7 +11,7 @@ import { NorthenIrelandDetailsComponent } from './Northen-Ireland-details/Northe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { CirProfileComponent } from './cir-profile/cir-profile.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CirForgotPasswrdComponent } from './cir-forgot-passwrd/cir-forgot-passwrd.component';
 import { CirResetPasswordComponent } from './cir-reset-password/cir-reset-password.component';
 import { CirOtherdetailsFormComponent } from './cir-otherdetails-form/cir-otherdetails-form.component';
@@ -35,6 +35,9 @@ import { CirAdminComponent } from './cir-admin/cir-admin.component';
 import { CirAdminLoginComponent } from './cir-admin-login/cir-admin-login.component';
 import { CreateFutureCardComponent } from './create-future-card/create-future-card.component';
 import { CreateJobRoleComponent } from './create-job-role/create-job-role.component';
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -51,8 +54,9 @@ import { CreateJobRoleComponent } from './create-job-role/create-job-role.compon
     NgSelectModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgxPaginationModule,
-    NgxSpinnerModule
-
+    NgxSpinnerModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
   declarations: [
     CirComponent,
@@ -82,6 +86,15 @@ import { CreateJobRoleComponent } from './create-job-role/create-job-role.compon
     CirAdminLoginComponent,
     CreateFutureCardComponent,
     CreateJobRoleComponent
-  ]
+  ],
+  providers: [
+    NgbActiveModal, // Add this line
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
+    },
+  ],
 })
 export class CirModule { }

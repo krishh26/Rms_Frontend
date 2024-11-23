@@ -35,9 +35,8 @@ export class AcrLoginComponent implements OnInit {
   }
 
   login(): void {
-    this.loginForm.markAllAsTouched(); // Mark all form fields as touched to trigger validation
-    this.captchaError = !this.captchaToken; // Check if the CAPTCHA token is missing
-
+    this.loginForm.markAllAsTouched();
+    this.captchaError = !this.captchaToken;
     if (this.loginForm.valid && this.captchaToken) {
       // Define the loginData object including the CAPTCHA token
       const loginData = {

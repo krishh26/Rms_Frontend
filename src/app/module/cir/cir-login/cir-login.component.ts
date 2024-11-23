@@ -15,7 +15,10 @@ export class CirLoginComponent implements OnInit {
   loginForm: FormGroup;
   password = 'password';
   showPassword = false;
-  DecodedToken : any = [];
+  DecodedToken: any = [];
+  captchaToken: string = '';
+  captchaError = false;
+
   constructor(
     private router: Router,
     private cirservice: CirSericeService,
@@ -33,13 +36,18 @@ export class CirLoginComponent implements OnInit {
 
   login(): void {
     this.loginForm.markAllAsTouched();
-    if (this.loginForm.valid) {
-      this.cirservice.loginUser(this.loginForm.value).subscribe((response) => {
+    this.captchaError = !this.captchaToken;
+    if (this.loginForm.valid && this.captchaToken) {
+      const loginData = {
+        ...this.loginForm.value, // Spread operator to include form data (email, password)
+        captchaToken: this.captchaToken, // Include the CAPTCHA token
+      };
+      this.cirservice.loginUser(loginData).subscribe((response) => {
         if (response?.status == true) {
           const token = response?.data?.token;
           this.DecodedToken = jwtDecode(token);
           console.log('Decoded Token:', this.DecodedToken);
-          localStorage.setItem("DecodedToken" , JSON.stringify(this.DecodedToken));
+          localStorage.setItem("DecodedToken", JSON.stringify(this.DecodedToken));
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
           this.router.navigate(['/cir/cir-card']);
@@ -50,6 +58,16 @@ export class CirLoginComponent implements OnInit {
       }, (error) => {
         this.notificationService.showError(error?.error?.message || 'Something went wrong!');
       })
+    }
+  }
+
+  onCaptchaResolved(token: string | null): void {
+    if (token) {
+      this.captchaToken = token; // Set the resolved token
+      this.captchaError = false; // Clear error
+    } else {
+      this.captchaToken = ''; // Reset if CAPTCHA fails to resolve
+      this.captchaError = true; // Show error
     }
   }
 
