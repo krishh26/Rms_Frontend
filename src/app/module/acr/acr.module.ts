@@ -23,6 +23,8 @@ import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.compon
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-password.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   imports: [
@@ -39,8 +41,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       preventDuplicates: false,
     }),
     ToastNoAnimationModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
+
   declarations: [
     AcrComponent,
     AcrFormComponent,
@@ -60,7 +65,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AcrForgotPasswordComponent
   ],
   providers: [
-    NgbActiveModal // Add this line
+    NgbActiveModal, // Add this line
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
+    },
   ],
 })
 export class AcrModule { }

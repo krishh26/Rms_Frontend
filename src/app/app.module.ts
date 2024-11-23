@@ -15,12 +15,17 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcrDatabaseModule } from './module/acr-database/acr-database.module';
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent
   ],
+
   imports: [
     CommonModule,
     BrowserModule,
@@ -37,13 +42,22 @@ import { AcrDatabaseModule } from './module/acr-database/acr-database.module';
       preventDuplicates: true,
     }),
     ToastNoAnimationModule.forRoot(),
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
+
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: APIInterceptor,
       multi: true
+    },
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
     },
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers

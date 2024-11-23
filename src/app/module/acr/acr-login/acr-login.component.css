@@ -59,6 +59,12 @@ Login Page CSS
     right: 15px !important;
 }
 
+re-captcha.is-invalid > div {
+    border: 1px solid #dc3545 !important;
+    border-radius: 0.2rem;
+  }
+
+
 @media only screen and (min-width: 320px) and (max-width: 767px) {
     .Login-leftside {
         display: none;
