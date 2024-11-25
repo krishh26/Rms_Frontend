@@ -5,11 +5,7 @@
         <div class="col-lg-5 col-xl-5 col-12">
           <div class="FormLeft-panel">
             <div class="text-center">
-              <img
-                src="../../../../assets/img/Saivenlogo.png"
-                width="200"
-                class="mb-5"
-              />
+              <img src="../../../../assets/img/Saivenlogo.png" width="200" class="mb-5" />
             </div>
             <h1 class="HeadingLarge">
               “Elevate Your Career with SaiVen: Join Public Sector IT Projects”
@@ -39,36 +35,22 @@
           <div class="FormRight-panel">
             <h4><strong>Personal Details</strong></h4>
             <br />
-            <form
-              [formGroup]="personalDetailForm"
-              (ngSubmit)="submitPersonalDetail()"
-            >
+            <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
               <div class="row">
                 <div class="col-md-4">
                   <label>Your Name <span style="color: red">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Your Name"
-                      formControlName="name"
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <input type="text" class="form-control" placeholder="Your Name" formControlName="name" />
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['name']?.touched &&
-                      personalDetailForm.controls?.['name']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['name']?.errors?.['required']">
                       Please enter your name.
                     </span>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['name']?.touched &&
-                      personalDetailForm.controls?.['name']?.errors?.['pattern']"
-                    >
+                      personalDetailForm.controls?.['name']?.errors?.['pattern']">
                       Please enter a valid format for your name.
                     </span>
                   </div>
@@ -82,26 +64,15 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Your Email"
-                      formControlName="email"
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <input type="email" class="form-control" placeholder="Your Email" formControlName="email" />
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['email']?.touched &&
-                      personalDetailForm.controls?.['email']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['email']?.errors?.['required']">
                       Please enter your email.
                     </span>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['email']?.touched &&
-                      personalDetailForm.controls?.['email']?.errors?.['pattern']"
-                    >
+                      personalDetailForm.controls?.['email']?.errors?.['pattern']">
                       Please enter a valid email address in the format
                       'username@example.com'.
                     </span>
@@ -112,53 +83,32 @@
               <!-- Phone Number -->
               <div class="row">
                 <div class="col-md-4">
-                  <label
-                    >Your Phone number
-                    <span style="color: red">*</span> :</label
-                  >
+                  <label>Your Phone number
+                    <span style="color: red">*</span> :</label>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Code like +91 ,+41, etc."
-                      formControlName="countrycode"
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <input type="text" class="form-control" placeholder="Code like +91 ,+41, etc."
+                      formControlName="countrycode" />
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['countrycode']?.touched &&
-                      personalDetailForm.controls?.['countrycode']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['countrycode']?.errors?.['required']">
                       Please enter the country code.
                     </span>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['countrycode']?.touched &&
-                      personalDetailForm.controls?.['countrycode']?.errors?.['pattern']"
-                    >
+                      personalDetailForm.controls?.['countrycode']?.errors?.['pattern']">
                       Please enter a valid format for the country code.
                     </span>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <input
-                      type="tel"
-                      class="form-control"
-                      placeholder="Your Phone number"
-                      [maxlength]="10"
-                      (keypress)="NumberOnly($event)"
-                      formControlName="phoneNumber"
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <input type="tel" class="form-control" placeholder="Your Phone number" [maxlength]="10"
+                      (keypress)="NumberOnly($event)" formControlName="phoneNumber" />
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['phoneNumber']?.touched &&
-                      personalDetailForm.controls?.['phoneNumber']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['phoneNumber']?.errors?.['required']">
                       Please enter your phone number.
                     </span>
                   </div>
@@ -172,31 +122,21 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <select
-                      class="form-control"
-                      formControlName="nationality"
-                      (change)="onNationalityChange($event)"
-                    >
+                    <select class="form-control" formControlName="nationality" (change)="onNationalityChange($event)">
                       <option value="" disabled selected hidden>
                         Select Nationality
                       </option>
                       <option value="british">British</option>
                       <option value="other">Others</option>
                     </select>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['nationality']?.touched &&
-                      personalDetailForm.controls?.['nationality']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['nationality']?.errors?.['required']">
                       Please enter your nationality.
                     </span>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['nationality']?.touched &&
-                      personalDetailForm.controls?.['nationality']?.errors?.['pattern']"
-                    >
+                      personalDetailForm.controls?.['nationality']?.errors?.['pattern']">
                       Please enter a valid format for your nationality.
                     </span>
                   </div>
@@ -205,32 +145,20 @@
 
               <div class="row" *ngIf="showUKVisaType">
                 <div class="col-md-4">
-                  <label
-                    >UK Visa Type <span style="color: red">*</span> :</label
-                  >
+                  <label>UK Visa Type <span style="color: red">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Your Current Visa Type"
-                      formControlName="UKVisaType"
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <input type="text" class="form-control" placeholder="Your Current Visa Type"
+                      formControlName="UKVisaType" />
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['UKVisaType']?.touched &&
-                      personalDetailForm.controls?.['UKVisaType']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['UKVisaType']?.errors?.['required']">
                       Please enter your Current Visa Type.
                     </span>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['UKVisaType']?.touched &&
-                      personalDetailForm.controls?.['UKVisaType']?.errors?.['pattern']"
-                    >
+                      personalDetailForm.controls?.['UKVisaType']?.errors?.['pattern']">
                       Please enter a valid format for your Current Visa Type.
                     </span>
                   </div>
@@ -240,31 +168,21 @@
               <!-- UK Driving License -->
               <div class="row">
                 <div class="col-md-4">
-                  <label
-                    >Do you Have a UK Driving license?<span style="color: red"
-                      >*</span
-                    >
-                    :</label
-                  >
+                  <label>Do you Have a UK Driving license?<span style="color: red">*</span>
+                    :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <select
-                      class="form-control"
-                      formControlName="UKDrivinglicense"
-                    >
+                    <select class="form-control" formControlName="UKDrivinglicense">
                       <option value="" disabled selected hidden>
                         Select Type
                       </option>
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
                     </select>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['UKDrivinglicense']?.touched &&
-                      personalDetailForm.controls?.['UKDrivinglicense']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['UKDrivinglicense']?.errors?.['required']">
                       Please select a value.
                     </span>
                   </div>
@@ -274,33 +192,20 @@
               <!-- Postal Code -->
               <div class="row">
                 <div class="col-md-4">
-                  <label
-                    >Your Current Location<span style="color: red">*</span
-                    >:</label
-                  >
+                  <label>Your Current Location<span style="color: red">*</span>:</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter your current city or postcode"
-                      formControlName="postalCode"
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <input type="text" class="form-control" placeholder="Enter your current city or postcode"
+                      formControlName="postalCode" />
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['postalCode']?.touched &&
-                      personalDetailForm.controls?.['postalCode']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['postalCode']?.errors?.['required']">
                       Please enter your postal code.
                     </span>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['postalCode']?.touched &&
-                      personalDetailForm.controls?.['postalCode']?.errors?.['pattern']"
-                    >
+                      personalDetailForm.controls?.['postalCode']?.errors?.['pattern']">
                       Please enter a valid format for your postal code.
                     </span>
                   </div>
@@ -310,53 +215,29 @@
               <!-- Current Work -->
               <div class="row">
                 <div class="col-md-4">
-                  <label
-                    >I'm currently Working<span style="color: red">*</span>
-                    :</label
-                  >
+                  <label>I'm currently Working<span style="color: red">*</span>
+                    :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label>
-                      <input
-                        type="radio"
-                        id="1"
-                        name="currentWork"
-                        value="full-time"
-                        formControlName="currentWork"
-                      />&nbsp;
+                      <input type="radio" id="1" name="currentWork" value="full-time"
+                        formControlName="currentWork" />&nbsp;
                       <span style="font-weight: normal">
-                        Full-time</span
-                      > </label
-                    ><br />
+                        Full-time</span> </label><br />
                     <label>
-                      <input
-                        type="radio"
-                        id="2"
-                        name="currentWork"
-                        value="part-time"
-                        formControlName="currentWork"
-                      />&nbsp;
+                      <input type="radio" id="2" name="currentWork" value="part-time"
+                        formControlName="currentWork" />&nbsp;
                       <span style="font-weight: normal">
-                        Part-time</span
-                      > </label
-                    ><br />
+                        Part-time</span> </label><br />
                     <label>
-                      <input
-                        type="radio"
-                        id="3"
-                        name="currentWork"
-                        value="not-working"
-                        formControlName="currentWork"
-                      />&nbsp;
+                      <input type="radio" id="3" name="currentWork" value="not-working"
+                        formControlName="currentWork" />&nbsp;
                       <span style="font-weight: normal"> Not working</span>
                     </label>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['currentWork']?.touched &&
-                      personalDetailForm.controls?.['currentWork']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['currentWork']?.errors?.['required']">
                       Please select your current work status.
                     </span>
                   </div>
@@ -366,64 +247,33 @@
               <!-- Looking For -->
               <div class="row">
                 <div class="col-md-4">
-                  <label
-                    >I am looking for<span style="color: red">*</span> :</label
-                  >
+                  <label>I am looking for<span style="color: red">*</span> :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label>
-                      <input
-                        type="checkbox"
-                        name="roles"
-                        value="full-time-role"
-                        (change)="onCheckboxChange($event)"
-                        [checked]="selectedLookingFor('full-time-role')"
-                      />&nbsp;
+                      <input type="checkbox" name="roles" value="full-time-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('full-time-role')" />&nbsp;
                       <span style="font-weight: normal">
-                        Full time role</span
-                      > </label
-                    ><br />
+                        Full time role</span> </label><br />
                     <label>
-                      <input
-                        type="checkbox"
-                        name="roles"
-                        value="additional-role"
-                        (change)="onCheckboxChange($event)"
-                        [checked]="selectedLookingFor('additional-role')"
-                      />&nbsp;
+                      <input type="checkbox" name="roles" value="additional-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('additional-role')" />&nbsp;
                       <span style="font-weight: normal">
-                        Additional role</span
-                      > </label
-                    ><br />
+                        Additional role</span> </label><br />
                     <label>
-                      <input
-                        type="checkbox"
-                        name="roles"
-                        value="part-time-role"
-                        (change)="onCheckboxChange($event)"
-                        [checked]="selectedLookingFor('part-time-role')"
-                      />&nbsp;
+                      <input type="checkbox" name="roles" value="part-time-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('part-time-role')" />&nbsp;
                       <span style="font-weight: normal">
-                        Part-time role</span
-                      > </label
-                    ><br />
+                        Part-time role</span> </label><br />
                     <label>
-                      <input
-                        type="checkbox"
-                        name="roles"
-                        value="freelance-role"
-                        (change)="onCheckboxChange($event)"
-                        [checked]="selectedLookingFor('freelance-role')"
-                      />&nbsp;
+                      <input type="checkbox" name="roles" value="freelance-role" (change)="onCheckboxChange($event)"
+                        [checked]="selectedLookingFor('freelance-role')" />&nbsp;
                       <span style="font-weight: normal"> Freelancing role</span>
                     </label>
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <span class="text-danger" *ngIf="
                       personalDetailForm.controls?.['lookingFor']?.touched &&
-                      personalDetailForm.controls?.['lookingFor']?.errors?.['required']"
-                    >
+                      personalDetailForm.controls?.['lookingFor']?.errors?.['required']">
                       Please select what you are looking for.
                     </span>
                   </div>
@@ -433,53 +283,43 @@
               <!-- My current notice period (Days) -->
               <div class="row">
                 <div class="col-md-4">
-                  <label
-                    >My current notice period (Days)<span style="color: red"
-                      >*</span
-                    >
-                    :</label
-                  >
+                  <label>My current notice period (Days)<span style="color: red">*</span>
+                    :</label>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter current notice period (Days)"
-                      formControlName="noticePeriodDay"
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
+                    <input type="text" class="form-control" placeholder="Enter current notice period (Days)"
+                      formControlName="noticePeriodDay" />
+                    <span class="text-danger" *ngIf="
                                     personalDetailForm.controls?.['noticePeriodDay']?.touched &&
-                                    personalDetailForm.controls?.['noticePeriodDay']?.errors?.['required']"
-                    >
+                                    personalDetailForm.controls?.['noticePeriodDay']?.errors?.['required']">
                       Please enter your notice period.
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div class="form-group">
-                <re-captcha
-                  (resolved)="onCaptchaResolved($event)"
-                  siteKey="6LfYpIcqAAAAAISPyVivnE5oO7O_QoFyo9Uiu8it"
-                  class="mb-3"
-                >
-                </re-captcha>
-                <span class="text-danger" *ngIf="captchaError">
-                  Please complete the CAPTCHA.
-                </span>
+              <div class="row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <re-captcha (resolved)="onCaptchaResolved($event)" siteKey="6LfYpIcqAAAAAISPyVivnE5oO7O_QoFyo9Uiu8it"
+                      class="mb-3">
+                    </re-captcha>
+                    <span class="text-danger" *ngIf="captchaError">
+                      Please complete the CAPTCHA.
+                    </span>
+                  </div>
+                </div>
               </div>
+
 
               <div class="row">
                 <div class="col-12 update">
-                  <button
-                    style="float: right !important"
-                    type="submit"
-                    class="btn btn-primary btn-round"
-                    [disabled]="!captchaToken"
-                  >
+                  <button style="float: right !important" type="submit" class="btn btn-primary btn-round"
+                    [disabled]="!captchaToken">
                     Next Step
                   </button>
                 </div>
