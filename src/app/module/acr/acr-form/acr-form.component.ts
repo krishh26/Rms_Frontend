@@ -22,6 +22,8 @@ export class AcrFormComponent implements OnInit {
   file: any;
   selectedImage!: string;
   dropdownSettings = {};
+  captchaToken: string = '';
+  captchaError = false;
 
   timeSlots = [
     { label: '1-2 AM', value: 1 },
@@ -151,6 +153,7 @@ export class AcrFormComponent implements OnInit {
 
   // Function to be used for submit details
   submit() {
+    this.captchaError = !this.captchaToken;
     const selectedTimes = this.agencyForm.controls['callTime'].value;
     const selectedTimesArray = Array.isArray(selectedTimes)
       ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
@@ -167,4 +170,15 @@ export class AcrFormComponent implements OnInit {
       this.notificationService.showError(error?.error?.message, 'Select different Username!');
     })
   }
+
+  onCaptchaResolved(token: string | null): void {
+    if (token) {
+      this.captchaToken = token; // Set the resolved token
+      this.captchaError = false; // Clear error
+    } else {
+      this.captchaToken = ''; // Reset if CAPTCHA fails to resolve
+      this.captchaError = true; // Show error
+    }
+  }
+
 }

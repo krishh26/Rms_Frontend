@@ -286,9 +286,25 @@
               </div>
 
               <div class="row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <re-captcha (resolved)="onCaptchaResolved($event)" siteKey="6LfYpIcqAAAAAISPyVivnE5oO7O_QoFyo9Uiu8it"
+                      class="mb-3">
+                    </re-captcha>
+                    <span class="text-danger" *ngIf="captchaError">
+                      Please complete the CAPTCHA.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
                 <div class="update ml-auto mr-auto"><br>
                   <button style="float: right !important;" type="submit"
-                    class="btn btn-primary btn-round">Next</button>
+                    class="btn btn-primary btn-round"  [disabled]="!captchaToken">Next</button>
                 </div>
               </div>
             </form>
