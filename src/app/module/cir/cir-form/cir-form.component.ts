@@ -21,6 +21,8 @@ export class CirFormComponent implements OnInit {
   register_data: any;
   showUKVisaType: boolean = false;
   lookingFor: any[] = [];
+  captchaToken: string = '';
+  captchaError = false;
 
   constructor(
     private router: Router,
@@ -132,6 +134,7 @@ export class CirFormComponent implements OnInit {
   }
 
   submitPersonalDetail() {
+    this.captchaError = !this.captchaToken;
     this.personalDetailForm.markAllAsTouched();
     const data = {
       name: this.personalDetailForm.controls['name'].value || '',
@@ -144,7 +147,8 @@ export class CirFormComponent implements OnInit {
       postalCode: this.personalDetailForm.controls['postalCode'].value || '',
       currentWork: this.personalDetailForm.controls['currentWork'].value || '',
       lookingFor: this.selectedRoles.join(',') || this.lookingFor,
-      noticePeriodDay: this.personalDetailForm.controls['noticePeriodDay'].value || ''
+      noticePeriodDay: this.personalDetailForm.controls['noticePeriodDay'].value || '',
+      captchaToken: this.captchaToken,
     }
     localStorage.setItem('rmsPersonalDetails', JSON.stringify(data));
     this.router.navigate(['/cir/cir-accordian-card-details']);
@@ -171,5 +175,15 @@ export class CirFormComponent implements OnInit {
     // }, (error) => {
     //   this.notificationService.showError('Fill all the fields to proceed to next Page');
     // });
+  }
+
+  onCaptchaResolved(token: string | null): void {
+    if (token) {
+      this.captchaToken = token; // Set the resolved token
+      this.captchaError = false; // Clear error
+    } else {
+      this.captchaToken = ''; // Reset if CAPTCHA fails to resolve
+      this.captchaError = true; // Show error
+    }
   }
 }

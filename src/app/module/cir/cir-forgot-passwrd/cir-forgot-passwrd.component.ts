@@ -14,6 +14,8 @@ import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 export class CirForgotPasswrdComponent implements OnInit {
 
   forgotpasswordForm: FormGroup;
+  captchaToken: string = '';
+  captchaError = false;
 
   constructor(
     private router: Router,
@@ -31,8 +33,14 @@ export class CirForgotPasswrdComponent implements OnInit {
 
   submit() {
     this.forgotpasswordForm.markAllAsTouched();
-    if (this.forgotpasswordForm.valid) {
-      this.cirservice.forgotpassword(this.forgotpasswordForm.value).subscribe((response) => {
+    this.captchaError = !this.captchaToken;
+    if (this.forgotpasswordForm.valid && this.captchaToken) {
+
+      const forgatDate={
+        ...this.forgotpasswordForm.value,
+        captchaToken: this.captchaToken,
+      }
+      this.cirservice.forgotpassword(forgatDate).subscribe((response) => {
         if (response?.status == true) {
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
@@ -43,6 +51,16 @@ export class CirForgotPasswrdComponent implements OnInit {
       }, (error) => {
         this.notificationService.showError('Invalid Email Address. Try again with registered Email.');
       })
+    }
+  }
+
+  onCaptchaResolved(token: string | null): void {
+    if (token) {
+      this.captchaToken = token; // Set the resolved token
+      this.captchaError = false; // Clear error
+    } else {
+      this.captchaToken = ''; // Reset if CAPTCHA fails to resolve
+      this.captchaError = true; // Show error
     }
   }
 
