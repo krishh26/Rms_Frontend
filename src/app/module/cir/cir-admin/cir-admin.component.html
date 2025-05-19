@@ -69,8 +69,8 @@
                   <div class="form-group">
                     <select class="form-control" formControlName="job_type">
                       <option value="" disabled selected hidden>Select Job type</option>
-                      <option value="qa">QA</option>
-                      <option value="nonqa">Non-QA</option>
+                      <option value="QA">QA</option>
+                      <option value="Non-QA">Non-QA</option>
                     </select>
                     <span class="text-danger"
                       *ngIf="jobForm.get('job_type')?.touched && jobForm.get('job_type')?.errors?.['required']">
