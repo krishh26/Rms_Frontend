@@ -103,10 +103,10 @@ export class AcrDatabaseDetailsComponent implements OnInit {
         "Day Rate",
         "Applicants",
         // "Upload Key",
-        "Uploaded Document",
-        "Timer End",
+        "Read Me Document",
+        // "Timer End",
         "Job Time Left",
-        "Status",
+        // "Status",
         "Action"
       ]
 
