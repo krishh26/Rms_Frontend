@@ -15,6 +15,7 @@ import { AcrResetPasswordComponent } from './acr-reset-password/acr-reset-passwo
 import { AcrAddCandidateComponent } from './acr-add-candidate/acr-add-candidate.component';
 import { AcrAdminLoginComponent } from './acr-admin-login/acr-admin-login.component';
 import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-password.component';
+import { AcrCreateContractComponent } from './acr-create-contract/acr-create-contract.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: "acr-create-job",
     component: AcrAdminComponent
+  },
+  {
+    path: "acr-create-contract",
+    component: AcrCreateContractComponent
   },
   {
     path: "acr-reset-password",

@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h4 class="mb-0"><strong>Contract Management</strong></h4>
+          <button type="button" class="btn btn-primary btn-round" (click)="openModal(contractModal)">
+            <i class="fa fa-plus"></i> Add Contract
+          </button>
+        </div>
+
+        <div class="card-body">
+          <!-- Loading State -->
+          <div *ngIf="loading" class="text-center py-4">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading contracts...</p>
+          </div>
+
+          <!-- Contract List -->
+          <div *ngIf="!loading" class="table-responsive">
+            <table class="table table-striped table-hover" *ngIf="contracts.length > 0">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Created Date</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contract of contracts; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ contract.title || 'N/A' }}</td>
+                  <td>{{ contract.createdAt ? (contract.createdAt | date:'dd/MM/yyyy') : 'N/A' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-primary me-2">View</button>
+                    <button class="btn btn-sm btn-outline-success me-2" (click)="editContract(contractModal, contract)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteContract(contract)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- No contracts message -->
+            <div *ngIf="contracts.length === 0" class="text-center py-5">
+              <div class="mb-3">
+                <i class="fa fa-file-contract fa-5x text-muted"></i>
+              </div>
+              <h5 class="text-muted">No contracts found</h5>
+              <p class="text-muted">Click "Add Contract" to create your first contract.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Add Contract -->
+<ng-template #contractModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ isEditMode ? 'Edit Contract' : 'Add New Contract' }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="contractForm" (ngSubmit)="submit()">
+      <div class="form-group mb-3">
+        <label for="title" class="form-label">
+          Contract Title <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          placeholder="Enter Contract Title"
+          formControlName="title">
+        <div class="text-danger mt-1"
+             *ngIf="contractForm.get('title')?.touched && contractForm.get('title')?.errors?.['required']">
+          Please enter the contract title.
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" (click)="closeModal()">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="contractForm.invalid || loading">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+          {{ loading ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Update Contract' : 'Create Contract') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

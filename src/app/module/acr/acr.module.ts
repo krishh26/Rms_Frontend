@@ -25,6 +25,7 @@ import { AcrForgotPasswordComponent } from './acr-forgot-password/acr-forgot-pas
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
+import { AcrCreateContractComponent } from './acr-create-contract/acr-create-contract.component';
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import { environment } from 'src/environments/environment';
     AcrResetPasswordComponent,
     AcrAddCandidateComponent,
     AcrAdminLoginComponent,
-    AcrForgotPasswordComponent
+    AcrForgotPasswordComponent,
+    AcrCreateContractComponent
   ],
   providers: [
     NgbActiveModal, // Add this line

@@ -40,6 +40,7 @@ export class AcrAdminComponent implements OnInit {
       day_rate: new FormControl('', [Validators.required]),
       status: new FormControl('', [Validators.required]),
       upload: new FormControl('', [Validators.required]),
+      jobExpireDate: new FormControl('', [Validators.required]),
       job_id: new FormControl({ value: null, disabled: true })
     });
 

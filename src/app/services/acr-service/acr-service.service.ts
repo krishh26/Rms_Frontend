@@ -23,6 +23,10 @@ export enum AcrEndPoint {
   ACR_APPLY_JOBS = '/user/apply-job',
   DELETE_JOB = '/acr/jobs/',
   GET_CIR_JOB_LIST = '/acr/jobs/cir',
+  CREATE_CONTRACT = '/acr-contract',
+  GET_CONTRACT_LIST = '/acr-contract',
+  UPDATE_CONTRACT = '/acr-contract',
+  DELETE_CONTRACT = '/acr-contract',
 }
 
 @Injectable({
@@ -168,6 +172,26 @@ export class AcrServiceService {
   deleteJob(id: any): Observable<any> {
     return this.httpClient
       .delete<any>(this.baseUrl + AcrEndPoint.DELETE_JOB + id);
+  }
+
+  createContract(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + AcrEndPoint.CREATE_CONTRACT, payload);
+  }
+
+  updateContract(id: string, payload: any): Observable<any> {
+    return this.httpClient
+      .put<any>(this.baseUrl + AcrEndPoint.UPDATE_CONTRACT + '/' + id, payload);
+  }
+
+  deleteContract(id: string): Observable<any> {
+    return this.httpClient
+      .delete<any>(this.baseUrl + AcrEndPoint.DELETE_CONTRACT + '/' + id);
+  }
+
+  getContractList(): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + AcrEndPoint.GET_CONTRACT_LIST);
   }
 
 }
