@@ -21,7 +21,7 @@
               1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
             </p>
             <p>Company Registration Number: 8856876</p>
-            <p>Email: Info@saivensolutions.co.uk</p>
+            <p>Email: Info&#64;saivensolutions.co.uk</p>
           </div>
         </div>
         <div class="col-lg-7 col-xl-7 col-12">
@@ -123,6 +123,22 @@
                     <span class="text-danger"
                       *ngIf="jobForm.get('start_date')?.touched && jobForm.get('start_date')?.errors?.['required']">
                       Please select position start date.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Job Expire Date<span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <input type="date" class="form-control" formControlName="jobExpireDate"
+                      placeholder="Job Expire Date">
+                    <span class="text-danger"
+                      *ngIf="jobForm.get('jobExpireDate')?.touched && jobForm.get('jobExpireDate')?.errors?.['required']">
+                      Please select job expire date.
                     </span>
                   </div>
                 </div>

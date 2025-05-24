@@ -32,6 +32,7 @@
             <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
             <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Role Details</th>
             <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply Job</th>
+            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply By</th>
             <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Status</th>
           </tr>
         </thead>
@@ -58,7 +59,7 @@
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
                 <div *ngIf="!job.applied">
                   <button  class="btn btn-primary w-50"
-                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}" 
+                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}"
                     [disabled]="job.status === 'Applied' || job.status === 'Expired' || job.status === 'Inactive'"
                     (click)="openModal(job)">
                     apply
@@ -80,6 +81,7 @@
                 <span> If you have got more CV's email to : (jamie.thompson@saivensolutions.co.uk)</span>
               </ng-template>
             </td>
+            <td>{{job?.jobExpireDate}}</td>
             <td>{{job?.status}}</td>
 
           </tr>

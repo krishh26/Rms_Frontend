@@ -36,6 +36,7 @@ export class CirAdminComponent implements OnInit {
       no_of_roles: new FormControl('', [Validators.required]),
       job_type: new FormControl('', [Validators.required]),
       start_date: new FormControl('', [Validators.required]),
+      jobExpireDate: new FormControl('', [Validators.required]),
       publish_date: new FormControl(formattedDate, [Validators.required]),
       client_name: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
