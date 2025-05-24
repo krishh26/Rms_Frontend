@@ -27,4 +27,9 @@ export class HeaderComponent implements OnInit {
     this.localStorageService.clearStorage();
     this.router.navigateByUrl('/acr/acr-admin-login')
   }
+
+  logoutDatabaseUser() {
+    this.localStorageService.clearStorage();
+    this.router.navigateByUrl('/database/database-login')
+  }
 }

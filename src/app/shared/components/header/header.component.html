@@ -12,6 +12,9 @@
                     Contract</a>
                 <button class="btn btn-sm btn-danger" (click)="logoutAcrAdmin()">Logout</button>
             </div>
+            <div class="d-flex align-items-center gap-4 pe-4" *ngIf="loginUser.role == 'DATA_BASE_USER'">
+              <button class="btn btn-sm btn-danger" (click)="logoutDatabaseUser()">Logout</button>
+          </div>
         </div>
     </div>
 </header>
