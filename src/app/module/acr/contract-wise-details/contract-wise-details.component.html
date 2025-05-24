@@ -1,38 +1,40 @@
-<div class="container-fluid">
+<div class="container-fluid py-3">
   <div class="row">
     <div class="col-12">
       <div class="card shadow">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <h4 class="mb-0"><strong>Contract Wise Details</strong></h4>
+        <div class="card-header d-flex justify-content-between align-items-center py-3 px-4">
           <div>
-            <button type="button" class="btn btn-primary btn-round me-2" (click)="openAddDetailsModal(addDetailsModal)">
-              <i class="fa fa-plus"></i> Add Details
+            <h4 class="mb-0"><strong>Contract Wise Details</strong></h4>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-primary btn-round" (click)="openAddDetailsModal(addDetailsModal)">
+              <i class="fa fa-plus me-2"></i> Add Details
             </button>
             <button type="button" class="btn btn-secondary btn-round" (click)="goBack()">
-              <i class="fa fa-arrow-left"></i> Back to Contract Management
+              <i class="fa fa-arrow-left me-2"></i> Back to Contract Management
             </button>
           </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body px-4 py-3">
           <!-- Loading State -->
-          <div *ngIf="loading" class="text-center py-4">
+          <div *ngIf="loading" class="text-center py-5">
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
-            <p class="mt-2">Loading contract details...</p>
+            <p class="mt-3">Loading contract details...</p>
           </div>
 
           <!-- Contract Details List -->
           <div *ngIf="!loading" class="table-responsive">
-            <table class="table table-striped table-hover" *ngIf="contractDetails.length > 0">
+            <table class="table table-striped table-hover align-middle" *ngIf="contractDetails.length > 0">
               <thead class="table-dark">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Created Date</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col" class="py-3">#</th>
+                  <th scope="col" class="py-3">Title</th>
+                  <th scope="col" class="py-3">Description</th>
+                  <th scope="col" class="py-3">Created Date</th>
+                  <th scope="col" class="py-3 text-end">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,12 +49,12 @@
                     <span *ngIf="!detail.description">N/A</span>
                   </td>
                   <td>{{ detail.createdAt ? (detail.createdAt | date:'dd/MM/yyyy HH:mm') : 'N/A' }}</td>
-                  <td>
+                  <td class="text-end">
                     <button class="btn btn-sm btn-outline-success me-2" (click)="editDetail(addDetailsModal, detail)">
-                      <i class="fa fa-edit"></i> Edit
+                      <i class="fa fa-edit me-1"></i> Edit
                     </button>
                     <button class="btn btn-sm btn-outline-danger" (click)="deleteDetail(detail)">
-                      <i class="fa fa-trash"></i> Delete
+                      <i class="fa fa-trash me-1"></i> Delete
                     </button>
                   </td>
                 </tr>
@@ -61,13 +63,13 @@
 
             <!-- No contract details message -->
             <div *ngIf="contractDetails.length === 0" class="text-center py-5">
-              <div class="mb-3">
+              <div class="mb-4">
                 <i class="fa fa-file-contract fa-5x text-muted"></i>
               </div>
-              <h5 class="text-muted">No contract details found</h5>
-              <p class="text-muted">There are no contract details available at the moment.</p>
+              <h5 class="text-muted mb-3">No contract details found</h5>
+              <p class="text-muted mb-4">There are no contract details available at the moment.</p>
               <button type="button" class="btn btn-primary" (click)="openAddDetailsModal(addDetailsModal)">
-                <i class="fa fa-plus"></i> Add First Contract Detail
+                <i class="fa fa-plus me-2"></i> Add First Contract Detail
               </button>
             </div>
           </div>
@@ -79,45 +81,41 @@
 
 <!-- Modal for Add Details -->
 <ng-template #addDetailsModal let-modal>
-  <div class="modal-header">
+  <div class="modal-header py-3">
     <h4 class="modal-title">{{ isEditMode ? 'Edit Contract Details' : 'Add Contract Details' }}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body py-3">
     <form [formGroup]="detailsForm" (ngSubmit)="submitDetails()">
-
-
-      <div class="form-group mb-3">
-        <label for="title" class="form-label">
+      <div class="form-group mb-4">
+        <label for="title" class="form-label mb-2">
           Title <span class="text-danger">*</span>
         </label>
         <input type="text" id="title" class="form-control" placeholder="Enter Title" formControlName="title">
-        <div class="text-danger mt-1"
+        <div class="text-danger mt-2"
           *ngIf="detailsForm.get('title')?.touched && detailsForm.get('title')?.errors?.['required']">
           Please enter the title.
         </div>
       </div>
 
-      <div class="form-group mb-3">
-        <label for="description" class="form-label">
+      <div class="form-group mb-4">
+        <label for="description" class="form-label mb-2">
           Description <span class="text-danger">*</span>
         </label>
         <textarea id="description" class="form-control" rows="4" placeholder="Enter Description"
           formControlName="description"></textarea>
-        <div class="text-danger mt-1"
+        <div class="text-danger mt-2"
           *ngIf="detailsForm.get('description')?.touched && detailsForm.get('description')?.errors?.['required']">
           Please enter the description.
         </div>
       </div>
 
-      <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary me-2" (click)="closeModal()">
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary px-4" (click)="closeModal()">
           Cancel
         </button>
-        <button type="submit" class="btn btn-primary" [disabled]="detailsForm.invalid || isSubmitting">
+        <button type="submit" class="btn btn-primary px-4" [disabled]="detailsForm.invalid || isSubmitting">
           <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
           {{ isSubmitting ? (isEditMode ? 'Updating...' : 'Adding...') : (isEditMode ? 'Update Details' : 'Add Details') }}
         </button>
