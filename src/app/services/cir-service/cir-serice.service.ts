@@ -17,7 +17,7 @@ export enum CirEndPoint {
   USER_CLIENT_UPDATE = '/user/update/',
   CREATE_CIR_JOB = '/acr/jobs/cir',
   FUTURE_CARD = '/futures/card/',
-  JOB_ROLE = 'futures/card/',
+  JOB_ROLE = '/futures/card/',
   JOB_ROLE_LIST = '/futures/card/'
 }
 
