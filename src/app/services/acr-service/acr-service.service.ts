@@ -198,9 +198,11 @@ export class AcrServiceService {
       .get<any>(this.baseUrl + AcrEndPoint.GET_CONTRACT_LIST);
   }
 
-  getContractDetails(): Observable<any> {
+  getContractDetails(contractId: string): Observable<any> {
+    const params = new HttpParams().set('contractId', contractId);
+
     return this.httpClient
-      .get<any>(this.baseUrl + AcrEndPoint.GET_CONTRACT_DETAILS);
+      .get<any>(this.baseUrl + AcrEndPoint.GET_CONTRACT_DETAILS, { params });
   }
 
   createContractDetails(payload: any): Observable<any> {

@@ -44,7 +44,7 @@ export class ContractWiseDetailsComponent implements OnInit {
 
   loadContractDetails(): void {
     this.loading = true;
-    this.acrService.getContractDetails().subscribe({
+    this.acrService.getContractDetails(this.contractId).subscribe({
       next: (response) => {
         this.contractDetails = response.data || response || [];
         this.loading = false;

@@ -43,7 +43,7 @@ const routes: Routes = [
     path: "acr-create-contract",
     component: AcrCreateContractComponent
   },
-    {    path: "contract-wise-details/:contractId",    component: ContractWiseDetailsComponent  },
+  { path: "contract-wise-details/:contractId", component: ContractWiseDetailsComponent },
   {
     path: "acr-reset-password",
     component: AcrResetPasswordComponent
