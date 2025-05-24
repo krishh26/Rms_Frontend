@@ -14,10 +14,13 @@ export class HeaderComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private router: Router
   ) {
-    this.loginUser = this.localStorageService.getLogger();
+    // this.loginUser = this.localStorageService.getLogger();
   }
 
   ngOnInit() {
+    setInterval(() => {
+      this.loginUser = this.localStorageService.getLogger();
+    }, 500);
   }
 
   logoutAcrAdmin() {
