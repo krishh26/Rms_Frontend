@@ -81,7 +81,7 @@
                 <span> If you have got more CV's email to : (jamie.thompson@saivensolutions.co.uk)</span>
               </ng-template>
             </td>
-            <td>{{job?.jobExpireDate}}</td>
+            <td>{{job?.jobExpireDate | date:'dd/MM/yyyy'}}</td>
             <td>{{job?.status}}</td>
 
           </tr>
