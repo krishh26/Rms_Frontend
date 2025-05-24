@@ -12,7 +12,13 @@
     <div class="row">
       <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12 mb-4" *ngFor="let card of futureCards">
         <div class="FlatCard shadow border-radius6" [routerLink]="'/cir/create-job-role/' + card._id">
-          <i class="fas fa-trash delete-icon" (click)="deleteCard($event,card._id)"></i>
+          <div class="card-actions">
+            <label class="switch" (click)="$event.stopPropagation()">
+              <input type="checkbox" [checked]="card.active === 1" (change)="toggleCardStatus($event, card._id)">
+              <span class="slider round"></span>
+            </label>
+            <i class="fas fa-trash delete-icon" (click)="deleteCard($event,card._id)"></i>
+          </div>
           <div class="card-body text-center p-3">
             <img src="../../../../assets/img/location.png" width="64" class="mb-3" />
             <p class="text-bold">{{ card.name || "No Name Available" }}</p>

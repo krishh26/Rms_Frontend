@@ -94,4 +94,28 @@ export class CreateFutureCardComponent {
     });
   }
 
+  toggleCardStatus(event: any, id: string) {
+    event.stopPropagation();
+    const isActive = event.target.checked ? 1 : 0;
+
+    this.showLoader = true;
+    this.cirservice.updateFutureCardStatus(id, { active: isActive }).subscribe((response: any) => {
+      if (response?.status == true) {
+        this.showLoader = false;
+        this.notificationService.showSuccess(isActive ? 'Card activated successfully' : 'Card deactivated successfully');
+        this.getFuturecard(); // Refresh the list to get updated data
+      } else {
+        this.showLoader = false;
+        this.notificationService.showError(response?.message);
+        // Revert the toggle if API call fails
+        event.target.checked = !event.target.checked;
+      }
+    }, (error: any) => {
+      this.showLoader = false;
+      this.notificationService.showError(error?.message);
+      // Revert the toggle if API call fails
+      event.target.checked = !event.target.checked;
+    });
+  }
+
 }

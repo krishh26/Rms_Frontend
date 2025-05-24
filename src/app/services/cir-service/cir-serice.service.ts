@@ -116,16 +116,19 @@ export class CirSericeService {
       .delete<any>(this.baseUrl + CirEndPoint.FUTURE_CARD + id);
   }
 
+  updateFutureCardStatus(id: string, payload: any): Observable<any> {
+    return this.httpClient
+      .put<any>(this.baseUrl + CirEndPoint.FUTURE_CARD + id, payload);
+  }
+
   createJobRole(payload: any, id: string): Observable<any> {
     return this.httpClient
       .post<any>(this.baseUrl + CirEndPoint.JOB_ROLE + id, payload);
   }
 
-
   getJobRoleList(payload:any , id : any): Observable<any> {
     return this.httpClient
       .get<any>(this.baseUrl + CirEndPoint.JOB_ROLE_LIST + id);
   }
-
 
 }
