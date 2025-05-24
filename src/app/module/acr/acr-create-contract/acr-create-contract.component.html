@@ -34,11 +34,22 @@
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ contract.title || 'N/A' }}</td>
                   <td>{{ contract.createdAt ? (contract.createdAt | date:'dd/MM/yyyy') : 'N/A' }}</td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-primary me-2">View</button>
+                  <!-- <td>
+                    <button class="btn btn-sm btn-outline-primary me-2" (click)="viewContractDetails(contract)">View</button>
                     <button class="btn btn-sm btn-outline-success me-2" (click)="editContract(contractModal, contract)">Edit</button>
                     <button class="btn btn-sm btn-outline-danger" (click)="deleteContract(contract)">Delete</button>
+                  </td> -->
+
+                  <td>
+                    <button class="btn btn-sm btn-outline-primary me-2" (click)="viewContractDetails(contract)">View</button>
+                    <button class="btn btn-sm btn-outline-success me-2" (click)="editContract(contractModal, contract)">
+                      <i class="fa fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteContract(contract)">
+                      <i class="fa fa-trash"></i> Delete
+                    </button>
                   </td>
+
                 </tr>
               </tbody>
             </table>

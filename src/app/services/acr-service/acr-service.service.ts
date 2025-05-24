@@ -27,6 +27,10 @@ export enum AcrEndPoint {
   GET_CONTRACT_LIST = '/acr-contract',
   UPDATE_CONTRACT = '/acr-contract',
   DELETE_CONTRACT = '/acr-contract',
+  GET_CONTRACT_DETAILS = '/acr-detail-contract',
+  CREATE_CONTRACT_DETAILS = '/acr-detail-contract',
+  UPDATE_CONTRACT_DETAILS = '/acr-detail-contract',
+  DELETE_CONTRACT_DETAILS = '/acr-detail-contract',
 }
 
 @Injectable({
@@ -194,4 +198,23 @@ export class AcrServiceService {
       .get<any>(this.baseUrl + AcrEndPoint.GET_CONTRACT_LIST);
   }
 
+  getContractDetails(): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + AcrEndPoint.GET_CONTRACT_DETAILS);
+  }
+
+  createContractDetails(payload: any): Observable<any> {
+    return this.httpClient
+      .post<any>(this.baseUrl + AcrEndPoint.CREATE_CONTRACT_DETAILS, payload);
+  }
+
+  updateContractDetails(id: string, payload: any): Observable<any> {
+    return this.httpClient
+      .put<any>(this.baseUrl + AcrEndPoint.UPDATE_CONTRACT_DETAILS + '/' + id, payload);
+  }
+
+  deleteContractDetails(id: string): Observable<any> {
+    return this.httpClient
+      .delete<any>(this.baseUrl + AcrEndPoint.DELETE_CONTRACT_DETAILS + '/' + id);
+  }
 }

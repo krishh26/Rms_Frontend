@@ -155,4 +155,8 @@ export class AcrCreateContractComponent implements OnInit {
       }
     });
   }
+
+  viewContractDetails(contract: any): void {
+    this.router.navigate(['/acr/contract-wise-details', contract._id]);
+  }
 }
