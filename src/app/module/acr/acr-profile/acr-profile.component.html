@@ -22,7 +22,7 @@
               1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
             </p>
             <p>Company Registration Number: 8856876</p>
-            <p>Email: Info@saivensolutions.co.uk</p>
+            <p>Email: Info&#64;saivensolutions.co.uk</p>
           </div>
         </div>
 
@@ -118,7 +118,7 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Code like +44"
-                      formControlName="phoneNumber" >
+                      formControlName="phoneNumberCountryCode" >
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -199,17 +199,20 @@
                     <label for="password">Password:</label>
                   </div>
                   <div class="col-md-8">
-                    <input id="password" type="password" class="form-control" placeholder="Password"
-                      formControlName="password">
-                    <span *ngIf="!showPassword" class="fas fa-eye" (click)="showHidePass('password')"></span>
-                    <span *ngIf="showPassword" class="fas fa-eye-slash" (click)="showHidePass('password')"></span>
+                    <div class="form-group password-group">
+                      <input id="password" [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Password"
+                        formControlName="password">
+                      <span class="toggle-password fas"
+                        [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                        (click)="showHidePass('password')"></span>
+                    </div>
                     <span class="text-danger"
                       *ngIf="agencyForm?.controls?.['password']?.touched && agencyForm?.controls?.['password']?.errors?.['required']">
                       Please enter a password.
                     </span>
                     <span class="text-danger"
                       *ngIf="agencyForm?.controls?.['password']?.touched && agencyForm?.controls?.['password']?.errors?.['pattern']">
-                      Password must contain a capital letter, a number, and '@'.
+                      Password must contain a capital letter, a number, and '&#64;'.
                     </span>
                   </div>
                 </div>
@@ -219,20 +222,28 @@
                     <label for="confirmPassword">Confirm Password:</label>
                   </div>
                   <div class="col-md-8">
-                    <input id="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
-                      formControlName="confirmPassword">
-                    <span *ngIf="!confirmShowPassword" class="fas fa-eye"
-                      (click)="showHidePass('confirmPassword')"></span>
-                    <span *ngIf="confirmShowPassword" class="fas fa-eye-slash"
-                      (click)="showHidePass('confirmPassword')"></span>
+                    <div class="form-group password-group">
+                      <input id="confirmPassword" [type]="confirmShowPassword ? 'text' : 'password'" class="form-control" placeholder="Confirm Password"
+                        formControlName="confirmPassword">
+                      <span class="toggle-password fas"
+                        [ngClass]="confirmShowPassword ? 'fa-eye-slash' : 'fa-eye'"
+                        (click)="showHidePass('confirmPassword')"></span>
+                    </div>
                     <span class="text-danger"
                       *ngIf="agencyForm?.controls?.['confirmPassword']?.touched && agencyForm?.controls?.['confirmPassword']?.errors?.['required']">
                       Please confirm your password.
                     </span>
                     <span class="text-danger"
                       *ngIf="agencyForm?.controls?.['confirmPassword']?.touched && agencyForm?.controls?.['confirmPassword']?.errors?.['pattern']">
-                      Password must contain a capital letter, a number, and '@'.
+                      Password must contain a capital letter, a number, and '&#64;'.
                     </span>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-8">
+                    <button type="button" class="btn btn-success" (click)="updatePassword()">Update Password</button>
                   </div>
                 </div>
               </div>

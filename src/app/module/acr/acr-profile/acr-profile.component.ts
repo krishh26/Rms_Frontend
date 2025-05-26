@@ -87,23 +87,12 @@ export class AcrProfileComponent implements OnInit {
   }
 
   public showHidePass(type: string): void {
-    if (type == 'password' && this.password === 'password') {
-      this.password = 'text';
-      this.showPassword = true;
-    } else {
-      this.password = 'password';
-      this.showPassword = false;
-    }
-
-    if (type !== 'password' && this.confirmPassword === 'password') {
-      this.confirmPassword = 'text';
-      this.confirmShowPassword = true;
-    } else {
-      this.confirmPassword = 'password';
-      this.confirmShowPassword = false;
+    if (type === 'password') {
+      this.showPassword = !this.showPassword;
+    } else if (type === 'confirmPassword') {
+      this.confirmShowPassword = !this.confirmShowPassword;
     }
   }
-
 
   submit() {
     if (this.agencyForm.controls['password']?.value || this.agencyForm.controls['confirmPassword']?.value) {
@@ -147,6 +136,36 @@ export class AcrProfileComponent implements OnInit {
 
   togglePasswordFields() {
     this.showPasswordFields = !this.showPasswordFields;
+  }
+
+  updatePassword() {
+    if (!this.agencyForm.controls['password']?.value || !this.agencyForm.controls['confirmPassword']?.value) {
+      return this.notificationService.showError('Please enter both password and confirm password');
+    }
+
+    if (this.agencyForm.controls['password']?.value !== this.agencyForm.controls['confirmPassword']?.value) {
+      return this.notificationService.showError('Password and confirm password do not match');
+    }
+
+    const passwordData = {
+      password: this.agencyForm.controls['password']?.value
+    };
+
+    const token = this.localStorageService.getLoggerToken();
+
+    this.acrSericeService.resetpassword(passwordData, token).subscribe((response) => {
+      if (response?.status) {
+        this.notificationService.showSuccess(response?.message || 'Password updated successfully');
+        // Clear password fields
+        this.agencyForm.controls['password']?.setValue('');
+        this.agencyForm.controls['confirmPassword']?.setValue('');
+        this.showPasswordFields = false;
+      } else {
+        this.notificationService.showError(response?.message || 'Password not updated');
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.message || 'Password not updated');
+    });
   }
 
 }

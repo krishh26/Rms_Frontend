@@ -120,3 +120,23 @@ h6 {
     height: 100%;
     border-radius: 100%;
  }
+
+/* Password field styling */
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.toggle-password:hover {
+  color: #007f83;
+}
