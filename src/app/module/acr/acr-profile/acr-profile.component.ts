@@ -106,14 +106,6 @@ export class AcrProfileComponent implements OnInit {
 
 
   submit() {
-    // if (!this.agencyForm.controls['name']?.value) {
-    //   return this.notificationService.showError('Please enter name');
-    // }
-
-    // if (!this.agencyForm.controls['currentLocation']?.value) {
-    //   return this.notificationService.showError('Please enter currentLocation');
-    // }
-
     if (this.agencyForm.controls['password']?.value || this.agencyForm.controls['confirmPassword']?.value) {
       if (this.agencyForm.controls['password']?.value !== this.agencyForm.controls['confirmPassword']?.value) {
         return this.notificationService.showError('Password and confirm password not matched');
@@ -121,9 +113,21 @@ export class AcrProfileComponent implements OnInit {
     }
 
     const data: any = {
-      //"name": this.agencyForm.controls['name']?.value,
-      "currentLocation": this.agencyForm.controls['currentLocation']?.value
-    }
+      profile: this.agencyForm.controls['profile']?.value,
+      agencyName: this.agencyForm.controls['agencyName']?.value,
+      location: this.agencyForm.controls['location']?.value,
+      numberOfBranchesInUK: this.agencyForm.controls['numberOfBranchesInUK']?.value,
+      personName: this.agencyForm.controls['personName']?.value,
+      personDesignation: this.agencyForm.controls['personDesignation']?.value,
+      personEmail: this.agencyForm.controls['personEmail']?.value,
+      phoneNumberCountryCode: this.agencyForm.controls['phoneNumberCountryCode']?.value,
+      phoneNumber: this.agencyForm.controls['phoneNumber']?.value,
+      secondaryContectName: this.agencyForm.controls['secondaryContectName']?.value,
+      secondaryDesignation: this.agencyForm.controls['secondaryDesignation']?.value,
+      secondaryEmail: this.agencyForm.controls['secondaryEmail']?.value,
+      secondaryPhoneNumber: this.agencyForm.controls['secondaryPhoneNumber']?.value,
+      secondaryPhoneNumberCountryCode: this.agencyForm.controls['secondaryPhoneNumberCountryCode']?.value
+    };
 
     if (this.agencyForm.controls['password']?.value) {
       data['password'] = this.agencyForm.controls['password']?.value;
@@ -131,15 +135,13 @@ export class AcrProfileComponent implements OnInit {
 
     this.acrSericeService.updateregister('', data).subscribe((response) => {
       if (response?.status) {
-        console.log('response', response)
-        // this.localStorageService.setLogger(response?.data);
-        this.notificationService.showSuccess(response?.message || 'Detailed Updated successfully');
-        // window.location.reload();
+        console.log('response', response);
+        this.notificationService.showSuccess(response?.message || 'Details Updated successfully');
       } else {
-        this.notificationService.showError(response?.message || 'Detailed Not Updated.');
+        this.notificationService.showError(response?.message || 'Details Not Updated.');
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'Detailed Not Updated.');
+      this.notificationService.showError(error?.message || 'Details Not Updated.');
     });
   }
 
