@@ -16,7 +16,7 @@
       <div class="col-lg-4 col-xl-4 col-12 mob-mb1">
         <div class="form-group mb-0">
           <select class="form-control" [(ngModel)]="selectedStatus" (change)="searchtext()">
-            <option value="" disabled>Select Status</option>
+            <option value="">All Status</option>
             <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
           </select>
         </div>
@@ -91,7 +91,7 @@
 
 
               <ng-template #emailMessage>
-                <span> If you have got more CV's email to : (jamie.thompson@saivensolutions.co.uk)</span>
+                <span> If you have got more CV's email to : (jamie.thompson&#64;saivensolutions.co.uk)</span>
               </ng-template>
             </td>
             <td>{{job.status}}</td>
@@ -154,7 +154,7 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <p class="text-bold text-center" style="color: #218838;">Upload all the CVs at once to Submit.</p>
-      <p class="text-bold text-center" style="color: #218838;">You can upload only the number of CVs you selected earlier. If you have additional CVs to submit, please contact jamie.thompson@saivensolutions.co.uk</p>
+      <p class="text-bold text-center" style="color: #218838;">You can upload only the number of CVs you selected earlier. If you have additional CVs to submit, please contact jamie.thompson&#64;saivensolutions.co.uk</p>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
           <table class="table table-bordered">

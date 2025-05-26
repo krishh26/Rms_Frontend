@@ -23,6 +23,8 @@ export class CirAllJobsComponent implements OnInit {
   resourcesForm!: FormGroup;
   candidateForm!: FormGroup;
   joblist: any = [];
+  allJobs: any = []; // Store all jobs from API
+  filteredJobs: any = []; // Store filtered jobs for display
   jobDetails: any;
   cvDetails: any;
   searchText: any;
@@ -58,6 +60,7 @@ export class CirAllJobsComponent implements OnInit {
       let storeTest = res;
       this.searchText = res.toLowerCase();
     });
+    this.page = 1; // Initialize page
     this.startTimers();
     this.getProjectList();
   }
@@ -73,22 +76,34 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   searchtext() {
-    Payload.projectList.page = String(this.page);
-    Payload.projectList.limit = String(this.pagesize);
-    Payload.projectList.keyword = this.searchText || '';
-    Payload.projectList.status = this.selectedStatus;
-    this.acrservice.getJobList(Payload.projectList).subscribe((response) => {
-      this.joblist = [];
-      this.totalRecords = 0;
-      if (response?.status == true) {
-        this.joblist = response?.data;
-        this.totalRecords = response?.meta_data?.items;
-      } else {
-        this.notificationService.showError(response?.message);
-      }
-    }, (error) => {
-      this.notificationService.showError(error?.message);
-    });
+    this.page = 1; // Reset to first page when searching/filtering
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    let filtered = [...this.allJobs];
+
+    // Apply search text filter
+    if (this.searchText && this.searchText.trim()) {
+      const searchLower = this.searchText.toLowerCase();
+      filtered = filtered.filter((job: any) =>
+        job.job_title?.toLowerCase().includes(searchLower) ||
+        job.job_id?.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Apply status filter
+    if (this.selectedStatus && this.selectedStatus.trim()) {
+      filtered = filtered.filter((job: any) => job.status === this.selectedStatus);
+    }
+
+    this.filteredJobs = filtered;
+    this.totalRecords = filtered.length;
+
+    // Apply pagination
+    const startIndex = (this.page - 1) * this.pagesize;
+    const endIndex = startIndex + this.pagesize;
+    this.joblist = filtered.slice(startIndex, endIndex);
   }
 
   removeAll() {
@@ -261,15 +276,23 @@ export class CirAllJobsComponent implements OnInit {
   }
 
 
-  getProjectList() {
-    Payload.projectList.page = String(this.page);
-    Payload.projectList.limit = String(this.pagesize);
-    this.acrservice.getJobList(Payload.projectList).subscribe((response) => {
+      getProjectList() {
+    // Create a payload with empty status to get all data
+    const apiPayload = {
+      page: '1',
+      limit: '10000', // Get all data
+      keyword: '', // Clear keyword for API call
+      status: '' // Empty status to get all data
+    };
+
+    this.acrservice.getJobList(apiPayload).subscribe((response) => {
       this.joblist = [];
+      this.allJobs = [];
+      this.filteredJobs = [];
       this.totalRecords = 0;
       if (response?.status == true) {
-        this.joblist = response?.data;
-        this.totalRecords = response?.meta_data?.items;
+        this.allJobs = response?.data || [];
+        this.applyFilters(); // Apply current filters after getting data
       } else {
         this.notificationService.showError(response?.message);
       }
@@ -280,7 +303,7 @@ export class CirAllJobsComponent implements OnInit {
 
   paginate(page: number) {
     this.page = page;
-    this.getProjectList();
+    this.applyFilters(); // Use frontend filtering instead of API call
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
