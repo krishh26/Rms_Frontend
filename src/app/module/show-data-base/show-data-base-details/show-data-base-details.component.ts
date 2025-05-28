@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
+import { CirSericeService } from 'src/app/services/cir-service/cir-serice.service';
 import { DatabaseService } from 'src/app/services/database-service/database.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { pagination } from 'src/app/shared/constant/pagination.constant';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-show-data-base-details',
@@ -30,6 +33,11 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   ACRFilter: any = {
 
   }
+
+  JobFilter: any = {
+    keyword: ""
+  }
+
   cardFilter: any = {
     rolesInDemand: '',
     roleDescription: '',
@@ -45,7 +53,9 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private databaseService: DatabaseService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private acrServiceService: AcrServiceService,
+    private cirServiceService: CirSericeService
   ) {
     this.route.params.pipe().subscribe((params) => {
       if (params['type']) {
@@ -92,6 +102,21 @@ export class ShowDataBaseDetailsComponent implements OnInit {
       ]
       filter = this.userFilter;
 
+      // Here is call get details API for table
+      const payload = {
+        modelName: this.pageType,
+        page: this.page,
+        page_size: this.pagesize
+      }
+      this.databaseService.getModelData(payload, filter).subscribe((response) => {
+        if (response?.status) {
+          this.tableData = response?.data;
+          this.totalRecords = response?.meta_data?.items;
+        } else {
+          this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        }
+      })
+
     } else if (this.pageType == 'ACRUser') {
       this.tableHeader = [
         'Agency Name',
@@ -112,35 +137,66 @@ export class ShowDataBaseDetailsComponent implements OnInit {
       filter = this.ACRFilter;
     } else if (this.pageType == 'card') {
       this.tableHeader = [
-        'Role Demand',
-        'Role Description',
-        'Type',
-        'Qualifications Certificate',
-        'Value A',
-        'Value B',
-        'Value C',
-        'Document',
+        'Name',
+        'Status',
         'Created At',
-        'Updated At'
+        'Action'
       ]
+
       filter = this.cardFilter;
+      const payload = {
+        page: this.page,
+        limit: this.pagesize,
+        keyword: this.JobFilter.keyword
+      }
+
+      // Here is call get details API for job
+      this.cirServiceService.getFutureCard(payload).subscribe((response) => {
+        if (response?.status) {
+          this.tableData = response?.data;
+          this.totalRecords = response?.meta_data?.items;
+        } else {
+          this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        }
+      });
+
     } else if (this.pageType == 'client') {
       this.tableHeader = ['Name', 'Gender', 'UserType', 'Location', 'JobType', 'Rate']
-    }
-    // Here is call get details API for table
-    const payload = {
-      modelName: this.pageType,
-      page: this.page,
-      page_size: this.pagesize
-    }
-    this.databaseService.getModelData(payload, filter).subscribe((response) => {
-      if (response?.status) {
-        this.tableData = response?.data;
-        this.totalRecords = response?.meta_data?.items;
-      } else {
-        this.notificationService.showError(response?.message || 'Resume not uploaded.')
+    } else if (this.pageType == 'Job') {
+      this.tableHeader = [
+        "Sr no",
+        "Job Title",
+        "Number of Roles",
+        "Start Date",
+        "Publish Date",
+        "Client Name",
+        "Location",
+        "Day Rate",
+        "Status",
+        // "Upload Key",
+        "Read Me Document",
+        // "Timer End",
+        "Job Expired Date",
+        // "Status",
+        "Action"
+      ]
+
+      const payload = {
+        page: this.page,
+        limit: this.pagesize,
+        keyword: this.JobFilter.keyword
       }
-    })
+
+      // Here is call get details API for job
+      this.acrServiceService.getCirJobList(payload).subscribe((response) => {
+        if (response?.status) {
+          this.tableData = response?.data;
+          this.totalRecords = response?.meta_data?.items;
+        } else {
+          this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        }
+      });
+    }
   }
 
   openDocument(document: any) {
@@ -164,6 +220,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     this.ACRFilter = {};
     this.cardFilter = {};
     this.userFilter = {};
+    this.JobFilter = {};
     this.getTableDetails();
   }
 
@@ -174,4 +231,59 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Function to be used for the delete job
+  deleteJob(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Do you want to delete this job ?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00B96F',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete!'
+    }).then((result: any) => {
+      if (result?.value) {
+        this.acrServiceService.deleteCIRJob(id).subscribe((response: any) => {
+          if (response?.status == true) {
+            this.notificationService.showSuccess('Job successfully deleted');
+            this.getTableDetails();
+          } else {
+            this.notificationService.showError(response?.message);
+          }
+        }, (error) => {
+          this.notificationService.showError(error?.message);
+        });
+      }
+    });
+  }
+
+  // Function to be used for the delete future card
+  deleteFutureCard(id: string) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Do you want to delete this card ?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00B96F',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete!'
+    }).then((result: any) => {
+      if (result?.value) {
+        this.cirServiceService.deleteFutureCard(id).subscribe((response: any) => {
+          if (response?.status == true) {
+            this.notificationService.showSuccess('Card successfully deleted');
+            this.getTableDetails();
+          } else {
+            this.notificationService.showError(response?.message);
+          }
+        }, (error) => {
+          this.notificationService.showError(error?.message);
+        });
+      }
+    });
+  }
+
+  redirectToCardDetailsPage(type: string) {
+    this.router.navigateByUrl('/database/card/details/' + type);
+  }
 }

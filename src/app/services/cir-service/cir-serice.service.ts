@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -101,9 +101,23 @@ export class CirSericeService {
       .get<any>(this.baseUrl + CirEndPoint.GET_CLIENT_ROLES);
   }
 
-  getFutureCard(): Observable<any> {
+  getFutureCard(params?: { page?: string | number, limit?: string | number, keyword?: string, status?: string, job_type?: string }): Observable<any> {
+    let queryParams = new HttpParams();
+    if (params?.page) {
+      queryParams = queryParams.set('page', params?.page);
+    }
+    if (params?.limit) {
+      queryParams = queryParams.set('limit', params?.limit);
+    }
+    if (params?.keyword) {
+      queryParams = queryParams.set('keyword', params?.keyword);
+    }
+    if (params?.job_type) {
+      queryParams = queryParams.set('job_type', params?.job_type);
+    }
+
     return this.httpClient
-      .get<any>(this.baseUrl + CirEndPoint.FUTURE_CARD);
+      .get<any>(this.baseUrl + CirEndPoint.FUTURE_CARD, { params: queryParams });
   }
 
   createFutureCard(payload: any): Observable<any> {
@@ -126,9 +140,9 @@ export class CirSericeService {
       .post<any>(this.baseUrl + CirEndPoint.JOB_ROLE + id, payload);
   }
 
-  getJobRoleList(payload:any , id : any): Observable<any> {
+  getJobRoleList(params: any, id: any): Observable<any> {
     return this.httpClient
-      .get<any>(this.baseUrl + CirEndPoint.JOB_ROLE_LIST + id);
+      .get<any>(this.baseUrl + CirEndPoint.JOB_ROLE_LIST + id, { params: params });
   }
 
 }

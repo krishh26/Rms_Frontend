@@ -22,6 +22,7 @@ export enum AcrEndPoint {
   GET_JOBID_LIST = '/acr/job/fetch/id',
   ACR_APPLY_JOBS = '/user/apply-job',
   DELETE_JOB = '/acr/jobs/',
+  DELETE_CIR_JOB = '/acr/jobs/cir/',
   GET_CIR_JOB_LIST = '/acr/jobs/cir',
   CREATE_CONTRACT = '/acr-contract',
   GET_CONTRACT_LIST = '/acr-contract',
@@ -101,14 +102,18 @@ export class AcrServiceService {
     return this.httpClient.get<any>(url, { params: queryParams });
   }
 
-  getCirJobList(params: { page: string, limit: string, keyword: string, status: string, job_type: string }): Observable<any> {
+  getCirJobList(params: { page: string | number, limit: string | number, keyword?: string, status?: string, job_type?: string }): Observable<any> {
 
     const url = `${this.baseUrl}${AcrEndPoint.GET_CIR_JOB_LIST}`;
     let queryParams = new HttpParams();
     queryParams = queryParams.set('page', params?.page);
     queryParams = queryParams.set('limit', params?.limit);
-    queryParams = queryParams.set('keyword', params?.keyword);
-    queryParams = queryParams.set('job_type', params?.job_type);
+    if (params?.keyword) {
+      queryParams = queryParams.set('keyword', params?.keyword);
+    }
+    if (params?.job_type) {
+      queryParams = queryParams.set('job_type', params?.job_type);
+    }
     return this.httpClient.get<any>(url, { params: queryParams });
   }
 
@@ -176,6 +181,11 @@ export class AcrServiceService {
   deleteJob(id: any): Observable<any> {
     return this.httpClient
       .delete<any>(this.baseUrl + AcrEndPoint.DELETE_JOB + id);
+  }
+
+  deleteCIRJob(id: any): Observable<any> {
+    return this.httpClient
+      .delete<any>(this.baseUrl + AcrEndPoint.DELETE_CIR_JOB + id);
   }
 
   createContract(payload: any): Observable<any> {

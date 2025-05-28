@@ -20,6 +20,10 @@ export class ShowDataBaseListComponent {
       tableName: "Card",
       type: 'card'
     },
+    {
+      tableName: "CIR Job",
+      type: 'Job'
+    },
     // {
     //   tableName: "Client",
     //   type: 'client'

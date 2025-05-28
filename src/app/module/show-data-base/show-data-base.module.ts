@@ -10,6 +10,7 @@ import { ShowDataBaseListComponent } from './show-data-base-list/show-data-base-
 import { ShowDataBaseDetailsComponent } from './show-data-base-details/show-data-base-details.component';
 import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FutureCardDetailsComponent } from './future-card-details/future-card-details.component';
 
 
 const routes: Routes = [
@@ -31,12 +32,17 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: ShowDataBaseDetailsComponent
       },
+      {
+        path: "card/details/:id",
+        canActivate: [AuthGuard],
+        component: FutureCardDetailsComponent
+      },
     ]
   },
   {
     path: "**",
     pathMatch: "full",
-    redirectTo: "login"
+    redirectTo: "database-login"
   }
 ];
 
@@ -46,7 +52,8 @@ const routes: Routes = [
     ShowDatabaseComponent,
     ShowDataBaseLoginComponent,
     ShowDataBaseListComponent,
-    ShowDataBaseDetailsComponent
+    ShowDataBaseDetailsComponent,
+    FutureCardDetailsComponent
   ],
   imports: [
     CommonModule,
