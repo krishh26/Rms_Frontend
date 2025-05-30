@@ -51,7 +51,7 @@ export class AcrProfileComponent implements OnInit {
         this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'File not uploaded.')
+      this.notificationService.showError(error?.error?.message || 'File not uploaded.')
     })
   }
 
@@ -130,7 +130,7 @@ export class AcrProfileComponent implements OnInit {
         this.notificationService.showError(response?.message || 'Details Not Updated.');
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'Details Not Updated.');
+      this.notificationService.showError(error?.error?.message || 'Details Not Updated.');
     });
   }
 
@@ -164,7 +164,7 @@ export class AcrProfileComponent implements OnInit {
         this.notificationService.showError(response?.message || 'Password not updated');
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'Password not updated');
+      this.notificationService.showError(error?.error?.message || 'Password not updated');
     });
   }
 

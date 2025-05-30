@@ -194,7 +194,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
         this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'File not uploaded.')
+      this.notificationService.showError(error?.error?.message || 'File not uploaded.')
     })
   }
 
@@ -283,7 +283,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
           this.notificationService.showError('User not referred');
         }
       }, (error) => {
-        this.notificationService.showError(error?.message || 'User not referred');
+        this.notificationService.showError(error?.error?.message || 'User not referred');
       }
       );
     }

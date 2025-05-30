@@ -3,7 +3,6 @@ import { CirSericeService } from 'src/app/services/cir-service/cir-serice.servic
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-future-card',
@@ -25,8 +24,7 @@ export class CreateFutureCardComponent implements OnInit {
   constructor(
     private cirservice: CirSericeService,
     private notificationService: NotificationService,
-    private modalService: NgbModal,
-    private toastr: ToastrService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -35,7 +33,7 @@ export class CreateFutureCardComponent implements OnInit {
 
   getFuturecard() {
     this.cirservice.getFutureCard().subscribe((response) => {
-      if (response && response.data) { // Check if response and response.data exist
+      if (response && response.data) {
         this.futureCards = response.data;
       } else {
         console.error('Invalid response structure:', response);
@@ -45,21 +43,33 @@ export class CreateFutureCardComponent implements OnInit {
     });
   }
 
+  openAddModal(modal: any) {
+    this.inputValue = '';
+    this.modalService.open(modal, { centered: true });
+  }
+
   createCard() {
     if (!this.inputValue.trim()) {
-      this.toastr.warning('Please enter a name');
+      this.notificationService.showWarning('Please enter a name');
       return;
     }
 
-    this.cirservice.createFutureCard({ name: this.inputValue }).subscribe((response) => {
-      if (response && response.data) {
-        this.inputValue = '';
-        this.getFuturecard();
-        this.toastr.success('Card created successfully');
+    this.isSubmitting = true;
+    this.cirservice.createFutureCard({ name: this.inputValue }).subscribe({
+      next: (response) => {
+        if (response && response.data) {
+          this.notificationService.showSuccess('Card created successfully');
+          this.closeModal();
+          this.getFuturecard();
+        }
+      },
+      error: (error) => {
+        console.log('error', error);
+        this.notificationService.showError('Error creating card');
+      },
+      complete: () => {
+        this.isSubmitting = false;
       }
-    }, (error) => {
-      console.log('error', error);
-      this.toastr.error('Error creating card');
     });
   }
 
@@ -81,14 +91,13 @@ export class CreateFutureCardComponent implements OnInit {
             this.showLoader = false;
             this.notificationService.showSuccess('Card successfully deleted');
             this.getFuturecard();
-            this.toastr.success('Card deleted successfully');
           } else {
             this.showLoader = false;
             this.notificationService.showError(response?.message);
           }
         }, (error) => {
           this.showLoader = false;
-          this.notificationService.showError(error?.message);
+          this.notificationService.showError(error?.error?.message);
         });
       }
     });
@@ -103,18 +112,15 @@ export class CreateFutureCardComponent implements OnInit {
       if (response?.status == true) {
         this.showLoader = false;
         this.notificationService.showSuccess(isActive ? 'Card activated successfully' : 'Card deactivated successfully');
-        this.getFuturecard(); // Refresh the list to get updated data
-        this.toastr.success('Status updated successfully');
+        this.getFuturecard();
       } else {
         this.showLoader = false;
         this.notificationService.showError(response?.message);
-        // Revert the toggle if API call fails
         event.target.checked = !event.target.checked;
       }
     }, (error: any) => {
       this.showLoader = false;
-      this.notificationService.showError(error?.message);
-      // Revert the toggle if API call fails
+      this.notificationService.showError(error?.error?.message);
       event.target.checked = !event.target.checked;
     });
   }
@@ -133,23 +139,24 @@ export class CreateFutureCardComponent implements OnInit {
       _id: '',
       name: ''
     };
+    this.inputValue = '';
   }
 
   updateCard() {
     if (!this.editCardData.name.trim()) {
-      this.toastr.warning('Please enter sa name');
+      this.notificationService.showWarning('Please enter a name');
       return;
     }
 
     this.isSubmitting = true;
     this.cirservice.updateFutureCardStatus(this.editCardData._id, { name: this.editCardData.name }).subscribe({
       next: (response) => {
-        this.toastr.success('Card updated successfully');
+        this.notificationService.showSuccess('Card updated successfully');
         this.closeModal();
         this.getFuturecard();
       },
       error: (error) => {
-        this.toastr.error('Error updating card');
+        this.notificationService.showError(error?.error?.message || 'Error updating card');
       },
       complete: () => {
         this.isSubmitting = false;

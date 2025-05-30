@@ -384,7 +384,7 @@ export class AcrAccordianCardComponent implements OnInit {
         },
         (error) => {
           this.spinner.hide();
-          this.notificationService.showError(error?.message || 'File not uploaded.');
+          this.notificationService.showError(error?.error?.message || 'File not uploaded.');
         }
       );
     }

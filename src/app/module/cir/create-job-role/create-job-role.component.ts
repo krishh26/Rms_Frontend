@@ -48,7 +48,7 @@ export class CreateJobRoleComponent {
           window.location.reload();
         }
       }, (error) => {
-        this.notificationService.showError(error?.message || 'Please Enter Valid Value.')
+        this.notificationService.showError(error?.error?.message || 'Please Enter Valid Value.')
       });
     } else {
       this.notificationService.showError('Please Enter Value')
@@ -76,7 +76,7 @@ export class CreateJobRoleComponent {
         this.notificationService.showError(response?.message);
       }
     }, (error) => {
-      this.notificationService.showError(error?.message);
+      this.notificationService.showError(error?.error?.message);
     });
   }
 

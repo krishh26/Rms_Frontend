@@ -216,7 +216,7 @@ export class CirRolesIrelandSwidonComponent {
         }
       },
       (error) => {
-        this.notificationService.showError(error?.message || 'User not referred');
+        this.notificationService.showError(error?.error?.message || 'User not referred');
       }
     );
   }

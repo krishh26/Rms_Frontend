@@ -70,7 +70,7 @@ export class CirReferEarnComponent implements OnInit {
         return this.notificationService.showError('User not referred');
       }
     }, (error) => {
-      return this.notificationService.showError(error?.message || 'User not referred');
+      return this.notificationService.showError(error?.error?.message || 'User not referred');
     });
   }
 }

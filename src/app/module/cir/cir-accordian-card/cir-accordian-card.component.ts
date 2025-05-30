@@ -403,7 +403,7 @@ export class CirAccordianCardComponent {
     //     this.notificationService.showError('User not referred');
     //   }
     // }, (error) => {
-    //   this.notificationService.showError(error?.message || 'User not referred');
+    //   this.notificationService.showError(error?.error?.message || 'User not referred');
     // }
     // );
   }

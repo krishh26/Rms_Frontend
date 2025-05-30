@@ -190,7 +190,7 @@ export class ManchesterDetailsComponent implements OnInit {
         this.notificationService.showError(response?.message || 'Resume not uploaded.')
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'Resume Not Send.')
+      this.notificationService.showError(error?.error?.message || 'Resume Not Send.')
     })
   }
 
@@ -207,7 +207,7 @@ export class ManchesterDetailsComponent implements OnInit {
         this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'File not uploaded.')
+      this.notificationService.showError(error?.error?.message || 'File not uploaded.')
     })
   }
 }

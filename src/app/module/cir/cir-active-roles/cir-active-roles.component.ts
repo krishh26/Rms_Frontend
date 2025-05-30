@@ -267,7 +267,7 @@ export class CirActiveRolesComponent implements OnInit {
       }
     }, (error) => {
       this.submitRes=false;
-      this.notificationService.showError(error?.message || 'File not uploaded.')
+      this.notificationService.showError(error?.error?.message || 'File not uploaded.')
     })
     
 
@@ -287,7 +287,7 @@ export class CirActiveRolesComponent implements OnInit {
         this.notificationService.showError(response?.message);
       }
     }, (error) => {
-      this.notificationService.showError(error?.message);
+      this.notificationService.showError(error?.error?.message);
     });
   }
 
@@ -306,7 +306,7 @@ export class CirActiveRolesComponent implements OnInit {
         this.notificationService.showError(response?.message);
       }
     }, (error) => {
-      this.notificationService.showError(error?.message);
+      this.notificationService.showError(error?.error?.message);
     });
   }
 

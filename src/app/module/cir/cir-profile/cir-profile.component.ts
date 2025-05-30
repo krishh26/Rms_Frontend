@@ -67,7 +67,7 @@ export class CirProfileComponent implements OnInit {
         this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'File not uploaded.')
+      this.notificationService.showError(error?.error?.message || 'File not uploaded.')
     })
   }
 
@@ -128,7 +128,7 @@ export class CirProfileComponent implements OnInit {
         this.notificationService.showError(response?.message || 'Detailed Not Updated.');
       }
     }, (error) => {
-      this.notificationService.showError(error?.message || 'Detailed Not Updated.');
+      this.notificationService.showError(error?.error?.message || 'Detailed Not Updated.');
     });
   }
 }
