@@ -294,6 +294,7 @@
                 *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
                 <tr>
                   <td>{{ item?.name }}</td>
+                  <td>{{ item?.location }}</td>
                   <td>
                     <span *ngIf="item?.active == 1" style="color: green; font-weight: bold;">
                       Active

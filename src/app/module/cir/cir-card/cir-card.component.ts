@@ -19,7 +19,7 @@ export class CirCardComponent implements OnInit {
 
   getFutureCard() {
     this.cirService.getFutureCard({
-      page: 1, limit: 1000
+      page: 1, limit: 1000, active: 1
     }).subscribe((response) => {
       if (response && response.data) {
         this.futureCards = response.data;

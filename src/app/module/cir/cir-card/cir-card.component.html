@@ -10,7 +10,7 @@
                     <div class="FlatCard shadow border-radius6" [routerLink]="'/cir/cir-card-details/' + item?._id">
                         <div class="card-body text-center p-3">
                             <img src="../../../../assets/img/location.png" width="64" class="mb-3" />
-                            <p class="text-bold"> {{ item?.name }} </p>
+                            <p class="text-bold"> {{ (item.name + (item?.location ? ' - ' : '') + (item?.location ? item?.location : '')) || "No Name Available" }} </p>
                             <!-- <p>Location: Manchester</p> -->
                         </div>
                     </div>

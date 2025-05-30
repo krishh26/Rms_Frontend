@@ -20,6 +20,7 @@ export class CreateFutureCardComponent implements OnInit {
     _id: '',
     name: ''
   };
+  inputLocation: string = '';
 
   constructor(
     private cirservice: CirSericeService,
@@ -32,7 +33,9 @@ export class CreateFutureCardComponent implements OnInit {
   }
 
   getFuturecard() {
-    this.cirservice.getFutureCard().subscribe((response) => {
+    this.cirservice.getFutureCard({
+      page: 1, limit: 10000
+    }).subscribe((response) => {
       if (response && response.data) {
         this.futureCards = response.data;
       } else {
@@ -49,13 +52,14 @@ export class CreateFutureCardComponent implements OnInit {
   }
 
   createCard() {
-    if (!this.inputValue.trim()) {
-      this.notificationService.showWarning('Please enter a name');
-      return;
-    }
+    if (!this.inputValue || !this.inputLocation) return;
+    const newCard = {
+      name: this.inputValue,
+      location: this.inputLocation,
+    };
 
     this.isSubmitting = true;
-    this.cirservice.createFutureCard({ name: this.inputValue }).subscribe({
+    this.cirservice.createFutureCard(newCard).subscribe({
       next: (response) => {
         if (response && response.data) {
           this.notificationService.showSuccess('Card created successfully');
@@ -128,7 +132,8 @@ export class CreateFutureCardComponent implements OnInit {
   openEditModal(modal: any, card: any) {
     this.editCardData = {
       _id: card._id,
-      name: card.name
+      name: card?.name,
+      location: card?.location
     };
     this.modalService.open(modal, { centered: true });
   }
@@ -137,9 +142,11 @@ export class CreateFutureCardComponent implements OnInit {
     this.modalService.dismissAll();
     this.editCardData = {
       _id: '',
-      name: ''
+      name: '',
+      location: ''
     };
     this.inputValue = '';
+    this.inputLocation = '';
   }
 
   updateCard() {
@@ -149,7 +156,7 @@ export class CreateFutureCardComponent implements OnInit {
     }
 
     this.isSubmitting = true;
-    this.cirservice.updateFutureCardStatus(this.editCardData._id, { name: this.editCardData.name }).subscribe({
+    this.cirservice.updateFutureCardStatus(this.editCardData._id, { name: this.editCardData.name, location: this.editCardData.location }).subscribe({
       next: (response) => {
         this.notificationService.showSuccess('Card updated successfully');
         this.closeModal();

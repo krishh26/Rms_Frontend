@@ -138,6 +138,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     } else if (this.pageType == 'card') {
       this.tableHeader = [
         'Name',
+        'Location',
         'Status',
         'Created At',
         'Action'

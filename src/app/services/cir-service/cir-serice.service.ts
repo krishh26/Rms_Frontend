@@ -101,7 +101,7 @@ export class CirSericeService {
       .get<any>(this.baseUrl + CirEndPoint.GET_CLIENT_ROLES);
   }
 
-  getFutureCard(params?: { page?: string | number, limit?: string | number, keyword?: string, status?: string, job_type?: string }): Observable<any> {
+  getFutureCard(params?: { page?: string | number, limit?: string | number, keyword?: string, status?: string, job_type?: string, active?: number }): Observable<any> {
     let queryParams = new HttpParams();
     if (params?.page) {
       queryParams = queryParams.set('page', params?.page);
@@ -114,6 +114,9 @@ export class CirSericeService {
     }
     if (params?.job_type) {
       queryParams = queryParams.set('job_type', params?.job_type);
+    }
+    if (params?.active) {
+      queryParams = queryParams.set('active', params?.active);
     }
 
     return this.httpClient

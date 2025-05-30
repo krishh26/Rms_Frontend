@@ -7,25 +7,35 @@
       </button>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12 mb-4" *ngFor="let card of futureCards">
-        <div class="FlatCard shadow border-radius6" [routerLink]="'/cir/create-job-role/' + card._id">
-          <div class="card-actions">
-            <label class="switch" (click)="$event.stopPropagation()">
-              <input type="checkbox" [checked]="card.active === 1" (change)="toggleCardStatus($event, card._id)">
-              <span class="slider round"></span>
-            </label>
-            <div class="action-buttons">
-              <i class="fas fa-edit edit-icon me-2" (click)="$event.stopPropagation(); openEditModal(editModal, card)"></i>
-              <i class="fas fa-trash delete-icon" (click)="$event.stopPropagation(); deleteCard($event, card._id)"></i>
+      <ng-container *ngIf="futureCards.length > 0">
+        <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12 mb-4" *ngFor="let card of futureCards">
+          <div class="FlatCard shadow border-radius6" [routerLink]="'/cir/create-job-role/' + card._id">
+            <div class="card-actions">
+              <label class="switch" (click)="$event.stopPropagation()">
+                <input type="checkbox" [checked]="card.active === 1" (change)="toggleCardStatus($event, card._id)">
+                <span class="slider round"></span>
+              </label>
+              <div class="action-buttons">
+                <i class="fas fa-edit edit-icon me-2"
+                  (click)="$event.stopPropagation(); openEditModal(editModal, card)"></i>
+                <i class="fas fa-trash delete-icon"
+                  (click)="$event.stopPropagation(); deleteCard($event, card._id)"></i>
+              </div>
+            </div>
+            <div class="card-body text-center p-3">
+              <img src="../../../../assets/img/location.png" width="64" class="mb-3" />
+              <p class="text-bold">{{ (card.name + (card?.location ? ' - ' : '') + (card?.location ? card?.location :
+                '')) || "No Name Available" }}</p>
+              <!-- <p>Location: Manchester</p> -->
             </div>
           </div>
-          <div class="card-body text-center p-3">
-            <img src="../../../../assets/img/location.png" width="64" class="mb-3" />
-            <p class="text-bold">{{ card.name || "No Name Available" }}</p>
-            <!-- <p>Location: Manchester</p> -->
-          </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-container *ngIf="futureCards.length == 0">
+        <div class="col-12 justify-content: center;">
+          <h4 style="text-align: center;">No Card Available </h4>
+        </div>
+      </ng-container>
     </div>
   </div>
 </section>
@@ -43,21 +53,21 @@
         <label for="cardName" class="form-label mb-2">
           Card Name <span class="text-danger">*</span>
         </label>
-        <input 
-          type="text" 
-          id="cardName" 
-          class="form-control" 
-          placeholder="Enter Card Name" 
-          [(ngModel)]="inputValue" 
-          name="cardName"
-          required>
+        <input type="text" id="cardName" class="form-control" placeholder="Enter Card Name" [(ngModel)]="inputValue"
+          name="cardName" required>
       </div>
-
+      <div class="form-group mb-4">
+        <label for="cardLocation" class="form-label mb-2">
+          Location <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="cardLocation" class="form-control" placeholder="Enter Location"
+          [(ngModel)]="inputLocation" name="cardLocation" required>
+      </div>
       <div class="d-flex justify-content-end gap-2">
         <button type="button" class="btn btn-secondary px-4" (click)="closeModal()">
           Cancel
         </button>
-        <button type="submit" class="btn btn-primary px-4" [disabled]="!inputValue">
+        <button type="submit" class="btn btn-primary px-4" [disabled]="!inputValue || !inputLocation">
           <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
           {{ isSubmitting ? 'Creating...' : 'Create Card' }}
         </button>
@@ -79,21 +89,21 @@
         <label for="editName" class="form-label mb-2">
           Card Name <span class="text-danger">*</span>
         </label>
-        <input 
-          type="text" 
-          id="editName" 
-          class="form-control" 
-          placeholder="Enter Card Name" 
-          [(ngModel)]="editCardData.name" 
-          name="editName"
-          required>
+        <input type="text" id="editName" class="form-control" placeholder="Enter Card Name"
+          [(ngModel)]="editCardData.name" name="editName" required>
       </div>
-
+      <div class="form-group mb-4">
+        <label for="editLocation" class="form-label mb-2">
+          Location <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="editLocation" class="form-control" placeholder="Enter Location"
+          [(ngModel)]="editCardData.location" name="editLocation" required>
+      </div>
       <div class="d-flex justify-content-end gap-2">
         <button type="button" class="btn btn-secondary px-4" (click)="closeModal()">
           Cancel
         </button>
-        <button type="submit" class="btn btn-primary px-4" [disabled]="!editCardData.name">
+        <button type="submit" class="btn btn-primary px-4" [disabled]="!editCardData.name || !editCardData.location">
           <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
           {{ isSubmitting ? 'Updating...' : 'Update Card' }}
         </button>
