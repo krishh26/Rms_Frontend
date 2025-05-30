@@ -1,17 +1,11 @@
 <section class="section-card">
   <div class="container">
     <h2 class="text-center mb-4">Create Job Role</h2>
-    <form [formGroup]="nameForm" (ngSubmit)="onSubmit()" class="d-flex align-items-center p-3 p-sm-2">
-      <label for="firstName" class="me-3 mb-0">
-        <h5>Title </h5>
-      </label>
-      <input id="firstName" type="text" formControlName="title" placeholder="Enter title" class="form-control me-2" />
-      <h5>Description </h5>
-      <input id="lastName" type="text" formControlName="description" placeholder="Enter description"
-        class="form-control me-2" />
-
-      <button type="submit" class="btn btn-success btn-sm">Create</button>
-    </form>
+    <div class="d-flex justify-content-end p-3 p-sm-2">
+      <button class="btn btn-primary" (click)="openAddModal(addModal)">
+        <i class="fa fa-plus me-2"></i> Add New Job Role
+      </button>
+    </div>
   </div>
 
   <section class="section-accordian-card">
@@ -26,7 +20,6 @@
             </tr>
           </thead>
           <tbody>
-
             <tr>
               <td *ngIf="jobRoleList.length == 0" class="text-center" colspan="10">
                 No Record Found.
@@ -51,6 +44,49 @@
       </div>
     </div>
   </section>
-
-
 </section>
+
+<!-- Add Modal -->
+<ng-template #addModal let-modal>
+  <div class="modal-header py-3">
+    <h4 class="modal-title fw-bold" style="font-size: 2rem;">Add New Job Role</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body py-4">
+    <form [formGroup]="nameForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="mb-4 col-12">
+          <label for="title" class="form-label fw-bold" style="font-size: 1.1rem;">
+            Job Role Title <span class="text-danger">*</span>
+          </label>
+          <input type="text" id="title" class="form-control form-control-lg" placeholder="Enter Job Role Title"
+            formControlName="title" required>
+          <div class="text-danger mt-2"
+            *ngIf="nameForm.get('title')?.touched && nameForm.get('title')?.errors?.['required']">
+            Please enter the job role title.
+          </div>
+        </div>
+        <div class="mb-4 col-12s">
+          <label for="description" class="form-label fw-bold" style="font-size: 1.1rem;">
+            Job Description <span class="text-danger">*</span>
+          </label>
+          <input type="text" id="description" class="form-control form-control-lg" placeholder="Enter Job Description"
+            formControlName="description" required>
+          <div class="text-danger mt-2"
+            *ngIf="nameForm.get('description')?.touched && nameForm.get('description')?.errors?.['required']">
+            Please enter the job description.
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-end gap-3 mt-4">
+          <button type="button" class="btn px-5 py-2 fw-bold" style="background:#65686A; color:white;"
+            (click)="closeModal()">
+            CANCEL
+          </button>
+          <button type="submit" class="btn px-5 py-2 fw-bold" style="background:#7DE1EF; color:#222;">
+            CREATE JOB ROLE
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

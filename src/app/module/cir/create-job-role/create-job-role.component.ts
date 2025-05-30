@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
@@ -6,6 +6,7 @@ import { CirSericeService } from 'src/app/services/cir-service/cir-serice.servic
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { pagination } from 'src/app/shared/constant/pagination.constant';
 import { Payload } from 'src/app/shared/constant/payload.const';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create-job-role',
@@ -13,6 +14,8 @@ import { Payload } from 'src/app/shared/constant/payload.const';
   styleUrls: ['./create-job-role.component.css']
 })
 export class CreateJobRoleComponent {
+  @ViewChild('addModal') addModal: any;
+  
   nameForm: FormGroup;
   id?: string;
   page: number = pagination.page;
@@ -27,6 +30,7 @@ export class CreateJobRoleComponent {
     private route: ActivatedRoute,
     private cirservice: CirSericeService,
     private notificationService: NotificationService,
+    private modalService: NgbModal
   ) {
     this.id = this.route.snapshot.paramMap.get('id')!;
     // Initialize the form group
@@ -40,12 +44,22 @@ export class CreateJobRoleComponent {
     this.getJobFutureRoleList();
   }
 
+  openAddModal(modal: any) {
+    this.nameForm.reset();
+    this.modalService.open(modal, { centered: true });
+  }
+
+  closeModal() {
+    this.modalService.dismissAll();
+  }
+
   onSubmit() {
     if (this.nameForm.valid) {
       this.cirservice.createJobRole(this.nameForm.value, this.id ?? '').subscribe((response) => {
         if (response) {
           this.notificationService.showSuccess('', 'Job role successfully added');
-          window.location.reload();
+          this.closeModal();
+          this.getJobFutureRoleList();
         }
       }, (error) => {
         this.notificationService.showError(error?.error?.message || 'Please Enter Valid Value.')
@@ -57,7 +71,7 @@ export class CreateJobRoleComponent {
 
   paginate(page: number) {
     this.page = page;
-     this.getJobFutureRoleList();
+    this.getJobFutureRoleList();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -79,7 +93,5 @@ export class CreateJobRoleComponent {
       this.notificationService.showError(error?.error?.message);
     });
   }
-
-
 }
 
