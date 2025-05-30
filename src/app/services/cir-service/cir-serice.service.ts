@@ -17,6 +17,7 @@ export enum CirEndPoint {
   USER_CLIENT_UPDATE = '/user/update/',
   CREATE_CIR_JOB = '/acr/jobs/cir',
   FUTURE_CARD = '/futures/card/',
+  PUBLIC_FUTURE_CARD = '/futures/card/public',
   JOB_ROLE = '/futures/card/',
   JOB_ROLE_LIST = '/futures/card/'
 }
@@ -28,7 +29,7 @@ export class CirSericeService {
 
   baseUrl!: string;
 
-  constructor(
+  constructor(  
     private httpClient: HttpClient,
   ) {
     this.baseUrl = environment.baseUrl;
@@ -121,6 +122,28 @@ export class CirSericeService {
 
     return this.httpClient
       .get<any>(this.baseUrl + CirEndPoint.FUTURE_CARD, { params: queryParams });
+  }
+
+  getPublicFutureCard(params?: { page?: string | number, limit?: string | number, keyword?: string, status?: string, job_type?: string, active?: number }): Observable<any> {
+    let queryParams = new HttpParams();
+    if (params?.page) {
+      queryParams = queryParams.set('page', params?.page);
+    }
+    if (params?.limit) {
+      queryParams = queryParams.set('limit', params?.limit);
+    }
+    if (params?.keyword) {
+      queryParams = queryParams.set('keyword', params?.keyword);
+    }
+    if (params?.job_type) {
+      queryParams = queryParams.set('job_type', params?.job_type);
+    }
+    if (params?.active) {
+      queryParams = queryParams.set('active', params?.active);
+    }
+
+    return this.httpClient
+      .get<any>(this.baseUrl + CirEndPoint.PUBLIC_FUTURE_CARD, { params: queryParams });
   }
 
   createFutureCard(payload: any): Observable<any> {

@@ -6,7 +6,60 @@
       Mandatory : Select atleast 1 option in each Contract to move to next page
     </p>
     <div class="accordion accordion-flush" id="accordionFlushExample">
-      <div class="accordion-item">
+      <ng-container *ngFor="let item of cards; let index = index">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapse' + index" aria-expanded="false" [attr.aria-controls]="'collapse' + index">
+             {{ (item.name + (item?.location ? ' - ' : '') + (item?.location ? item?.location : '')) || "No Name Available" }}
+            </button>
+          </h2>
+          <div [id]="'collapse' + index" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <p class="text-center mb-4 text-bold">
+                Please select the Job Titles you're interested in from the options below for each contract. <br>You may
+                choose multiple job titles .
+              </p>
+              <div class="table-responsive">
+                <table class="table table-bordered mt-3">
+                  <thead>
+                    <tr>
+                      <th scope="col">Select</th>
+                      <th scope="col">Job Title</th>
+                      <th scope="col">Job Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let role of item?.roles; let i = index">
+                      <td>
+                        <input type="checkbox" [checked]="selected(role.role)" class="form-check-input chckbox ms-3"
+                          [(ngModel)]="role.selected" id="checkbox{{ i + 1 }}">
+                      </td>
+                      <td>
+                        <label class="form-check-label" for="checkbox{{ i + 1 }}" [innerHTML]="role.role"></label>
+                      </td>
+                      <td>
+                        <a ngbTooltip="{{ role?.description }}">
+                          <span>
+                            {{ (role?.description ?? '').length > 200
+                            ? (role?.description | slice: 0:200) + '... '
+                            : role?.description }}
+                            <span *ngIf="(role?.description ?? '').length > 200" style="color: #34b5b8 ;">Read
+                              more</span>
+                          </span>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingOne">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -155,7 +208,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="update ml-auto mr-auto">

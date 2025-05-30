@@ -23,6 +23,7 @@ export class CirFormComponent implements OnInit {
   lookingFor: any[] = [];
   captchaToken: string = '';
   captchaError = false;
+  workPreference: any[] = [];
 
   constructor(
     private router: Router,
@@ -38,7 +39,7 @@ export class CirFormComponent implements OnInit {
     }
     this.route.queryParams.pipe().subscribe((params) => {
       if (params['code']) {
-        localStorage.setItem('referCode' , params['code'])
+        localStorage.setItem('referCode', params['code'])
       }
     });
   }
@@ -57,18 +58,23 @@ export class CirFormComponent implements OnInit {
       phoneNumber: data?.phoneNumber || '',
       nationality: data?.nationality || '',
       UKVisaType: data?.UKVisaType || '',
-      UKDrivinglicense: data?.UKDrivinglicense ? 'yes' : 'no' || '',
+      UKDrivinglicense: (data?.UKDrivinglicense ? 'yes' : 'no' ),
       postalCode: data?.postalCode || '',
       currentWork: data?.currentWork || '',
       noticePeriodDay: data?.noticePeriodDay || '',
     });
 
     this.lookingFor = data?.lookingFor;
+    this.workPreference = data?.workPreference;
     this.showUKVisaType = data?.nationality === 'other';
   }
 
   selectedLookingFor(type: string): boolean {
     return this.lookingFor?.includes(type);
+  }
+
+  selectedWorkPreference(type: string): boolean {
+    return this.workPreference?.includes(type);
   }
 
   // Number only validation
@@ -94,6 +100,20 @@ export class CirFormComponent implements OnInit {
     }
   }
 
+  workPreferenceSelection: string[] = [];
+
+  onCheckboxWorkPReference(event: any) {
+    const value = event.target.value;
+
+    if (event.target.checked) {
+      if (!this.workPreferenceSelection.includes(value)) {
+        this.workPreferenceSelection.push(value);
+      }
+    } else {
+      this.workPreferenceSelection = this.workPreferenceSelection.filter(role => role !== value);
+    }
+  }
+
   initializeForms() {
     this.personalDetailForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(Patterns.name)]),
@@ -106,6 +126,7 @@ export class CirFormComponent implements OnInit {
       postalCode: new FormControl('', [Validators.required]),
       currentWork: new FormControl('', [Validators.required]),
       lookingFor: new FormControl([], [Validators.required]),
+      workPreference: new FormControl([], [Validators.required]),
       noticePeriodDay: new FormControl([], [Validators.required]),
     });
   }
@@ -147,6 +168,7 @@ export class CirFormComponent implements OnInit {
       postalCode: this.personalDetailForm.controls['postalCode'].value || '',
       currentWork: this.personalDetailForm.controls['currentWork'].value || '',
       lookingFor: this.selectedRoles.join(',') || this.lookingFor,
+      workPreference : this.workPreferenceSelection.join(',') || this.workPreference,
       noticePeriodDay: this.personalDetailForm.controls['noticePeriodDay'].value || '',
       captchaToken: this.captchaToken,
     }

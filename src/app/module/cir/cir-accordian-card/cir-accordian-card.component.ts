@@ -283,7 +283,7 @@ export class CirAccordianCardComponent {
       selected: false
     }
   ];
-
+  futureCards: any = [];
   constructor(
     private cirSericeService: CirSericeService,
     private notificationService: NotificationService,
@@ -292,7 +292,44 @@ export class CirAccordianCardComponent {
   ) { }
 
   ngOnInit() {
+    this.getFutureCard();
     this.getDetails();
+  }
+
+  cards: any[] = [];
+
+  getFutureCard() {
+    this.cirSericeService.getPublicFutureCard({
+      page: 1, limit: 1000, active: 1
+    }).subscribe((response) => {
+      if (response && response.data) {
+        this.futureCards = response.data;
+        this.futureCards?.forEach((element: any) => {
+          const data = {
+            name: element?.name,
+            location: element?.location,
+            _id: element?._id,
+            roles: [] as any
+          }
+          if (element?.roles?.length > 0) {
+            element?.roles?.forEach((role: any) => {
+              data.roles.push({
+                id: role?._id,
+                role: role?.title,
+                description: role?.description,
+                selected: false,
+              })
+            });
+          }
+          if (data?.roles?.length > 0) {
+            this.cards?.push(data);
+          }
+        });
+        console.log("his.cards", this.cards)
+      }
+    }, (error) => {
+      console.log('error', error);
+    });
   }
 
   getDetails() {
@@ -349,52 +386,81 @@ export class CirAccordianCardComponent {
   }
 
   submit() {
-    const UKSelected = this.qaSpecialistServices
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
-    const UKSelectedPayload = {
-      name: "Client 3",
-      location: "All Over UK",
-      roles: UKSelected
-    };
 
-    const northanRolesTableData = this.northanRolesTableData
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
+    var payload: any = {};
+    var isSelected: boolean = false;
 
-    const northanRolesPayload = {
-      name: "Client 2",
-      location: "Northan Ireland Only",
-      roles: northanRolesTableData
-    };
+    this.cards?.forEach((element: any, index: number) => {
+      const roles = element?.roles
+        .filter((item: any) => item.selected)
+        .map((item: any) => ({ name: item.role, description: item.description })) || [];
 
-    const manchesterrolesTableData = this.manchesterrolesTableData
-      .filter(item => item.selected)
-      .map(item => ({ name: item.role, description: item.description }));
+      if (roles?.length > 0) {
+        isSelected = true;
+      }
 
-    const manchesterrolesPayload = {
-      name: "Client 1",
-      location: "Machester Only",
-      roles: manchesterrolesTableData
-    };
+      payload['client' + (index + 1)] = {
+        name: element?.name,
+        location: element?.location,
+        roles: roles
+      };
+    });
 
-    if (UKSelected?.length === 0 && northanRolesTableData?.length === 0 && manchesterrolesTableData?.length === 0) {
-      this.notificationService.showError('Please select atleast 1 option in each Contract to move to next page');
-      return;
-    }
+    console.log("payload", payload);
 
-    const payloadData = {
-      client1: manchesterrolesPayload,
-      client2: northanRolesPayload,
-      client3: UKSelectedPayload
-    }
+    // const UKSelected = this.qaSpecialistServices
+    //   .filter(item => item.selected)
+    //   .map(item => ({ name: item.role, description: item.description }));
+    // const UKSelectedPayload = {
+    //   name: "Client 3",
+    //   location: "All Over UK",
+    //   roles: UKSelected
+    // };
+
+    // const northanRolesTableData = this.northanRolesTableData
+    //   .filter(item => item.selected)
+    //   .map(item => ({ name: item.role, description: item.description }));
+
+    // const northanRolesPayload = {
+    //   name: "Client 2",
+    //   location: "Northan Ireland Only",
+    //   roles: northanRolesTableData
+    // };
+
+    // const manchesterrolesTableData = this.manchesterrolesTableData
+    //   .filter(item => item.selected)
+    //   .map(item => ({ name: item.role, description: item.description }));
+
+    // const manchesterrolesPayload = {
+    //   name: "Client 1",
+    //   location: "Machester Only",
+    //   roles: manchesterrolesTableData
+    // };
+
+    // if (UKSelected?.length === 0 && northanRolesTableData?.length === 0 && manchesterrolesTableData?.length === 0) {
+    //   this.notificationService.showError('Please select atleast 1 option in each Contract to move to next page');
+    //   return;
+    // }
+
+    // const payloadData = {
+    //   client1: manchesterrolesPayload,
+    //   client2: northanRolesPayload,
+    //   client3: UKSelectedPayload
+    // }
     // const loginData = this.localStorageService.getLogger();
     // if (!loginData) {
     //   this.notificationService.showError('User not register');
     //   return;
-    // }
-    localStorage.setItem('rmsRolesDetails', JSON.stringify(payloadData));
+    // }  
+
+    if (!isSelected) {
+      this.notificationService.showError('Please select atleast 1 option in each Contract to move to next page');
+      return;
+    }
+
+    localStorage.setItem('rmsRolesDetails', JSON.stringify(payload));
     this.router.navigate(['/cir/cir-otherdetails-form']);
+
     // this.cirSericeService.updateUserClient(payloadData, loginData?.user?._id || loginData?._id).subscribe((response) => {
     //   if (response?.status) {
     //     this.notificationService.showSuccess('Client update Successful');
