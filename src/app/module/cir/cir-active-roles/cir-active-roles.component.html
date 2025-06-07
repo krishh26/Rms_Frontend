@@ -13,12 +13,26 @@
             [(ngModel)]="searchText" (input)="searchtext()">
         </div>
       </div>
-      <div class="col-lg-4 col-xl-4 col-12 mob-mb1">
-        <div class="form-group mb-0">
-          <select class="form-control" [(ngModel)]="selectedStatus" (change)="searchtext()">
+      <div class="col-lg-3 col-xl-3 col-12 mob-mb1">
+        <div class="form-group mb-0 position-relative">
+          <span class="input-icon"><i class="bi bi-briefcase"></i></span>
+          <select class="form-control custom-select" [(ngModel)]="selectedStatus" (change)="searchtext()">
             <option value="" disabled>Select Job Type</option>
             <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
           </select>
+          <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
+        </div>
+      </div>
+      <div class="col-lg-3 col-xl-3 col-12 mob-mb1">
+        <div class="form-group mb-0 position-relative">
+          <span class="input-icon"><i class="bi bi-funnel"></i></span>
+          <select class="form-control custom-select" [(ngModel)]="selectedFilterStatus" (change)="applyStatusFilter()">
+            <option value="">All Status</option>
+            <option value="Applied">Applied</option>
+            <option value="Expired">Expired</option>
+            <option value="Active">Active</option>
+          </select>
+          <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
         </div>
       </div>
     </div>
@@ -58,7 +72,7 @@
             <td class="text-center">
               <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
                 <div *ngIf="!job.applied">
-                  <button  class="btn btn-primary w-50"
+                  <button class="btn btn-primary w-50"
                     [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}"
                     [disabled]="job.status === 'Applied' || job.status === 'Expired' || job.status === 'Inactive'"
                     (click)="openModal(job)">
@@ -136,12 +150,45 @@
                   <p><strong>CV Name:</strong> {{selectedCV?.name}}</p>
                   <a [href]="selectedCV?.url" target="_blank" class="btn btn-info">Download CV</a>
                 </div>
-                <div *ngIf="newCV" class="form-file" >
+                <div *ngIf="newCV" class="form-file">
                   <h5>Upload new CV :</h5>
                   <input type="file" aria-label="file example" class="form-control" (change)="fileUpload($event)"
                     accept=".doc, .docx,.pdf">
                 </div>
                 <br>
+              </div>
+              <!-- Work Preferences -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Work Preferences<span style="color: red">*</span> :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" name="roles" value="Remote Only with Informed client travel"
+                        (change)="onCheckboxWorkPReference($event)"
+                        [checked]="selectedWorkPreference('Remote Only with Informed client travel')" />&nbsp;
+                      <span style="font-weight: normal">
+                        Remote Only with Informed client travel</span> </label><br />
+                    <label>
+                      <input type="checkbox" name="roles" value="Remote only - No client tavel"
+                        (change)="onCheckboxWorkPReference($event)"
+                        [checked]="selectedWorkPreference('Remote only - No client tavel')" />&nbsp;
+                      <span style="font-weight: normal">
+                        Remote only - No client tavel</span> </label><br />
+                    <label>
+                      <input type="checkbox" name="roles" value="Full time at client site"
+                        (change)="onCheckboxWorkPReference($event)"
+                        [checked]="selectedWorkPreference('Full time at client site')" />&nbsp;
+                      <span style="font-weight: normal">
+                        Full time at client site</span> </label><br />
+                    <label>
+                      <input type="checkbox" name="roles" value="Hybrid" (change)="onCheckboxWorkPReference($event)"
+                        [checked]="selectedWorkPreference('Hybrid')" />&nbsp;
+                      <span style="font-weight: normal"> Hybrid </span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

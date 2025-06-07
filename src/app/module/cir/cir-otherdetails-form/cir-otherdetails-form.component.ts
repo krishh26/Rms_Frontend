@@ -122,7 +122,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   initializeForms() {
     this.otherDetailForm = new FormGroup({
 
-      workLocation: new FormControl([], [Validators.required]),
+      workLocation: new FormControl([]),
       currency: new FormControl('', [Validators.required]),
       expectedDayRate: new FormControl('', [Validators.required]),
       referredBy: new FormControl(Number(localStorage.getItem('referCode') || 0), [Validators.required]),
