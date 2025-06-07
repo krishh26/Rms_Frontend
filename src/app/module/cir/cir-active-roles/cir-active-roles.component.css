@@ -72,6 +72,7 @@ h6 {
 
 .form-group {
   margin-bottom: 15px;
+  position: relative;
 }
 
 .textfont {
@@ -209,4 +210,31 @@ input[type="checkbox"]:checked::after {
   .FormRight-panel {
       padding: 15px;
   }
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-left: 35px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  z-index: 1;
 }

@@ -29,17 +29,18 @@ export class CirActiveRolesComponent implements OnInit {
   @ViewChild('uploadcvModal') uploadcvModal: any;
   public timerSubscription: Subscription = new Subscription()
   selectedCV: any = null;
-  newCVData:any=null;
+  newCVData: any = null;
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
-  newCV:boolean=false;
-  submitRes:boolean=false;
+  newCV: boolean = false;
+  submitRes: boolean = false;
   errorData: boolean = true;
   selectedStatus: string = '';
   loginData: any;
-  statusList: string[] = ['QA', "Non-QA" , "All"];
+  statusList: string[] = ['QA', "Non-QA", "All"];
   myControl = new FormControl(); searchText: any;
+  selectedFilterStatus: string = '';
   constructor(
     private router: Router,
     private notificationService: NotificationService,
@@ -68,7 +69,7 @@ export class CirActiveRolesComponent implements OnInit {
   onSelectExistingCV() {
     const storedCV = this.loginData?.cv;
     console.log(storedCV);
-    this.newCV=false;
+    this.newCV = false;
     if (storedCV) {
       this.selectedCV = storedCV;
       console.log(this.selectedCV);
@@ -101,9 +102,8 @@ export class CirActiveRolesComponent implements OnInit {
     this.modalService.open(this.uploadcvModal, { size: 'xl' })
   }
 
-  newselectedCv()
-  {
-    this.newCV=true;
+  newselectedCv() {
+    this.newCV = true;
     this.selectedCV = null;
   }
 
@@ -140,9 +140,33 @@ export class CirActiveRolesComponent implements OnInit {
 
   }
 
+  workPreferenceSelection: string[] = [];
+  workPreference: any[] = [];
+
+  onCheckboxWorkPReference(event: any) {
+    const value = event.target.value;
+
+    if (event.target.checked) {
+      if (!this.workPreferenceSelection.includes(value)) {
+        this.workPreferenceSelection.push(value);
+      }
+    } else {
+      this.workPreferenceSelection = this.workPreferenceSelection.filter(role => role !== value);
+    }
+  }
+
+  selectedWorkPreference(type: string): boolean {
+    return this.workPreference?.includes(type);
+  }
+
   submitResources() {
+    
+    if (this.workPreferenceSelection?.length == 0) {
+      return this.notificationService.showError('Please select data.');
+    }
+
     const loginData = this.localStorageService.getLogger();
-    this.submitRes=false;
+    this.submitRes = false;
     // Initialize CV object
     let cvData = {
       key: '',
@@ -157,9 +181,7 @@ export class CirActiveRolesComponent implements OnInit {
         name: this.selectedCV.name
       };
     }
-    if(this.newCV)
-    {
-      console.log("this called in inner");
+    if (this.newCV) {
       cvData = {
         key: this.newCVData.key,
         url: this.newCVData.url,
@@ -168,21 +190,20 @@ export class CirActiveRolesComponent implements OnInit {
     }
 
     let payload = {
-      cv: cvData
+      cv: cvData,
+      workPreference: this.workPreferenceSelection.join(',')
     };
-
-    console.log("this is valuye",payload);
 
     this.acrservice.acrapplyJob(payload, this.jobDetails.job_id).subscribe((response) => {
       if (response?.status) {
         this.getProjectList();
-        this.newCV=false;
+        this.newCV = false;
         this.modalService.dismissAll();
         this.notificationService.showSuccess(response?.message);
       }
     }, (error) => {
       console.log('error', error);
-      this.newCV=false;
+      this.newCV = false;
       this.modalService.dismissAll();
       this.notificationService.showError(error?.error?.message || 'Something went wrong.');
     });
@@ -234,9 +255,9 @@ export class CirActiveRolesComponent implements OnInit {
 
   closeModal() {
     this.modalService.dismissAll()
-    this.newCV=false;
-    this.selectedCV=null;
-    this.submitRes=false;
+    this.newCV = false;
+    this.selectedCV = null;
+    this.submitRes = false;
   }
 
   NumberOnly(event: any): boolean {
@@ -248,7 +269,7 @@ export class CirActiveRolesComponent implements OnInit {
   }
 
   fileUpload(event: any): void {
-    this.submitRes=true;
+    this.submitRes = true;
     const file = event.target.files[0];
     const data = new FormData();
     data.append('files', file || '');
@@ -257,26 +278,41 @@ export class CirActiveRolesComponent implements OnInit {
       if (response?.status) {
         this.newCVData = response?.data;
         console.log(this.file);
-        this.submitRes=false;
+        this.submitRes = false;
         // this.candidates.at(index).get('cv').setValue(this.file)
 
         this.notificationService.showSuccess(response?.message || 'File successfully uploaded.')
       } else {
-        this.submitRes=false;
+        this.submitRes = false;
         this.notificationService.showError(response?.message || 'File not uploaded.')
       }
     }, (error) => {
-      this.submitRes=false;
+      this.submitRes = false;
       this.notificationService.showError(error?.error?.message || 'File not uploaded.')
     })
-    
+
 
   }
 
 
-  getProjectList() {
+  getProjectList(records?: number) {
     Payload.projectList.page = String(this.page);
     Payload.projectList.limit = String(this.pagesize);
+    if (records) {
+      Payload.projectList.limit = String(records);
+    }
+    this.acrservice.getCirJobList(Payload.projectList).subscribe((response: any) => {
+      if (response?.status) {
+        this.joblist = response?.data;
+      }
+    });
+  }
+
+  searchtext() {
+    Payload.projectList.page = String(this.page);
+    Payload.projectList.limit = String(this.pagesize);
+    Payload.projectList.keyword = this.searchText || '';
+    Payload.projectList.job_type = this.selectedStatus;
     this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {
       this.joblist = [];
       this.totalRecords = 0;
@@ -291,16 +327,22 @@ export class CirActiveRolesComponent implements OnInit {
     });
   }
 
-  searchtext() {
+  async applyStatusFilter() {
     Payload.projectList.page = String(this.page);
-    Payload.projectList.limit = String(this.pagesize);
+    Payload.projectList.limit = String(10000);
     Payload.projectList.keyword = this.searchText || '';
     Payload.projectList.job_type = this.selectedStatus;
     this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {
       this.joblist = [];
       this.totalRecords = 0;
       if (response?.status == true) {
-        this.joblist = response?.data;
+        if (this.selectedFilterStatus) {
+          this.joblist = response?.data?.filter((job: any) =>
+            job.status === this.selectedFilterStatus
+          );
+        } else {
+          this.joblist = response?.data;
+        }
         this.totalRecords = response?.meta_data?.items;
       } else {
         this.notificationService.showError(response?.message);
