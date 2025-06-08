@@ -21,21 +21,21 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
           <ul class="navbar-nav" *ngIf="TokenData?.role == 'CIR'">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link btn-magnify" routerLink="/cir/cir-card">
                 <p>Future Roles</p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link btn-magnify" routerLink="/cir/cir-active-roles">
                 <p>Active Roles</p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link btn-magnify" routerLink="/cir/cir-refer-earn">
                 <p>Refer & Earn</p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link btn-magnify" href="javascript:void(0)">
                 <p>{{ loginUser?.name }}</p>

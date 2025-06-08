@@ -21,6 +21,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   userdata: any = [];
   referredByOptions: number[] = [];
   dropdownSettings = {};
+  showValidUptoDate: boolean = false;
 
   timeSlots = [
     { label: '1-2 AM', value: 1 },
@@ -69,7 +70,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
 
-    for (let i = 0; i <= 999; i++) {
+    for (let i = 0; i <= 2; i++) {
       this.referredByOptions.push(i);
     }
 
@@ -89,6 +90,13 @@ export class CirOtherdetailsFormComponent implements OnInit {
 
     this.otherDetailForm.get('sc_dv_clearance_hold')?.valueChanges.subscribe((value) => {
       this.setWillingToUndertakeVisibility();
+      if (value === 'yes') {
+        this.otherDetailForm.get('sc_dv_valid_upto')?.setValidators([Validators.required]);
+      } else {
+        this.otherDetailForm.get('sc_dv_valid_upto')?.clearValidators();
+        this.otherDetailForm.get('sc_dv_valid_upto')?.setValue('');
+      }
+      this.otherDetailForm.get('sc_dv_valid_upto')?.updateValueAndValidity();
     });
   }
 
@@ -121,7 +129,6 @@ export class CirOtherdetailsFormComponent implements OnInit {
 
   initializeForms() {
     this.otherDetailForm = new FormGroup({
-
       workLocation: new FormControl([]),
       currency: new FormControl('', [Validators.required]),
       expectedDayRate: new FormControl('', [Validators.required]),
@@ -132,6 +139,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       anyQuestion: new FormControl(''),
       cv: new FormControl('', [Validators.required]),
       sc_dv_clearance_hold: new FormControl('', [Validators.required]),
+      sc_dv_valid_upto: new FormControl(''),
       willing_to_undertake: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required])
     });
@@ -210,7 +218,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
         this.localStorageService.setLogger(response?.data);
         setTimeout(() => {
           localStorage.removeItem('rmsPersonalDetails');
-          this.submitRoles();
+          // this.submitRoles();
           this.submitotherDetail();
         }, 300);
       } else {
@@ -286,6 +294,24 @@ export class CirOtherdetailsFormComponent implements OnInit {
         this.notificationService.showError(error?.error?.message || 'User not referred');
       }
       );
+    }
+  }
+
+  onSCDVChange(event: any) {
+    this.showValidUptoDate = event.target.value === 'yes';
+  }
+
+  onSubmit() {
+    if (this.otherDetailForm.valid) {
+      const formData = this.otherDetailForm.value;
+      
+      // If SC/DV is No, remove the valid_upto field from the payload
+      if (formData.sc_dv_clearance_hold === 'no') {
+        delete formData.sc_dv_valid_upto;
+      }
+
+      // Your existing submit logic here
+      console.log('Form Data:', formData);
     }
   }
 }

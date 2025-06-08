@@ -160,8 +160,10 @@ export class AcrFormComponent implements OnInit {
       : [];
     this.acrservice.register(this.agencyForm.value).subscribe((response) => {
       if (response?.status == true) {
-        localStorage.setItem('rmsPersonalDetails', JSON.stringify(response));
-        this.router.navigate(['/acr/acr-accordian-card']);
+        // localStorage.setItem('rmsPersonalDetails', JSON.stringify(response));
+        this.agencyForm.reset();
+        // this.router.navigate(['/acr/acr-accordian-card']);
+        this.router.navigate(['/acr/acr-thankyou']);
         // this.notificationService.showSuccess(response?.message, 'Success !');
       } else {
         this.notificationService.showError(response?.message, 'Select different Username!');

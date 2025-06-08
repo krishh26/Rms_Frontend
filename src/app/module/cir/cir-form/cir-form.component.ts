@@ -173,7 +173,8 @@ export class CirFormComponent implements OnInit {
       captchaToken: this.captchaToken,
     }
     localStorage.setItem('rmsPersonalDetails', JSON.stringify(data));
-    this.router.navigate(['/cir/cir-accordian-card-details']);
+    // this.router.navigate(['/cir/cir-accordian-card-details']);
+    this.router.navigate(['/cir/cir-otherdetails-form']);
     // const data = new FormData();
     // data.append('name', this.personalDetailForm.controls['name'].value || '');
     // data.append('email', this.personalDetailForm.controls['email'].value || '');
