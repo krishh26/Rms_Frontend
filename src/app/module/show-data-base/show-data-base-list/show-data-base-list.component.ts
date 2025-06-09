@@ -16,10 +16,10 @@ export class ShowDataBaseListComponent {
     //   tableName: "ACR User",
     //   type: 'ACRUser'
     // },
-    {
-      tableName: "Card",
-      type: 'card'
-    },
+    // {
+    //   tableName: "Card",
+    //   type: 'card'
+    // },
     {
       tableName: "CIR Job",
       type: 'Job'
