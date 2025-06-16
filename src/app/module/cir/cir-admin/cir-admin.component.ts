@@ -66,7 +66,7 @@ export class CirAdminComponent implements OnInit {
 
   getJobIDList() {
     this.showLoader = true;
-    this.acrservice.getjobidList().subscribe((response) => {
+    this.acrservice.getCirJobIdList().subscribe((response) => {
       if (response?.status == true) {
         this.showLoader = false;
         this.jobID = response?.data?.job_id;

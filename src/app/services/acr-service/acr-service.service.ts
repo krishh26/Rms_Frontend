@@ -20,6 +20,7 @@ export enum AcrEndPoint {
   GET_AGENCY_LIST = '/user/acr/list',
   FORGOT_PASSWORD = '/user/acr/forgot',
   GET_JOBID_LIST = '/acr/job/fetch/id',
+  GET_CIR_JOBID_LIST = '/acr/job/fetch/id/cir',
   ACR_APPLY_JOBS = '/user/apply-job',
   DELETE_JOB = '/acr/jobs/',
   DELETE_CIR_JOB = '/acr/jobs/cir/',
@@ -126,6 +127,11 @@ export class AcrServiceService {
   getjobidList(): Observable<any> {
     return this.httpClient
       .get<any>(this.baseUrl + AcrEndPoint.GET_JOBID_LIST);
+  }
+
+  getCirJobIdList(): Observable<any> {
+    return this.httpClient
+      .get<any>(this.baseUrl + AcrEndPoint.GET_CIR_JOBID_LIST);
   }
 
   getCandidateList(id: any): Observable<any> {

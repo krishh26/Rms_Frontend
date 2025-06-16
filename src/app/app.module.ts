@@ -18,7 +18,6 @@ import { AcrDatabaseModule } from './module/acr-database/acr-database.module';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
 
-
 @NgModule({
   declarations: [
     AppComponent,

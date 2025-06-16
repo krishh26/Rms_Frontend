@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-thankyou-page',
@@ -7,12 +8,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class ThankyouPageComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   ngOnDestroy(): void {
     localStorage.clear();
+  }
+
+  redirectToLogin() {
+    this.router.navigateByUrl('/cir/cir-login');
   }
 }
