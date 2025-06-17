@@ -11,8 +11,9 @@ const EXCEL_EXTENSION = '.xlsx';
 export enum CirEndPoint {
   DATABASE_LOGIN = '/user/login/db',
   GET_MODEL = '/model/list',
-  GET_ACR_USER= '/user/acr/list',
-  GET_ACR_JOB='/acr/jobs'
+  GET_ACR_USER = '/user/acr/list',
+  GET_ACR_JOB = '/acr/jobs',
+  GET_CIR_JOB_APPLICANT = '/acr/jobs/cir/'
 }
 
 @Injectable({
@@ -131,6 +132,18 @@ export class DatabaseService {
     const params = new URLSearchParams(filteredData);
 
     const apiUrl = `${this.baseUrl}${CirEndPoint.GET_ACR_JOB}?${params.toString()}`;
+
+    return this.httpClient.get<any>(apiUrl, { headers: this.getHeader() })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error fetching model data:', error);
+          return throwError(error);
+        })
+      );
+  }
+
+  getCIRJobApplicant(jobId: string): Observable<any> {
+    const apiUrl = `${this.baseUrl}${CirEndPoint.GET_CIR_JOB_APPLICANT}${jobId}`;
 
     return this.httpClient.get<any>(apiUrl, { headers: this.getHeader() })
       .pipe(

@@ -150,6 +150,7 @@ export class CirAdminComponent implements OnInit {
         if (response?.status) {
           this.notificationService.showSuccess(response?.message, 'Success!');
           this.jobForm.reset();
+          this.getJobIDList();
         } else {
           this.notificationService.showError(response?.message);
         }

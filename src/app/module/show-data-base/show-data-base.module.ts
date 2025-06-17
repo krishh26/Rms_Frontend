@@ -11,6 +11,7 @@ import { ShowDataBaseDetailsComponent } from './show-data-base-details/show-data
 import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FutureCardDetailsComponent } from './future-card-details/future-card-details.component';
+import { ShowCirJobApplicationsComponent } from './show-cir-job-applications/show-cir-job-applications.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: FutureCardDetailsComponent
       },
+      {
+        path: "job-applications/:id",
+        canActivate: [AuthGuard],
+        component: ShowCirJobApplicationsComponent
+      },
     ]
   },
   {
@@ -53,7 +59,8 @@ const routes: Routes = [
     ShowDataBaseLoginComponent,
     ShowDataBaseListComponent,
     ShowDataBaseDetailsComponent,
-    FutureCardDetailsComponent
+    FutureCardDetailsComponent,
+    ShowCirJobApplicationsComponent
   ],
   imports: [
     CommonModule,

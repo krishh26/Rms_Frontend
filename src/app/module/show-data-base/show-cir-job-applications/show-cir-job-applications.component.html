@@ -1,0 +1,57 @@
+<div class="section-card">
+    <!-- Start Database Details -->
+    <div class="FlatCard shadow border-radius6 m-3">
+        <div class="row card-header">
+            <div class="col-6 text-start d-flex align-items-center">
+                <h2 class="card-title">Jov Applicants Details</h2>
+            </div>
+            <div class="col-6 text-end">
+                <button type="button" class="btn btn-primary m-1" style="padding: 0px 10px !important"
+                    (click)="downloadAsExcel()">
+                    Download Excel
+                </button>
+                <button class="btn btn-primary m-1" style="padding: 0px 10px !important" routerLink="/database/details/Job">
+                    Back
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <th *ngFor="let header of tableHeader">{{ header }}</th>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of tableData; let index = index">
+                            <tr>
+                                <td> {{ index + 1 }}</td>
+                                <td>{{ item?.job_id }}</td>
+                                <td>{{ item?.jobDetails?.job_title }}</td>
+                                <td>{{ item?.user?.name }}</td>
+                                <td>{{ item?.user?.countrycode + ' ' + item?.user?.phoneNumber }} </td>
+                                <td>{{ item?.user?.email }}</td>
+                                <td>{{ item?.user?.currentWork }}</td>
+                                <td>{{ item?.user?.expectedDayRate }}</td>
+                                <td>
+                                    <ng-container *ngIf="item?.workPreference?.length > 0">
+                                        <ul>
+                                            <li *ngFor="let data of item?.workPreference">
+                                                {{ data }}
+                                            </li>
+                                        </ul>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <button (click)="openDocument(item?.cvDetails)" type="button" class="btn w-100">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </td>
+                                <td>{{ item?.createdAt | date : "dd-MM-YYY" }}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

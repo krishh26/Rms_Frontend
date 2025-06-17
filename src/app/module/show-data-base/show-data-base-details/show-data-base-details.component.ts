@@ -80,18 +80,17 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Country Code',
         'Phone Number',
         'Nationality',
-        'UK Driving License',
         'UK Visa Type',
+        'UK Driving License',
         'Current Location',
         'notice period (Days)',
         'Current Work',
         'Looking For',
-        'Work Location',
+        'Work Preference',
         'Expected Day Rate',
         'Referred By',
         'Any SC_DV ?',
-        'Resume',
-        'Are you willing to undertake',
+        // 'Are you willing to undertake',
         'Call Day',
         'Call Time',
         // 'Client 1 : Machester Only',
@@ -99,6 +98,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         // 'Client 3 : All Over UK',
         'Any Question',
         'Profile',
+        'Resume',
       ]
       filter = this.userFilter;
 
@@ -166,6 +166,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     } else if (this.pageType == 'Job') {
       this.tableHeader = [
         "Sr no",
+        "Job ID",
         "Job Title",
         "Number of Roles",
         "Start Date",
@@ -286,5 +287,9 @@ export class ShowDataBaseDetailsComponent implements OnInit {
 
   redirectToCardDetailsPage(type: string) {
     this.router.navigateByUrl('/database/card/details/' + type);
+  }
+
+  appliedRoleData(jobId : string) {
+    this.router.navigateByUrl(`/database/job-applications/${jobId}`)
   }
 }

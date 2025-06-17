@@ -1,0 +1,50 @@
+.section-card{
+    background-image: url("../../../../assets/img/registraion-page-background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.FlatCard {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: .25rem;
+}
+
+.FlatCard .card-body {
+  padding: 1rem;
+}
+.FlatCard .card-header{
+  background-color: #007f83;
+  padding: 1rem;
+  color: #FFF;
+  border-radius: 6px 6px 0 0;
+}
+
+::ng-deep .tooltip.show {
+  display: block;
+  opacity: 1;
+}
+
+::ng-deep .tooltip-inner {
+  text-align: left !important;
+  background-color: #ADD8E6 !important;
+  color: black !important;
+  width: 100% !important;
+  max-width: 80%;
+  padding: 10px !important;
+  white-space: pre-line;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+::ng-deep .tooltip-arrow::before {
+  border-top-color: white !important;
+}

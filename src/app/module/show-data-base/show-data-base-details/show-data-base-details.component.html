@@ -184,8 +184,8 @@
                   <td>{{ item?.countrycode }}</td>
                   <td>{{ item?.phoneNumber }}</td>
                   <td>{{ item?.nationality }}</td>
-                  <td>{{ item?.UKDrivinglicense ? 'Yes' : 'No' }}</td>
                   <td>{{ item?.UKVisaType }}</td>
+                  <td>{{ item?.UKDrivinglicense ? 'Yes' : 'No' }}</td>
                   <td>{{ item?.postalCode }}</td>
                   <td>{{ item?.noticePeriodDay }}</td>
                   <td>{{ item?.currentWork }}</td>
@@ -198,16 +198,21 @@
                       </ul>
                     </ng-container>
                   </td>
-                  <td>{{ item?.workLocation }}</td>
+                  <!-- <td>{{ item?.workLocation }}</td> -->
+                  <td>
+                    <ng-container *ngIf="item?.workPreference?.length > 0">
+                      <ul>
+                        <li *ngFor="let data of item?.workPreference">
+                          {{ data }}
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </td>
                   <td>{{ item?.expectedDayRate }}</td>
                   <td>{{ item?.referredBy }}</td>
                   <td>{{ item?.sc_dv_clearance_hold ? 'Yes' : 'No' }}</td>
-                  <td>
-                    <button (click)="openDocument(item?.cv)" type="button" class="btn w-100">
-                      <i class="fa fa-eye"></i>
-                    </button>
-                  </td>
-                  <td>{{item?.willing_to_undertake}}</td>
+
+                  <!-- <td>{{item?.willing_to_undertake}}</td> -->
                   <td>{{ item?.callDay }}</td>
                   <td>{{ item?.callTime }}</td>
                   <!-- <td>
@@ -248,6 +253,11 @@
                   <td>{{ item?.anyQuestion }}</td>
                   <td>
                     <button (click)="openDocument(item?.profilePicture)" type="button" class="btn w-100">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <button (click)="openDocument(item?.cv)" type="button" class="btn w-100">
                       <i class="fa fa-eye"></i>
                     </button>
                   </td>
@@ -329,6 +339,7 @@
                 *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
                 <tr>
                   <td>{{ index + 1 }}</td>
+                  <td>{{ item?.job_id }}</td>
                   <td>{{ item?.job_title }}</td>
                   <td>{{ item?.no_of_roles }}</td>
                   <td>{{ item?.start_date | date: 'dd/MM/yyyy' }}</td>
@@ -356,10 +367,13 @@
                     <a [href]="item?.upload?.url" target="_blank">Download</a>
                   </td>
                   <!-- <td>{{ item?.timerEnd | date: 'dd/MM/yyyy' }}</td> -->
-                  <td>{{ item?.jobExpireDate }}</td>
+                  <td>{{ item?.jobExpireDate | date: 'dd/MM/yyyy' }}</td>
                   <!-- <td>{{ item?.status }}</td> -->
                   <td>
-                    <button class="btn btn-sm btn-danger" (click)="deleteJob(item?._id)">
+                    <button (click)="appliedRoleData(item?.job_id)" class="btn btn-sm btn-primary m-1">
+                      View
+                    </button>
+                    <button class="btn btn-sm btn-danger m-1" (click)="deleteJob(item?._id)">
                       <i class="bi bi-trash-fill"></i> Delete
                     </button>
                   </td>
