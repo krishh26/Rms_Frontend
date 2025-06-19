@@ -160,7 +160,7 @@ export class CirActiveRolesComponent implements OnInit {
   }
 
   submitResources() {
-    
+
     if (this.workPreferenceSelection?.length == 0) {
       return this.notificationService.showError('Please select data.');
     }
@@ -304,6 +304,9 @@ export class CirActiveRolesComponent implements OnInit {
     this.acrservice.getCirJobList(Payload.projectList).subscribe((response: any) => {
       if (response?.status) {
         this.joblist = response?.data;
+        this.totalRecords = response?.meta_data?.items;
+        this.page = response?.meta_data?.page;
+        this.pagesize = response?.meta_data?.page_size;
       }
     });
   }
@@ -319,6 +322,8 @@ export class CirActiveRolesComponent implements OnInit {
       if (response?.status == true) {
         this.joblist = response?.data;
         this.totalRecords = response?.meta_data?.items;
+        this.page = response?.meta_data?.page;
+        this.pagesize = response?.meta_data?.page_size;
       } else {
         this.notificationService.showError(response?.message);
       }
@@ -329,7 +334,7 @@ export class CirActiveRolesComponent implements OnInit {
 
   async applyStatusFilter() {
     Payload.projectList.page = String(this.page);
-    Payload.projectList.limit = String(10000);
+    Payload.projectList.limit = String(this.pagesize);
     Payload.projectList.keyword = this.searchText || '';
     Payload.projectList.job_type = this.selectedStatus;
     this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {
@@ -344,6 +349,8 @@ export class CirActiveRolesComponent implements OnInit {
           this.joblist = response?.data;
         }
         this.totalRecords = response?.meta_data?.items;
+        this.page = response?.meta_data?.page;
+        this.pagesize = response?.meta_data?.page_size;
       } else {
         this.notificationService.showError(response?.message);
       }
@@ -354,7 +361,13 @@ export class CirActiveRolesComponent implements OnInit {
 
   paginate(page: number) {
     this.page = page;
-    this.getProjectList();
+    if (this.selectedFilterStatus) {
+      this.applyStatusFilter();
+    } else if (this.searchText || this.selectedStatus) {
+      this.searchtext();
+    } else {
+      this.getProjectList();
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
