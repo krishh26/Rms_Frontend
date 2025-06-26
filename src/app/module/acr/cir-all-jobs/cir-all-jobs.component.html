@@ -85,6 +85,8 @@
                         [disabled]="job.status === 'Not Submitted'">Upload
                         CV</button>
                     </div>
+                    <br><br>
+                    <p> {{ findApplicantCvs(job?.applicants) }}/{{ job?.no_of_resouces || '0'}} CV Uploaded </p>
                   </div>
                 </div>
               </ng-container>
@@ -154,7 +156,8 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <p class="text-bold text-center" style="color: #218838;">Upload all the CVs at once to Submit.</p>
-      <p class="text-bold text-center" style="color: #218838;">You can upload only the number of CVs you selected earlier. If you have additional CVs to submit, please contact jamie.thompson&#64;saivensolutions.co.uk</p>
+      <p class="text-bold text-center" style="color: #218838;">You can upload only the number of CVs you selected
+        earlier. If you have additional CVs to submit, please contact jamie.thompson&#64;saivensolutions.co.uk</p>
       <div class="modal-body">
         <form [formGroup]="resourcesForm">
           <table class="table table-bordered">

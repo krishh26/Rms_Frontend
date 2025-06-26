@@ -183,7 +183,10 @@
                   <td>{{ item?.jobExpireDate }}</td>
                   <!-- <td>{{ item?.status }}</td> -->
                   <td>
-                    <button (click)="deleteJob(item?._id)" class="btn btn-sm btn-danger">
+                    <!-- <button (click)="viewSendMail(item?.job_id)" class="btn btn-sm btn-primary m-1">
+                      <i class="bi bi-trash-fill"></i> Send Mail
+                    </button> -->
+                    <button (click)="deleteJob(item?._id)" class="btn btn-sm btn-danger m-1">
                       <i class="bi bi-trash-fill"></i> Delete
                     </button>
                   </td>

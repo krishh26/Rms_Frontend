@@ -196,5 +196,7 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     });
   }
 
-
+  viewSendMail(id: string) {
+      this.router.navigateByUrl(`/acr-database/send-mail/${id}`);
+  }
 }

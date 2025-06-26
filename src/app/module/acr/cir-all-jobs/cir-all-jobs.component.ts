@@ -32,7 +32,7 @@ export class CirAllJobsComponent implements OnInit {
   @ViewChild('uploadcvModal') uploadcvModal: any;
   public timerSubscription: Subscription = new Subscription()
   selectedStatus: string = '';
-  statusList: string[] = ['Active','Inactive', 'Actioned', 'Under Review', 'Expired', 'Not Submitted'];
+  statusList: string[] = ['Active', 'Inactive', 'Actioned', 'Under Review', 'Expired', 'Not Submitted'];
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
@@ -66,13 +66,19 @@ export class CirAllJobsComponent implements OnInit {
   }
 
   onChangeInput() {
-    this.resourcesForm.value?.candidates?.map((element: any) => {
-      if (!element?.cv || !element?.candidate_location || !element?.candidate_nationality) {
-        this.errorData = true;
-      } else {
-        this.errorData = false;
-      }
-    });
+    if (!this.resourcesForm.value?.candidates?.[0]?.cv || !this.resourcesForm.value?.candidates?.[0]?.candidate_location || !this.resourcesForm.value?.candidates?.[0]?.candidate_nationality) {
+      this.errorData = true;
+    } else {
+      this.errorData = false;
+    }
+
+    // this.resourcesForm.value?.candidates?.map((element: any) => {
+    //   if (!element?.cv || !element?.candidate_location || !element?.candidate_nationality) {
+    //     this.errorData = true;
+    //   } else {
+    //     this.errorData = false;
+    //   }
+    // });
   }
 
   searchtext() {
@@ -129,17 +135,24 @@ export class CirAllJobsComponent implements OnInit {
       resources: this.resourcesForm.controls['howmanyresources'].value, // optional,
       cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
     }
+
+    payload.cvDetails = payload?.cvDetails?.filter((ele : any) => ele?.cv);
+    
     let errorCounter: number = 0;
-
-    payload?.cvDetails?.map((element: any) => {
-      if (!element?.cv || !element?.candidate_location || !element?.candidate_nationality) {
-        errorCounter++;
-      }
-    });
-
-    if (errorCounter > 0) {
-      return this.notificationService.showError('Please fill details');
+    
+    if(payload?.cvDetails?.length == 0) {
+        return this.notificationService.showError('Please fill details');
     }
+
+    // payload?.cvDetails?.map((element: any) => {
+    //   if (!element?.cv || !element?.candidate_location || !element?.candidate_nationality) {
+    //     errorCounter++;
+    //   }
+    // });
+
+    // if (errorCounter > 0) {
+    //   return this.notificationService.showError('Please fill details');
+    // }
 
     this.acrservice.updateApplication(payload).subscribe((response) => {
       if (response?.status) {
@@ -276,7 +289,7 @@ export class CirAllJobsComponent implements OnInit {
   }
 
 
-      getProjectList() {
+  getProjectList() {
     // Create a payload with empty status to get all data
     const apiPayload = {
       page: '1',
@@ -341,4 +354,18 @@ export class CirAllJobsComponent implements OnInit {
     return daysDisplay + hoursDisplay + minutesDisplay + secondsDisplay;
   }
 
+  findApplicantCvs(applicants: any[]): any {
+    if (applicants?.length == 0) {
+      return "0";
+    }
+    const loginData = this.localStorageService.getLogger()
+    if (loginData) {
+      const findCvs = applicants?.find((element) => element?.user_id == loginData?._id);
+      if (findCvs) {
+        return findCvs?.cvDetails?.length;
+      }
+    } else {
+      return "0"
+    }
+  }
 }

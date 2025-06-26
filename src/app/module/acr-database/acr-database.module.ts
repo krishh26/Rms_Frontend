@@ -13,6 +13,7 @@ import { AcrDatabaseListComponent } from './acr-database-list/acr-database-list.
 import { AcrDatabaseDetailsComponent } from './acr-database-details/acr-database-details.component';
 import { UserRolesDetailsComponent } from './user-roles-details/user-roles-details.component';
 import { AppliedApplicantsDetailsComponent } from './applied-applicants-details/applied-applicants-details.component';
+import { SendAcrJobMailComponent } from './send-acr-job-mail/send-acr-job-mail.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,11 @@ const routes: Routes = [
         // canActivate: [AuthGuard],
         component: AppliedApplicantsDetailsComponent
       },
+      {
+        path: "send-mail/:id",
+        // canActivate: [AuthGuard],
+        component: SendAcrJobMailComponent
+      },
     ]
   },
   {
@@ -60,7 +66,8 @@ const routes: Routes = [
     AcrDatabaseListComponent,
     AcrDatabaseComponent,
     UserRolesDetailsComponent,
-    AppliedApplicantsDetailsComponent
+    AppliedApplicantsDetailsComponent,
+    SendAcrJobMailComponent
   ],
   imports: [
     CommonModule,
