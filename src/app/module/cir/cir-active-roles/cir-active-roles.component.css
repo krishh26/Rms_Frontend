@@ -175,9 +175,9 @@ input[type="checkbox"]::before {
   background-color: white;
 }
 
-table tbody tr:nth-child(even) td {
+/* table tbody tr:nth-child(even) td {
   background-color: #d6d6d6 !important;
-}
+} */
 
 input[type="checkbox"]:checked::after {
   content: '✓';

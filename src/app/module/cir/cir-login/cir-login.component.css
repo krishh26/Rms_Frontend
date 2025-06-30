@@ -36,7 +36,7 @@ Login Page CSS
 }
 
 .Login-leftside {
-    background-image: url("../../../../assets/img/Login-leftside-image-white-1.jpg");
+    background-image: url("../../../../assets/img/Login-leftside-image-white.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -59,18 +59,50 @@ Login Page CSS
     right: 15px !important;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .Login-leftside {
+        display: none;
+    }
+
+    .mobile-login-modal {
+        background-image: url("../../../../assets/img/Login-leftside-image-white.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100vh;
+    }
+
+    .login-modal {
+        padding: 0px;
+    }
+
+    .login-modal {
+        background-color: #FFF;
+        border-radius: 12px;
+        padding: 2rem;
+    }
+}
+
 @media only screen and (min-width: 320px) and (max-width: 767px) {
     .Login-leftside {
         display: none;
     }
+
     .mobile-login-modal {
-        background-image: url("../../../../assets/img/mobile-Login-leftside-image-white.jpg");       
+        background-image: url("../../../../assets/img/Login-leftside-image-white.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
-        height: 100vh; 
+        height: 100vh;
     }
+
     .login-modal {
         padding: 0px;
     }
+}
+
+.login-modal {
+    background-color: #FFF;
+    border-radius: 12px;
+    padding: 1em;
 }

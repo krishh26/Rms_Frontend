@@ -1,114 +1,127 @@
-<section class="section-accordian-card">
+<section>
   <div class="container">
-    <h4 style="text-align: center;"><strong>All Jobs</strong></h4><br>
-    <div class="alert alert-warning" style="text-align: center; font-size: 19px  !important;" role="alert">
-      <i class="bi bi-exclamation-triangle"></i><strong>⁠It is important for you read the <span
-          style="color: #34b5b8 !important;">Read me </span>document for each job title before you take action.</strong>
+    <div class="Titleheading">
+      <h1>All Jobs</h1>
     </div>
-    <div class="row">
-      <div class="col-lg-6 col-xl-6 col-12 mob-mb1">
-        <div class="form-group mb-0">
-          <span class="input-icon"><i class="bi bi-search"></i></span>
-          <input class="form-control control-search" placeholder="Search by Job Title" type="text"
-            [(ngModel)]="searchText" (input)="searchtext()">
-        </div>
-      </div>
-      <div class="col-lg-3 col-xl-3 col-12 mob-mb1">
-        <div class="form-group mb-0 position-relative">
-          <span class="input-icon"><i class="bi bi-briefcase"></i></span>
-          <select class="form-control custom-select" [(ngModel)]="selectedStatus" (change)="searchtext()">
-            <option value="" disabled>Select Job Type</option>
-            <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
-          </select>
-          <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xl-3 col-12 mob-mb1">
-        <div class="form-group mb-0 position-relative">
-          <span class="input-icon"><i class="bi bi-funnel"></i></span>
-          <select class="form-control custom-select" [(ngModel)]="selectedFilterStatus" (change)="applyStatusFilter()">
-            <option value="">All Status</option>
-            <option value="Applied">Applied</option>
-            <option value="Expired">Expired</option>
-            <option value="Active">Active</option>
-          </select>
-          <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
-        </div>
-      </div>
+    <div class="alert alert-warning" role="alert">
+     <i class="bi bi-exclamation-octagon-fill"></i> ⁠It is important for you read the <span style="color: #1563df !important;">Read me </span>document for each job
+      title before you take action.
     </div>
-    <div class="table-responsive">
-      <table class="table table-bordered mt-3">
-        <thead>
-          <tr>
-            <th style="text-transform: none; text-align: center;">Job ID</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Job Title</th>
-            <th style="text-transform: none; text-align: center;" scope="col">No. of Roles</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
-            <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Role Details</th>
-            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply Job</th>
-            <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply By</th>
-            <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
 
-          <tr>
-            <td *ngIf="joblist.length == 0" class="text-center" colspan="10">
-              No Record Found.
-            </td>
-          </tr>
 
-          <tr
-            *ngFor="let job of joblist  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
-            <td>{{job.job_id}}</td>
-            <td>{{job.job_title}}</td>
-            <td>{{job.no_of_roles}}</td>
-            <td>{{job.publish_date | date:'dd/MM/yyyy'}}</td>
-            <td>
-              <a href="{{job?.upload?.url}}" target="_blank">
-                Read me
-              </a>
-            </td>
-            <td class="text-center">
-              <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
-                <div *ngIf="!job.applied">
-                  <button class="btn btn-primary w-50"
-                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}"
-                    [disabled]="job.status === 'Applied' || job.status === 'Expired' || job.status === 'Inactive'"
-                    (click)="openModal(job)">
-                    apply
-                  </button>
-                </div>
-                <div *ngIf="job.applied == true">
-                  <div class="row">
-                    <div class="ml-auto mr-auto">
-                      <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round"
-                        [disabled]="job.status === 'Not Submitted'">Upload
-                        CV</button>
+    <div class="FlatCard mt-4 mb-3">
+      <div class="card-header">
+        <h4 class="header-title">All Opened Job List View</h4>
+        <div class="row align-items-center">
+          <div class="col-lg-6 col-xl-6 col-12 mob-mb1">
+            <div class="form-group mb-0">
+              <span class="input-icon"><i class="bi bi-search"></i></span>
+              <input class="form-control control-search" placeholder="Search by Job Title" type="text"
+                [(ngModel)]="searchText" (input)="searchtext()">
+            </div>
+          </div>
+          <div class="col-lg-3 col-xl-3 col-12 mob-mb1">
+            <div class="form-group mb-0 position-relative">
+              <span class="input-icon"><i class="bi bi-briefcase"></i></span>
+              <select class="form-control custom-select" [(ngModel)]="selectedStatus" (change)="searchtext()">
+                <option value="" disabled>Select Job Type</option>
+                <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
+              </select>
+              <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
+            </div>
+          </div>
+          <div class="col-lg-3 col-xl-3 col-12 mob-mb1">
+            <div class="form-group mb-0 position-relative">
+              <span class="input-icon"><i class="bi bi-funnel"></i></span>
+              <select class="form-control custom-select" [(ngModel)]="selectedFilterStatus"
+                (change)="applyStatusFilter()">
+                <option value="">All Status</option>
+                <option value="Applied">Applied</option>
+                <option value="Expired">Expired</option>
+                <option value="Active">Active</option>
+              </select>
+              <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th style="text-transform: none; text-align: center;">Job ID</th>
+                <th style="text-transform: none; text-align: center;" scope="col">Job Title</th>
+                <th style="text-transform: none; text-align: center;" scope="col">No. of Roles</th>
+                <th style="text-transform: none; text-align: center;" scope="col">Publish Date</th>
+                <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Role Details</th>
+                <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply Job</th>
+                <th style="text-transform: none; text-align: center;" [width]="200" scope="col">Apply By</th>
+                <th style="text-transform: none; text-align: center;" [width]="100" scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td *ngIf="joblist.length == 0" class="text-center" colspan="10">
+                  No Record Found.
+                </td>
+              </tr>
+
+              <tr
+                *ngFor="let job of joblist  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
+                <td>{{job.job_id}}</td>
+                <td>{{job.job_title}}</td>
+                <td>{{job.no_of_roles}}</td>
+                <td>{{job.publish_date | date:'dd/MM/yyyy'}}</td>
+                <td>
+                  <a href="{{job?.upload?.url}}" target="_blank">
+                    Read me
+                  </a>
+                </td>
+                <td class="text-center">
+                  <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
+                    <div *ngIf="!job.applied">
+                      <button class="btn btn-primary btn-sm"
+                        [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}"
+                        [disabled]="job.status === 'Applied' || job.status === 'Expired' || job.status === 'Inactive'"
+                        (click)="openModal(job)">
+                        apply
+                      </button>
                     </div>
-                  </div>
-                </div>
-              </ng-container>
+                    <div *ngIf="job.applied == true">
+                      <div class="row">
+                        <div class="ml-auto mr-auto">
+                          <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round"
+                            [disabled]="job.status === 'Not Submitted'">Upload
+                            CV</button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
 
 
-              <ng-template #emailMessage>
-                <span> If you have got more CV's email to : (jamie.thompson@saivensolutions.co.uk)</span>
-              </ng-template>
-            </td>
-            <td>{{job?.jobExpireDate | date:'dd/MM/yyyy'}}</td>
-            <td>{{job?.status}}</td>
+                  <ng-template #emailMessage>
+                    <span> If you have got more CV's email to : (jamie.thompson@saivensolutions.co.uk)</span>
+                  </ng-template>
+                </td>
+                <td>{{job?.jobExpireDate | date:'dd/MM/yyyy'}}</td>
+                <td>{{job?.status}}</td>
 
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="row mt-3 align-items-center">
-      <div class="row">
-        <div class="pagination">
-          <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row mt-3 align-items-center">
+          <div class="row">
+            <div class="pagination">
+              <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 

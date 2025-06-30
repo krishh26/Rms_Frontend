@@ -295,7 +295,7 @@
     position: relative;
     float: right;
     width: 100%;
-    background-color: #f4f3ef;;
+    background-color: #fafbfe;;
 
 
     @include transition (0.50s, cubic-bezier(0.685, 0.0473, 0.346, 1));
@@ -303,7 +303,7 @@
      .content{
         padding: 0;
         min-height: calc(100vh - 123px);
-        margin-top: 60px;
+        // margin-top: 60px;
     }
 
      .navbar{
