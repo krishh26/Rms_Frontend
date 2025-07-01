@@ -15,18 +15,23 @@
                 <table class="table">
                     <thead class="text-black">
                         <tr>
+                            <th style="text-align: center;">
+                              <input type="checkbox" [checked]="isAllSelected" (change)="toggleSelectAll($event)">
+                            </th>
                             <th style="text-align: center;">Sr. No</th>
                             <th style="text-align: center;">Agency Name</th>
                             <th style="text-align: center;">Name</th>
                             <th style="text-align: center;">Email ID</th>
                             <th style="text-align: center;">Phone Number</th>
                             <th style="text-align: center;">ApplicationStatus</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <ng-container *ngFor="let applicant of tableData; let index = index">
                             <tr>
+                                <td style="text-align: center;">
+                                  <input type="checkbox" [checked]="isSelected(applicant?.personEmail)" (change)="toggleSelection(applicant?.personEmail, $event)">
+                                </td>
                                 <td style="text-align: center;">{{ index + 1 }}</td>
                                 <td style="text-align: center;">{{ applicant?.agencyName }}</td>
                                 <td style="text-align: center;">{{ applicant?.personName }}</td>
@@ -42,7 +47,7 @@
                 </table>
             </div>
             <div class="mt-3 align-items-end">
-                <button class="btn btn-sm btn-primary" style="float: right;" type="button" (click)="submit()">Send Mail</button>
+                <button class="btn btn-sm btn-primary" style="float: right;" type="button" (click)="openConfirmModal()">Send Mail</button>
             </div>
             <!-- <div class="row mt-3 align-items-center">
                 <div class="row">
@@ -54,3 +59,24 @@
         </div>
     </div>
 </div>
+
+<ng-template #confirmModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirm Send Mail</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label><input type="radio" [(ngModel)]="mailType" value="new" /> Send New Job Post Mail</label><br>
+      <label><input type="radio" [(ngModel)]="mailType" value="reminder" /> Send Job Reminder Mail</label>
+    </div>
+    <div class="mb-3">
+      <label>Select Expire Date:</label>
+      <input type="date" class="form-control" [(ngModel)]="selectedDate" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="confirmSubmit(modal)">Submit</button>
+  </div>
+</ng-template>
