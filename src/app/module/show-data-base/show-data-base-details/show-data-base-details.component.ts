@@ -292,4 +292,8 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   appliedRoleData(jobId : string) {
     this.router.navigateByUrl(`/database/job-applications/${jobId}`)
   }
+
+  viewSendMail(id: string) {
+      this.router.navigateByUrl(`/database/send-mail/${id}`);
+  }
 }

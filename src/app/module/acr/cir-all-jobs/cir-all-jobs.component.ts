@@ -136,12 +136,12 @@ export class CirAllJobsComponent implements OnInit {
       cvDetails: this.resourcesForm.value?.candidates?.filter((element: any) => delete element['howmanyresources'])
     }
 
-    payload.cvDetails = payload?.cvDetails?.filter((ele : any) => ele?.cv);
-    
+    payload.cvDetails = payload?.cvDetails?.filter((ele: any) => ele?.cv);
+
     let errorCounter: number = 0;
-    
-    if(payload?.cvDetails?.length == 0) {
-        return this.notificationService.showError('Please fill details');
+
+    if (payload?.cvDetails?.length == 0) {
+      return this.notificationService.showError('Please fill details');
     }
 
     // payload?.cvDetails?.map((element: any) => {
@@ -367,5 +367,17 @@ export class CirAllJobsComponent implements OnInit {
     } else {
       return "0"
     }
+  }
+
+  compareWithToday(applyDate: string | Date): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // reset to midnight for accurate comparison
+
+    const inputDate = new Date(applyDate);
+    inputDate.setHours(0, 0, 0, 0);
+
+    // If apply date is today or future => return false
+    // If apply date is before today => return true
+    return inputDate < today;
   }
 }

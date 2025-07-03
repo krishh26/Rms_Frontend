@@ -12,6 +12,7 @@ import { AuthGuard } from 'src/app/shared/auth-guard/auth.guard';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FutureCardDetailsComponent } from './future-card-details/future-card-details.component';
 import { ShowCirJobApplicationsComponent } from './show-cir-job-applications/show-cir-job-applications.component';
+import { SendCirJobMailComponent } from './send-cir-job-mail/send-cir-job-mail.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: ShowCirJobApplicationsComponent
       },
+      {
+        path: "send-mail/:id",
+        canActivate: [AuthGuard],
+        component: SendCirJobMailComponent
+      },
     ]
   },
   {
@@ -60,7 +66,8 @@ const routes: Routes = [
     ShowDataBaseListComponent,
     ShowDataBaseDetailsComponent,
     FutureCardDetailsComponent,
-    ShowCirJobApplicationsComponent
+    ShowCirJobApplicationsComponent,
+    SendCirJobMailComponent
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,8 @@ export enum CirEndPoint {
   GET_ACR_JOB = '/acr/jobs',
   GET_CIR_JOB_APPLICANT = '/acr/jobs/cir/',
   ACR_USER_WITH_APPLICANT = "/user/acr/user-with-applicant",
-  ACR_SEND_MAIL = "/user/acr/send-mail"
+  ACR_SEND_MAIL = "/user/acr/send-mail",
+  CIR_USER_WITH_APPLICANT = "/user/cir-user-with-applicant",
 }
 
 @Injectable({
@@ -167,6 +168,19 @@ export class DatabaseService {
         })
       );
   }
+
+  getCIRUserWithJobApplication(jobId: any): Observable<any> {
+    const apiUrl = `${this.baseUrl}${CirEndPoint.CIR_USER_WITH_APPLICANT}`;
+
+    return this.httpClient.post<any>(apiUrl, { job_id: jobId }, { headers: this.getHeader() })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error fetching model data:', error);
+          return throwError(error);
+        })
+      );
+  }
+
 
   sendAcrJobPostMail(payload: any): Observable<any> {
     const apiUrl = `${this.baseUrl}${CirEndPoint.ACR_SEND_MAIL}`;
