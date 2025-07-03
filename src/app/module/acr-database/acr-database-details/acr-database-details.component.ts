@@ -94,6 +94,7 @@ export class AcrDatabaseDetailsComponent implements OnInit {
     } else if (this.pageType == 'Job') {
       this.tableHeader = [
         "Sr no",
+        "Job ID",
         "Job Title",
         "Number of Roles",
         "Start Date",

@@ -370,6 +370,9 @@
                   <td>{{ item?.jobExpireDate | date: 'dd/MM/yyyy' }}</td>
                   <!-- <td>{{ item?.status }}</td> -->
                   <td>
+                    <button (click)="viewSendMail(item?.job_id)" class="btn btn-sm btn-primary m-1">
+                      Send Mail
+                    </button>
                     <button (click)="appliedRoleData(item?.job_id)" class="btn btn-sm btn-primary m-1">
                       View
                     </button>

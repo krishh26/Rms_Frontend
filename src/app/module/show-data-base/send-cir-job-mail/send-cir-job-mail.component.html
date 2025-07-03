@@ -2,7 +2,7 @@
     <div class="row m-3" style="justify-content: end;">
         <div class="col-10"></div>
         <button class="col-2 btn btn-primary" style="float: right; width: 100px;"
-            routerLink="/acr-database/acr-details/details/Job">
+            routerLink="/database/details/Job">
             Back
         </button>
     </div>
@@ -19,7 +19,6 @@
                               <input type="checkbox" [checked]="isAllSelected" (change)="toggleSelectAll($event)">
                             </th>
                             <th style="text-align: center;">Sr. No</th>
-                            <th style="text-align: center;">Agency Name</th>
                             <th style="text-align: center;">Name</th>
                             <th style="text-align: center;">Email ID</th>
                             <th style="text-align: center;">Phone Number</th>
@@ -30,12 +29,11 @@
                         <ng-container *ngFor="let applicant of tableData; let index = index">
                             <tr>
                                 <td style="text-align: center;">
-                                  <input type="checkbox" [checked]="isSelected(applicant?.personEmail)" (change)="toggleSelection(applicant?.personEmail, $event)">
+                                  <input type="checkbox" [checked]="isSelected(applicant?.email)" (change)="toggleSelection(applicant?.email, $event)">
                                 </td>
                                 <td style="text-align: center;">{{ index + 1 }}</td>
-                                <td style="text-align: center;">{{ applicant?.agencyName }}</td>
-                                <td style="text-align: center;">{{ applicant?.personName }}</td>
-                                <td style="text-align: center;">{{ applicant?.personEmail }}</td>
+                                <td style="text-align: center;">{{ applicant?.name }}</td>
+                                <td style="text-align: center;">{{ applicant?.email }}</td>
                                 <td style="text-align: center;">{{ applicant?.phoneNumber }}</td>
                                 <td style="text-align: center;">
                                     <span *ngIf="applicant?.jobApplication" style="padding: 5px; background-color: green; border-radius: 10px;">{{applicant?.jobApplication?.status}}</span>
@@ -46,9 +44,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-3 align-items-end">
+            <!-- <div class="mt-3 align-items-end">
                 <button class="btn btn-sm btn-primary" style="float: right;" type="button" (click)="openConfirmModal()">Send Mail</button>
-            </div>
+            </div> -->
             <!-- <div class="row mt-3 align-items-center">
                 <div class="row">
                     <div class="pagination">

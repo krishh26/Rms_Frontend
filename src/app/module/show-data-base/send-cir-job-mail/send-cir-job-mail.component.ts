@@ -1,16 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatabaseService } from 'src/app/services/database-service/database.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { pagination } from 'src/app/shared/constant/pagination.constant';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-send-acr-job-mail',
-  templateUrl: './send-acr-job-mail.component.html',
-  styleUrls: ['./send-acr-job-mail.component.css']
+  selector: 'app-send-cir-job-mail',
+  templateUrl: './send-cir-job-mail.component.html',
+  styleUrls: ['./send-cir-job-mail.component.css']
 })
-export class SendAcrJobMailComponent {
+export class SendCirJobMailComponent {
 
   tableData: any[] = [];
   jobId: any;
@@ -43,7 +43,7 @@ export class SendAcrJobMailComponent {
 
   toggleSelectAll(event: any) {
     if (event.target.checked) {
-      this.selectedEmails = this.tableData.filter(a => a?.personEmail).map(a => a.personEmail);
+      this.selectedEmails = this.tableData.filter(a => a?.email).map(a => a.email);
     } else {
       this.selectedEmails = [];
     }
@@ -65,7 +65,7 @@ export class SendAcrJobMailComponent {
   }
 
   getTableData() {
-    this.databaseService.getACRUserWithJobApplication(this.jobId).subscribe((response) => {
+    this.databaseService.getCIRUserWithJobApplication(this.jobId).subscribe((response) => {
       if (response?.status) {
         this.tableData = response?.data || []; // Extract all applicants
         this.totalRecords = response?.meta_data?.items;

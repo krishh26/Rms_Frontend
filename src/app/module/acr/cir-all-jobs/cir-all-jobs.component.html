@@ -60,41 +60,103 @@
                 Read me
               </a>
             </td>
-            <td style="color: red;">{{ formatTimeLeft(job.job_time_left) }}</td>
-            <td class="text-center">
-              <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
-                <div *ngIf="!job.applied">
-                  <label
-                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
-                    <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
-                      [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
-                    Yes
-                  </label>
-                  &nbsp;
-                  <label
-                    [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
-                    <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)"
-                      [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
-                    No
-                  </label>
-                </div>
-                <div *ngIf="job.applied == true">
-                  <div class="row">
-                    <div class="ml-auto mr-auto">
-                      <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round"
-                        [disabled]="job.status === 'Not Submitted'">Upload
-                        CV</button>
-                    </div>
-                    <br><br>
-                    <p> {{ findApplicantCvs(job?.applicants) }}/{{ job?.no_of_resouces || '0'}} CV Uploaded </p>
-                  </div>
-                </div>
+            <td style="color: red;">
+              <ng-container *ngIf="job?.extendedJobDetails?.job_expire_date">
+                {{ job?.extendedJobDetails?.job_expire_date | date:'dd/MM/yyyy' }}
               </ng-container>
-
-
-              <ng-template #emailMessage>
-                <span> If you have got more CV's email to : (jamie.thompson&#64;saivensolutions.co.uk)</span>
-              </ng-template>
+              <ng-container *ngIf="!job?.extendedJobDetails?.job_expire_date">
+                {{ formatTimeLeft(job.job_time_left) }}
+              </ng-container>
+            </td>
+            <td class="text-center">
+              <ng-container *ngIf="!job?.extendedJobDetails?.job_expire_date">
+                <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
+                  <div *ngIf="!job.applied && job?.job_time_left !== 0">
+                    <label
+                      [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
+                      <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
+                        [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
+                      Yes
+                    </label>
+                    &nbsp;
+                    <label
+                      [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
+                      <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)"
+                        [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
+                      No
+                    </label>
+                  </div>
+                  <div *ngIf="job.applied == true && job?.job_time_left !== 0">
+                    <div class="row">
+                      <div class="ml-auto mr-auto">
+                        <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round"
+                          [disabled]="job.status === 'Not Submitted'">Upload
+                          CV</button>
+                      </div>
+                      <br><br>
+                      <p> {{ findApplicantCvs(job?.applicants) }}/{{ job?.no_of_resouces || '0'}} CV Uploaded </p>
+                    </div>
+                  </div>
+                  <div *ngIf="job?.job_time_left == 0">
+                    <label class="disabled-text">
+                      <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)" [disabled]="true" />
+                      Yes
+                    </label>
+                    &nbsp;
+                    <label class="disabled-text">
+                      <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)" [disabled]="true" />
+                      No
+                    </label>
+                  </div>
+                </ng-container>
+                <ng-template #emailMessage>
+                  <span> If you have got more CV's email to : (jamie.thompson&#64;saivensolutions.co.uk)</span>
+                </ng-template>
+              </ng-container>
+              <ng-container *ngIf="job?.extendedJobDetails?.job_expire_date">
+                <ng-container *ngIf="job.status !== 'Under Review'; else emailMessage">
+                  <div *ngIf="!job.applied && !compareWithToday(job?.extendedJobDetails?.job_expire_date)">
+                    <label
+                      [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
+                      <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
+                        [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
+                      Yes
+                    </label>
+                    &nbsp;
+                    <label
+                      [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
+                      <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)"
+                        [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
+                      No
+                    </label>
+                  </div>
+                  <div *ngIf="job.applied == true && !compareWithToday(job?.extendedJobDetails?.job_expire_date)">
+                    <div class="row">
+                      <div class="ml-auto mr-auto">
+                        <button (click)="openCVModal(job)" type="submit" class="btn btn-primary btn-round"
+                          [disabled]="job.status === 'Not Submitted'">Upload
+                          CV</button>
+                      </div>
+                      <br><br>
+                      <p> {{ findApplicantCvs(job?.applicants) }}/{{ job?.no_of_resouces || '0'}} CV Uploaded </p>
+                    </div>
+                  </div>
+                  <div *ngIf="job?.job_time_left == 0 && compareWithToday(job?.extendedJobDetails?.job_expire_date)">
+                    <label class="disabled-text">
+                      <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)" [disabled]="true" />
+                      Yes
+                    </label>
+                    &nbsp;
+                    <label class="disabled-text">
+                      <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)" [disabled]="true" />
+                      No
+                    </label>
+                  </div>
+                </ng-container>
+                <ng-template #emailMessage>
+                  <span> If you have got more CV's email to : (jamie.thompson&#64;saivensolutions.co.uk)</span>
+                </ng-template>
+              </ng-container>
             </td>
             <td>{{job.status}}</td>
           </tr>
