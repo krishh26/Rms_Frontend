@@ -12,13 +12,13 @@ import { Patterns } from 'src/app/shared/constant/validation-patterns.const';
 })
 export class CirProfileComponent implements OnInit {
   profileForm!: FormGroup;
+  passwordForm!: FormGroup;
   loginDetails!: any;
-  showPasswordFields = false;
-  password = 'password';
   showPassword = false;
-  confirmPassword = 'password';
   confirmShowPassword = false;
   file: any;
+  activeTab = 'profile'; // Default active tab
+
   constructor(
     private localStorageService: LocalStorageService,
     private notificationService: NotificationService,
@@ -33,23 +33,29 @@ export class CirProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.loginDetails.profile.url);
-    
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 
   initializeForms() {
+    // Profile form
     this.profileForm = new FormGroup({
       profile: new FormControl(this.loginDetails.profile.url, [Validators.required]),
       userName: new FormControl(this.loginDetails.userName, [Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       name: new FormControl(this.loginDetails.name, [Validators.required, Validators.pattern(Patterns.name)]),
+      email: new FormControl(this.loginDetails.email, [Validators.required, Validators.email]),
       phoneNumber: new FormControl(this.loginDetails.phoneNumber, [Validators.required, Validators.pattern(Patterns.mobile)]),
       nationality: new FormControl(this.loginDetails.nationality, [Validators.required]),
       postalCode: new FormControl(this.loginDetails.postalCode),
     });
-  }
 
-  togglePasswordFields() {
-    this.showPasswordFields = !this.showPasswordFields;
+    // Password form
+    this.passwordForm = new FormGroup({
+      password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)])
+    });
   }
 
   fileUpload(event: any): void {
@@ -61,7 +67,6 @@ export class CirProfileComponent implements OnInit {
       if (response?.status) {
         this.file = response?.data;
         console.log(this.file);
-
         this.notificationService.showSuccess(response?.message || 'Profile picture successfully uploaded.')
       } else {
         this.notificationService.showError(response?.message || 'File not uploaded.')
@@ -72,63 +77,61 @@ export class CirProfileComponent implements OnInit {
   }
 
   public showHidePass(type: string): void {
-    if (type == 'password' && this.password === 'password') {
-      this.password = 'text';
-      this.showPassword = true;
-    } else {
-      this.password = 'password';
-      this.showPassword = false;
-    }
-
-    if (type !== 'password' && this.confirmPassword === 'password') {
-      this.confirmPassword = 'text';
-      this.confirmShowPassword = true;
-    } else {
-      this.confirmPassword = 'password';
-      this.confirmShowPassword = false;
+    if (type === 'password') {
+      this.showPassword = !this.showPassword;
+    } else if (type === 'confirmPassword') {
+      this.confirmShowPassword = !this.confirmShowPassword;
     }
   }
 
-  submit() {
-    if (!this.profileForm.controls['phoneNumber']?.value) {
-      return this.notificationService.showError('Please enter phoneNumber');
-    }
-
-    if (!this.profileForm.controls['nationality']?.value) {
-      return this.notificationService.showError('Please enter nationality');
-    }
-
-    if (!this.profileForm.controls['postalCode']?.value) {
-      return this.notificationService.showError('Please enter postalCode');
-    }
-
-    if (this.profileForm.controls['password']?.value || this.profileForm.controls['confirmPassword']?.value) {
-      if (this.profileForm.controls['password']?.value !== this.profileForm.controls['confirmPassword']?.value) {
-        return this.notificationService.showError('Password and confirm password not matched');
-      }
+  submitProfile() {
+    if (this.profileForm.invalid) {
+      return this.notificationService.showError('Please fill all required fields correctly');
     }
 
     const data: any = {
-      "phoneNumber": this.profileForm.controls['phoneNumber']?.value,
-      "postalCode": this.profileForm.controls['postalCode']?.value,
-      "nationality": this.profileForm.controls['nationality']?.value,
+      "phoneNumber": this.profileForm.controls['phoneNumber'].value,
+      "postalCode": this.profileForm.controls['postalCode'].value,
+      "nationality": this.profileForm.controls['nationality'].value,
       "profile": this.file
-    }
-
-    if (this.profileForm.controls['password']?.value) {
-      data['password'] = this.profileForm.controls['password']?.value;
     }
 
     this.cirSericeService.updateregister(this.loginDetails?._id, data).subscribe((response) => {
       if (response?.status) {
         this.localStorageService.setLogger(response?.data);
-        this.notificationService.showSuccess(response?.message || 'Detailed Updated successfully');
+        this.notificationService.showSuccess(response?.message || 'Profile Updated successfully');
         window.location.reload();
       } else {
-        this.notificationService.showError(response?.message || 'Detailed Not Updated.');
+        this.notificationService.showError(response?.message || 'Profile Not Updated.');
       }
     }, (error) => {
-      this.notificationService.showError(error?.error?.message || 'Detailed Not Updated.');
+      this.notificationService.showError(error?.error?.message || 'Profile Not Updated.');
+    });
+  }
+
+  submitPassword() {
+    if (this.passwordForm.invalid) {
+      return this.notificationService.showError('Please fill all password fields correctly');
+    }
+
+    if (this.passwordForm.controls['password'].value !== this.passwordForm.controls['confirmPassword'].value) {
+      return this.notificationService.showError('Password and confirm password do not match');
+    }
+
+    const data: any = {
+      "password": this.passwordForm.controls['password'].value
+    }
+
+    this.cirSericeService.updateregister(this.loginDetails?._id, data).subscribe((response) => {
+      if (response?.status) {
+        this.localStorageService.setLogger(response?.data);
+        this.notificationService.showSuccess(response?.message || 'Password Updated successfully');
+        this.passwordForm.reset();
+      } else {
+        this.notificationService.showError(response?.message || 'Password Not Updated.');
+      }
+    }, (error) => {
+      this.notificationService.showError(error?.error?.message || 'Password Not Updated.');
     });
   }
 }

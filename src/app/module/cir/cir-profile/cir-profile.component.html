@@ -6,11 +6,11 @@
     <div class="FlatCard mt-4 mb-3">
       <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="Profile-tab" data-bs-toggle="tab" data-bs-target="#Profile" type="button"
+          <button class="nav-link" [class.active]="activeTab === 'profile'" id="Profile-tab" (click)="setActiveTab('profile')" type="button"
             role="tab" aria-controls="Profile" aria-selected="true">Profile</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="ChangePassword-tab" data-bs-toggle="tab" data-bs-target="#ChangePassword"
+          <button class="nav-link" [class.active]="activeTab === 'password'" id="ChangePassword-tab" (click)="setActiveTab('password')"
             type="button" role="tab" aria-controls="ChangePassword" aria-selected="false">Change Password</button>
         </li>
       </ul>
@@ -19,14 +19,14 @@
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <form [formGroup]="profileForm" (ngSubmit)="submit()">
+              <!-- Profile Tab Content -->
+              <div class="tab-pane fade" [class.show]="activeTab === 'profile'" [class.active]="activeTab === 'profile'" id="Profile" role="tabpanel">
+                <form [formGroup]="profileForm" (ngSubmit)="submitProfile()">
                   <div class="row mb-3">
                     <div class="col-12">
                       <div class="profile-image mt-4 mb-4">
                         <img *ngIf="file?.url || loginDetails.profile.url"
                           [src]="file?.url || loginDetails.profile.url || 'assets/img/default-avatar.png'" />
-
                         <div class="input--file">
                           <i class="bi bi-camera-fill"></i>
                           <input name="Select File" type="file" (change)="fileUpload($event)"
@@ -95,90 +95,83 @@
                     </div>
                   </div>
 
-                  <!-- <div class="row mt-4 mb-3">
-                    <div class="col-12 mb-3">
-                      <h4 type="button" class="btn btn-primary" (click)="togglePasswordFields()"> Update Password</h4>
-                      <!- <h4 type="button" class="btn btn-primary" (click)="togglePasswordFields()">
-                  
-                  </h4> ->
-                    </div>
-                  </div> -->
                   <div class="row">
                     <div class="col-12 update">
                       <button style="float: right!important" type="submit" class="btn btn-primary btn-round">Update
                         Profile</button>
                     </div>
                   </div>
-                  <!--remove change password form here-->
                 </form>
               </div>
-              <div class="tab-pane fade" id="ChangePassword" role="tabpanel" aria-labelledby="ChangePassword-tab">
-                <!-- <div *ngIf="showPasswordFields"></div> -->
-                 <div class="form-group">
-                   <div class="row mb-3">
-                    <div class="col-md-4">
-                      <label for="password">Password:</label>
-                    </div>
-                    <div class="col-md-8">
-                      <input id="password" type="password" class="form-control" placeholder="Password"
-                        formControlName="password">
-                      <span *ngIf="!showPassword" class="fas fa-eye showicon" (click)="showHidePass('password')"></span>
-                      <span *ngIf="showPassword" class="fas fa-eye-slash showicon" (click)="showHidePass('password')"></span>
-                      <span class="text-danger"
-                        *ngIf="profileForm?.controls?.['password']?.touched && profileForm?.controls?.['password']?.errors?.['required']">
-                        Please enter a password.
-                      </span>
-                      <span class="text-danger"
-                        *ngIf="profileForm?.controls?.['password']?.touched && profileForm?.controls?.['password']?.errors?.['pattern']">
-                        Password must contain a capital letter, a number, and '@'.
-                      </span>
-                    </div>
-                  </div>
-                 </div>
 
-               <div class="form-group">
-                   <div class="row mb-3">
-                    <div class="col-md-4">
-                      <label for="confirmPassword">Confirm Password:</label>
-                    </div>
-                    <div class="col-md-8">
-                      <input id="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
-                        formControlName="confirmPassword">
-                      <span *ngIf="!confirmShowPassword" class="fas fa-eye showicon"
-                        (click)="showHidePass('confirmPassword')"></span>
-                      <span *ngIf="confirmShowPassword" class="fas fa-eye-slash showicon"
-                        (click)="showHidePass('confirmPassword')"></span>
-                      <span class="text-danger"
-                        *ngIf="profileForm?.controls?.['confirmPassword']?.touched && profileForm?.controls?.['confirmPassword']?.errors?.['required']">
-                        Please confirm your password.
-                      </span>
-                      <span class="text-danger"
-                        *ngIf="profileForm?.controls?.['confirmPassword']?.touched && profileForm?.controls?.['confirmPassword']?.errors?.['pattern']">
-                        Password must contain a capital letter, a number, and '@'.
-                      </span>
+              <!-- Change Password Tab Content -->
+              <div class="tab-pane fade" [class.show]="activeTab === 'password'" [class.active]="activeTab === 'password'" id="ChangePassword" role="tabpanel">
+                <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
+                  <div class="form-group">
+                    <div class="row mb-3">
+                      <div class="col-md-4">
+                        <label for="password">Password:</label>
+                      </div>
+                      <div class="col-md-8">
+                        <input id="password" [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Password"
+                          formControlName="password">
+                        <span *ngIf="!showPassword" class="fas fa-eye showicon" (click)="showHidePass('password')"></span>
+                        <span *ngIf="showPassword" class="fas fa-eye-slash showicon" (click)="showHidePass('password')"></span>
+                        <span class="text-danger"
+                          *ngIf="passwordForm?.controls?.['password']?.touched && passwordForm?.controls?.['password']?.errors?.['required']">
+                          Please enter a password.
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="passwordForm?.controls?.['password']?.touched && passwordForm?.controls?.['password']?.errors?.['pattern']">
+                          Password must contain a capital letter, a number, and '&#64;'.
+                        </span>
+                      </div>
                     </div>
                   </div>
-               </div>
-                
-                <div class="row">
-                  <div class="col-12 update">
-                    <button style="float: right!important" type="submit" class="btn btn-primary btn-round">Update
-                      Password</button>
+
+                  <div class="form-group">
+                    <div class="row mb-3">
+                      <div class="col-md-4">
+                        <label for="confirmPassword">Confirm Password:</label>
+                      </div>
+                      <div class="col-md-8">
+                        <input id="confirmPassword" [type]="confirmShowPassword ? 'text' : 'password'" class="form-control" placeholder="Confirm Password"
+                          formControlName="confirmPassword">
+                        <span *ngIf="!confirmShowPassword" class="fas fa-eye showicon"
+                          (click)="showHidePass('confirmPassword')"></span>
+                        <span *ngIf="confirmShowPassword" class="fas fa-eye-slash showicon"
+                          (click)="showHidePass('confirmPassword')"></span>
+                        <span class="text-danger"
+                          *ngIf="passwordForm?.controls?.['confirmPassword']?.touched && passwordForm?.controls?.['confirmPassword']?.errors?.['required']">
+                          Please confirm your password.
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="passwordForm?.controls?.['confirmPassword']?.touched && passwordForm?.controls?.['confirmPassword']?.errors?.['pattern']">
+                          Password must contain a capital letter, a number, and '&#64;'.
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
+
+                  <div class="row">
+                    <div class="col-12 update">
+                      <button style="float: right!important" type="submit" class="btn btn-primary btn-round">Update
+                        Password</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
-
           </div>
         </div>
 
-        <!-- Left Panel -->
+        <!-- Right Panel -->
         <div class="col-lg-5 col-xl-5 col-12">
           <div class="FormLeft-panel">
             <div class="text-center">
               <img src="../../../../assets/img/Saivenlogo.png" width="200" class="mb-5" />
             </div>
-            <h3><strong>“Elevate Your Career with SaiVen: Join Public Sector IT Projects”</strong></h3>
+            <h3><strong>"Elevate Your Career with SaiVen: Join Public Sector IT Projects"</strong></h3>
             <p class="mb-5 textfont">SaiVen, is an emerging IT QA lead business with 40+ business collaborations
               across UK and India. We are a dedicated business to lead the governance of all public sector QA projects
               signed by the group and we are the driving force for client relationship management, project governance,
@@ -186,16 +179,14 @@
               Our job is to ensure seamless execution for exceptional results, through bringing our industry expertise
               added with right skills at right time - enabling quick and cost-effective resource augmentation, for
               benefit of our clients.<br><br>Partner with us for exciting contract opportunities and be a part of our
-              success
-              story</p>
+              success story</p>
             <p><strong>SaiVen Technology Solutions Limited</strong><br>
               1-04, Focal Point, <br>27-35 Fleet Street, <br>Swindon SN1 1RQ
             </p>
             <p>Company Registration Number: 8856876</p>
-            <p>Email: Info@saivensolutions.co.uk</p>
+            <p>Email: Info&#64;saivensolutions.co.uk</p>
           </div>
         </div>
-        <!-- End Form -->
       </div>
     </div>
   </div>
