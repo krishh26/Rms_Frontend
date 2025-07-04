@@ -1,42 +1,16 @@
-<section class="section-registration">
+<section>
   <div class="container">
-    <div class="FlatCard shadow border-radius24 mobile-registration-card">
-      <div class="row">
-        <div class="col-lg-5 col-xl-5 col-12">
-          <div class="FormLeft-panel">
-            <div class="text-center">
-              <img src="../../../../assets/img/Saivenlogo.png" width="200" class="mb-5" />
-            </div>
-            <h1 class="HeadingLarge">
-              “Elevate Your Career with SaiVen: Join Public Sector IT Projects”
-            </h1>
-            <p class="mb-5 textfont">
-              SaiVen, is an emerging IT QA lead business with 40+ business
-              collaborations across UK and India. We are a dedicated business to
-              lead the governance of all public sector QA projects signed by the
-              group and we are the driving force for client relationship
-              management, project governance, and people/delivery management.<br /><br />
-              Our job is to ensure seamless execution for exceptional results,
-              through bringing our industry expertise added with right skills at
-              right time - enabling quick and cost-effective resource
-              augmentation, for benefit of our clients.<br /><br />Partner with
-              us for exciting contract opportunities and be a part of our
-              success story
-            </p>
-            <p>
-              <strong>SaiVen Technology Solutions Limited</strong><br />
-              1-04, Focal Point, <br />27-35 Fleet Street, <br />Swindon SN1 1RQ
-            </p>
-            <p>Company Registration Number: 8856876</p>
-            <p>Email: Info@saivensolutions.co.uk</p>
-          </div>
-        </div>
+    <div class="Titleheading">
+      <h1>Register Yourself</h1>
+    </div>
+    <div class="FlatCard">
+      <div class="row">       
         <div class="col-lg-7 col-xl-7 col-12">
           <div class="FormRight-panel">
-            <h4><strong>Personal Details</strong></h4>
+            <h5><strong>Personal Details</strong></h5>
             <br />
             <form [formGroup]="personalDetailForm" (ngSubmit)="submitPersonalDetail()">
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>Your Name <span style="color: red">*</span> :</label>
                 </div>
@@ -58,7 +32,7 @@
               </div>
 
               <!-- Email -->
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>Your Email <span style="color: red">*</span> :</label>
                 </div>
@@ -81,7 +55,7 @@
               </div>
 
               <!-- Phone Number -->
-              <div class="row">
+             <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>Your Phone number
                     <span style="color: red">*</span> :</label>
@@ -116,7 +90,7 @@
               </div>
 
               <!-- Nationality and UK Visa Type -->
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>Nationality <span style="color: red">*</span> :</label>
                 </div>
@@ -143,7 +117,7 @@
                 </div>
               </div>
 
-              <div class="row" *ngIf="showUKVisaType">
+              <div class="row align-items-center" *ngIf="showUKVisaType">
                 <div class="col-md-4">
                   <label>UK Visa Type <span style="color: red">*</span> :</label>
                 </div>
@@ -166,9 +140,9 @@
               </div>
 
               <!-- UK Driving License -->
-              <div class="row">
+             <div class="row align-items-center">
                 <div class="col-md-4">
-                  <label>Do you Have a UK Driving license?<span style="color: red">*</span>
+                  <label>Do you Have a UK Driving license?n<span style="color: red">*</span>
                     :</label>
                 </div>
                 <div class="col-md-8">
@@ -190,7 +164,7 @@
               </div>
 
               <!-- Postal Code -->
-              <div class="row">
+             <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>Your Current Location<span style="color: red">*</span>:</label>
                 </div>
@@ -213,7 +187,7 @@
               </div>
 
               <!-- Current Work -->
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>I'm currently Working<span style="color: red">*</span>
                     :</label>
@@ -245,7 +219,7 @@
               </div>
 
               <!-- Looking For -->
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>I am looking for<span style="color: red">*</span> :</label>
                 </div>
@@ -281,7 +255,7 @@
               </div>
 
               <!-- Work Preferences -->
-              <div class="row">
+             <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>Work Preferences<span style="color: red">*</span> :</label>
                 </div>
@@ -317,7 +291,7 @@
               </div>
 
               <!-- My current notice period (Days) -->
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-4">
                   <label>My current notice period (Days)<span style="color: red">*</span>
                     :</label>
@@ -335,9 +309,8 @@
                 </div>
               </div>
 
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-4">
-
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
@@ -352,7 +325,7 @@
               </div>
 
 
-              <div class="row">
+             <div class="row align-items-center">
                 <div class="col-12 update">
                   <button style="float: right !important" type="submit" class="btn btn-primary btn-round"
                     [disabled]="!captchaToken">
@@ -363,6 +336,36 @@
             </form>
           </div>
         </div>
+         <div class="col-lg-5 col-xl-5 col-12">
+          <div class="FormLeft-panel">
+            <div class="text-center">
+              <img src="../../../../assets/img/Saivenlogo.png" width="200" class="mb-5" />
+            </div>
+            <h1 class="HeadingLarge">
+              “Elevate Your Career with SaiVen: Join Public Sector IT Projects”
+            </h1>
+            <p class="mb-5 textfont">
+              SaiVen, is an emerging IT QA lead business with 40+ business
+              collaborations across UK and India. We are a dedicated business to
+              lead the governance of all public sector QA projects signed by the
+              group and we are the driving force for client relationship
+              management, project governance, and people/delivery management.<br /><br />
+              Our job is to ensure seamless execution for exceptional results,
+              through bringing our industry expertise added with right skills at
+              right time - enabling quick and cost-effective resource
+              augmentation, for benefit of our clients.<br /><br />Partner with
+              us for exciting contract opportunities and be a part of our
+              success story
+            </p>
+            <p>
+              <strong>SaiVen Technology Solutions Limited</strong><br />
+              1-04, Focal Point, <br />27-35 Fleet Street, <br />Swindon SN1 1RQ
+            </p>
+            <p>Company Registration Number: 8856876</p>
+            <p>Email: Info@saivensolutions.co.uk</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
