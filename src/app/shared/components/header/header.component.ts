@@ -9,7 +9,7 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
 })
 export class HeaderComponent implements OnInit {
   loginUser!: any;
-
+  TokenData: any;
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router
@@ -21,6 +21,16 @@ export class HeaderComponent implements OnInit {
     setInterval(() => {
       this.loginUser = this.localStorageService.getLogger();
     }, 500);
+    console.log(this.loginUser);
+    const tokenData = localStorage.getItem("DecodedToken");
+    if (tokenData) {
+      try {
+        this.TokenData = JSON.parse(tokenData);
+        console.log(this.TokenData);
+      } catch (error) {
+        console.error("Error parsing token data as JSON", error);
+      }
+    }
   }
 
   logoutAcrAdmin() {
