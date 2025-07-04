@@ -99,13 +99,18 @@
                       </div>
                     </div>
                   </ng-container>
-
-
                   <ng-template #emailMessage>
                     <span> If you have got more CV's email to : (jamie.thompson@saivensolutions.co.uk)</span>
                   </ng-template>
                 </td>
-                <td>{{job?.jobExpireDate | date:'dd/MM/yyyy'}}</td>
+                <td>
+                  <ng-container *ngIf="!job?.cirextendJobDetails?.job_expire_date">
+                    {{job?.jobExpireDate | date:'dd/MM/yyyy'}}
+                  </ng-container>
+                   <ng-container *ngIf="job?.cirextendJobDetails?.job_expire_date">
+                    {{job?.cirextendJobDetails?.job_expire_date | date:'dd/MM/yyyy'}}
+                  </ng-container>
+                </td>
                 <td>{{job?.status}}</td>
 
               </tr>

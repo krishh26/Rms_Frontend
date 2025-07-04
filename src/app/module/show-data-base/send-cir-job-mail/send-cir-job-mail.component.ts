@@ -24,7 +24,7 @@ export class SendCirJobMailComponent {
   @ViewChild('confirmModal') confirmModal: any;
 
   get isAllSelected(): boolean {
-    return this.tableData.length > 0 && this.selectedEmails.length === this.tableData.filter(a => a?.personEmail).length;
+    return this.tableData.length > 0 && this.selectedEmails.length === this.tableData.filter(a => a?.email).length;
   }
 
   isSelected(email: string): boolean {
@@ -108,7 +108,7 @@ export class SendCirJobMailComponent {
       date: this.selectedDate
     };
 
-    this.databaseService.sendAcrJobPostMail(payload).subscribe((response) => {
+    this.databaseService.sendCIRJobPostMail(payload).subscribe((response) => {
       if (response?.status) {
         this.notificationService.showSuccess('Successfully sent mail.');
       } else {
