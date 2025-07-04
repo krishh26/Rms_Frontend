@@ -1,36 +1,92 @@
-<section class="section-accordian-card">
-  <div class="container">
-    <h4 style="text-align: center;"><strong>My Candidate List</strong></h4>
-    <div class="table-responsive">
-      <table class="table table-bordered mt-3">
-        <thead>
-          <tr>
-            <th style="text-transform: none; text-align: center;" scope="col">Sr. No.</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Candidate Name</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Candidate Email</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Joining Date</th>
-            <th style="text-transform: none; text-align: center;" scope="col">Status</th>
-            <!-- <th style="text-transform: none; text-align: center;" scope="col">Any Query?</th> -->
-          </tr>
-        </thead>
-        <tbody>
+<!--shrikant added new header-->
+<header class="custom-header">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../../../assets/img/Saivenlogo.png" alt="" width="180">
+      </a>
+      <button class="navbar-toggler" type="button" aria-controls="collapseExample">
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
 
-          <tr>
-            <td *ngIf="candidatelist.length == 0" class="text-center" colspan="7">
-              No Record Found.
-            </td>
-          </tr>
-
-          <tr *ngFor="let candidate of candidatelist; let i = index">
-            <td>{{i +1}}</td>
-            <td>{{candidate.name}}</td>
-            <td>{{candidate.email}}</td>
-            <td>{{candidate.joiningDate | date:'dd/MM/yyyy'}}</td>
-            <td>{{candidate.status}}</td>
-            <!-- <td></td> -->
-          </tr>
-        </tbody>
-      </table>
+          <li class="nav-item">
+            <a class="nav-link"> All Jobs </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active"> My Candidate Page </a>
+          </li>
+          <li class="nav-item" ngbDropdown>
+            <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink">
+              Westgate Admin
+            </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+              <a ngbDropdownItem routerLink="/cir/cir-profile">Profile</a>
+              <a ngbDropdownItem href="javascript:void(0)"> LogOut</a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+</header>
+
+<nav aria-label="breadcrumb" class="gray-bg">
+  <div class="container p-0">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">All Jobs</li>
+    </ol>
+  </div>
+</nav>
+
+<!--shrikant colsed new header-->
+<section>
+  <div class="container">
+    <div class="Titleheading">
+      <h1>My Candidate List</h1>
+    </div>
+    <div class="FlatCard">
+      <div class="card-header">
+        <h4 class="header-title">All Candidate List</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th style="text-transform: none; text-align: center;" scope="col">Sr. No.</th>
+                <th style="text-transform: none; text-align: center;" scope="col">Candidate Name</th>
+                <th style="text-transform: none; text-align: center;" scope="col">Candidate Email</th>
+                <th style="text-transform: none; text-align: center;" scope="col">Joining Date</th>
+                <th style="text-transform: none; text-align: center;" scope="col">Status</th>
+                <!-- <th style="text-transform: none; text-align: center;" scope="col">Any Query?</th> -->
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td *ngIf="candidatelist.length == 0" class="text-center" colspan="7">
+                  No Record Found.
+                </td>
+              </tr>
+
+              <tr *ngFor="let candidate of candidatelist; let i = index">
+                <td>{{i +1}}</td>
+                <td>{{candidate.name}}</td>
+                <td>{{candidate.email}}</td>
+                <td>{{candidate.joiningDate | date:'dd/MM/yyyy'}}</td>
+                <td>{{candidate.status}}</td>
+                <!-- <td></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
