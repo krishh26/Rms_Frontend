@@ -1,139 +1,158 @@
-<div class="section-card">
-  <div class="m-3">
-    <button class="btn btn-primary" *ngIf="!showFilter" (click)="showFilter = !showFilter">
-      Show Filter
-    </button>
-    <button class="btn btn-primary" *ngIf="showFilter" (click)="showFilter = !showFilter">
-      Hide Filter
-    </button>
-    <button class="btn btn-primary" style="float: right;" routerLink="/database/list">
-      Back
-    </button>
-  </div>
-
-  <!-- Start User Filter -->
-  <ng-container *ngIf="pageType == 'User'">
-    <div class="row m-3" *ngIf="showFilter">
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Name" [(ngModel)]="userFilter.name" />
-        </div>
+<section>
+  <div class="container">
+    <div class="Titleheading">
+      <h1>Database List</h1>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-6">
+        <button class="btn btn-primary" *ngIf="!showFilter" (click)="showFilter = !showFilter">
+          Show Filter
+        </button>
+        <button class="btn btn-primary" *ngIf="showFilter" (click)="showFilter = !showFilter">
+          Hide Filter
+        </button>
       </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Phone Number" (keypress)="NumberOnly($event)"
-            [(ngModel)]="userFilter.phoneNumber" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userFilter.email" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Country" [(ngModel)]="userFilter.country" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <select class="form-control" [(ngModel)]="userFilter.UKDrivinglicense">
-            <option value="" disabled selected hidden>Uk Driving License</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <select class="form-control" [(ngModel)]="userFilter.nationality">
-            <option value="" disabled selected hidden>Select Nationality</option>
-            <option value="british">British</option>
-            <option value="other">Others</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <select class="form-control" [(ngModel)]="userFilter.currentWork">
-            <option value="" disabled selected hidden>Current Working As</option>
-            <option value="full-time">Full Time</option>
-            <option value="part-time">Part Time</option>
-            <option value="not-working">Not working</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-4">
-        <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
-        <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
+      <div class="col-6 text-end">
+        <button class="btn btn-primary" style="float: right;" routerLink="/database/list">
+          Back
+        </button>
       </div>
     </div>
-  </ng-container>
+    <!--start Filter body-->
+    <!-- Start User Filter -->
+    <ng-container *ngIf="pageType == 'User'">
+      <div class="FlatCard" *ngIf="showFilter">
+        <div class="card-body">
+          <div class="row m-3">
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="userFilter.name" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Phone Number" (keypress)="NumberOnly($event)"
+                  [(ngModel)]="userFilter.phoneNumber" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userFilter.email" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Country" [(ngModel)]="userFilter.country" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <select class="form-control" [(ngModel)]="userFilter.UKDrivinglicense">
+                  <option value="" disabled selected hidden>Uk Driving License</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <select class="form-control" [(ngModel)]="userFilter.nationality">
+                  <option value="" disabled selected hidden>Select Nationality</option>
+                  <option value="british">British</option>
+                  <option value="other">Others</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <select class="form-control" [(ngModel)]="userFilter.currentWork">
+                  <option value="" disabled selected hidden>Current Working As</option>
+                  <option value="full-time">Full Time</option>
+                  <option value="part-time">Part Time</option>
+                  <option value="not-working">Not working</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
+              <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
 
-  <!-- ACR Filter -->
-  <ng-container *ngIf="pageType == 'card'">
-    <div class="row m-3" *ngIf="showFilter">
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Role Demand" [(ngModel)]="cardFilter.rolesInDemand" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Role Description"
-            [(ngModel)]="cardFilter.roleDescription" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <select class="form-control" [(ngModel)]="cardFilter.type">
-            <option value="" disabled selected hidden>Type</option>
-            <option value="ACR">ACR</option>
-            <option value="CIR">CIR</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Qualifications Certificate"
-            [(ngModel)]="cardFilter.certifications_qualifications" />
-        </div>
-      </div>
+    <!-- ACR Filter -->
+    <ng-container *ngIf="pageType == 'card'">
+      <div class="FlatCard" *ngIf="showFilter">
+        <div class="card-body">
+          <div class="row m-3">
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Role Demand"
+                  [(ngModel)]="cardFilter.rolesInDemand" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Role Description"
+                  [(ngModel)]="cardFilter.roleDescription" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <select class="form-control" [(ngModel)]="cardFilter.type">
+                  <option value="" disabled selected hidden>Type</option>
+                  <option value="ACR">ACR</option>
+                  <option value="CIR">CIR</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Qualifications Certificate"
+                  [(ngModel)]="cardFilter.certifications_qualifications" />
+              </div>
+            </div>
 
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value A" [(ngModel)]="cardFilter.valueA" />
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Value A" [(ngModel)]="cardFilter.valueA" />
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Value B" [(ngModel)]="cardFilter.valueB" />
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Value C" [(ngModel)]="cardFilter.valueC" />
+              </div>
+            </div>
+
+            <div class="col-4">
+              <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
+              <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
+            </div>
+          </div>
         </div>
       </div>
+    </ng-container>
 
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value B" [(ngModel)]="cardFilter.valueB" />
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Value C" [(ngModel)]="cardFilter.valueC" />
-        </div>
-      </div>
-
-      <div class="col-4">
-        <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
-        <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
-      </div>
-    </div>
-  </ng-container>
-
-  <!-- JOb Filter -->
-  <ng-container *ngIf="pageType == 'Job'">
-    <div class="row m-3" *ngIf="showFilter">
-      <div class="col-4">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search All" [(ngModel)]="JobFilter.keyword" />
-        </div>
-      </div>
-      <!-- <div class="col-4">
+    <!-- JOb Filter -->
+    <ng-container *ngIf="pageType == 'Job'">
+      <div class="FlatCard" *ngIf="showFilter">
+        <div class="card-body">
+          <div class="row m-3" >
+            <div class="col-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search All" [(ngModel)]="JobFilter.keyword" />
+              </div>
+            </div>
+            <!-- <div class="col-4">
         <div class="form-group">
           <select class="form-control" [(ngModel)]="JobFilter.status">
             <option value="" disabled selected hidden>Status</option>
@@ -142,80 +161,84 @@
           </select>
         </div>
       </div> -->
-      <!-- <div class="col-4">
+            <!-- <div class="col-4">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="location" [(ngModel)]="JobFilter.location" />
         </div>
       </div> -->
 
-      <div class="col-4">
-        <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
-        <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
+            <div class="col-4">
+              <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
+              <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
+    <!-- Start Database Details -->
+    <div class="FlatCard mt-3">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-6 text-start d-flex align-items-center">
+            <h2 class="card-title">{{ pageType }} Details</h2>
+          </div>
+          <div class="col-6 text-end">
+            <button type="button" class="btn btn-light" (click)="downloadAsExcel()">
+              Download Excel
+            </button>
+          </div>
+        </div>
+      </div>
 
-  <!-- Start Database Details -->
-  <div class="FlatCard shadow border-radius6 m-3">
-    <div class="row card-header">
-      <div class="col-6 text-start d-flex align-items-center">
-        <h2 class="card-title">{{ pageType }} Details</h2>
-      </div>
-      <div class="col-6 text-end">
-        <button type="button" class="btn btn-primary" style="padding: 0px 10px !important" (click)="downloadAsExcel()">
-          Download Excel
-        </button>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <ng-container *ngIf="pageType == 'User'">
-          <table class="table">
-            <thead>
-              <th *ngFor="let header of tableHeader">{{ header }}</th>
-            </thead>
-            <tbody>
-              <ng-container
-                *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
-                <tr>
-                  <td>{{ index + 1 }}</td>
-                  <td>{{ item?.name }}</td>
-                  <td>{{ item?.email }}</td>
-                  <td>{{ item?.countrycode }}</td>
-                  <td>{{ item?.phoneNumber }}</td>
-                  <td>{{ item?.nationality }}</td>
-                  <td>{{ item?.UKVisaType }}</td>
-                  <td>{{ item?.UKDrivinglicense ? 'Yes' : 'No' }}</td>
-                  <td>{{ item?.postalCode }}</td>
-                  <td>{{ item?.noticePeriodDay }}</td>
-                  <td>{{ item?.currentWork }}</td>
-                  <td>
-                    <ng-container *ngIf="item?.lookingFor?.length > 0">
-                      <ul>
-                        <li *ngFor="let data of item?.lookingFor">
-                          {{ data }}
-                        </li>
-                      </ul>
-                    </ng-container>
-                  </td>
-                  <!-- <td>{{ item?.workLocation }}</td> -->
-                  <td>
-                    <ng-container *ngIf="item?.workPreference?.length > 0">
-                      <ul>
-                        <li *ngFor="let data of item?.workPreference">
-                          {{ data }}
-                        </li>
-                      </ul>
-                    </ng-container>
-                  </td>
-                  <td>{{ item?.expectedDayRate }}</td>
-                  <td>{{ item?.referredBy }}</td>
-                  <td>{{ item?.sc_dv_clearance_hold ? 'Yes' : 'No' }}</td>
+      <div class="card-body">
+        <div class="table-responsive">
+          <ng-container *ngIf="pageType == 'User'">
+            <table class="table table-stripped">
+              <thead>
+                <th *ngFor="let header of tableHeader">{{ header }}</th>
+              </thead>
+              <tbody>
+                <ng-container
+                  *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
+                  <tr>
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ item?.name }}</td>
+                    <td>{{ item?.email }}</td>
+                    <td>{{ item?.countrycode }}</td>
+                    <td>{{ item?.phoneNumber }}</td>
+                    <td>{{ item?.nationality }}</td>
+                    <td>{{ item?.UKVisaType }}</td>
+                    <td>{{ item?.UKDrivinglicense ? 'Yes' : 'No' }}</td>
+                    <td>{{ item?.postalCode }}</td>
+                    <td>{{ item?.noticePeriodDay }}</td>
+                    <td>{{ item?.currentWork }}</td>
+                    <td>
+                      <ng-container *ngIf="item?.lookingFor?.length > 0">
+                        <ul>
+                          <li *ngFor="let data of item?.lookingFor">
+                            {{ data }}
+                          </li>
+                        </ul>
+                      </ng-container>
+                    </td>
+                    <!-- <td>{{ item?.workLocation }}</td> -->
+                    <td>
+                      <ng-container *ngIf="item?.workPreference?.length > 0">
+                        <ul>
+                          <li *ngFor="let data of item?.workPreference">
+                            {{ data }}
+                          </li>
+                        </ul>
+                      </ng-container>
+                    </td>
+                    <td>{{ item?.expectedDayRate }}</td>
+                    <td>{{ item?.referredBy }}</td>
+                    <td>{{ item?.sc_dv_clearance_hold ? 'Yes' : 'No' }}</td>
 
-                  <!-- <td>{{item?.willing_to_undertake}}</td> -->
-                  <td>{{ item?.callDay }}</td>
-                  <td>{{ item?.callTime }}</td>
-                  <!-- <td>
+                    <!-- <td>{{item?.willing_to_undertake}}</td> -->
+                    <td>{{ item?.callDay }}</td>
+                    <td>{{ item?.callTime }}</td>
+                    <!-- <td>
                     <ng-container *ngIf="item?.client1?.roles?.length> 0">
                       <ul>
 
@@ -250,106 +273,106 @@
                       </ul>
                     </ng-container>
                   </td> -->
-                  <td>{{ item?.anyQuestion }}</td>
-                  <td>
-                    <button (click)="openDocument(item?.profilePicture)" type="button" class="btn w-100">
-                      <i class="fa fa-eye"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <button (click)="openDocument(item?.cv)" type="button" class="btn w-100">
-                      <i class="fa fa-eye"></i>
-                    </button>
-                  </td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </ng-container>
+                    <td>{{ item?.anyQuestion }}</td>
+                    <td>
+                      <button (click)="openDocument(item?.profilePicture)" type="button" class="btn w-100">
+                        <i class="fa fa-eye"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button (click)="openDocument(item?.cv)" type="button" class="btn w-100">
+                        <i class="fa fa-eye"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </ng-container>
 
-        <ng-container *ngIf="pageType == 'ACRUser'">
-          <table class="table">
-            <thead>
-              <th *ngFor="let header of tableHeader">{{ header }}</th>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of tableData; let index = index">
-                <tr>
-                  <td>{{ item?.agencyName }}</td>
-                  <td>{{ item?.location }}</td>
-                  <td>{{ item?.numberOfBranchesInUK }}</td>
-                  <td>{{ item?.personName }}</td>
-                  <td>{{ item?.personDesignation }}</td>
-                  <td>{{ item?.userName }}</td>
-                  <td>{{ item?.personEmail }}</td>
-                  <td>{{ item?.phoneNumber }}</td>
-                  <td>{{ item?.contactDetails }}</td>
-                  <td>{{ item?.emergencySecondaryContactDetails }}</td>
+          <ng-container *ngIf="pageType == 'ACRUser'">
+            <table class="table">
+              <thead>
+                <th *ngFor="let header of tableHeader">{{ header }}</th>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of tableData; let index = index">
+                  <tr>
+                    <td>{{ item?.agencyName }}</td>
+                    <td>{{ item?.location }}</td>
+                    <td>{{ item?.numberOfBranchesInUK }}</td>
+                    <td>{{ item?.personName }}</td>
+                    <td>{{ item?.personDesignation }}</td>
+                    <td>{{ item?.userName }}</td>
+                    <td>{{ item?.personEmail }}</td>
+                    <td>{{ item?.phoneNumber }}</td>
+                    <td>{{ item?.contactDetails }}</td>
+                    <td>{{ item?.emergencySecondaryContactDetails }}</td>
 
-                  <td>{{ item?.createdAt | date : "dd-MM-YYY" }}</td>
-                  <td>{{ item?.updatedAt | date : "dd-MM-YYY" }}</td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </ng-container>
+                    <td>{{ item?.createdAt | date : "dd-MM-YYY" }}</td>
+                    <td>{{ item?.updatedAt | date : "dd-MM-YYY" }}</td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </ng-container>
 
-        <ng-container *ngIf="pageType == 'card'">
-          <table class="table">
-            <thead>
-              <th *ngFor="let header of tableHeader">{{ header }}</th>
-            </thead>
-            <tbody>
-              <ng-container
-                *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
-                <tr>
-                  <td>{{ item?.name }}</td>
-                  <td>{{ item?.location }}</td>
-                  <td>
-                    <span *ngIf="item?.active == 1" style="color: green; font-weight: bold;">
-                      Active
-                    </span>
-                    <span *ngIf="item?.active == 0" style="color: red; font-weight: bold;">
-                      In-Active
-                    </span>
-                  </td>
-                  <td>{{ item?.createdAt | date : "dd-MM-YYY" }}</td>
-                  <td>
-                    <button class="btn btn-sm btn-primary ml-1" (click)="redirectToCardDetailsPage(item?._id)">
-                      <i class="bi bi-trash-fill"></i> View Details
-                    </button>
-                    <button class="btn btn-sm btn-danger ml-1" (click)="deleteFutureCard(item?._id)">
-                      <i class="bi bi-trash-fill"></i> Delete
-                    </button>
-                  </td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </ng-container>
+          <ng-container *ngIf="pageType == 'card'">
+            <table class="table">
+              <thead>
+                <th *ngFor="let header of tableHeader">{{ header }}</th>
+              </thead>
+              <tbody>
+                <ng-container
+                  *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
+                  <tr>
+                    <td>{{ item?.name }}</td>
+                    <td>{{ item?.location }}</td>
+                    <td>
+                      <span *ngIf="item?.active == 1" style="color: green; font-weight: bold;">
+                        Active
+                      </span>
+                      <span *ngIf="item?.active == 0" style="color: red; font-weight: bold;">
+                        In-Active
+                      </span>
+                    </td>
+                    <td>{{ item?.createdAt | date : "dd-MM-YYY" }}</td>
+                    <td>
+                      <button class="btn btn-sm btn-primary ml-1" (click)="redirectToCardDetailsPage(item?._id)">
+                        <i class="bi bi-trash-fill"></i> View Details
+                      </button>
+                      <button class="btn btn-sm btn-danger ml-1" (click)="deleteFutureCard(item?._id)">
+                        <i class="bi bi-trash-fill"></i> Delete
+                      </button>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </ng-container>
 
 
-        <ng-container *ngIf="pageType == 'Job'">
-          <table class="table">
-            <thead>
-              <th *ngFor="let header of tableHeader">{{ header }}</th>
-            </thead>
-            <tbody>
-              <ng-container
-                *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
-                <tr>
-                  <td>{{ index + 1 }}</td>
-                  <td>{{ item?.job_id }}</td>
-                  <td>{{ item?.job_title }}</td>
-                  <td>{{ item?.no_of_roles }}</td>
-                  <td>{{ item?.start_date | date: 'dd/MM/yyyy' }}</td>
-                  <td>{{ item?.publish_date | date: 'dd/MM/yyyy' }}</td>
-                  <td>{{ item?.client_name }}</td>
-                  <td>{{ item?.location }}</td>
-                  <td>{{ item?.day_rate }}</td>
-                  <td>
-                    {{ item?.status }}
-                    <!-- <ng-container *ngIf="item?.applicants?.length > 0; else noApplicants">
+          <ng-container *ngIf="pageType == 'Job'">
+            <table class="table">
+              <thead>
+                <th *ngFor="let header of tableHeader">{{ header }}</th>
+              </thead>
+              <tbody>
+                <ng-container
+                  *ngFor="let item of tableData  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let index = index">
+                  <tr>
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ item?.job_id }}</td>
+                    <td>{{ item?.job_title }}</td>
+                    <td>{{ item?.no_of_roles }}</td>
+                    <td>{{ item?.start_date | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ item?.publish_date | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ item?.client_name }}</td>
+                    <td>{{ item?.location }}</td>
+                    <td>{{ item?.day_rate }}</td>
+                    <td>
+                      {{ item?.status }}
+                      <!-- <ng-container *ngIf="item?.applicants?.length > 0; else noApplicants">
                       <ul>
                         <li *ngFor="let applicant of item?.applicants">
                           {{ applicant?.userInfo?.agencyName }}
@@ -361,38 +384,41 @@
                       </button>
                     </ng-container>
                     <ng-template #noApplicants>No Applicants</ng-template> -->
-                  </td>
-                  <!-- <td>{{ item?.upload?.key }}</td> -->
-                  <td>
-                    <a [href]="item?.upload?.url" target="_blank">Download</a>
-                  </td>
-                  <!-- <td>{{ item?.timerEnd | date: 'dd/MM/yyyy' }}</td> -->
-                  <td>{{ item?.jobExpireDate | date: 'dd/MM/yyyy' }}</td>
-                  <!-- <td>{{ item?.status }}</td> -->
-                  <td>
-                    <button (click)="viewSendMail(item?.job_id)" class="btn btn-sm btn-primary m-1">
-                      Send Mail
-                    </button>
-                    <button (click)="appliedRoleData(item?.job_id)" class="btn btn-sm btn-primary m-1">
-                      View
-                    </button>
-                    <button class="btn btn-sm btn-danger m-1" (click)="deleteJob(item?._id)">
-                      <i class="bi bi-trash-fill"></i> Delete
-                    </button>
-                  </td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </ng-container>
-      </div>
-      <div class="row mt-3 align-items-center">
-        <div class="row">
-          <div class="pagination">
-            <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+                    </td>
+                    <!-- <td>{{ item?.upload?.key }}</td> -->
+                    <td>
+                      <a [href]="item?.upload?.url" target="_blank">Download</a>
+                    </td>
+                    <!-- <td>{{ item?.timerEnd | date: 'dd/MM/yyyy' }}</td> -->
+                    <td>{{ item?.jobExpireDate | date: 'dd/MM/yyyy' }}</td>
+                    <!-- <td>{{ item?.status }}</td> -->
+                    <td>
+                      <button (click)="viewSendMail(item?.job_id)" class="btn btn-sm btn-primary m-1">
+                        Send Mail
+                      </button>
+                      <button (click)="appliedRoleData(item?.job_id)" class="btn btn-sm btn-primary m-1">
+                        View
+                      </button>
+                      <button class="btn btn-sm btn-danger m-1" (click)="deleteJob(item?._id)">
+                        <i class="bi bi-trash-fill"></i> Delete
+                      </button>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </ng-container>
+        </div>
+        <div class="row mt-3 align-items-center">
+          <div class="row">
+            <div class="pagination">
+              <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+
   </div>
-</div>
+</section>

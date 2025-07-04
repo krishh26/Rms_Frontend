@@ -1,10 +1,10 @@
-.section-card{
-    padding: 40px 0;
-    background-image: url("../../../../assets/img/registraion-page-background.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
+.section-card {
+  padding: 40px 0;
+  background-image: url("../../../../assets/img/registraion-page-background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 h1,
@@ -13,75 +13,87 @@ h3,
 h4,
 h5,
 h6 {
-    margin-top: 0px;
+  margin-top: 0px;
 }
-p{
-    margin-bottom: 0px;
+
+p {
+  margin-bottom: 0px;
 }
-strong{
-    font-weight: 600;
+
+strong {
+  font-weight: 600;
 }
 
 .FlatCard {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border-radius: .25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: .25rem;
 }
 
 .shadow {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .border-radius6 {
-    border-radius: 6px;
+  border-radius: 6px;
 
 }
+
 .FlatCard .card-body {
-    padding: 1rem;
+  padding: 1rem;
 }
-.FlatCard .card-header{
-    background-color: #007f83;
-    padding: 1rem;
-    color: #FFF;
-    border-radius: 6px 6px 0 0;
+
+.FlatCard .card-header {
+  background-color: #007f83;
+  padding: 1rem;
+  color: #FFF;
+  border-radius: 6px 6px 0 0;
 }
 
 .FlatCard {
-  transition: transform 0.3s ease; /* Smooth zoom transition */
-  transform-origin: center center; /* Zoom origin */
+  transition: transform 0.3s ease;
+  /* Smooth zoom transition */
+  transform-origin: center center;
+  /* Zoom origin */
   border-radius: 6px;
   cursor: pointer;
 }
 
 .FlatCard:hover {
-  transform: scale(1.03); /* Zoom the card by 5% */
-  border: 1px solid rgb(255, 165, 165);
+  transform: scale(1.03);
+  /* Zoom the card by 5% */
 }
 
 /* Ensure the text inside doesn't zoom */
 .FlatCard * {
-  transition: none; /* Disable transition on all children elements */
-}
-.text-bold {
-    font-size: 18px;
-    font-weight: bolder;
+  transition: none;
+  /* Disable transition on all children elements */
 }
 
+
+.text-bold {
+  font-size: 18px;
+  font-weight: bolder;
+}
+.HeadingLarge{
+  font-size: 3rem;
+}
 .delete-icon {
-    position: absolute;
-    top:5px; /* Adjust for spacing from the top */
-    right: 5px; /* Adjust for spacing from the right */
-    font-size: 16px; /* Adjust size as needed */
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-  }
+  position: absolute;
+  top: 5px;
+  /* Adjust for spacing from the top */
+  right: 5px;
+  /* Adjust for spacing from the right */
+  font-size: 16px;
+  /* Adjust size as needed */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
 
 /* Toggle Switch Styles */
 .switch {
@@ -121,15 +133,15 @@ strong{
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);
@@ -158,4 +170,24 @@ input:checked + .slider:before {
   position: static;
   top: auto;
   right: auto;
+}
+.card-footer{
+  background-color: #FFF;
+  border-top: 1px dashed #D9D9D9;
+}
+.actionbtn{
+  color: #959595;
+  margin: 0 5px;
+}
+
+.card-icon {
+    background-color: #092C4C;
+    color: #FFF;
+    width: 68px;
+    height: 68px;
+    text-align: center;
+    line-height: 62px;
+    font-size: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
 }

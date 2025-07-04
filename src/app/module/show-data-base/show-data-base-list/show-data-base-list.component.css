@@ -8,24 +8,13 @@
 }
 
 .FlatCard {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border-radius: .25rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
 }
 
-.FlatCard .card-body {
-  padding: 1rem;
-}
-.FlatCard .card-header{
-  background-color: #007f83;
-  padding: 1rem;
-  color: #FFF;
-  border-radius: 6px 6px 0 0;
-}

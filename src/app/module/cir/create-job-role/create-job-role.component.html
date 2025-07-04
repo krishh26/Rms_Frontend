@@ -1,62 +1,70 @@
-<section class="section-card">
+<section>
   <div class="container">
-    <h2 class="text-center mb-4">Create Job Role</h2>
-    <div class="d-flex justify-content-end p-3 p-sm-2">
-      <button class="btn btn-primary" (click)="openAddModal(addModal)">
-        <i class="fa fa-plus me-2"></i> Add New Job Role
-      </button>
-    </div>
-  </div>
-
-  <section class="section-accordian-card">
-    <div class="container">
-      <div class="table-responsive">
-        <table class="table table-bordered mt-3">
-          <thead>
-            <tr>
-              <th style="text-transform: none; text-align: center;">Sr. No.</th>
-              <th style="text-transform: none; text-align: center;" scope="col">Job Role</th>
-              <th style="text-transform: none; text-align: center;" scope="col">Job Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td *ngIf="jobRoleList.length == 0" class="text-center" colspan="10">
-                No Record Found.
-              </td>
-            </tr>
-
-            <tr
-              *ngFor="let job of jobRoleList  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
-              <td style="text-align: center;">{{ i + 1}}</td>
-              <td>{{job.title}}</td>
-              <td>{{job.description}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="row mt-3 align-items-center">
-        <div class="row">
-          <div class="pagination">
-            <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
-          </div>
+    <div class="Titleheading">
+      <div class="row align-items-center">
+        <div class="col-lg-10 col-xl-10 col-md-8 col-sm-4 col-12">
+          <h1>Create Job Role</h1>
+        </div>
+        <div class="col-lg-2 col-xl-2 col-md-4 col-sm-4 col-12">
+          <button class="btn btn-primary" (click)="openAddModal(addModal)">
+            <i class="fa fa-plus me-2"></i> Add New Role
+          </button>
         </div>
       </div>
     </div>
-  </section>
+    <div class="FlatCard">
+      <div class="card-header">
+       <h4 class="header-title"> All Job Role List View</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+      <table class="table table-stripped">
+        <thead>
+          <tr>
+            <th style="text-transform: none; text-align: center;">Sr. No.</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Job Role</th>
+            <th style="text-transform: none; text-align: center;" scope="col">Job Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td *ngIf="jobRoleList.length == 0" class="text-center" colspan="10">
+              No Record Found.
+            </td>
+          </tr>
+
+          <tr
+            *ngFor="let job of jobRoleList  |  paginate: { itemsPerPage: pagesize , currentPage: page, totalItems: totalRecords } ; let i = index">
+            <td style="text-align: center;">{{ i + 1}}</td>
+            <td>{{job.title}}</td>
+            <td>{{job.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row mt-3 align-items-center">
+      <div class="row">
+        <div class="pagination">
+          <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Add Modal -->
 <ng-template #addModal let-modal>
   <div class="modal-header py-3">
-    <h4 class="modal-title fw-bold" style="font-size: 2rem;">Add New Job Role</h4>
+    <h4 class="modal-title fw-bold">Add New Job Role</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
   </div>
   <div class="modal-body py-4">
     <form [formGroup]="nameForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="mb-4 col-12">
-          <label for="title" class="form-label fw-bold" style="font-size: 1.1rem;">
+          <label for="title" class="form-label fw-bold">
             Job Role Title <span class="text-danger">*</span>
           </label>
           <input type="text" id="title" class="form-control form-control-lg" placeholder="Enter Job Role Title"
@@ -67,7 +75,7 @@
           </div>
         </div>
         <div class="mb-4 col-12s">
-          <label for="description" class="form-label fw-bold" style="font-size: 1.1rem;">
+          <label for="description" class="form-label fw-bold">
             Job Description <span class="text-danger">*</span>
           </label>
           <input type="text" id="description" class="form-control form-control-lg" placeholder="Enter Job Description"
@@ -78,11 +86,11 @@
           </div>
         </div>
         <div class="col-12 d-flex justify-content-end gap-3 mt-4">
-          <button type="button" class="btn px-5 py-2 fw-bold" style="background:#65686A; color:white;"
+          <button type="button" class="btn btn-light w-100"
             (click)="closeModal()">
             CANCEL
           </button>
-          <button type="submit" class="btn px-5 py-2 fw-bold" style="background:#7DE1EF; color:#222;">
+          <button type="submit" class="btn btn-primary w-100">
             CREATE JOB ROLE
           </button>
         </div>
