@@ -5741,7 +5741,9 @@ input[type="submit"].btn-block {
     border-top-right-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
 }
-
+.ngx-pagination .current{
+    background: #1563df !important;
+}
 .badge {
     display: inline-block;
     padding: 0.25em 0.4em;

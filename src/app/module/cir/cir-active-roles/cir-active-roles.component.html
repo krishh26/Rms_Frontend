@@ -27,7 +27,7 @@
                 <option value="" disabled>Select Job Type</option>
                 <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
               </select>
-              <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
+              <!-- <span class="select-arrow"><i class="bi bi-chevron-down"></i></span> -->
             </div>
           </div>
           <div class="col-lg-3 col-xl-3 col-12 mob-mb1">
@@ -40,7 +40,7 @@
                 <option value="Expired">Expired</option>
                 <option value="Active">Active</option>
               </select>
-              <span class="select-arrow"><i class="bi bi-chevron-down"></i></span>
+              <!-- <span class="select-arrow"><i class="bi bi-chevron-down"></i></span> -->
             </div>
           </div>
         </div>
@@ -128,8 +128,6 @@
 
 <ng-template class="modal" #loginDetailModal id="loginDetailModal" tabindex="-1" aria-labelledby="ViewLogin"
   aria-hidden="true">
-  <div class="">
-    <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="ViewLogin">Upload Details</h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
@@ -212,6 +210,4 @@
           </div>
         </form>
       </div>
-    </div>
-  </div>
 </ng-template>

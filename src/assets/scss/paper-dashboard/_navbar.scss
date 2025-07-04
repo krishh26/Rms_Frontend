@@ -203,9 +203,9 @@
         cursor: pointer;
 
         & .navbar-toggler-bar.navbar-kebab{
-            width: 3px;
+            width: 22px;
             height: 3px;
-            border-radius: 50%;
+            border-radius: 0%;
             margin: 0 auto;
         }
     }
@@ -217,7 +217,7 @@
     }
 
     &.navbar-transparent{
-      background-color: #007F83 !important;
+    //   background-color: #007F83 !important;
       box-shadow: none;
       border-bottom: 1px solid #ddd;
 
