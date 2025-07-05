@@ -1,7 +1,7 @@
-<div class="section-card">
+<!-- <div class="section-card">
   <div class="FlatCard shadow border-radius6 m-3">
     <div class="card-header">
-      <h3 class="card-title">DATABASE Table List</h3>
+      <h3 class="card-title">DATABASE Table List sdfs</h3>
     </div>
     <div class="card-body p-3">
       <div>
@@ -24,4 +24,26 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<section>
+  <div class="container">
+    <div class="Titleheading">
+      <h1>Database List</h1>
+    </div>
+    <ng-container *ngFor="let item of tableData">
+      <div class="FlatCard mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-6">
+              <strong>{{ item?.tableName }}</strong>
+            </div>
+            <div class="col-6 text-end">
+              <button class="btn btn-sm btn-primary" (click)="redirectToDetailPage(item?.type)">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</section>
