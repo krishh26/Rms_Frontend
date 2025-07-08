@@ -2,7 +2,7 @@
 <header class="custom-header">
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="javascript:;">
         <img src="../../../assets/img/Saivenlogo.png" alt="" width="180">
       </a>
       <button class="navbar-toggler" type="button" (click)="collapse()" [attr.aria-expanded]="!isCollapsed"
@@ -21,7 +21,7 @@
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">
-             
+
               <p>
                 <span class="d-lg-none d-md-block">{{
                   loginUser?.name
@@ -75,7 +75,7 @@
 <nav aria-label="breadcrumb" class="gray-bg">
   <div class="container p-0">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/cir/cir-active-roles">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">All Jobs</li>
     </ol>
   </div>
