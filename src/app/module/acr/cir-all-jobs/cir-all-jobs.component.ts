@@ -65,6 +65,12 @@ export class CirAllJobsComponent implements OnInit {
     this.getProjectList();
   }
 
+
+  logout() {
+    this.localStorageService.clearStorage();
+    this.router.navigate(['/acr/acr-login']);
+  }
+
   onChangeInput() {
     if (!this.resourcesForm.value?.candidates?.[0]?.cv || !this.resourcesForm.value?.candidates?.[0]?.candidate_location || !this.resourcesForm.value?.candidates?.[0]?.candidate_nationality) {
       this.errorData = true;

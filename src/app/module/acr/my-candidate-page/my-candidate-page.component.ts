@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AcrServiceService } from 'src/app/services/acr-service/acr-service.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -18,10 +19,17 @@ export class MyCandidatePageComponent implements OnInit {
     private acrservice: AcrServiceService,
     private notificationService: NotificationService,
     private localStorageService: LocalStorageService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.getCandidateList();
+  }
+
+
+  logout() {
+    this.localStorageService.clearStorage();
+    this.router.navigate(['/acr/acr-login']);
   }
 
   getCandidateList() {
