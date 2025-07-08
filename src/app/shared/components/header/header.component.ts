@@ -44,7 +44,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logoutDatabaseUser() {
+    const loginSource = localStorage.getItem('loginSource');
     this.localStorageService.clearStorage();
-    this.router.navigateByUrl('/database/database-login')
+
+    // Set default path and then check for specific sources
+    let redirectPath = '/database/database-login';
+    if (loginSource === 'acr-database') {
+      redirectPath = '/acr-database/acr-database-login';
+    }
+
+    this.router.navigateByUrl(redirectPath);
   }
 }

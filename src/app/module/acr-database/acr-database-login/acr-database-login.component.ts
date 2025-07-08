@@ -33,10 +33,10 @@ export class AcrDatabaseLoginComponent implements OnInit {
 
   login(): void {
     this.loginForm.markAllAsTouched();
-    // this.router.navigate(['/database/list']);
     if (this.loginForm.valid) {
       this.databaseservice.loginUser(this.loginForm.value).subscribe((response) => {
         if (response?.status == true) {
+          localStorage.setItem('loginSource', 'acr-database');
           this.localStorageService.setLoginToken(response?.data);
           this.localStorageService.setLogger(response?.data?.user);
           this.router.navigate(['/acr-database/acr-database-list']);
