@@ -1,4 +1,4 @@
-<header class="header-sticky">
+<header class="header-sticky" *ngIf="loginUser?.role !== 'ACR' && TokenData?.role !== 'ACR'">
   <div class="top-header">
     <div class="d-flex justify-content-between align-items-center container-fluid px-4">
       <!-- Logo -->
