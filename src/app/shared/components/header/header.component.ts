@@ -10,6 +10,7 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
 export class HeaderComponent implements OnInit {
   loginUser!: any;
   TokenData: any;
+
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router
@@ -31,6 +32,10 @@ export class HeaderComponent implements OnInit {
         console.error("Error parsing token data as JSON", error);
       }
     }
+  }
+
+  isRouteActive(route: string): boolean {
+    return this.router.url === route;
   }
 
   logoutAcrAdmin() {
