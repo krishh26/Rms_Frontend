@@ -174,15 +174,13 @@
                       <div *ngIf="!job.applied && !compareWithToday(job?.extendedJobDetails?.job_expire_date)">
                         <label
                           [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
-                          <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)"
-                            [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
+                          <input type="radio" name="choice{{ i }}" value="yes" (click)="openModal(job)" />
                           Yes
                         </label>
                         &nbsp;
                         <label
                           [ngClass]="{'enabled-text': !(job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'), 'disabled-text': job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'}">
-                          <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)"
-                            [disabled]="job.status === 'Actioned' || job.status === 'Expired' || job.status === 'Inactive'" />
+                          <input type="radio" name="choice{{ i }}" value="no" (click)="noApplyjob(job)" />
                           No
                         </label>
                       </div>
