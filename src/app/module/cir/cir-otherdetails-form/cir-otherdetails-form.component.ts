@@ -60,6 +60,45 @@ export class CirOtherdetailsFormComponent implements OnInit {
     { label: 'Sun', value: 'Sun' }
   ];
 
+  preferredRoles = [
+    { label: 'Programme Test Manager', value: 'Programme Test Manager' },
+    { label: 'QA/Test Manager', value: 'QA/Test Manager' },
+    { label: 'NFT Manager', value: 'NFT Manager' },
+    { label: 'Automation Manager', value: 'Automation Manager' },
+    { label: 'QA/Test Lead (Functional)', value: 'QA/Test Lead (Functional)' },
+    { label: 'QA/Test Lead (Non-Functional)', value: 'QA/Test Lead (Non-Functional)' },
+    { label: 'Automation Lead', value: 'Automation Lead' },
+    { label: 'Performance Test Lead', value: 'Performance Test Lead' },
+    { label: 'UAT Test Lead', value: 'UAT Test Lead' },
+    { label: 'SIT Test Lead', value: 'SIT Test Lead' },
+    { label: 'NFT Lead', value: 'NFT Lead' },
+    { label: 'Test Analyst', value: 'Test Analyst' },
+    { label: 'Senior Test Analyst', value: 'Senior Test Analyst' },
+    { label: 'QA Tester', value: 'QA Tester' },
+    { label: 'Automation Analyst / Engineer', value: 'Automation Analyst / Engineer' },
+    { label: 'Performance Test Analyst', value: 'Performance Test Analyst' },
+    { label: 'Performance Test Engineer', value: 'Performance Test Engineer' },
+    { label: 'Security Analyst / Security Test Engineer', value: 'Security Analyst / Security Test Engineer' },
+    { label: 'UAT Test Analyst', value: 'UAT Test Analyst' },
+    { label: 'SIT Test Analyst', value: 'SIT Test Analyst' },
+    { label: 'Test Data / Environment Analyst', value: 'Test Data / Environment Analyst' },
+    { label: 'Defect Analyst / Manager', value: 'Defect Analyst / Manager' },
+    { label: 'Accessibility Test Engineer', value: 'Accessibility Test Engineer' },
+    { label: 'AI/ML Test Engineer', value: 'AI/ML Test Engineer' },
+    { label: 'QA/Test Architect', value: 'QA/Test Architect' },
+    { label: 'QA Tooling Specialist', value: 'QA Tooling Specialist' },
+    { label: 'Release QA Coordinator', value: 'Release QA Coordinator' },
+    { label: 'Risk & Issue Manager', value: 'Risk & Issue Manager' },
+    { label: 'Continuous Improvement Lead', value: 'Continuous Improvement Lead' },
+    { label: 'Service Transition Lead', value: 'Service Transition Lead' },
+    { label: 'Knowledge Transfer Lead', value: 'Knowledge Transfer Lead' },
+    { label: 'Graduate Enablement Coach', value: 'Graduate Enablement Coach' },
+    { label: 'Training & Capability Lead', value: 'Training & Capability Lead' },
+    { label: 'QA Career Pathway Manager', value: 'QA Career Pathway Manager' },
+    { label: 'QA Coach / QA Enablement Coach', value: 'QA Coach / QA Enablement Coach' },
+    { label: 'Trainee Tester', value: 'Trainee Tester' }
+  ];
+
   file: any;
   constructor(
     private cirSericeService: CirSericeService,
@@ -111,6 +150,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   onItemSelect(item: any) {
     console.log(item);
   }
+  
   onSelectAll(items: any) {
     console.log(items);
   }
@@ -138,6 +178,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
       anyQuestion: new FormControl(''),
       cv: new FormControl('', [Validators.required]),
+      preferredRoles: new FormControl([], [Validators.required]),
       sc_dv_clearance_hold: new FormControl('', [Validators.required]),
       sc_dv_valid_upto: new FormControl(''),
       willing_to_undertake: new FormControl('', [Validators.required]),
@@ -244,6 +285,11 @@ export class CirOtherdetailsFormComponent implements OnInit {
       ? selectedTimes.map((time: any) => time.label).filter((label: string) => label)
       : [];
 
+    const selectedRoles = this.otherDetailForm.controls['preferredRoles'].value;
+    const selectedRolesArray = Array.isArray(selectedRoles)
+      ? selectedRoles.map((role: any) => role.label).filter((label: string) => label)
+      : [];
+
     const cvObject = {
       key: this.file?.key,
       url: this.file?.url,
@@ -253,6 +299,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       ...this.otherDetailForm.value,
       callDay: selectedDaysArray,
       callTime: selectedTimesArray,
+      preferredRoles: selectedRolesArray,
       cv: cvObject
     };
     this.userdata = this.localStorageService.getLogger();

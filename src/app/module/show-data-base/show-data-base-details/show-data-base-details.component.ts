@@ -93,6 +93,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         // 'Are you willing to undertake',
         'Call Day',
         'Call Time',
+        "Preferred Roles",
         // 'Client 1 : Machester Only',
         // 'Client 2 : Northan Ireland Only',
         // 'Client 3 : All Over UK',

@@ -238,6 +238,15 @@
                     <!-- <td>{{item?.willing_to_undertake}}</td> -->
                     <td>{{ item?.callDay }}</td>
                     <td>{{ item?.callTime }}</td>
+                    <td>
+                      <ng-container *ngIf="item?.preferredRoles?.length > 0">
+                        <ul>
+                          <li *ngFor="let data of item?.preferredRoles">
+                            {{ data }}
+                          </li>
+                        </ul>
+                      </ng-container>
+                    </td>
                     <!-- <td>
                     <ng-container *ngIf="item?.client1?.roles?.length> 0">
                       <ul>

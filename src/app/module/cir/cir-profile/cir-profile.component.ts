@@ -16,6 +16,7 @@ export class CirProfileComponent implements OnInit {
   loginDetails!: any;
   showPassword = false;
   confirmShowPassword = false;
+  currentShowPassword = false;
   file: any;
   activeTab = 'profile'; // Default active tab
 
@@ -54,7 +55,8 @@ export class CirProfileComponent implements OnInit {
     // Password form
     this.passwordForm = new FormGroup({
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
-      confirmPassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)])
+      confirmPassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
+      currentPassword: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
     });
   }
 
@@ -81,6 +83,8 @@ export class CirProfileComponent implements OnInit {
       this.showPassword = !this.showPassword;
     } else if (type === 'confirmPassword') {
       this.confirmShowPassword = !this.confirmShowPassword;
+    } else if (type === 'currentPassword') {
+      this.currentShowPassword = !this.currentShowPassword;
     }
   }
 
@@ -119,6 +123,7 @@ export class CirProfileComponent implements OnInit {
     }
 
     const data: any = {
+      "currentPassword": this.passwordForm.controls['currentPassword'].value,
       "password": this.passwordForm.controls['password'].value
     }
 

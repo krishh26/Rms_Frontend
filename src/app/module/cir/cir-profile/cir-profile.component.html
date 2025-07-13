@@ -6,12 +6,14 @@
     <div class="FlatCard mt-4 mb-3">
       <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link" [class.active]="activeTab === 'profile'" id="Profile-tab" (click)="setActiveTab('profile')" type="button"
-            role="tab" aria-controls="Profile" aria-selected="true">Profile</button>
+          <button class="nav-link" [class.active]="activeTab === 'profile'" id="Profile-tab"
+            (click)="setActiveTab('profile')" type="button" role="tab" aria-controls="Profile"
+            aria-selected="true">Profile</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" [class.active]="activeTab === 'password'" id="ChangePassword-tab" (click)="setActiveTab('password')"
-            type="button" role="tab" aria-controls="ChangePassword" aria-selected="false">Change Password</button>
+          <button class="nav-link" [class.active]="activeTab === 'password'" id="ChangePassword-tab"
+            (click)="setActiveTab('password')" type="button" role="tab" aria-controls="ChangePassword"
+            aria-selected="false">Change Password</button>
         </li>
       </ul>
       <div class="row">
@@ -20,7 +22,8 @@
           <div class="FormRight-panel">
             <div class="tab-content" id="myTabContent">
               <!-- Profile Tab Content -->
-              <div class="tab-pane fade" [class.show]="activeTab === 'profile'" [class.active]="activeTab === 'profile'" id="Profile" role="tabpanel">
+              <div class="tab-pane fade" [class.show]="activeTab === 'profile'" [class.active]="activeTab === 'profile'"
+                id="Profile" role="tabpanel">
                 <form [formGroup]="profileForm" (ngSubmit)="submitProfile()">
                   <div class="row mb-3">
                     <div class="col-12">
@@ -105,18 +108,45 @@
               </div>
 
               <!-- Change Password Tab Content -->
-              <div class="tab-pane fade" [class.show]="activeTab === 'password'" [class.active]="activeTab === 'password'" id="ChangePassword" role="tabpanel">
+              <div class="tab-pane fade" [class.show]="activeTab === 'password'"
+                [class.active]="activeTab === 'password'" id="ChangePassword" role="tabpanel">
                 <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
                   <div class="form-group">
                     <div class="row mb-3">
                       <div class="col-md-4">
-                        <label for="password">Password:</label>
+                        <label for="password">Current Password:</label>
                       </div>
                       <div class="col-md-8">
-                        <input id="password" [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Password"
-                          formControlName="password">
-                        <span *ngIf="!showPassword" class="fas fa-eye showicon" (click)="showHidePass('password')"></span>
-                        <span *ngIf="showPassword" class="fas fa-eye-slash showicon" (click)="showHidePass('password')"></span>
+                        <input id="password" [type]="currentShowPassword ? 'text' : 'password'" class="form-control"
+                          placeholder="Current Password" formControlName="currentPassword">
+                        <span *ngIf="!currentShowPassword" class="fas fa-eye showicon"
+                          (click)="showHidePass('currentPassword')"></span>
+                        <span *ngIf="currentShowPassword" class="fas fa-eye-slash showicon"
+                          (click)="showHidePass('currentPassword')"></span>
+                        <span class="text-danger"
+                          *ngIf="passwordForm?.controls?.['currentPassword']?.touched && passwordForm?.controls?.['currentPassword']?.errors?.['required']">
+                          Please enter a password.
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="passwordForm?.controls?.['currentPassword']?.touched && passwordForm?.controls?.['currentPassword']?.errors?.['pattern']">
+                          Password must contain a capital letter, a number, and '&#64;'.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row mb-3">
+                      <div class="col-md-4">
+                        <label for="password">New Password:</label>
+                      </div>
+                      <div class="col-md-8">
+                        <input id="password" [type]="showPassword ? 'text' : 'password'" class="form-control"
+                          placeholder="New Password" formControlName="password">
+                        <span *ngIf="!showPassword" class="fas fa-eye showicon"
+                          (click)="showHidePass('password')"></span>
+                        <span *ngIf="showPassword" class="fas fa-eye-slash showicon"
+                          (click)="showHidePass('password')"></span>
                         <span class="text-danger"
                           *ngIf="passwordForm?.controls?.['password']?.touched && passwordForm?.controls?.['password']?.errors?.['required']">
                           Please enter a password.
@@ -135,8 +165,8 @@
                         <label for="confirmPassword">Confirm Password:</label>
                       </div>
                       <div class="col-md-8">
-                        <input id="confirmPassword" [type]="confirmShowPassword ? 'text' : 'password'" class="form-control" placeholder="Confirm Password"
-                          formControlName="confirmPassword">
+                        <input id="confirmPassword" [type]="confirmShowPassword ? 'text' : 'password'"
+                          class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
                         <span *ngIf="!confirmShowPassword" class="fas fa-eye showicon"
                           (click)="showHidePass('confirmPassword')"></span>
                         <span *ngIf="confirmShowPassword" class="fas fa-eye-slash showicon"

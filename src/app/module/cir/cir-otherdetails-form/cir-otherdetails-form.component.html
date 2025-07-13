@@ -21,6 +21,24 @@
                   </div>
                 </div>
               </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label>Preferred Role <span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-lg-8">
+                  <div class="form-group">
+                    <ng-multiselect-dropdown [placeholder]="'Select Preferred Roles'" [settings]="dropdownSettings"
+                      [data]="preferredRoles" formControlName="preferredRoles" (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                    <span class="text-danger" *ngIf="
+                      otherDetailForm.controls?.['preferredRoles']?.touched &&
+                      otherDetailForm.controls?.['preferredRoles']?.errors?.['required']">
+                      Please select at least one preferred role.
+                    </span>
+                  </div>
+                </div>
+              </div>
               <!-- <div class="row mb-3">
                 <div class="col-lg-4">
                   <label>Work Location Preferences <span style="color: red;">*</span> :</label>
