@@ -150,7 +150,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   onItemSelect(item: any) {
     console.log(item);
   }
-  
+
   onSelectAll(items: any) {
     console.log(items);
   }
@@ -249,6 +249,11 @@ export class CirOtherdetailsFormComponent implements OnInit {
 
   submit() {
     const localData: any = localStorage.getItem('rmsPersonalDetails');
+
+    if (!this.file) {
+      return this.notificationService.showError('Please upload file');
+    }
+
     if (!localData || localData == undefined || localData == 'undefined') {
       return this.submitotherDetail();
     }
@@ -269,7 +274,6 @@ export class CirOtherdetailsFormComponent implements OnInit {
       this.notificationService.showError(error?.error?.message || 'Fill all the fields of register page to proceed to next Page');
     });
   }
-
 
   submitotherDetail() {
     if (!this.file) {
@@ -351,7 +355,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   onSubmit() {
     if (this.otherDetailForm.valid) {
       const formData = this.otherDetailForm.value;
-      
+
       // If SC/DV is No, remove the valid_upto field from the payload
       if (formData.sc_dv_clearance_hold === 'no') {
         delete formData.sc_dv_valid_upto;
