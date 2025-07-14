@@ -19,7 +19,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
   otherDetailForm!: FormGroup;
   userID!: string;
   userdata: any = [];
-  referredByOptions: number[] = [];
+  referredByOptions: any = [];
   dropdownSettings = {};
   showValidUptoDate: boolean = false;
 
@@ -109,7 +109,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
 
-    for (let i = 0; i <= 2; i++) {
+    for (let i = 0; i <= 19; i++) {
       this.referredByOptions.push(i);
     }
 

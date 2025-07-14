@@ -232,7 +232,28 @@
                       </ng-container>
                     </td>
                     <td>{{ item?.expectedDayRate }}</td>
-                    <td>{{ item?.referredBy }}</td>
+                    <td>{{ item?.referredBy }}
+                      <span *ngIf="item?.referredBy == '1'">SaiVen Technology Solutions Ltd</span>
+                      <span *ngIf="item?.referredBy == '2'">Delphi Services Ltd</span>
+                      <span *ngIf="item?.referredBy == '3'">Apex IT</span>
+                      <span *ngIf="item?.referredBy == '4'">Jamie Thompson</span>
+                      <span *ngIf="item?.referredBy == '5'">WhatsApp</span>
+                      <span *ngIf="item?.referredBy == '6'">LinkedIn</span>
+                      <span *ngIf="item?.referredBy == '7'">Westgate IT Hub Pvt Ltd</span>
+                      <span *ngIf="item?.referredBy == '8'">Spectrum</span>
+                      <span *ngIf="item?.referredBy == '9'">SWT</span>
+                      <span *ngIf="item?.referredBy == '10'">MC Personal</span>
+                      <span *ngIf="item?.referredBy == '11'">Akkodis</span>
+                      <span *ngIf="item?.referredBy == '12'">Next Move Recruitment Ltd</span>
+                      <span *ngIf="item?.referredBy == '13'">We Are Dcoded Limited</span>
+                      <span *ngIf="item?.referredBy == '14'">Heat Recruitment Limited</span>
+                      <span *ngIf="item?.referredBy == '15'">Starapex Recruitment</span>
+                      <span *ngIf="item?.referredBy == '16'">Colossus Recruitment Ltd</span>
+                      <span *ngIf="item?.referredBy == '17'">Hexwired Recruitment Limited</span>
+                      <span *ngIf="item?.referredBy == '18'">Fynity</span>
+                      <span *ngIf="item?.referredBy == '19'">Others</span>
+
+                    </td>
                     <td>{{ item?.sc_dv_clearance_hold ? 'Yes' : 'No' }}</td>
 
                     <!-- <td>{{item?.willing_to_undertake}}</td> -->
