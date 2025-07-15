@@ -140,6 +140,27 @@
                 </div>
               </div>
 
+              <!-- SC/DV clearance -->
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Are you eligible for SC Clearance ? <span style="color: red;">*</span> :</label>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="eligible_for_SC">
+                      <option value="" disabled selected hidden>Select Type</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                    <span class="text-danger" *ngIf="
+                                    otherDetailForm.controls?.['eligible_for_SC']?.touched &&
+                                    otherDetailForm.controls?.['eligible_for_SC']?.errors?.['required']">
+                      Please select a eligible for SC clearance.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <!-- Valid Upto Date (shows only when Yes is selected) -->
               <div class="row" *ngIf="showValidUptoDate">
                 <div class="col-md-4">

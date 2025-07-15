@@ -90,6 +90,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Expected Day Rate',
         'Referred By',
         'Any SC_DV ?',
+        'Eligible For SC Clearance',
         // 'Are you willing to undertake',
         'Call Day',
         'Call Time',

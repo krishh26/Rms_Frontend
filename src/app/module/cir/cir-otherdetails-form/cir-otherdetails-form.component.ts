@@ -182,7 +182,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
       sc_dv_clearance_hold: new FormControl('', [Validators.required]),
       sc_dv_valid_upto: new FormControl(''),
       willing_to_undertake: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required])
+      confirmPassword: new FormControl('', [Validators.required]),
+      eligible_for_SC: new FormControl('', [Validators.required]),
     });
   }
 
