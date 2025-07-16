@@ -90,6 +90,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         'Expected Day Rate',
         'Referred By',
         'Any SC_DV ?',
+        'Valid Up To',
         'Eligible For SC Clearance',
         // 'Are you willing to undertake',
         'Call Day',
@@ -291,11 +292,11 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     this.router.navigateByUrl('/database/card/details/' + type);
   }
 
-  appliedRoleData(jobId : string) {
+  appliedRoleData(jobId: string) {
     this.router.navigateByUrl(`/database/job-applications/${jobId}`)
   }
 
   viewSendMail(id: string) {
-      this.router.navigateByUrl(`/database/send-mail/${id}`);
+    this.router.navigateByUrl(`/database/send-mail/${id}`);
   }
 }
