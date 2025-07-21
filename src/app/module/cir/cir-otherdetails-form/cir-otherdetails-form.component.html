@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="form-group">
-                    <select class="form-control" formControlName="referredBy">
+                    <select class="form-control" formControlName="referredBy" [disabled]="true">
                       <option value="" disabled selected>000</option>
                       <option *ngFor="let option of referredByOptions" [value]="option">
                         <!-- {{ option | number: '3.0' }} -->
