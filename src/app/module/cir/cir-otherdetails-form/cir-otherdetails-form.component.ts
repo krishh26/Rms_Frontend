@@ -185,6 +185,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
       confirmPassword: new FormControl('', [Validators.required]),
       eligible_for_SC: new FormControl('', [Validators.required]),
     });
+
+    this.otherDetailForm.get('referredBy')?.disable();
   }
 
   selectedRoles: string[] = [];
