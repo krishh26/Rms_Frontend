@@ -109,7 +109,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
 
-    for (let i = 0; i <= 19; i++) {
+    for (let i = 0; i <= 50; i++) {
       this.referredByOptions.push(i);
     }
 
@@ -172,7 +172,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       workLocation: new FormControl([]),
       currency: new FormControl('', [Validators.required]),
       expectedDayRate: new FormControl('', [Validators.required]),
-      referredBy: new FormControl(Number(localStorage.getItem('referCode') || 0), [Validators.required]),
+      referredBy: new FormControl(Number(localStorage.getItem('referCode') || null)),
       callDay: new FormControl([], [Validators.required]),
       callTime: new FormControl([], [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
