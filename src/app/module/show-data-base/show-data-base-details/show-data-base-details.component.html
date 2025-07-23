@@ -26,29 +26,28 @@
           <div class="row m-3">
             <div class="col-4">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="userFilter.name" />
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="userFilter.name" />
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Phone Number" (keypress)="NumberOnly($event)"
+                <label class="form-label">Phone Number</label>
+                <input type="text" class="form-control" placeholder="Enter phone number" (keypress)="NumberOnly($event)"
                   [(ngModel)]="userFilter.phoneNumber" />
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userFilter.email" />
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" placeholder="Enter email" [(ngModel)]="userFilter.email" />
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Country" [(ngModel)]="userFilter.country" />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="form-group">
-                <select class="form-control" [(ngModel)]="userFilter.UKDrivinglicense">
-                  <option value="" disabled selected hidden>Uk Driving License</option>
+                <label class="form-label">Eligible For SC Clearance</label>
+                <select class="form-control" [(ngModel)]="userFilter.eligible_for_SC">
+                  <option value="" disabled selected hidden>Select Option</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -56,23 +55,48 @@
             </div>
             <div class="col-4">
               <div class="form-group">
-                <select class="form-control" [(ngModel)]="userFilter.nationality">
-                  <option value="" disabled selected hidden>Select Nationality</option>
-                  <option value="british">British</option>
-                  <option value="other">Others</option>
+                <label class="form-label">SC/DV Clearance Hold</label>
+                <select class="form-control" [(ngModel)]="userFilter.sc_dv_clearance_hold">
+                  <option value="" disabled selected hidden>Select Option</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
                 </select>
+              </div>
+            </div>
+            <!-- <div class="col-4">
+              <div class="form-group">
+                <label class="form-label">Country</label>
+                <input type="text" class="form-control" placeholder="Enter country" [(ngModel)]="userFilter.country" />
+              </div>
+            </div>  -->
+            <div class="col-4">
+              <div class="form-group">
+                <label class="form-label">UK Driving License</label>
+                <select class="form-control" [(ngModel)]="userFilter.UKDrivinglicense">
+                  <option value="" disabled selected hidden>Select Option</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+           <!-- <div class="col-4">
+              <div class="form-group">
+                <label class="form-label">Nationality</label>
+                <input type="text" class="form-control" placeholder="Enter nationality" [(ngModel)]="userFilter.nationality" />
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
+                <label class="form-label">Current Work</label>
                 <select class="form-control" [(ngModel)]="userFilter.currentWork">
-                  <option value="" disabled selected hidden>Current Working As</option>
+                  <option value="" disabled selected hidden>Select Option</option>
                   <option value="full-time">Full Time</option>
                   <option value="part-time">Part Time</option>
-                  <option value="not-working">Not working</option>
+                  <option value="freelance">Freelance</option>
+                  <option value="unemployed">Unemployed</option>
                 </select>
               </div>
-            </div>
+            </div> -->
             <div class="col-4">
               <button type="button" class="btn btn-primary" (click)="getTableDetails()">Submit</button>
               <button type="button" class="btn btn-primary" (click)="resetFilter()">Reset</button>

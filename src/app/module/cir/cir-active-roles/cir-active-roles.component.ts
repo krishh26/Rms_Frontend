@@ -334,7 +334,7 @@ export class CirActiveRolesComponent implements OnInit {
 
   async applyStatusFilter() {
     Payload.projectList.page = String(this.page);
-    Payload.projectList.limit = String(this.pagesize);
+    Payload.projectList.limit = String(1000000);
     Payload.projectList.keyword = this.searchText || '';
     Payload.projectList.job_type = this.selectedStatus;
     this.acrservice.getCirJobList(Payload.projectList).subscribe((response) => {

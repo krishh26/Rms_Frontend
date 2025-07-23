@@ -171,7 +171,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
     this.otherDetailForm = new FormGroup({
       workLocation: new FormControl([]),
       currency: new FormControl('', [Validators.required]),
-      expectedDayRate: new FormControl('', [Validators.required]),
+      expectedDayRate: new FormControl(''),
       referredBy: new FormControl(Number(localStorage.getItem('referCode') || null)),
       callDay: new FormControl([], [Validators.required]),
       callTime: new FormControl([], [Validators.required]),
@@ -328,7 +328,6 @@ export class CirOtherdetailsFormComponent implements OnInit {
       }
     );
   }
-
 
   submitRoles() {
     const rolesData: any = localStorage.getItem('rmsRolesDetails');

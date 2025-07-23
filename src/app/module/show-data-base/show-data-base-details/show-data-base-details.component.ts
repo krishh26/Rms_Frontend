@@ -28,7 +28,9 @@ export class ShowDataBaseDetailsComponent implements OnInit {
     country: '',
     UKDrivinglicense: '',
     nationality: '',
-    currentWork: ''
+    currentWork: '',
+    eligible_for_SC: '',
+    sc_dv_clearance_hold: ''
   }
   ACRFilter: any = {
 
@@ -209,7 +211,94 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   }
 
   downloadAsExcel() {
-    this.databaseService.ExportToExcel(this.tableData, "usersList");
+    if (this.pageType == 'User') {
+      // Here is call get details API for table
+      const payload = {
+        modelName: this.pageType,
+        page: this.page,
+        limit: 10000
+      }
+      this.databaseService.getModelData(payload, this.userFilter).subscribe((response) => {
+        if (response?.status) {
+          // Process the data to convert arrays to comma-separated strings
+          const processedData = this.processDataForExcel(response?.data);
+          this.databaseService.ExportToExcel(processedData, "usersList");
+          this.totalRecords = response?.meta_data?.items;
+        } else {
+          this.notificationService.showError(response?.message || 'Resume not uploaded.')
+        }
+      })
+
+      // this.databaseService.ExportToExcel(this.tableData, "usersList");
+    } else {
+      this.databaseService.ExportToExcel(this.tableData, "usersList");
+    }
+  }
+
+  /**
+   * Process data to convert arrays to comma-separated strings for Excel export
+   * @param data - Array of user objects
+   * @returns Processed data with arrays converted to comma-separated strings
+   */
+  private processDataForExcel(data: any[]): any[] {
+    return data.map(item => {
+      const processedItem = { ...item };
+
+      // Convert known array fields to comma-separated strings
+      const arrayFields = [
+        'callDay', 'callTime', 'lookingFor', 'preferredRoles',
+        'workPreference', 'workLocation'
+      ];
+
+      arrayFields.forEach(field => {
+        if (Array.isArray(processedItem[field])) {
+          processedItem[field] = processedItem[field].join(', ');
+        }
+      });
+
+      // Process client objects (client1 to client10) - convert their roles arrays
+      // for (let i = 1; i <= 10; i++) {
+      //   const clientKey = `client${i}`;
+      //   if (processedItem[clientKey] && typeof processedItem[clientKey] === 'object') {
+      //     if (Array.isArray(processedItem[clientKey].roles)) {
+      //       processedItem[clientKey] = {
+      //         ...processedItem[clientKey],
+      //         roles: processedItem[clientKey].roles.join(', ')
+      //       };
+      //     }
+      //   }
+      // }
+
+            // Handle boolean fields - convert to readable strings
+      if (typeof processedItem.UKDrivinglicense === 'boolean') {
+        processedItem.UKDrivinglicense = processedItem.UKDrivinglicense ? 'Yes' : 'No';
+      }
+      
+      // Handle sc_dv_clearance_hold - could be boolean or string
+      if (typeof processedItem.sc_dv_clearance_hold === 'boolean') {
+        processedItem.sc_dv_clearance_hold = processedItem.sc_dv_clearance_hold ? 'Yes' : 'No';
+      } else if (processedItem.sc_dv_clearance_hold === 'yes') {
+        processedItem.sc_dv_clearance_hold = 'Yes';
+      } else if (processedItem.sc_dv_clearance_hold === 'no') {
+        processedItem.sc_dv_clearance_hold = 'No';
+      }
+      
+      // Handle eligible_for_SC - could be boolean or string
+      if (typeof processedItem.eligible_for_SC === 'boolean') {
+        processedItem.eligible_for_SC = processedItem.eligible_for_SC ? 'Yes' : 'No';
+      } else if (processedItem.eligible_for_SC === 'yes') {
+        processedItem.eligible_for_SC = 'Yes';
+      } else if (processedItem.eligible_for_SC === 'no') {
+        processedItem.eligible_for_SC = 'No';
+      }
+
+      // Handle null/undefined values
+      if (processedItem.sc_dv_valid_upto === null || processedItem.sc_dv_valid_upto === undefined) {
+        processedItem.sc_dv_valid_upto = '';
+      }
+
+      return processedItem;
+    });
   }
 
   // Number only validation
