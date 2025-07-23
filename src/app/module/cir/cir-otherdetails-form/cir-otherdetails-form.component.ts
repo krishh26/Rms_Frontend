@@ -172,7 +172,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       workLocation: new FormControl([]),
       currency: new FormControl('', [Validators.required]),
       expectedDayRate: new FormControl(''),
-      referredBy: new FormControl(Number(localStorage.getItem('referCode') || null)),
+      referredBy: new FormControl(String(localStorage.getItem('referCode') || null)),
       callDay: new FormControl([], [Validators.required]),
       callTime: new FormControl([], [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.pattern(Patterns.password)]),
@@ -185,7 +185,7 @@ export class CirOtherdetailsFormComponent implements OnInit {
       confirmPassword: new FormControl('', [Validators.required]),
       eligible_for_SC: new FormControl('', [Validators.required]),
     });
-
+    console.log("this.otherDetailForm.get('referredBy')", this.otherDetailForm.get('referredBy')?.value)
     this.otherDetailForm.get('referredBy')?.disable();
   }
 
@@ -261,6 +261,9 @@ export class CirOtherdetailsFormComponent implements OnInit {
       return this.submitotherDetail();
     }
 
+    console.log("localDatalocalDatalocalDatalocalData", localData);
+    console.log("this.otherDetailForm.value", this.otherDetailForm.value, String(localStorage.getItem('referCode')) || null,);
+
     this.cirSericeService.register(JSON.parse(localData)).subscribe((response) => {
       if (response?.status) {
         console.log('response?.data', response?.data);
@@ -307,7 +310,8 @@ export class CirOtherdetailsFormComponent implements OnInit {
       callDay: selectedDaysArray,
       callTime: selectedTimesArray,
       preferredRoles: selectedRolesArray,
-      cv: cvObject
+      cv: cvObject,
+      referredBy: String(localStorage.getItem('referCode')) || null,
     };
     this.userdata = this.localStorageService.getLogger();
     this.userID = this.userdata?.user?._id;
