@@ -211,6 +211,15 @@ export class ShowDataBaseDetailsComponent implements OnInit {
   }
 
   downloadAsExcel() {
+    if(this.pageType = 'User') {
+      const processedData = this.processDataForExcel(this.tableData);
+      this.databaseService.ExportToExcel(processedData, "usersList");
+    } else {
+      this.databaseService.ExportToExcel(this.tableData, "usersList");
+    }
+  }
+
+  downloadAsExcelAll() {
     if (this.pageType == 'User') {
       // Here is call get details API for table
       const payload = {
@@ -218,7 +227,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
         page: this.page,
         limit: 10000
       }
-      this.databaseService.getModelData(payload, this.userFilter).subscribe((response) => {
+      this.databaseService.getModelData(payload, {}).subscribe((response) => {
         if (response?.status) {
           // Process the data to convert arrays to comma-separated strings
           const processedData = this.processDataForExcel(response?.data);
@@ -269,11 +278,11 @@ export class ShowDataBaseDetailsComponent implements OnInit {
       //   }
       // }
 
-            // Handle boolean fields - convert to readable strings
+      // Handle boolean fields - convert to readable strings
       if (typeof processedItem.UKDrivinglicense === 'boolean') {
         processedItem.UKDrivinglicense = processedItem.UKDrivinglicense ? 'Yes' : 'No';
       }
-      
+
       // Handle sc_dv_clearance_hold - could be boolean or string
       if (typeof processedItem.sc_dv_clearance_hold === 'boolean') {
         processedItem.sc_dv_clearance_hold = processedItem.sc_dv_clearance_hold ? 'Yes' : 'No';
@@ -282,7 +291,7 @@ export class ShowDataBaseDetailsComponent implements OnInit {
       } else if (processedItem.sc_dv_clearance_hold === 'no') {
         processedItem.sc_dv_clearance_hold = 'No';
       }
-      
+
       // Handle eligible_for_SC - could be boolean or string
       if (typeof processedItem.eligible_for_SC === 'boolean') {
         processedItem.eligible_for_SC = processedItem.eligible_for_SC ? 'Yes' : 'No';

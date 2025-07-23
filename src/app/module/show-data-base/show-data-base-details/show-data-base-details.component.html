@@ -210,6 +210,9 @@
             <button type="button" class="btn btn-light" (click)="downloadAsExcel()">
               Download Excel
             </button>
+            <button *ngIf="pageType == 'User'" type="button" class="btn btn-light" (click)="downloadAsExcelAll()">
+              Download All
+            </button>
           </div>
         </div>
       </div>
